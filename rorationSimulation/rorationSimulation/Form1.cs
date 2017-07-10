@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,63 +18,92 @@ namespace rorationSimulation
             InitializeComponent();
         }
        
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
+            Rectangle rect = new Rectangle(this.pictureBox1.Location,this.pictureBox1.Size);
+            this.Invalidate(rect);
         }
+
+        //protected override void OnPaint(PaintEventArgs e)
+        //{
+        //    Graphics dc = e.Graphics;
+        //    Pen BluePen = new Pen(Color.Blue, 3);
+        //    dc.DrawRectangle(BluePen, 0, 0, 50, 50);
+        //    Pen RedPen = new Pen(Color.Red, 2);
+        //    dc.DrawEllipse(RedPen, 0, 50, 80, 60);
+        //    base.OnPaint(e);
+        //}
+
 
         private Graphics g;
+        private Graphics g1;
+        private float widthCenter;
+        private float heightCenter;
+       
+        
+     
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            Graphics g = this.pictureBox1.CreateGraphics();
-            float widthCenter = this.pictureBox1.Width / 2;
-            float heightCenter = this.pictureBox1.Height / 2;
-            //g.Clear(Color.MediumPurple);
-            
-            
-            //draw drosophila
-            g.DrawLine(Pens.Green, widthCenter, heightCenter - 10, widthCenter, heightCenter + 10);
-            g.DrawLine(Pens.Green, widthCenter, heightCenter - 10, widthCenter - 5, heightCenter - 5);
-            g.DrawLine(Pens.Green, widthCenter, heightCenter - 10, widthCenter + 5, heightCenter - 5);
 
-
-            //draw aera
-            Rectangle rect = new Rectangle((int)(widthCenter - 50), (int)(heightCenter - 50), 100, 100);
-            
-            //g.DrawRectangle(Pens.Blue,rect);
-            //g.DrawArc(Pens.Yellow, rect, 0,100);
-
-            
-            g.FillPie(new SolidBrush(Color.FromArgb(254,67,101)), rect, 225, 90);
-            g.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 315, 90);
-            g.FillPie(new SolidBrush(Color.FromArgb(254, 67, 101)), rect, 45, 90);
-            g.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 135,90);
-
-
-
-
-
-            //g.TranslateTransform(100,110);
-            //g.Clear(this.BackColor);
-            //g.RotateTransform(30);
-            //g.TranslateTransform(-100,-110);
-
-            //g.DrawLine(Pens.Red, 100, 100, 100, 120);
-
-
-
+            switch (e.KeyCode)
+            {
+                case Keys.A:
+                    this.CreateGraphics().DrawImage(dc1.rotationLeftAera(10), this.pictureBox1.Location);
+                    break;
+                case Keys.D:
+                    this.CreateGraphics().DrawImage(dc1.rotationRightAera(10), this.pictureBox1.Location);
+                    break;
+            }
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics gs = pictureBox1.CreateGraphics();
-            string strFile = @"E:\github\flight-simulator-in-drosophila\rorationSimulation\rorationSimulation\bin\Debug\1.jpg";
-            Image img = Image.FromFile(strFile);
             
-            gs.DrawImage(img, pictureBox1.ClientRectangle);
+        }
 
+        //private void button6_Click(object sender, EventArgs e)
+        //{
+
+        //    Bitmap image = new Bitmap(1000, 1000);
+        //    Graphics g = Graphics.FromImage(image);
+            
+            
+        //    //使绘图质量最高，即消除锯齿  
+        //    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+        //    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+        //    g.CompositingQuality = CompositingQuality.HighQuality;
+        //    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+
+
+        //    Rectangle rect = new Rectangle((int)(widthCenter - 150), (int)(heightCenter - 150), 300, 300);
+        //    g.FillPie(new SolidBrush(Color.CadetBlue), rect, 225, 90);
+        //    g.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 315, 90);
+        //    g.FillPie(new SolidBrush(Color.CadetBlue), rect, 45, 90);
+        //    g.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 135, 90);
+           
+        //}
+
+
+        private DrawCircle dc1;
+        private void button7_Click(object sender, EventArgs e)
+        {
+            dc1 = new DrawCircle(this.pictureBox1.Width, this.pictureBox1.Height, this.pictureBox1.Location.X, this.pictureBox1.Location.Y, this.BackColor);
+            this.CreateGraphics().DrawImage(dc1.drawAera(), this.pictureBox1.Location);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            this.CreateGraphics().DrawImage(dc1.rotationLeftAera(10), this.pictureBox1.Location);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            this.CreateGraphics().DrawImage(dc1.rotationRightAera(10), this.pictureBox1.Location);
         }
     }
 }
