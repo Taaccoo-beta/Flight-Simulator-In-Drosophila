@@ -15,6 +15,8 @@ namespace rorationSimulation
     {
         public Form1()
         {
+            
+         
             InitializeComponent();
         }
        
@@ -25,6 +27,16 @@ namespace rorationSimulation
             this.UpdateStyles();
             Rectangle rect = new Rectangle(this.pictureBox1.Location,this.pictureBox1.Size);
             this.Invalidate(rect);
+
+            dc1 = new DrawCircle(this.pictureBox1.Width, this.pictureBox1.Height, this.pictureBox1.Location.X, this.pictureBox1.Location.Y, this.BackColor);
+            this.CreateGraphics().DrawImage(dc1.drawAera(), this.pictureBox1.Location);
+
+            //set location
+            this.locationNow = 0;
+
+            //timer
+            this.timer1.Interval = 20;
+            this.timer1.Start();
         }
 
         //protected override void OnPaint(PaintEventArgs e)
@@ -42,9 +54,41 @@ namespace rorationSimulation
         private Graphics g1;
         private float widthCenter;
         private float heightCenter;
-       
-        
-     
+
+        private float locationNow;
+
+        /// <summary>
+        /// location fliter
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        private float locationFilter(float location)
+        {
+            if (location > 360)
+            {
+                return location - 360;
+            }
+
+            if (location < -360)
+            {
+                return location + 360;
+            }
+
+            return location;
+        }
+
+        private float getRealLocation(float location)
+        {
+            if (location >= 0)
+            {
+                return location;
+            }
+            else
+            {
+                return location + 360;
+            }
+        }
+
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -52,10 +96,13 @@ namespace rorationSimulation
             switch (e.KeyCode)
             {
                 case Keys.A:
-                    this.CreateGraphics().DrawImage(dc1.rotationLeftAera(10), this.pictureBox1.Location);
+                    this.CreateGraphics().DrawImage(dc1.rotationRightAera(10), this.pictureBox1.Location);
+                    this.locationNow = locationFilter(locationNow + 10);
+                    
                     break;
                 case Keys.D:
-                    this.CreateGraphics().DrawImage(dc1.rotationRightAera(10), this.pictureBox1.Location);
+                    this.CreateGraphics().DrawImage(dc1.rotationLeftAera(10), this.pictureBox1.Location);
+                    this.locationNow = locationFilter(locationNow - 10);
                     break;
             }
 
@@ -71,8 +118,8 @@ namespace rorationSimulation
 
         //    Bitmap image = new Bitmap(1000, 1000);
         //    Graphics g = Graphics.FromImage(image);
-            
-            
+
+
         //    //使绘图质量最高，即消除锯齿  
         //    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
         //    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -85,10 +132,10 @@ namespace rorationSimulation
         //    g.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 315, 90);
         //    g.FillPie(new SolidBrush(Color.CadetBlue), rect, 45, 90);
         //    g.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 135, 90);
-           
+
         //}
 
-
+        private drawProcess dp1;
         private DrawCircle dc1;
         private void button7_Click(object sender, EventArgs e)
         {
@@ -98,12 +145,33 @@ namespace rorationSimulation
 
         private void button8_Click(object sender, EventArgs e)
         {
-            this.CreateGraphics().DrawImage(dc1.rotationLeftAera(10), this.pictureBox1.Location);
+            this.CreateGraphics().DrawImage(dc1.rotationRightAera(10), this.pictureBox1.Location);
+            this.locationNow = locationFilter(locationNow + 10);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            this.CreateGraphics().DrawImage(dc1.rotationRightAera(10), this.pictureBox1.Location);
+            this.CreateGraphics().DrawImage(dc1.rotationLeftAera(10), this.pictureBox1.Location);
+            this.locationNow = locationFilter(locationNow - 10);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dp1 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height,this.pictureBox3.BackColor);
+            this.CreateGraphics().DrawImage(dp1.drawBackGround(), this.pictureBox3.Location);
+
+
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.lblShowLocation.Text = getRealLocation(locationNow).ToString();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -84,7 +84,7 @@ namespace rorationSimulation
             g1.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 315, 90);
             g1.FillPie(new SolidBrush(Color.CadetBlue), rect, 45, 90);
             g1.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 135, 90);
-            g1.DrawString("Aera A0", new Font("Arial", 16), new SolidBrush(Color.DarkOrange), widthCenter - 30, heightCenter - 100);
+            g1.DrawString("Aera A(0)", new Font("Arial", 16), new SolidBrush(Color.DarkOrange), widthCenter - 30, heightCenter - 100);
 
 
             
@@ -92,7 +92,7 @@ namespace rorationSimulation
             g2.TranslateTransform(widthCenter, heightCenter);
             g2.RotateTransform(180);
             g2.TranslateTransform(-widthCenter, -heightCenter);
-            g2.DrawString("Aera A1", new Font("Arial", 16), new SolidBrush(Color.DarkOrange), widthCenter - 30, heightCenter - 100);
+            g2.DrawString("Aera A", new Font("Arial", 16), new SolidBrush(Color.DarkOrange), widthCenter - 30, heightCenter - 100);
 
 
             g3.DrawLine(Pens.Cyan, widthCenter, heightCenter - 20, widthCenter, heightCenter + 20);
@@ -117,9 +117,9 @@ namespace rorationSimulation
             g1.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 315, 90);
             g1.FillPie(new SolidBrush(Color.CadetBlue), rect, 45, 90);
             g1.FillPie(new SolidBrush(Color.FromArgb(131, 175, 155)), rect, 135, 90);
-            g1.DrawString("Aera A0", new Font("Arial", 16), new SolidBrush(Color.DarkOrange), widthCenter - 30, heightCenter - 100);
+            g1.DrawString("Aera A(0)", new Font("Arial", 16), new SolidBrush(Color.DarkOrange), widthCenter - 30, heightCenter - 100);
 
-            g2.DrawString("Aera A1", new Font("Arial", 16), new SolidBrush(Color.DarkOrange), widthCenter - 30, heightCenter - 100);
+            g2.DrawString("Aera A", new Font("Arial", 16), new SolidBrush(Color.DarkOrange), widthCenter - 30, heightCenter - 100);
 
 
             g3.DrawLine(Pens.Cyan, widthCenter, heightCenter - 20, widthCenter, heightCenter + 20);
