@@ -58,11 +58,17 @@ namespace rorationSimulation
             g2.Clear(bc);
 
 
+            // draw background
             Rectangle rect = new Rectangle(0,0, width, height);
-            g1.FillRectangle(new SolidBrush(Color.Blue), rect);
+            g1.FillRectangle(new SolidBrush(Color.FromArgb(153, 204, 255)), rect);
+
+
+            // draw axis
+            g1.DrawRectangle(Pens.Yellow, new Rectangle(60,10,width-120,height-120));
 
 
 
+            
 
             return image1;
         }

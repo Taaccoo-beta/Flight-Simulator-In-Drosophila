@@ -37,6 +37,9 @@ namespace rorationSimulation
             //timer
             this.timer1.Interval = 20;
             this.timer1.Start();
+
+            this.timer2.Interval = 20;
+            this.timer2.Start();
         }
 
         //protected override void OnPaint(PaintEventArgs e)
@@ -157,8 +160,8 @@ namespace rorationSimulation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dp1 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height,this.pictureBox3.BackColor);
-            this.CreateGraphics().DrawImage(dp1.drawBackGround(), this.pictureBox3.Location);
+            dp1 = new drawProcess(600,600,this.BackColor);
+            this.CreateGraphics().DrawImage(dp1.drawBackGround(),700,0);
 
 
 
@@ -171,6 +174,13 @@ namespace rorationSimulation
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            dp1 = new drawProcess(600, 600, this.BackColor);
+            this.CreateGraphics().DrawImage(dp1.drawBackGround(), 400,10);
 
         }
     }

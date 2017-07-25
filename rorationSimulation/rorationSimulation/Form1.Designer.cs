@@ -39,9 +39,8 @@
             this.lblTorque = new System.Windows.Forms.Label();
             this.lblShowTorque = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -138,16 +137,9 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pictureBox3
+            // timer2
             // 
-            this.pictureBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox3.Location = new System.Drawing.Point(376, 23);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(735, 722);
-            this.pictureBox3.TabIndex = 17;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Visible = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
@@ -155,7 +147,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1123, 777);
-            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblShowTorque);
             this.Controls.Add(this.lblTorque);
@@ -176,7 +167,6 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,7 +184,7 @@
         private System.Windows.Forms.Label lblTorque;
         private System.Windows.Forms.Label lblShowTorque;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
