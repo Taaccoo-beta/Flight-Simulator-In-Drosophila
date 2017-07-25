@@ -58,8 +58,8 @@ namespace PortDetection
 
 
             this.lblPosition.Text = position.ToString("00.000");
-            this.lblTorque.Text = position.ToString("00.000");
-            this.lblTacho.Text = position.ToString("00.000");
+            this.lblTorque.Text = troque.ToString("00.000");
+            this.lblTacho.Text = tacho.ToString("00.000");
             
 
         }
@@ -76,7 +76,7 @@ namespace PortDetection
 
         private void btnSendShutter_Click(object sender, EventArgs e)
         {
-            if (this.radioButton1.Checked)
+            if (this.cb1.Checked)
             {
                 this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
             }
@@ -88,72 +88,22 @@ namespace PortDetection
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.radioButton1.Checked)
+            if (this.checkBox1.Checked)
             {
-                this.radioButton1.Text = "Low";
+                this.checkBox1.Text = "Low";
 
             }
             else
             {
-                this.radioButton1.Text = "High";
+                this.checkBox1.Text = "High";
             }
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.radioButton2.Checked)
-            {
-                this.radioButton2.Text = "Low";
-
-            }
-            else
-            {
-                this.radioButton2.Text = "High";
-            }
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.radioButton3.Checked)
-            {
-                this.radioButton3.Text = "Low";
-
-            }
-            else
-            {
-                this.radioButton3.Text = "High";
-            }
-        }
-
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.radioButton4.Checked)
-            {
-                this.radioButton4.Text = "Low";
-
-            }
-            else
-            {
-                this.radioButton4.Text = "High";
-            }
-        }
-
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.radioButton5.Checked)
-            {
-                this.radioButton5.Text = "Low";
-
-            }
-            else
-            {
-                this.radioButton5.Text = "High";
-            }
-        }
+       
 
         private void btnSendHeat_Click(object sender, EventArgs e)
         {
-            if (this.radioButton2.Checked)
+            if (this.checkBox1.Checked)
             {
                 this.pc.DigitOutput(1, MccDaq.DigitalLogicState.Low);
             }
@@ -165,7 +115,7 @@ namespace PortDetection
 
         private void btnSendIntergrator_Click(object sender, EventArgs e)
         {
-            if (this.radioButton3.Checked)
+            if (this.checkBox2.Checked)
             {
                 this.pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
             }
@@ -177,7 +127,7 @@ namespace PortDetection
 
         private void btnSendClosed_Click(object sender, EventArgs e)
         {
-            if (this.radioButton4.Checked)
+            if (this.checkBox3.Checked)
             {
                 this.pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
             }
@@ -189,7 +139,7 @@ namespace PortDetection
 
         private void btnSeedRotating_Click(object sender, EventArgs e)
         {
-            if (this.radioButton5.Checked)
+            if (this.checkBox4.Checked)
             {
                 this.pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
             }
@@ -207,6 +157,98 @@ namespace PortDetection
         private void btnTorqueBias_Click(object sender, EventArgs e)
         {
             this.pc.VOutput(1, float.Parse(this.tbTroqueBias.Text));
+        }
+
+        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (this.checkBox5.Checked)
+            {
+                this.pc.DigitOutput(int.Parse(tbPortNumber.Text), MccDaq.DigitalLogicState.Low);
+            }
+            else
+            {
+                this.pc.DigitOutput(int.Parse(tbPortNumber.Text), MccDaq.DigitalLogicState.High);
+            }
+        }
+
+        private void cb1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.cb1.Checked)
+            {
+                this.cb1.Text = "Low";
+
+            }
+            else
+            {
+                this.cb1.Text = "High";
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox1.Checked)
+            {
+                this.checkBox1.Text = "Low";
+
+            }
+            else
+            {
+                this.checkBox1.Text = "High";
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox2.Checked)
+            {
+                this.checkBox2.Text = "Low";
+
+            }
+            else
+            {
+                this.checkBox2.Text = "High";
+            }
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox3.Checked)
+            {
+                this.checkBox3.Text = "Low";
+
+            }
+            else
+            {
+                this.checkBox3.Text = "High";
+            }
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox4.Checked)
+            {
+                this.checkBox4.Text = "Low";
+
+            }
+            else
+            {
+                this.checkBox4.Text = "High";
+            }
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox5.Checked)
+            {
+                this.checkBox5.Text = "Low";
+
+            }
+            else
+            {
+                this.checkBox5.Text = "High";
+            }
         }
     }
 }
