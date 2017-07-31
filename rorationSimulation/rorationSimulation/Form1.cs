@@ -179,7 +179,7 @@ namespace rorationSimulation
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            dp1 = new drawProcess(600, 600, this.BackColor);
+            dp1 = new drawProcess(800, 600, this.BackColor);
             this.CreateGraphics().DrawImage(dp1.drawBackGround(), 400,10);
 
         }

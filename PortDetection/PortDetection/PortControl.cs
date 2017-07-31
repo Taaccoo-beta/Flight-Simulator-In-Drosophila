@@ -81,7 +81,7 @@ namespace XControl
         {
            
             InitUL();
-            AcutalRange = Range.Bip5Volts;
+            AcutalRange = Range.Bip2Volts;
             DaqBoard = new MccDaq.MccBoard(boardNum);
             IsCorrectCreate = DaqBoard.BoardNum.ToString();
 
@@ -171,19 +171,27 @@ namespace XControl
         }
 
 
+        //public string AnalogInput(int portNumber)
+        //{
+        //    if (ADResolution > 16)
+        //    {
+        //        ULStat = DaqBoard.AIn32(portNumber, AcutalRange, out DataValue32, Options);
+        //        return DataValue32.ToString();             
+        //    }
+        //    else
+        //    {
+        //        ULStat = DaqBoard.AIn(portNumber, AcutalRange, out DataValue);
+        //        return DataValue.ToString();
+
+        //    }
+        //}
+
+
+
         public string AnalogInput(int portNumber)
         {
-            if (ADResolution > 16)
-            {
-                ULStat = DaqBoard.AIn32(portNumber, AcutalRange, out DataValue32, Options);
-                return DataValue32.ToString();             
-            }
-            else
-            {
-                ULStat = DaqBoard.AIn(portNumber, AcutalRange, out DataValue);
-                return DataValue.ToString();
-                
-            }
+            ULStat = DaqBoard.AIn(portNumber, AcutalRange, out DataValue);
+                  return DataValue.ToString(); 
         }
 
 

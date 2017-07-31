@@ -48,7 +48,7 @@ namespace rorationSimulation
             g2.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
 
 
-           
+            
         }
 
         public Bitmap drawBackGround()
@@ -57,18 +57,24 @@ namespace rorationSimulation
             g1.Clear(bc);
             g2.Clear(bc);
 
-
+            int y = 90;
             // draw background
             Rectangle rect = new Rectangle(0,0, width, height);
-            g1.FillRectangle(new SolidBrush(Color.FromArgb(153, 204, 255)), rect);
+            g1.FillRectangle(new SolidBrush(Color.Black), rect);
 
 
             // draw axis
-            g1.DrawRectangle(Pens.Yellow, new Rectangle(60,10,width-120,height-120));
+            g1.DrawRectangle(Pens.Blue, new Rectangle(60,60,width-120,608));
 
 
+            for(int i = 0; i != 100; i++)
+            {
+                g1.DrawLine(Pens.DarkBlue, 60, 60+i*10, 80, 60+i*10);
+                
+            }
+            //width 630 间隔 18， 35一道杠，从0加到256
 
-            
+
 
             return image1;
         }
