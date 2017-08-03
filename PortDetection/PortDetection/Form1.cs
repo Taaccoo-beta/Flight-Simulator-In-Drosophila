@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XControl;
+using rorationSimulation;
 namespace PortDetection
 {
     public partial class Form1 : Form
@@ -49,7 +50,9 @@ namespace PortDetection
                 timer1.Stop();
             }
         }
-
+        private List<float> lpf1 = new List<float>();
+        private List<float> lpf2 = new List<float>();
+        private drawProcess dpl;
         private void timer1_Tick(object sender, EventArgs e)
         {
             position = float.Parse(pc.AnalogInput(0));
@@ -60,8 +63,22 @@ namespace PortDetection
             this.lblPosition.Text = position.ToString("00.000");
             this.lblTorque.Text = troque.ToString("00.000");
             this.lblTacho.Text = tacho.ToString("00.000");
-            
 
+           
+            lpf1.Add(position);
+            lpf2.Add(troque);
+            if (lpf1.Count == 300)
+            {
+                lpf1.Remove(lpf1[0]);
+            }
+
+            if (lpf2.Count == 300)
+            {
+                lpf2.Remove(lpf2[0]);
+            }
+
+            dpl = new drawProcess(600, 400, this.BackColor);
+            this.CreateGraphics().DrawImage(dpl.drawBackGround(lpf1,lpf2), 540, 70);
         }
 
         private void timer2_Tick(object sender, EventArgs e)

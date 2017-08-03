@@ -55,6 +55,7 @@
     <Compile Include="Counters.cs" />
     <Compile Include="DataSerialize.cs" />
     <Compile Include="Digital.cs" />
+    <Compile Include="drawProcess.cs" />
     <Compile Include="ErrorDefs.cs" />
     <Compile Include="EventSupport.cs" />
     <Compile Include="Form1.cs">
