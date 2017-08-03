@@ -70,6 +70,9 @@
             this.cbIsPosition = new System.Windows.Forms.CheckBox();
             this.cbIsTorque = new System.Windows.Forms.CheckBox();
             this.lblChooseDisplay = new System.Windows.Forms.Label();
+            this.lblTachoVoltageValue = new System.Windows.Forms.Label();
+            this.lblTorqueVoltageValue = new System.Windows.Forms.Label();
+            this.lblPositionVoltageValue = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -96,6 +99,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblTachoVoltageValue);
+            this.groupBox1.Controls.Add(this.lblTorqueVoltageValue);
+            this.groupBox1.Controls.Add(this.lblPositionVoltageValue);
             this.groupBox1.Controls.Add(this.lblStart);
             this.groupBox1.Controls.Add(this.lblTacho);
             this.groupBox1.Controls.Add(this.label5);
@@ -461,7 +467,7 @@
             this.cbIsPosition.AutoSize = true;
             this.cbIsPosition.Checked = true;
             this.cbIsPosition.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbIsPosition.Location = new System.Drawing.Point(673, 502);
+            this.cbIsPosition.Location = new System.Drawing.Point(755, 543);
             this.cbIsPosition.Name = "cbIsPosition";
             this.cbIsPosition.Size = new System.Drawing.Size(63, 17);
             this.cbIsPosition.TabIndex = 16;
@@ -474,7 +480,7 @@
             this.cbIsTorque.AutoSize = true;
             this.cbIsTorque.Checked = true;
             this.cbIsTorque.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbIsTorque.Location = new System.Drawing.Point(757, 502);
+            this.cbIsTorque.Location = new System.Drawing.Point(839, 543);
             this.cbIsTorque.Name = "cbIsTorque";
             this.cbIsTorque.Size = new System.Drawing.Size(60, 17);
             this.cbIsTorque.TabIndex = 17;
@@ -485,11 +491,38 @@
             // lblChooseDisplay
             // 
             this.lblChooseDisplay.AutoSize = true;
-            this.lblChooseDisplay.Location = new System.Drawing.Point(574, 503);
+            this.lblChooseDisplay.Location = new System.Drawing.Point(656, 544);
             this.lblChooseDisplay.Name = "lblChooseDisplay";
             this.lblChooseDisplay.Size = new System.Drawing.Size(81, 13);
             this.lblChooseDisplay.TabIndex = 18;
             this.lblChooseDisplay.Text = "Choose display:";
+            // 
+            // lblTachoVoltageValue
+            // 
+            this.lblTachoVoltageValue.AutoSize = true;
+            this.lblTachoVoltageValue.Location = new System.Drawing.Point(213, 109);
+            this.lblTachoVoltageValue.Name = "lblTachoVoltageValue";
+            this.lblTachoVoltageValue.Size = new System.Drawing.Size(35, 13);
+            this.lblTachoVoltageValue.TabIndex = 9;
+            this.lblTachoVoltageValue.Text = "NULL";
+            // 
+            // lblTorqueVoltageValue
+            // 
+            this.lblTorqueVoltageValue.AutoSize = true;
+            this.lblTorqueVoltageValue.Location = new System.Drawing.Point(213, 73);
+            this.lblTorqueVoltageValue.Name = "lblTorqueVoltageValue";
+            this.lblTorqueVoltageValue.Size = new System.Drawing.Size(35, 13);
+            this.lblTorqueVoltageValue.TabIndex = 8;
+            this.lblTorqueVoltageValue.Text = "NULL";
+            // 
+            // lblPositionVoltageValue
+            // 
+            this.lblPositionVoltageValue.AutoSize = true;
+            this.lblPositionVoltageValue.Location = new System.Drawing.Point(213, 41);
+            this.lblPositionVoltageValue.Name = "lblPositionVoltageValue";
+            this.lblPositionVoltageValue.Size = new System.Drawing.Size(35, 13);
+            this.lblPositionVoltageValue.TabIndex = 7;
+            this.lblPositionVoltageValue.Text = "NULL";
             // 
             // Form1
             // 
@@ -562,6 +595,9 @@
         private System.Windows.Forms.CheckBox cbIsPosition;
         private System.Windows.Forms.CheckBox cbIsTorque;
         private System.Windows.Forms.Label lblChooseDisplay;
+        private System.Windows.Forms.Label lblTachoVoltageValue;
+        private System.Windows.Forms.Label lblTorqueVoltageValue;
+        private System.Windows.Forms.Label lblPositionVoltageValue;
     }
 }
 

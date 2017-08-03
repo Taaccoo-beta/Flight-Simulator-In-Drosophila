@@ -163,8 +163,7 @@ namespace XControl
         /// </summary>
         public void AnalogPortConfigurationOut()
         {
-            int ChannelType = clsAnalogIO.ANALOGINPUT;
-
+           
           
             NumAIChans  = AIOProps.FindAnalogChansOfType(DaqBoard, clsAnalogIO.ANALOGOUTPUT,
                 out ADResolution, out Range, out LowChan, out DefaultTrig);
@@ -188,10 +187,14 @@ namespace XControl
 
 
 
-        public string AnalogInput(int portNumber)
+        public string AnalogInput(int portNumber,out float EngUnits)
         {
-            ULStat = DaqBoard.AIn(portNumber, AcutalRange, out DataValue);
-                  return DataValue.ToString(); 
+            ULStat = DaqBoard.AIn(portNumber, Range.Bip10Volts, out DataValue);
+
+            ULStat = DaqBoard.ToEngUnits(Range.Bip10Volts,DataValue, out EngUnits);
+
+           
+            return DataValue.ToString(); 
         }
 
 
@@ -202,7 +205,7 @@ namespace XControl
         /// <param name="value"></param>
         public void AnalogOutut(int portNumber,short value)
         {
-            DaqBoard.AOut(portNumber, Range.Bip1Volts, value);
+            DaqBoard.AOut(portNumber, Range.Bip5Volts, value);
         }
 
         /// <summary>

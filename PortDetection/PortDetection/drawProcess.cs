@@ -76,7 +76,7 @@ namespace rorationSimulation
             //width 630 间隔 18， 35一道杠，从0加到256
             g1.DrawString("Yellow(Position)   Green(Torque)", new Font("Arial", 12), new SolidBrush(Color.Green), 180, 10);
 
-            g1.DrawString(isPosition.ToString(), new Font("Arial", 12), new SolidBrush(Color.Green), 0, 10);
+            //g1.DrawString(isPosition.ToString(), new Font("Arial", 12), new SolidBrush(Color.Green), 0, 10);
 
             if (isPosition)
             {

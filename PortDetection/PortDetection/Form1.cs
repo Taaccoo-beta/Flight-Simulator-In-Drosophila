@@ -53,18 +53,28 @@ namespace PortDetection
         private List<float> lpf1 = new List<float>();
         private List<float> lpf2 = new List<float>();
         private drawProcess dpl = new drawProcess(600, 400,Color.Black);
+
+        private float positionVoltageValue;
+        private float torqueVoltageValue;
+        private float tachoVoltageValue;
+
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            position = float.Parse(pc.AnalogInput(0));
-            troque = float.Parse(pc.AnalogInput(1));
-            tacho = float.Parse(pc.AnalogInput(2));
+            position = float.Parse(pc.AnalogInput(0,out positionVoltageValue));
+            troque = float.Parse(pc.AnalogInput(1,out torqueVoltageValue));
+            tacho = float.Parse(pc.AnalogInput(2,out tachoVoltageValue));
 
 
-            this.lblPosition.Text = position.ToString("00.000");
-            this.lblTorque.Text = troque.ToString("00.000");
-            this.lblTacho.Text = tacho.ToString("00.000");
+            this.lblPosition.Text = position.ToString();
+            this.lblTorque.Text = troque.ToString();
+            this.lblTacho.Text = tacho.ToString();
 
-           
+            this.lblPositionVoltageValue.Text = positionVoltageValue.ToString("0.000");
+            this.lblTorqueVoltageValue.Text = torqueVoltageValue.ToString("0.000");
+            this.lblTachoVoltageValue.Text = tachoVoltageValue.ToString("0.000");
+
+
             lpf1.Add(position);
             lpf2.Add(troque);
             if (lpf1.Count == 300)
@@ -78,7 +88,7 @@ namespace PortDetection
             }
 
             
-           
+            
             this.CreateGraphics().DrawImage(dpl.drawBackGround(lpf1,lpf2), 540, 70);
         }
 
