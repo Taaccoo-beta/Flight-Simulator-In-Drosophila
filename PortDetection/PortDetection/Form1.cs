@@ -52,7 +52,7 @@ namespace PortDetection
         }
         private List<float> lpf1 = new List<float>();
         private List<float> lpf2 = new List<float>();
-        private drawProcess dpl;
+        private drawProcess dpl = new drawProcess(600, 400,Color.Black);
         private void timer1_Tick(object sender, EventArgs e)
         {
             position = float.Parse(pc.AnalogInput(0));
@@ -77,7 +77,8 @@ namespace PortDetection
                 lpf2.Remove(lpf2[0]);
             }
 
-            dpl = new drawProcess(600, 400, this.BackColor);
+            
+           
             this.CreateGraphics().DrawImage(dpl.drawBackGround(lpf1,lpf2), 540, 70);
         }
 
@@ -265,6 +266,30 @@ namespace PortDetection
             else
             {
                 this.checkBox5.Text = "High";
+            }
+        }
+
+        private void cbIsPosition_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbIsPosition.Checked)
+            {
+                dpl.isPosition = true;
+            }
+            else
+            {
+                dpl.isPosition = false;
+            }
+        }
+
+        private void cbIsTorque_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbIsTorque.Checked)
+            {
+                dpl.isTorque = true;
+            }
+            else
+            {
+                dpl.isTorque = false;
             }
         }
     }

@@ -20,7 +20,8 @@ namespace rorationSimulation
         private Color bc;
         Bitmap image1;
 
-
+        public bool isPosition=true;
+        public bool isTorque=true;
 
 
         public drawProcess(int width, int height, Color bc)
@@ -64,10 +65,10 @@ namespace rorationSimulation
 
 
             // draw axis
-            g1.DrawRectangle(Pens.Blue, new Rectangle(60,60,width-100,height-100));
+            g1.DrawRectangle(Pens.Blue, new Rectangle(60,60,width-100,height-110));
 
             int intervale = (height - 100) / 18;
-            for(int i = 1; i <= 18; i++)
+            for(int i = 1; i < 18; i++)
             {
                 g1.DrawLine(Pens.DarkBlue, 60, 60+intervale*i, 80, 60+intervale*i);
                 g1.DrawString((256 * (i - 1)).ToString(), new Font("Arial", 12), new SolidBrush(Color.Blue), 10, 50 + intervale * i);
@@ -75,20 +76,25 @@ namespace rorationSimulation
             //width 630 间隔 18， 35一道杠，从0加到256
             g1.DrawString("Yellow(Position)   Green(Torque)", new Font("Arial", 12), new SolidBrush(Color.Green), 180, 10);
 
+            g1.DrawString(isPosition.ToString(), new Font("Arial", 12), new SolidBrush(Color.Green), 0, 10);
 
-
-
-            for (int i = 0; i < lpf1.Count-1; i++)
+            if (isPosition)
             {
-                g1.DrawLine(Pens.Yellow,80 + i, intervale / 256 * lpf1[i] + 60, 80 + i, intervale / 256 * lpf1[i + 1] + 60);
+                for (int i = 0; i < lpf1.Count - 1; i++)
+                {
+                    g1.DrawLine(Pens.Yellow, 80 + i, lpf1[i] * intervale / 256 + 60 + intervale, 80 + i + 1, lpf1[i + 1] * intervale / 256 + 60 + intervale);
+                }
+
             }
 
-            for (int i = 0; i < lpf2.Count - 1; i++)
+            if (isTorque)
             {
-                g1.DrawLine(Pens.Green, 80 + i, intervale/256*lpf2[i] + 60, 80 + i, intervale/256*lpf2[i + 1] + 60);
+                for (int i = 0; i < lpf2.Count - 1; i++)
+                {
+                    g1.DrawLine(Pens.Green, 80 + i, lpf2[i] * intervale / 256 + 60 + intervale, 80 + i + 1, lpf2[i + 1] * intervale / 256 + 60 + intervale);
+                }
+
             }
-
-
 
             return image1;
         }
