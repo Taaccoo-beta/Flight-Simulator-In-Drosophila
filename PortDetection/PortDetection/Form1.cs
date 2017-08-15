@@ -41,6 +41,14 @@ namespace PortDetection
             {
                 this.lblStart.Text = "Stop";
                 isStart = false;
+
+                lblChooseDisplay.Visible = true;
+                cbIsPosition.Visible = true;
+                cbIsTorque.Visible = true;
+
+               
+                
+                timer2.Start();
                 timer1.Start();
             }
             else
@@ -48,12 +56,12 @@ namespace PortDetection
                 this.lblStart.Text = "Start";
                 isStart = true;
                 timer1.Stop();
+                timer2.Stop();
             }
         }
         private List<float> lpf1 = new List<float>();
         private List<float> lpf2 = new List<float>();
-        private drawProcess dpl = new drawProcess(600, 400,Color.Black);
-
+        private drawProcess dpl = new drawProcess(600, 340,Color.Black);
         private float positionVoltageValue;
         private float torqueVoltageValue;
         private float tachoVoltageValue;
@@ -94,7 +102,7 @@ namespace PortDetection
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-
+            this.CreateGraphics().DrawImage(dpl.drawPosition(), 540, 420);
         }
 
         private void label4_Click(object sender, EventArgs e)

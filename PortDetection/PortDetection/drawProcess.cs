@@ -18,7 +18,7 @@ namespace rorationSimulation
         
         private int width, height;
         private Color bc;
-        Bitmap image1;
+        Bitmap image1,image2;
 
         public bool isPosition=true;
         public bool isTorque=true;
@@ -41,8 +41,10 @@ namespace rorationSimulation
             g1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
 
 
-            g2 = Graphics.FromImage(image1);
+
             //使绘图质量最高，即消除锯齿  
+            image2 = new Bitmap(width, height);
+            g2 = Graphics.FromImage(image2);
             g2.SmoothingMode = SmoothingMode.AntiAlias;
             g2.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g2.CompositingQuality = CompositingQuality.HighQuality;
@@ -52,25 +54,39 @@ namespace rorationSimulation
             
         }
 
+
+        
+        public Bitmap drawPosition()
+        {
+            g2.Clear(bc);
+            int widthPosition = width;
+            int heightPosition = height - 100;
+            Rectangle rect = new Rectangle(0, 0, widthPosition, heightPosition);
+            g2.FillRectangle(new SolidBrush(Color.Blue), rect);
+
+
+            return image2;
+
+        }
+
         public Bitmap drawBackGround(List<float> lpf1,List<float> lpf2)
         {
 
             g1.Clear(bc);
-            g2.Clear(bc);
-
+           
             int y = 90;
             // draw background
             Rectangle rect = new Rectangle(0,0, width, height);
             g1.FillRectangle(new SolidBrush(Color.Black), rect);
 
 
-            // draw axis
-            g1.DrawRectangle(Pens.Blue, new Rectangle(60,60,width-100,height-110));
+            //draw axis
+            g1.DrawRectangle(Pens.Blue, new Rectangle(60, 60, width - 100, height - 110));
 
             int intervale = (height - 100) / 18;
-            for(int i = 1; i < 18; i++)
+            for (int i = 1; i < 18; i++)
             {
-                g1.DrawLine(Pens.DarkBlue, 60, 60+intervale*i, 80, 60+intervale*i);
+                g1.DrawLine(Pens.DarkBlue, 60, 60 + intervale * i, 80, 60 + intervale * i);
                 g1.DrawString((256 * (i - 1)).ToString(), new Font("Arial", 12), new SolidBrush(Color.Blue), 10, 50 + intervale * i);
             }
             //width 630 间隔 18， 35一道杠，从0加到256
