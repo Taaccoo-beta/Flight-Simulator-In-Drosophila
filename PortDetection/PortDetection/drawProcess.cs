@@ -126,7 +126,7 @@ namespace rorationSimulation
 
             for (int i = 0; i < pnrLength; i++)
             {
-                g2.DrawLine(Pens.Yellow,10+i,heightHere-26,10+i,heightHere-26-positionNumberRecord[i]);
+                g2.DrawLine(Pens.Red,10+i,heightHere-26,10+i,heightHere-26-positionNumberRecord[i]);
             }
 
 
