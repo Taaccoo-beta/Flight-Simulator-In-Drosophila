@@ -23,6 +23,9 @@ namespace rorationSimulation
         public bool isPosition=true;
         public bool isTorque=true;
 
+        //position number record
+        int[] positionNumberRecord;
+        int pnrLength;
 
         public drawProcess(int width, int height, Color bc)
         {
@@ -30,7 +33,18 @@ namespace rorationSimulation
             this.heightCenter = height / 2;
             this.width = width;
             this.height = height;
-            
+
+            pnrLength = (int)(width / 2 - 20);
+            positionNumberRecord = new int[pnrLength];
+
+            ///test positionNumber
+            //for (int i = 0; i < pnrLength; i++)
+            //{
+            //    positionNumberRecord[i] = i;
+            //}
+
+
+
 
             image1 = new Bitmap(width, height);
             g1 = Graphics.FromImage(image1);
@@ -55,21 +69,71 @@ namespace rorationSimulation
         }
 
 
-        
-        public Bitmap drawPosition()
+        //positionTransform
+        private void positionTransform(float number)
+        {
+            float interval = 4096 / pnrLength;
+
+
+            positionNumberRecord[(int)(number/interval)]++;
+        }
+
+
+        public Bitmap drawPosition(float torque)
         {
             g2.Clear(bc);
-            int widthPosition = width;
-            int heightPosition = height - 100;
-            Rectangle rect = new Rectangle(0, 0, widthPosition, heightPosition);
-            g2.FillRectangle(new SolidBrush(Color.Blue), rect);
+            int widthHere = width;
+            int heightHere = height - 100;
+            Rectangle rect = new Rectangle(0, 0, widthHere, heightHere);
+            g2.FillRectangle(new SolidBrush(Color.DarkCyan), rect);
+
+            //draw two borders
+            g2.DrawRectangle(Pens.MidnightBlue, new Rectangle(10,5, widthHere/2-20, heightHere - 30));
+            g2.DrawRectangle(Pens.MidnightBlue, new Rectangle(widthHere / 2 + 5, 5, widthHere/2-20, heightHere - 30));
+
+            //draw axis
+            Pen dashPen = new Pen(Color.DarkBlue);
+            dashPen.DashStyle = DashStyle.DashDot;
+            for (int i = 1; i < 4; i++)
+            {
+                g2.DrawLine(dashPen, (widthHere / 2 - 20) / 4 * i + 10, heightHere - 25, (widthHere / 2 - 20) / 4 * i + 10, 5);
+
+                g2.DrawLine(dashPen, (widthHere / 2 - 20) / 4 * i + width / 2 + 10, heightHere - 25, (widthHere / 2 - 20) / 4 * i + width / 2 + 10, 5);
+
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    g2.DrawString("P", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere / 2 - 20) / 4 * i, heightHere - 20);
+                    g2.DrawString("P", new Font("Arial", 12), new SolidBrush(Color.Black), widthHere/2+50 + (widthHere / 2 - 20) / 4 * i, heightHere - 20);
+
+                }
+                else
+                {
+                    g2.DrawString("N", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere / 2 - 20) / 4 * i, heightHere - 20);
+                    g2.DrawString("N", new Font("Arial", 12), new SolidBrush(Color.Black), widthHere / 2 + 50 + (widthHere / 2 - 20) / 4 * i, heightHere - 20);
+                }
+                
+            }
+
+            positionTransform(torque);
+            //draw commulative position points
+            int positionDrawHeightLimit = (int)(heightHere - 30);
+
+            for (int i = 0; i < pnrLength; i++)
+            {
+                g2.DrawLine(Pens.Black,10+i,heightHere-25,10+i,heightHere-25-positionNumberRecord[i]);
+            }
+
 
 
             return image2;
 
         }
 
-        public Bitmap drawBackGround(List<float> lpf1,List<float> lpf2)
+        public Bitmap drawSignalCurve(List<float> lpf1,List<float> lpf2)
         {
 
             g1.Clear(bc);
@@ -77,20 +141,20 @@ namespace rorationSimulation
             int y = 90;
             // draw background
             Rectangle rect = new Rectangle(0,0, width, height);
-            g1.FillRectangle(new SolidBrush(Color.Black), rect);
+            g1.FillRectangle(new SolidBrush(Color.DarkCyan), rect);
 
 
             //draw axis
-            g1.DrawRectangle(Pens.Blue, new Rectangle(60, 60, width - 100, height - 110));
+            g1.DrawRectangle(Pens.MidnightBlue, new Rectangle(60, 60, width - 100, height - 110));
 
             int intervale = (height - 100) / 18;
             for (int i = 1; i < 18; i++)
             {
                 g1.DrawLine(Pens.DarkBlue, 60, 60 + intervale * i, 80, 60 + intervale * i);
-                g1.DrawString((256 * (i - 1)).ToString(), new Font("Arial", 12), new SolidBrush(Color.Blue), 10, 50 + intervale * i);
+                g1.DrawString((256 * (i - 1)).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), 10, 50 + intervale * i);
             }
             //width 630 间隔 18， 35一道杠，从0加到256
-            g1.DrawString("Yellow(Position)   Green(Torque)", new Font("Arial", 12), new SolidBrush(Color.Green), 180, 10);
+            g1.DrawString("Yellow(Position)   Green(Torque)", new Font("Arial", 14), new SolidBrush(Color.White), 180, 10);
 
             //g1.DrawString(isPosition.ToString(), new Font("Arial", 12), new SolidBrush(Color.Green), 0, 10);
 
@@ -107,7 +171,7 @@ namespace rorationSimulation
             {
                 for (int i = 0; i < lpf2.Count - 1; i++)
                 {
-                    g1.DrawLine(Pens.Green, 80 + i, lpf2[i] * intervale / 256 + 60 + intervale, 80 + i + 1, lpf2[i + 1] * intervale / 256 + 60 + intervale);
+                    g1.DrawLine(Pens.Red, 80 + i, lpf2[i] * intervale / 256 + 60 + intervale, 80 + i + 1, lpf2[i + 1] * intervale / 256 + 60 + intervale);
                 }
 
             }

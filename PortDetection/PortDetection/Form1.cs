@@ -74,6 +74,10 @@ namespace PortDetection
             tacho = float.Parse(pc.AnalogInput(2,out tachoVoltageValue));
 
 
+
+            position = position / 100;
+            troque = troque / 100;
+
             this.lblPosition.Text = position.ToString();
             this.lblTorque.Text = troque.ToString();
             this.lblTacho.Text = tacho.ToString();
@@ -97,12 +101,13 @@ namespace PortDetection
 
             
             
-            this.CreateGraphics().DrawImage(dpl.drawBackGround(lpf1,lpf2), 540, 70);
+            this.CreateGraphics().DrawImage(dpl.drawSignalCurve(lpf1,lpf2), 540, 60);
+            this.CreateGraphics().DrawImage(dpl.drawPosition(troque), 540, 420);
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            this.CreateGraphics().DrawImage(dpl.drawPosition(), 540, 420);
+            //this.CreateGraphics().DrawImage(dpl.drawPosition(), 540, 420);
         }
 
         private void label4_Click(object sender, EventArgs e)

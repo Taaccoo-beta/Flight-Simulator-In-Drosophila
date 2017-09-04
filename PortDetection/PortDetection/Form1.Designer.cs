@@ -82,7 +82,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(105, 47);
+            this.label1.Location = new System.Drawing.Point(101, 47);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 15);
@@ -174,7 +174,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(109, 126);
+            this.label5.Location = new System.Drawing.Point(125, 126);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 15);
@@ -194,7 +194,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(105, 84);
+            this.label3.Location = new System.Drawing.Point(117, 84);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 15);
@@ -233,7 +233,7 @@
             this.groupBox2.Size = new System.Drawing.Size(621, 247);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "DigitalOutputDetection";
+            this.groupBox2.Text = "DigitalOutput";
             // 
             // checkBox4
             // 
@@ -353,7 +353,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(101, 197);
+            this.label8.Location = new System.Drawing.Point(93, 201);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 15);
@@ -363,7 +363,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(105, 158);
+            this.label7.Location = new System.Drawing.Point(117, 157);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 15);
@@ -373,7 +373,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(117, 121);
+            this.label6.Location = new System.Drawing.Point(109, 121);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 15);
@@ -383,7 +383,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(151, 88);
+            this.label4.Location = new System.Drawing.Point(164, 87);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 15);
@@ -394,7 +394,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(140, 51);
+            this.label2.Location = new System.Drawing.Point(140, 52);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 15);
@@ -416,7 +416,7 @@
             this.groupBox3.Size = new System.Drawing.Size(621, 170);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "AnalogOutputDetection";
+            this.groupBox3.Text = "AnalogOutput";
             // 
             // btnTorqueBias
             // 
@@ -459,7 +459,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(109, 108);
+            this.label10.Location = new System.Drawing.Point(117, 108);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(103, 15);
@@ -505,7 +505,7 @@
             // 
             // tbPortNumber
             // 
-            this.tbPortNumber.Location = new System.Drawing.Point(189, 33);
+            this.tbPortNumber.Location = new System.Drawing.Point(208, 33);
             this.tbPortNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbPortNumber.Name = "tbPortNumber";
             this.tbPortNumber.Size = new System.Drawing.Size(61, 25);
@@ -535,11 +535,11 @@
             // cbIsPosition
             // 
             this.cbIsPosition.AutoSize = true;
-            this.cbIsPosition.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cbIsPosition.BackColor = System.Drawing.Color.DarkCyan;
             this.cbIsPosition.Checked = true;
             this.cbIsPosition.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbIsPosition.ForeColor = System.Drawing.Color.Green;
-            this.cbIsPosition.Location = new System.Drawing.Point(1083, 473);
+            this.cbIsPosition.ForeColor = System.Drawing.Color.DarkBlue;
+            this.cbIsPosition.Location = new System.Drawing.Point(1092, 459);
             this.cbIsPosition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbIsPosition.Name = "cbIsPosition";
             this.cbIsPosition.Size = new System.Drawing.Size(93, 19);
@@ -552,11 +552,11 @@
             // cbIsTorque
             // 
             this.cbIsTorque.AutoSize = true;
-            this.cbIsTorque.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cbIsTorque.BackColor = System.Drawing.Color.DarkCyan;
             this.cbIsTorque.Checked = true;
             this.cbIsTorque.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbIsTorque.ForeColor = System.Drawing.Color.Green;
-            this.cbIsTorque.Location = new System.Drawing.Point(1195, 473);
+            this.cbIsTorque.ForeColor = System.Drawing.Color.DarkBlue;
+            this.cbIsTorque.Location = new System.Drawing.Point(1204, 459);
             this.cbIsTorque.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbIsTorque.Name = "cbIsTorque";
             this.cbIsTorque.Size = new System.Drawing.Size(77, 19);
@@ -569,9 +569,9 @@
             // lblChooseDisplay
             // 
             this.lblChooseDisplay.AutoSize = true;
-            this.lblChooseDisplay.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblChooseDisplay.ForeColor = System.Drawing.Color.Green;
-            this.lblChooseDisplay.Location = new System.Drawing.Point(951, 474);
+            this.lblChooseDisplay.BackColor = System.Drawing.Color.DarkCyan;
+            this.lblChooseDisplay.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblChooseDisplay.Location = new System.Drawing.Point(960, 460);
             this.lblChooseDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblChooseDisplay.Name = "lblChooseDisplay";
             this.lblChooseDisplay.Size = new System.Drawing.Size(127, 15);
