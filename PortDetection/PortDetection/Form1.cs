@@ -23,12 +23,22 @@ namespace PortDetection
         private float tacho;
         private bool isStart = true;
 
+
+
+        //if start debug mode
+        private bool ifStartDebugMode;
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             pc = new PortControl(0);
             pc.AnalogPortConfigurationIn();
             pc.DigitalConfigurationOut();
             pc.AnalogPortConfigurationOut();
+
+
+            ifStartDebugMode = true;
+
 
             timer1.Interval = 100;
             timer2.Interval = 100;
@@ -74,9 +84,12 @@ namespace PortDetection
             tacho = float.Parse(pc.AnalogInput(2,out tachoVoltageValue));
 
 
-
-            position = position / 100;
-            troque = troque / 100;
+            if (ifStartDebugMode)
+            {
+                position = position / 100;
+                troque = troque / 100;
+            }
+            
 
             this.lblPosition.Text = position.ToString();
             this.lblTorque.Text = troque.ToString();
@@ -313,6 +326,20 @@ namespace PortDetection
             else
             {
                 dpl.isTorque = false;
+            }
+        }
+
+        private void debugModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (smDebugMode.Checked)
+            {
+                ifStartDebugMode = false;
+                smDebugMode.Checked = false;
+            }
+            else
+            {
+                ifStartDebugMode = true;
+                smDebugMode.Checked = true;
             }
         }
     }

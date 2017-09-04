@@ -73,10 +73,14 @@
             this.cbIsPosition = new System.Windows.Forms.CheckBox();
             this.cbIsTorque = new System.Windows.Forms.CheckBox();
             this.lblChooseDisplay = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smDebugMode = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.DigitOutPut.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -579,6 +583,34 @@
             this.lblChooseDisplay.Text = "Choose display:";
             this.lblChooseDisplay.Visible = false;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1527, 28);
+            this.menuStrip1.TabIndex = 19;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuToolStripMenuItem
+            // 
+            this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.smDebugMode});
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.menuToolStripMenuItem.Text = "Menu";
+            // 
+            // smDebugMode
+            // 
+            this.smDebugMode.Checked = true;
+            this.smDebugMode.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.smDebugMode.Name = "smDebugMode";
+            this.smDebugMode.Size = new System.Drawing.Size(181, 26);
+            this.smDebugMode.Text = "DebugMode";
+            this.smDebugMode.Click += new System.EventHandler(this.debugModeToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -591,6 +623,8 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.Text = "PortDetection";
@@ -603,6 +637,8 @@
             this.groupBox3.PerformLayout();
             this.DigitOutPut.ResumeLayout(false);
             this.DigitOutPut.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -654,6 +690,9 @@
         private System.Windows.Forms.Label lblTachoVoltageValue;
         private System.Windows.Forms.Label lblTorqueVoltageValue;
         private System.Windows.Forms.Label lblPositionVoltageValue;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem smDebugMode;
     }
 }
 

@@ -27,6 +27,8 @@ namespace rorationSimulation
         int[] positionNumberRecord;
         int pnrLength;
 
+
+        
         public drawProcess(int width, int height, Color bc)
         {
             this.widthCenter = width / 2;
@@ -43,7 +45,7 @@ namespace rorationSimulation
             //    positionNumberRecord[i] = i;
             //}
 
-
+            
 
 
             image1 = new Bitmap(width, height);
@@ -124,7 +126,7 @@ namespace rorationSimulation
 
             for (int i = 0; i < pnrLength; i++)
             {
-                g2.DrawLine(Pens.Black,10+i,heightHere-25,10+i,heightHere-25-positionNumberRecord[i]);
+                g2.DrawLine(Pens.Yellow,10+i,heightHere-26,10+i,heightHere-26-positionNumberRecord[i]);
             }
 
 
