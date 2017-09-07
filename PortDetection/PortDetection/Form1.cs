@@ -342,5 +342,11 @@ namespace PortDetection
                 smDebugMode.Checked = true;
             }
         }
+
+        private void timeSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PreSetting ps = new PreSetting();
+            ps.Show();
+        }
     }
 }

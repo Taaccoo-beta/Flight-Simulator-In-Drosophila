@@ -66,10 +66,19 @@
     </Compile>
     <Compile Include="LeastSquareMethod.cs" />
     <Compile Include="PortControl.cs" />
+    <Compile Include="PreSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PreSetting.Designer.cs">
+      <DependentUpon>PreSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreSetting.resx">
+      <DependentUpon>PreSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

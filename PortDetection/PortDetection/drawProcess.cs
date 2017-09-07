@@ -36,17 +36,17 @@ namespace rorationSimulation
             this.width = width;
             this.height = height;
 
-            pnrLength = (int)(width / 2 - 20)-1;
+            pnrLength = (int)(width / 2 - 20);
             positionNumberRecord = new int[pnrLength];
 
             ///test positionNumber
             //for (int i = 0; i < pnrLength; i++)
             //{
-            //    positionNumberRecord[i] = 10;
+            //    positionNumberRecord[i] = i;
             //}
 
-
             
+
 
             image1 = new Bitmap(width, height);
             g1 = Graphics.FromImage(image1);
@@ -74,13 +74,10 @@ namespace rorationSimulation
         //positionTransform
         private void positionTransform(float number)
         {
+            float interval = 4096 / pnrLength;
 
-            float intervalHere = 4096 / (float)pnrLength;
-           
-            float trasNumber = number / intervalHere;
-            
-            positionNumberRecord[(int)(trasNumber)]++;
-           
+
+            positionNumberRecord[(int)(number/interval)]++;
         }
 
 
@@ -125,19 +122,11 @@ namespace rorationSimulation
 
             positionTransform(torque);
             //draw commulative position points
-            int positionDrawHeightLimit = (int)(heightHere - 30)-2;
+            int positionDrawHeightLimit = (int)(heightHere - 30);
 
             for (int i = 0; i < pnrLength; i++)
             {
-                if (positionNumberRecord[i] > positionDrawHeightLimit)
-                {
-                    g2.DrawLine(Pens.Red, 11 + i, heightHere - 26, 11 + i, heightHere - 26 - positionDrawHeightLimit);
-                }
-                else
-                {
-                    g2.DrawLine(Pens.Red, 11 + i, heightHere - 26, 11 + i, heightHere - 26 - positionNumberRecord[i]);
-                }
-                
+                g2.DrawLine(Pens.Red,10+i,heightHere-26,10+i,heightHere-26-positionNumberRecord[i]);
             }
 
 

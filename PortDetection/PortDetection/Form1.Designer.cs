@@ -76,6 +76,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smDebugMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -500,7 +501,7 @@
             this.cbIsPosition.Checked = true;
             this.cbIsPosition.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsPosition.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsPosition.Location = new System.Drawing.Point(854, 369);
+            this.cbIsPosition.Location = new System.Drawing.Point(833, 360);
             this.cbIsPosition.Name = "cbIsPosition";
             this.cbIsPosition.Size = new System.Drawing.Size(63, 17);
             this.cbIsPosition.TabIndex = 16;
@@ -516,7 +517,7 @@
             this.cbIsTorque.Checked = true;
             this.cbIsTorque.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsTorque.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsTorque.Location = new System.Drawing.Point(938, 369);
+            this.cbIsTorque.Location = new System.Drawing.Point(917, 360);
             this.cbIsTorque.Name = "cbIsTorque";
             this.cbIsTorque.Size = new System.Drawing.Size(60, 17);
             this.cbIsTorque.TabIndex = 17;
@@ -530,7 +531,7 @@
             this.lblChooseDisplay.AutoSize = true;
             this.lblChooseDisplay.BackColor = System.Drawing.Color.DarkCyan;
             this.lblChooseDisplay.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblChooseDisplay.Location = new System.Drawing.Point(755, 370);
+            this.lblChooseDisplay.Location = new System.Drawing.Point(734, 361);
             this.lblChooseDisplay.Name = "lblChooseDisplay";
             this.lblChooseDisplay.Size = new System.Drawing.Size(81, 13);
             this.lblChooseDisplay.TabIndex = 18;
@@ -545,17 +546,18 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1145, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1175, 24);
             this.menuStrip1.TabIndex = 19;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.smDebugMode});
+            this.smDebugMode,
+            this.timeSettingToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.menuToolStripMenuItem.Text = "Setting";
             // 
             // smDebugMode
             // 
@@ -566,11 +568,18 @@
             this.smDebugMode.Text = "DebugMode";
             this.smDebugMode.Click += new System.EventHandler(this.debugModeToolStripMenuItem_Click);
             // 
+            // timeSettingToolStripMenuItem
+            // 
+            this.timeSettingToolStripMenuItem.Name = "timeSettingToolStripMenuItem";
+            this.timeSettingToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.timeSettingToolStripMenuItem.Text = "TimeSetting";
+            this.timeSettingToolStripMenuItem.Click += new System.EventHandler(this.timeSettingToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1145, 740);
+            this.ClientSize = new System.Drawing.Size(1175, 714);
             this.Controls.Add(this.lblChooseDisplay);
             this.Controls.Add(this.cbIsTorque);
             this.Controls.Add(this.cbIsPosition);
@@ -647,6 +656,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem smDebugMode;
+        private System.Windows.Forms.ToolStripMenuItem timeSettingToolStripMenuItem;
     }
 }
 
