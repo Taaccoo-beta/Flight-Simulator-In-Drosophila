@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BaseSimulatioinDemo.Properties
+namespace flight_simulator.Properties
 {
 
 
