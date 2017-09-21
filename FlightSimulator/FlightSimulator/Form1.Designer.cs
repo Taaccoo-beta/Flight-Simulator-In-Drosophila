@@ -632,10 +632,10 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(113, 35);
+            this.textBox2.Location = new System.Drawing.Point(103, 35);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(76, 20);
+            this.textBox2.Size = new System.Drawing.Size(103, 20);
             this.textBox2.TabIndex = 14;
             // 
             // lblExName
@@ -680,9 +680,9 @@
             this.lblDPValue.Location = new System.Drawing.Point(24, 35);
             this.lblDPValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDPValue.Name = "lblDPValue";
-            this.lblDPValue.Size = new System.Drawing.Size(53, 12);
+            this.lblDPValue.Size = new System.Drawing.Size(47, 12);
             this.lblDPValue.TabIndex = 19;
-            this.lblDPValue.Text = "DataPath";
+            this.lblDPValue.Text = "E:/Data";
             this.lblDPValue.Click += new System.EventHandler(this.lblDPValue_Click);
             // 
             // gbSetSequence_1
