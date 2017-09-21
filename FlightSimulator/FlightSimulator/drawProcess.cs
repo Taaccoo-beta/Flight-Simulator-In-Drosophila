@@ -177,9 +177,25 @@ namespace rorationSimulation
                 Random ran = new Random();
                 for (int i = 0; i < positionNumberRecord.Length; i++)
                 {
-                    
-                    
-                    positionNumberRecord[i] = ran.Next(0, 200);
+                    if (i < (int)(positionNumberRecord.Length / 4))
+                    {
+                        positionNumberRecord[i] = ran.Next(0, 200);
+                    }
+                    else if (i < (int)(positionNumberRecord.Length / 4 * 2))
+                    {
+                        positionNumberRecord[i] = ran.Next(200, 300);
+
+                    }
+                    else if (i < (int)(positionNumberRecord.Length / 4 * 3))
+                    {
+                        positionNumberRecord[i] = ran.Next(0, 200);
+                    }
+                    else
+                    {
+                        positionNumberRecord[i] = ran.Next(200, 300);
+                    }
+
+
                 }
             }
             else
@@ -192,7 +208,7 @@ namespace rorationSimulation
 
             for (int i = 0; i < pnrLength; i++)
             {
-                g2.DrawLine(Pens.Red, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - positionNumberRecord[i]);
+                g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - positionNumberRecord[i]);
             }
 
 

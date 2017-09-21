@@ -32,6 +32,8 @@ namespace FlightSimulator
 
 
 
+        private Bitmap imageNow;
+
         //debug mode start
         bool ifStartDebugMode = true;
 
@@ -542,8 +544,9 @@ namespace FlightSimulator
 
 
             this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            this.pictureBox3.CreateGraphics().DrawImage(dp2.drawCommunitivePoint(troque,true), 0, 0);
-        
+            imageNow = dp2.drawCommunitivePoint(troque, true);
+            this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
+            
 
     }
 
@@ -557,8 +560,21 @@ namespace FlightSimulator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dp2 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height, Color.DarkCyan);
-            this.pictureBox3.CreateGraphics().DrawImage(dp2.drawCommunitivePoint(20,true), 0, 0);
+
+            Bitmap imageHere = new Bitmap(imageNow);
+            PictureBox pb = new PictureBox();
+            float width = this.flowLayoutPanel1.Size.Width - 30;
+            float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
+            pb.Size = new Size((int)width,(int)height);
+          
+            pb.Image = imageHere;
+            pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.flowLayoutPanel1.Controls.Add(pb);
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
