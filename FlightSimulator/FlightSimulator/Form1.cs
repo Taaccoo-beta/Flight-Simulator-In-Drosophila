@@ -421,7 +421,7 @@ namespace FlightSimulator
             pc.DigitalConfigurationOut();
 
             timer1.Interval = 10;
-            timer2.Interval = 10;
+            timer2.Interval = 100;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -542,14 +542,23 @@ namespace FlightSimulator
 
 
             this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            this.pictureBox3.CreateGraphics().DrawImage(dp2.drawPosition(troque),0,0);
-        }
+            this.pictureBox3.CreateGraphics().DrawImage(dp2.drawCommunitivePoint(troque,true), 0, 0);
+        
+
+    }
 
         private void btnStep3Start_Click(object sender, EventArgs e)
         {
             dp1 = new drawProcess(this.pictureBox2.Width, this.pictureBox2.Height, Color.DarkCyan);
             dp2 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height, Color.DarkCyan);
             timer2.Start();
+            timer1.Stop();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dp2 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height, Color.DarkCyan);
+            this.pictureBox3.CreateGraphics().DrawImage(dp2.drawCommunitivePoint(20,true), 0, 0);
         }
     }
 }

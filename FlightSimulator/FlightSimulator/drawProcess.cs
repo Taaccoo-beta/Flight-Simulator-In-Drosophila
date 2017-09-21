@@ -27,7 +27,7 @@ namespace rorationSimulation
         int[] positionNumberRecord;
         int pnrLength;
 
-
+        bool ifStartDebugModeForTorque = false;
         
         public drawProcess(int width, int height, Color bc)
         {
@@ -36,7 +36,7 @@ namespace rorationSimulation
             this.width = width;
             this.height = height;
 
-            pnrLength = (int)(width / 2 - 20);
+            pnrLength = (int)(width-20);
             positionNumberRecord = new int[pnrLength];
 
             ///test positionNumber
@@ -134,6 +134,73 @@ namespace rorationSimulation
             return image2;
 
         }
+
+
+        public Bitmap drawCommunitivePoint(float torque,bool debugMode)
+        {
+            g2.Clear(bc);
+            int widthHere = width;
+            int heightHere = height;
+            Rectangle rect = new Rectangle(0, 0, widthHere, heightHere);
+            g2.FillRectangle(new SolidBrush(Color.DarkCyan), rect);
+
+            //draw two borders
+            g2.DrawRectangle(Pens.MidnightBlue, new Rectangle(10, 5, widthHere - 20, heightHere - 10));
+
+
+            //draw axis
+            Pen dashPen = new Pen(Color.DarkBlue);
+            dashPen.DashStyle = DashStyle.DashDot;
+            for (int i = 1; i < 4; i++)
+            {
+               
+                g2.DrawLine(dashPen, (widthHere - 20) / 4 * i+10, 5, (widthHere - 20) / 4 * i+10, heightHere - 5);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    g2.DrawString("P", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere- 20) / 4 * i, 20);
+                   
+
+                }
+                else
+                {
+                    g2.DrawString("N", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere - 20) / 4 * i, 20);
+                  
+                }
+
+            }
+            if (debugMode)
+            {
+                Random ran = new Random();
+                for (int i = 0; i < positionNumberRecord.Length; i++)
+                {
+                    
+                    
+                    positionNumberRecord[i] = ran.Next(0, 200);
+                }
+            }
+            else
+            {
+                positionTransform(torque);
+            }
+            
+            ////draw commulative position points
+            int positionDrawHeightLimit = (int)(heightHere - 30);
+
+            for (int i = 0; i < pnrLength; i++)
+            {
+                g2.DrawLine(Pens.Red, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - positionNumberRecord[i]);
+            }
+
+
+
+            return image2;
+        }
+
+
 
         public Bitmap drawSignalCurve(List<float> lpf1,List<float> lpf2)
         {
