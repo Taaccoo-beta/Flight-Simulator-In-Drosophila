@@ -179,20 +179,20 @@ namespace rorationSimulation
                 {
                     if (i < (int)(positionNumberRecord.Length / 4))
                     {
-                        positionNumberRecord[i] = ran.Next(0, 200);
+                        positionNumberRecord[i] = ran.Next(0, 100);
                     }
                     else if (i < (int)(positionNumberRecord.Length / 4 * 2))
                     {
-                        positionNumberRecord[i] = ran.Next(200, 300);
+                        positionNumberRecord[i] = ran.Next(100, 200);
 
                     }
                     else if (i < (int)(positionNumberRecord.Length / 4 * 3))
                     {
-                        positionNumberRecord[i] = ran.Next(0, 200);
+                        positionNumberRecord[i] = ran.Next(0, 100);
                     }
                     else
                     {
-                        positionNumberRecord[i] = ran.Next(200, 300);
+                        positionNumberRecord[i] = ran.Next(100, 200);
                     }
 
 

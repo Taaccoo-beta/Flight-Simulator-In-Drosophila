@@ -25,12 +25,18 @@ namespace FlightSimulator
         private List<bool> trainOrTest_3 = new List<bool>();
         private List<int> experimentTime_3 = new List<int>();
 
+        private List<Control> controls;
+        //test in step 3
+        private List<bool> trainOrTestForTest = new List<bool>();
+        private List<int> experimentTimeForTest = new List<int>();
+
 
         drawProcess dp;
         drawProcess dp1;
         drawProcess dp2;
 
 
+        private int sequenceIndex = 0;
 
         private Bitmap imageNow;
 
@@ -554,8 +560,52 @@ namespace FlightSimulator
         {
             dp1 = new drawProcess(this.pictureBox2.Width, this.pictureBox2.Height, Color.DarkCyan);
             dp2 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height, Color.DarkCyan);
+            for (int i = 0; i < 6; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    trainOrTestForTest.Add(true);
+                }
+                else
+                {
+                    trainOrTestForTest.Add(false);
+                }
+
+                experimentTimeForTest.Add(300);
+
+                
+            }
+
+
+           
+
+            controls = new List<Control>();
+            for (int i = 0; i < 6; i++)
+            {
+                Label l = new Label();
+                l.Name = "lblDForSequence" + i.ToString();
+                l.AutoSize = true;
+                l.BorderStyle = BorderStyle.FixedSingle;
+                l.Margin = new System.Windows.Forms.Padding(3);
+                l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                if (trainOrTestForTest[i] == true)
+                {
+                    l.Text = "Tr: " + experimentTimeForTest[i].ToString();
+                }
+                else
+                {
+                    l.Text = "Te: " + experimentTimeForTest[i].ToString();
+                }
+                controls.Add(l);
+                
+                this.flpTopForLabel.Controls.Add(l);
+            }
+            controls[0].BackColor = Color.DarkCyan;
+
+
             timer2.Start();
             timer1.Stop();
+            this.btnStep3Start.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -563,13 +613,26 @@ namespace FlightSimulator
 
             Bitmap imageHere = new Bitmap(imageNow);
             PictureBox pb = new PictureBox();
-            float width = this.flowLayoutPanel1.Size.Width - 30;
+            float width = this.flpBottomForImageList.Size.Width - 30;
             float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
             pb.Size = new Size((int)width,(int)height);
           
             pb.Image = imageHere;
             pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.flowLayoutPanel1.Controls.Add(pb);
+            this.flpBottomForImageList.Controls.Add(pb);
+
+            sequenceIndex++;
+            if (sequenceIndex < controls.Count)
+            {
+                controls[sequenceIndex].BackColor = Color.DarkCyan;
+                controls[sequenceIndex - 1].BackColor = Color.White;
+            }
+            else
+            {
+                this.button1.Enabled = false;
+                controls[controls.Count - 1].BackColor = Color.White;
+            }
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
