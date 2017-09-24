@@ -44,7 +44,6 @@
             this.gbSetSequence_3 = new System.Windows.Forms.GroupBox();
             this.cbSetSeqChoosed_3 = new System.Windows.Forms.CheckBox();
             this.btnSetSequenceSave_3 = new System.Windows.Forms.Button();
-            this.cbSecondOrMinute_3 = new System.Windows.Forms.CheckBox();
             this.btnSetSDelete_3 = new System.Windows.Forms.Button();
             this.lbExpSequence_3 = new System.Windows.Forms.ListBox();
             this.btnSetSAdd_3 = new System.Windows.Forms.Button();
@@ -56,7 +55,6 @@
             this.gbSetSequence_2 = new System.Windows.Forms.GroupBox();
             this.cbSetSeqChoosed_2 = new System.Windows.Forms.CheckBox();
             this.btnSetSequenceSave_2 = new System.Windows.Forms.Button();
-            this.cbSecondOrMinute_2 = new System.Windows.Forms.CheckBox();
             this.btnSetSDelete_2 = new System.Windows.Forms.Button();
             this.lbExpSequence_2 = new System.Windows.Forms.ListBox();
             this.btnSetSAdd_2 = new System.Windows.Forms.Button();
@@ -66,7 +64,6 @@
             this.rbTrain_2 = new System.Windows.Forms.RadioButton();
             this.lblLastTime_2 = new System.Windows.Forms.Label();
             this.gbPunishmentChoose = new System.Windows.Forms.GroupBox();
-            this.rbNotPunishment = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.rbPCShake = new System.Windows.Forms.RadioButton();
             this.rbPCHeat = new System.Windows.Forms.RadioButton();
@@ -79,7 +76,6 @@
             this.gbSetSequence_1 = new System.Windows.Forms.GroupBox();
             this.cbSetSeqChoosed_1 = new System.Windows.Forms.CheckBox();
             this.btnSetSequenceSave_1 = new System.Windows.Forms.Button();
-            this.cbSecondOrMinute_1 = new System.Windows.Forms.CheckBox();
             this.btnSetSDelete_1 = new System.Windows.Forms.Button();
             this.lbExpSequence_1 = new System.Windows.Forms.ListBox();
             this.btnSetSAdd_1 = new System.Windows.Forms.Button();
@@ -105,7 +101,9 @@
             this.btnTestDrawing = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tpSetp3 = new System.Windows.Forms.TabPage();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flpTopForLabel = new System.Windows.Forms.FlowLayoutPanel();
             this.flpBottomForImageList = new System.Windows.Forms.FlowLayoutPanel();
             this.btnStep3Start = new System.Windows.Forms.Button();
@@ -114,8 +112,9 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.btnSeOrMi_1 = new System.Windows.Forms.Button();
+            this.btnSeOrMi_2 = new System.Windows.Forms.Button();
+            this.btnSeOrMi_3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -131,9 +130,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tpSetp3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -200,6 +199,7 @@
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
             this.tpStep1.UseVisualStyleBackColor = true;
+            this.tpStep1.Click += new System.EventHandler(this.tpStep1_Click);
             // 
             // panel1
             // 
@@ -265,9 +265,9 @@
             // 
             // gbSetSequence_3
             // 
+            this.gbSetSequence_3.Controls.Add(this.btnSeOrMi_3);
             this.gbSetSequence_3.Controls.Add(this.cbSetSeqChoosed_3);
             this.gbSetSequence_3.Controls.Add(this.btnSetSequenceSave_3);
-            this.gbSetSequence_3.Controls.Add(this.cbSecondOrMinute_3);
             this.gbSetSequence_3.Controls.Add(this.btnSetSDelete_3);
             this.gbSetSequence_3.Controls.Add(this.lbExpSequence_3);
             this.gbSetSequence_3.Controls.Add(this.btnSetSAdd_3);
@@ -304,17 +304,6 @@
             this.btnSetSequenceSave_3.Text = "Save";
             this.btnSetSequenceSave_3.UseVisualStyleBackColor = true;
             this.btnSetSequenceSave_3.Click += new System.EventHandler(this.btnSetSequenceSave_3_Click);
-            // 
-            // cbSecondOrMinute_3
-            // 
-            this.cbSecondOrMinute_3.AutoSize = true;
-            this.cbSecondOrMinute_3.Location = new System.Drawing.Point(251, 99);
-            this.cbSecondOrMinute_3.Name = "cbSecondOrMinute_3";
-            this.cbSecondOrMinute_3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbSecondOrMinute_3.Size = new System.Drawing.Size(37, 19);
-            this.cbSecondOrMinute_3.TabIndex = 9;
-            this.cbSecondOrMinute_3.Text = "s";
-            this.cbSecondOrMinute_3.UseVisualStyleBackColor = true;
             // 
             // btnSetSDelete_3
             // 
@@ -398,9 +387,9 @@
             // 
             // gbSetSequence_2
             // 
+            this.gbSetSequence_2.Controls.Add(this.btnSeOrMi_2);
             this.gbSetSequence_2.Controls.Add(this.cbSetSeqChoosed_2);
             this.gbSetSequence_2.Controls.Add(this.btnSetSequenceSave_2);
-            this.gbSetSequence_2.Controls.Add(this.cbSecondOrMinute_2);
             this.gbSetSequence_2.Controls.Add(this.btnSetSDelete_2);
             this.gbSetSequence_2.Controls.Add(this.lbExpSequence_2);
             this.gbSetSequence_2.Controls.Add(this.btnSetSAdd_2);
@@ -437,17 +426,6 @@
             this.btnSetSequenceSave_2.TabIndex = 11;
             this.btnSetSequenceSave_2.Text = "Save";
             this.btnSetSequenceSave_2.UseVisualStyleBackColor = true;
-            // 
-            // cbSecondOrMinute_2
-            // 
-            this.cbSecondOrMinute_2.AutoSize = true;
-            this.cbSecondOrMinute_2.Location = new System.Drawing.Point(251, 99);
-            this.cbSecondOrMinute_2.Name = "cbSecondOrMinute_2";
-            this.cbSecondOrMinute_2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbSecondOrMinute_2.Size = new System.Drawing.Size(37, 19);
-            this.cbSecondOrMinute_2.TabIndex = 9;
-            this.cbSecondOrMinute_2.Text = "s";
-            this.cbSecondOrMinute_2.UseVisualStyleBackColor = true;
             // 
             // btnSetSDelete_2
             // 
@@ -531,7 +509,6 @@
             // 
             // gbPunishmentChoose
             // 
-            this.gbPunishmentChoose.Controls.Add(this.rbNotPunishment);
             this.gbPunishmentChoose.Controls.Add(this.label6);
             this.gbPunishmentChoose.Controls.Add(this.rbPCShake);
             this.gbPunishmentChoose.Controls.Add(this.rbPCHeat);
@@ -541,18 +518,6 @@
             this.gbPunishmentChoose.TabIndex = 26;
             this.gbPunishmentChoose.TabStop = false;
             this.gbPunishmentChoose.Text = "ExInit-setPunishment";
-            // 
-            // rbNotPunishment
-            // 
-            this.rbNotPunishment.AutoSize = true;
-            this.rbNotPunishment.Checked = true;
-            this.rbNotPunishment.Location = new System.Drawing.Point(271, 36);
-            this.rbNotPunishment.Name = "rbNotPunishment";
-            this.rbNotPunishment.Size = new System.Drawing.Size(60, 19);
-            this.rbNotPunishment.TabIndex = 19;
-            this.rbNotPunishment.TabStop = true;
-            this.rbNotPunishment.Text = "NULL";
-            this.rbNotPunishment.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -577,10 +542,12 @@
             // rbPCHeat
             // 
             this.rbPCHeat.AutoSize = true;
+            this.rbPCHeat.Checked = true;
             this.rbPCHeat.Location = new System.Drawing.Point(129, 36);
             this.rbPCHeat.Name = "rbPCHeat";
             this.rbPCHeat.Size = new System.Drawing.Size(60, 19);
             this.rbPCHeat.TabIndex = 7;
+            this.rbPCHeat.TabStop = true;
             this.rbPCHeat.Text = "Heat";
             this.rbPCHeat.UseVisualStyleBackColor = true;
             // 
@@ -646,9 +613,9 @@
             // 
             // gbSetSequence_1
             // 
+            this.gbSetSequence_1.Controls.Add(this.btnSeOrMi_1);
             this.gbSetSequence_1.Controls.Add(this.cbSetSeqChoosed_1);
             this.gbSetSequence_1.Controls.Add(this.btnSetSequenceSave_1);
-            this.gbSetSequence_1.Controls.Add(this.cbSecondOrMinute_1);
             this.gbSetSequence_1.Controls.Add(this.btnSetSDelete_1);
             this.gbSetSequence_1.Controls.Add(this.lbExpSequence_1);
             this.gbSetSequence_1.Controls.Add(this.btnSetSAdd_1);
@@ -686,18 +653,6 @@
             this.btnSetSequenceSave_1.TabIndex = 10;
             this.btnSetSequenceSave_1.Text = "Save";
             this.btnSetSequenceSave_1.UseVisualStyleBackColor = true;
-            // 
-            // cbSecondOrMinute_1
-            // 
-            this.cbSecondOrMinute_1.AutoSize = true;
-            this.cbSecondOrMinute_1.Location = new System.Drawing.Point(251, 99);
-            this.cbSecondOrMinute_1.Name = "cbSecondOrMinute_1";
-            this.cbSecondOrMinute_1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbSecondOrMinute_1.Size = new System.Drawing.Size(37, 19);
-            this.cbSecondOrMinute_1.TabIndex = 9;
-            this.cbSecondOrMinute_1.Text = "s";
-            this.cbSecondOrMinute_1.UseVisualStyleBackColor = true;
-            this.cbSecondOrMinute_1.CheckedChanged += new System.EventHandler(this.cbSecondOrMinute_1_CheckedChanged);
             // 
             // btnSetSDelete_1
             // 
@@ -978,6 +933,14 @@
             this.tpSetp3.Text = "Step-3";
             this.tpSetp3.UseVisualStyleBackColor = true;
             // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 961);
+            this.splitter1.TabIndex = 6;
+            this.splitter1.TabStop = false;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.flowLayoutPanel1);
@@ -990,6 +953,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FinishedExp";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.flpTopForLabel);
+            this.flowLayoutPanel1.Controls.Add(this.flpBottomForImageList);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(427, 793);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // flpTopForLabel
             // 
@@ -1053,22 +1025,35 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // flowLayoutPanel1
+            // btnSeOrMi_1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.flpTopForLabel);
-            this.flowLayoutPanel1.Controls.Add(this.flpBottomForImageList);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(427, 793);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.btnSeOrMi_1.Location = new System.Drawing.Point(250, 99);
+            this.btnSeOrMi_1.Name = "btnSeOrMi_1";
+            this.btnSeOrMi_1.Size = new System.Drawing.Size(32, 23);
+            this.btnSeOrMi_1.TabIndex = 30;
+            this.btnSeOrMi_1.Text = "S";
+            this.btnSeOrMi_1.UseVisualStyleBackColor = true;
+            this.btnSeOrMi_1.Click += new System.EventHandler(this.btnSeOrMi_1_Click);
             // 
-            // splitter1
+            // btnSeOrMi_2
             // 
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 961);
-            this.splitter1.TabIndex = 6;
-            this.splitter1.TabStop = false;
+            this.btnSeOrMi_2.Location = new System.Drawing.Point(250, 99);
+            this.btnSeOrMi_2.Name = "btnSeOrMi_2";
+            this.btnSeOrMi_2.Size = new System.Drawing.Size(32, 23);
+            this.btnSeOrMi_2.TabIndex = 31;
+            this.btnSeOrMi_2.Text = "S";
+            this.btnSeOrMi_2.UseVisualStyleBackColor = true;
+            this.btnSeOrMi_2.Click += new System.EventHandler(this.btnSeOrMi_2_Click);
+            // 
+            // btnSeOrMi_3
+            // 
+            this.btnSeOrMi_3.Location = new System.Drawing.Point(250, 99);
+            this.btnSeOrMi_3.Name = "btnSeOrMi_3";
+            this.btnSeOrMi_3.Size = new System.Drawing.Size(32, 23);
+            this.btnSeOrMi_3.TabIndex = 31;
+            this.btnSeOrMi_3.Text = "S";
+            this.btnSeOrMi_3.UseVisualStyleBackColor = true;
+            this.btnSeOrMi_3.Click += new System.EventHandler(this.btnSeOrMi_3_Click);
             // 
             // Form1
             // 
@@ -1106,10 +1091,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tpSetp3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1135,7 +1120,6 @@
         private System.Windows.Forms.Button btnChooseDataPath;
         private System.Windows.Forms.Label lblDPValue;
         private System.Windows.Forms.GroupBox gbSetSequence_1;
-        private System.Windows.Forms.CheckBox cbSecondOrMinute_1;
         private System.Windows.Forms.Button btnSetSDelete_1;
         private System.Windows.Forms.ListBox lbExpSequence_1;
         private System.Windows.Forms.Button btnSetSAdd_1;
@@ -1145,7 +1129,6 @@
         private System.Windows.Forms.RadioButton rbTrain_1;
         private System.Windows.Forms.Label lblLastTime_1;
         private System.Windows.Forms.GroupBox gbSetSequence_3;
-        private System.Windows.Forms.CheckBox cbSecondOrMinute_3;
         private System.Windows.Forms.Button btnSetSDelete_3;
         private System.Windows.Forms.ListBox lbExpSequence_3;
         private System.Windows.Forms.Button btnSetSAdd_3;
@@ -1155,7 +1138,6 @@
         private System.Windows.Forms.RadioButton rbTrain_3;
         private System.Windows.Forms.Label lblLastTime_3;
         private System.Windows.Forms.GroupBox gbSetSequence_2;
-        private System.Windows.Forms.CheckBox cbSecondOrMinute_2;
         private System.Windows.Forms.Button btnSetSDelete_2;
         private System.Windows.Forms.ListBox lbExpSequence_2;
         private System.Windows.Forms.Button btnSetSAdd_2;
@@ -1176,7 +1158,6 @@
         private System.Windows.Forms.CheckBox cbSetSeqChoosed_2;
         private System.Windows.Forms.Button btnGoStep_2;
         private System.Windows.Forms.Button btnSetSettings;
-        private System.Windows.Forms.RadioButton rbNotPunishment;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnSaveSettingInStep2;
@@ -1204,6 +1185,9 @@
         private System.Windows.Forms.FlowLayoutPanel flpTopForLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.Button btnSeOrMi_1;
+        private System.Windows.Forms.Button btnSeOrMi_3;
+        private System.Windows.Forms.Button btnSeOrMi_2;
     }
 }
 

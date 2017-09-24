@@ -36,6 +36,10 @@ namespace FlightSimulator
         drawProcess dp2;
 
 
+
+       
+
+
         private int sequenceIndex = 0;
 
         private Bitmap imageNow;
@@ -314,16 +318,7 @@ namespace FlightSimulator
 
         private void cbSecondOrMinute_1_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbSecondOrMinute_1.Checked == true)
-            {
-                isSecond_1 = false;
-                cbSecondOrMinute_1.Text = "m";
-            }
-            else
-            {
-                isSecond_1 = true;
-                cbSecondOrMinute_1.Text = "s";
-            }
+           
         }
 
 
@@ -638,6 +633,58 @@ namespace FlightSimulator
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void tpStep1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSecondOrMinute_1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnSeOrMi_1_Click(object sender, EventArgs e)
+        {
+            if (isSecond_1)
+            {
+                this.btnSeOrMi_1.Text = "M";
+                isSecond_1 = false;
+            }
+            else
+            {
+                this.btnSeOrMi_1.Text = "S";
+                isSecond_1 = true;
+            }
+        }
+
+        private void btnSeOrMi_2_Click(object sender, EventArgs e)
+        {
+            if (isSecond_2)
+            {
+                this.btnSeOrMi_2.Text = "M";
+                isSecond_2 = false;
+            }
+            else
+            {
+                this.btnSeOrMi_2.Text = "S";
+                isSecond_2 = true;
+            }
+        }
+
+        private void btnSeOrMi_3_Click(object sender, EventArgs e)
+        {
+            if (isSecond_3)
+            {
+                this.btnSeOrMi_3.Text = "M";
+                isSecond_3 = false;
+            }
+            else
+            {
+                this.btnSeOrMi_3.Text = "S";
+                isSecond_3 = true;
+            }
         }
     }
 }
