@@ -42,6 +42,7 @@
             this.btnGoStep_2 = new System.Windows.Forms.Button();
             this.btnSetSettings = new System.Windows.Forms.Button();
             this.gbSetSequence_3 = new System.Windows.Forms.GroupBox();
+            this.btnSeOrMi_3 = new System.Windows.Forms.Button();
             this.cbSetSeqChoosed_3 = new System.Windows.Forms.CheckBox();
             this.btnSetSequenceSave_3 = new System.Windows.Forms.Button();
             this.btnSetSDelete_3 = new System.Windows.Forms.Button();
@@ -53,6 +54,7 @@
             this.rbTrain_3 = new System.Windows.Forms.RadioButton();
             this.lblLastTime_3 = new System.Windows.Forms.Label();
             this.gbSetSequence_2 = new System.Windows.Forms.GroupBox();
+            this.btnSeOrMi_2 = new System.Windows.Forms.Button();
             this.cbSetSeqChoosed_2 = new System.Windows.Forms.CheckBox();
             this.btnSetSequenceSave_2 = new System.Windows.Forms.Button();
             this.btnSetSDelete_2 = new System.Windows.Forms.Button();
@@ -74,6 +76,7 @@
             this.btnChooseDataPath = new System.Windows.Forms.Button();
             this.lblDPValue = new System.Windows.Forms.Label();
             this.gbSetSequence_1 = new System.Windows.Forms.GroupBox();
+            this.btnSeOrMi_1 = new System.Windows.Forms.Button();
             this.cbSetSeqChoosed_1 = new System.Windows.Forms.CheckBox();
             this.btnSetSequenceSave_1 = new System.Windows.Forms.Button();
             this.btnSetSDelete_1 = new System.Windows.Forms.Button();
@@ -112,9 +115,9 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.btnSeOrMi_1 = new System.Windows.Forms.Button();
-            this.btnSeOrMi_2 = new System.Windows.Forms.Button();
-            this.btnSeOrMi_3 = new System.Windows.Forms.Button();
+            this.gbBias = new System.Windows.Forms.GroupBox();
+            this.btnBiasUp = new System.Windows.Forms.Button();
+            this.btnBiasDown = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -133,6 +136,7 @@
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.gbBias.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -283,6 +287,16 @@
             this.gbSetSequence_3.TabStop = false;
             this.gbSetSequence_3.Text = "Set-Sequence";
             // 
+            // btnSeOrMi_3
+            // 
+            this.btnSeOrMi_3.Location = new System.Drawing.Point(250, 96);
+            this.btnSeOrMi_3.Name = "btnSeOrMi_3";
+            this.btnSeOrMi_3.Size = new System.Drawing.Size(32, 29);
+            this.btnSeOrMi_3.TabIndex = 31;
+            this.btnSeOrMi_3.Text = "S";
+            this.btnSeOrMi_3.UseVisualStyleBackColor = true;
+            this.btnSeOrMi_3.Click += new System.EventHandler(this.btnSeOrMi_3_Click);
+            // 
             // cbSetSeqChoosed_3
             // 
             this.cbSetSeqChoosed_3.AutoSize = true;
@@ -405,6 +419,16 @@
             this.gbSetSequence_2.TabStop = false;
             this.gbSetSequence_2.Text = "Set-Sequence";
             this.gbSetSequence_2.Enter += new System.EventHandler(this.gbSetSequence_2_Enter);
+            // 
+            // btnSeOrMi_2
+            // 
+            this.btnSeOrMi_2.Location = new System.Drawing.Point(250, 96);
+            this.btnSeOrMi_2.Name = "btnSeOrMi_2";
+            this.btnSeOrMi_2.Size = new System.Drawing.Size(32, 28);
+            this.btnSeOrMi_2.TabIndex = 31;
+            this.btnSeOrMi_2.Text = "S";
+            this.btnSeOrMi_2.UseVisualStyleBackColor = true;
+            this.btnSeOrMi_2.Click += new System.EventHandler(this.btnSeOrMi_2_Click);
             // 
             // cbSetSeqChoosed_2
             // 
@@ -631,6 +655,16 @@
             this.gbSetSequence_1.TabStop = false;
             this.gbSetSequence_1.Text = "Set-Sequence";
             // 
+            // btnSeOrMi_1
+            // 
+            this.btnSeOrMi_1.Location = new System.Drawing.Point(248, 96);
+            this.btnSeOrMi_1.Name = "btnSeOrMi_1";
+            this.btnSeOrMi_1.Size = new System.Drawing.Size(32, 29);
+            this.btnSeOrMi_1.TabIndex = 30;
+            this.btnSeOrMi_1.Text = "S";
+            this.btnSeOrMi_1.UseVisualStyleBackColor = true;
+            this.btnSeOrMi_1.Click += new System.EventHandler(this.btnSeOrMi_1_Click);
+            // 
             // cbSetSeqChoosed_1
             // 
             this.cbSetSeqChoosed_1.AutoSize = true;
@@ -770,11 +804,12 @@
             // 
             // gbPositionTorqueSetting
             // 
+            this.gbPositionTorqueSetting.Controls.Add(this.gbBias);
             this.gbPositionTorqueSetting.Controls.Add(this.cbOpenOrClosed);
             this.gbPositionTorqueSetting.Controls.Add(this.btnBack);
             this.gbPositionTorqueSetting.Location = new System.Drawing.Point(259, 673);
             this.gbPositionTorqueSetting.Name = "gbPositionTorqueSetting";
-            this.gbPositionTorqueSetting.Size = new System.Drawing.Size(645, 67);
+            this.gbPositionTorqueSetting.Size = new System.Drawing.Size(648, 80);
             this.gbPositionTorqueSetting.TabIndex = 24;
             this.gbPositionTorqueSetting.TabStop = false;
             this.gbPositionTorqueSetting.Text = "Setting";
@@ -782,7 +817,7 @@
             // cbOpenOrClosed
             // 
             this.cbOpenOrClosed.AutoSize = true;
-            this.cbOpenOrClosed.Location = new System.Drawing.Point(27, 28);
+            this.cbOpenOrClosed.Location = new System.Drawing.Point(20, 41);
             this.cbOpenOrClosed.Name = "cbOpenOrClosed";
             this.cbOpenOrClosed.Size = new System.Drawing.Size(61, 19);
             this.cbOpenOrClosed.TabIndex = 23;
@@ -792,7 +827,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(125, 27);
+            this.btnBack.Location = new System.Drawing.Point(119, 38);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(105, 23);
             this.btnBack.TabIndex = 2;
@@ -857,7 +892,7 @@
             // lblTorqueValue
             // 
             this.lblTorqueValue.AutoSize = true;
-            this.lblTorqueValue.Location = new System.Drawing.Point(167, 707);
+            this.lblTorqueValue.Location = new System.Drawing.Point(169, 711);
             this.lblTorqueValue.Name = "lblTorqueValue";
             this.lblTorqueValue.Size = new System.Drawing.Size(39, 15);
             this.lblTorqueValue.TabIndex = 6;
@@ -866,7 +901,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(99, 707);
+            this.label3.Location = new System.Drawing.Point(101, 711);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 5;
@@ -875,7 +910,7 @@
             // lblPositionValue
             // 
             this.lblPositionValue.AutoSize = true;
-            this.lblPositionValue.Location = new System.Drawing.Point(167, 677);
+            this.lblPositionValue.Location = new System.Drawing.Point(169, 681);
             this.lblPositionValue.Name = "lblPositionValue";
             this.lblPositionValue.Size = new System.Drawing.Size(39, 15);
             this.lblPositionValue.TabIndex = 4;
@@ -884,7 +919,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(83, 677);
+            this.lblPosition.Location = new System.Drawing.Point(85, 681);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(79, 15);
             this.lblPosition.TabIndex = 2;
@@ -1025,35 +1060,34 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // btnSeOrMi_1
+            // gbBias
             // 
-            this.btnSeOrMi_1.Location = new System.Drawing.Point(250, 99);
-            this.btnSeOrMi_1.Name = "btnSeOrMi_1";
-            this.btnSeOrMi_1.Size = new System.Drawing.Size(32, 23);
-            this.btnSeOrMi_1.TabIndex = 30;
-            this.btnSeOrMi_1.Text = "S";
-            this.btnSeOrMi_1.UseVisualStyleBackColor = true;
-            this.btnSeOrMi_1.Click += new System.EventHandler(this.btnSeOrMi_1_Click);
+            this.gbBias.Controls.Add(this.btnBiasDown);
+            this.gbBias.Controls.Add(this.btnBiasUp);
+            this.gbBias.Location = new System.Drawing.Point(257, 13);
+            this.gbBias.Name = "gbBias";
+            this.gbBias.Size = new System.Drawing.Size(190, 61);
+            this.gbBias.TabIndex = 26;
+            this.gbBias.TabStop = false;
+            this.gbBias.Text = "Bias";
             // 
-            // btnSeOrMi_2
+            // btnBiasUp
             // 
-            this.btnSeOrMi_2.Location = new System.Drawing.Point(250, 99);
-            this.btnSeOrMi_2.Name = "btnSeOrMi_2";
-            this.btnSeOrMi_2.Size = new System.Drawing.Size(32, 23);
-            this.btnSeOrMi_2.TabIndex = 31;
-            this.btnSeOrMi_2.Text = "S";
-            this.btnSeOrMi_2.UseVisualStyleBackColor = true;
-            this.btnSeOrMi_2.Click += new System.EventHandler(this.btnSeOrMi_2_Click);
+            this.btnBiasUp.Location = new System.Drawing.Point(6, 24);
+            this.btnBiasUp.Name = "btnBiasUp";
+            this.btnBiasUp.Size = new System.Drawing.Size(75, 23);
+            this.btnBiasUp.TabIndex = 26;
+            this.btnBiasUp.Text = "Up";
+            this.btnBiasUp.UseVisualStyleBackColor = true;
             // 
-            // btnSeOrMi_3
+            // btnBiasDown
             // 
-            this.btnSeOrMi_3.Location = new System.Drawing.Point(250, 99);
-            this.btnSeOrMi_3.Name = "btnSeOrMi_3";
-            this.btnSeOrMi_3.Size = new System.Drawing.Size(32, 23);
-            this.btnSeOrMi_3.TabIndex = 31;
-            this.btnSeOrMi_3.Text = "S";
-            this.btnSeOrMi_3.UseVisualStyleBackColor = true;
-            this.btnSeOrMi_3.Click += new System.EventHandler(this.btnSeOrMi_3_Click);
+            this.btnBiasDown.Location = new System.Drawing.Point(97, 24);
+            this.btnBiasDown.Name = "btnBiasDown";
+            this.btnBiasDown.Size = new System.Drawing.Size(75, 23);
+            this.btnBiasDown.TabIndex = 27;
+            this.btnBiasDown.Text = "Down";
+            this.btnBiasDown.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1095,6 +1129,7 @@
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.gbBias.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1188,6 +1223,9 @@
         private System.Windows.Forms.Button btnSeOrMi_1;
         private System.Windows.Forms.Button btnSeOrMi_3;
         private System.Windows.Forms.Button btnSeOrMi_2;
+        private System.Windows.Forms.GroupBox gbBias;
+        private System.Windows.Forms.Button btnBiasDown;
+        private System.Windows.Forms.Button btnBiasUp;
     }
 }
 
