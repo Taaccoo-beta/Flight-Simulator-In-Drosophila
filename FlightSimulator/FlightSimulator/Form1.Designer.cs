@@ -33,6 +33,7 @@
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resultBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpStep1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -90,6 +91,9 @@
             this.tpStep2 = new System.Windows.Forms.TabPage();
             this.btnGoStep_3 = new System.Windows.Forms.Button();
             this.gbPositionTorqueSetting = new System.Windows.Forms.GroupBox();
+            this.gbBias = new System.Windows.Forms.GroupBox();
+            this.btnBiasDown = new System.Windows.Forms.Button();
+            this.btnBiasUp = new System.Windows.Forms.Button();
             this.cbOpenOrClosed = new System.Windows.Forms.CheckBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblOpenClosed = new System.Windows.Forms.Label();
@@ -115,9 +119,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.gbBias = new System.Windows.Forms.GroupBox();
-            this.btnBiasUp = new System.Windows.Forms.Button();
-            this.btnBiasDown = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -130,13 +131,13 @@
             this.gbSetSequence_1.SuspendLayout();
             this.tpStep2.SuspendLayout();
             this.gbPositionTorqueSetting.SuspendLayout();
+            this.gbBias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tpSetp3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.gbBias.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -150,12 +151,14 @@
             this.menuStrip1.Size = new System.Drawing.Size(1361, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.debugModeToolStripMenuItem,
-            this.portDetectionToolStripMenuItem});
+            this.portDetectionToolStripMenuItem,
+            this.resultBrowserToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.settingToolStripMenuItem.Text = "Setting";
@@ -163,15 +166,22 @@
             // debugModeToolStripMenuItem
             // 
             this.debugModeToolStripMenuItem.Name = "debugModeToolStripMenuItem";
-            this.debugModeToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
+            this.debugModeToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.debugModeToolStripMenuItem.Text = "DebugMode";
             // 
             // portDetectionToolStripMenuItem
             // 
             this.portDetectionToolStripMenuItem.Name = "portDetectionToolStripMenuItem";
-            this.portDetectionToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
+            this.portDetectionToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.portDetectionToolStripMenuItem.Text = "PortDetection";
             this.portDetectionToolStripMenuItem.Click += new System.EventHandler(this.portDetectionToolStripMenuItem_Click);
+            // 
+            // resultBrowserToolStripMenuItem
+            // 
+            this.resultBrowserToolStripMenuItem.Name = "resultBrowserToolStripMenuItem";
+            this.resultBrowserToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
+            this.resultBrowserToolStripMenuItem.Text = "ResultBrowser";
+            this.resultBrowserToolStripMenuItem.Click += new System.EventHandler(this.resultBrowserToolStripMenuItem_Click);
             // 
             // tabControl
             // 
@@ -450,6 +460,7 @@
             this.btnSetSequenceSave_2.TabIndex = 11;
             this.btnSetSequenceSave_2.Text = "Save";
             this.btnSetSequenceSave_2.UseVisualStyleBackColor = true;
+            this.btnSetSequenceSave_2.Click += new System.EventHandler(this.btnSetSequenceSave_2_Click);
             // 
             // btnSetSDelete_2
             // 
@@ -687,6 +698,7 @@
             this.btnSetSequenceSave_1.TabIndex = 10;
             this.btnSetSequenceSave_1.Text = "Save";
             this.btnSetSequenceSave_1.UseVisualStyleBackColor = true;
+            this.btnSetSequenceSave_1.Click += new System.EventHandler(this.btnSetSequenceSave_1_Click);
             // 
             // btnSetSDelete_1
             // 
@@ -813,6 +825,35 @@
             this.gbPositionTorqueSetting.TabIndex = 24;
             this.gbPositionTorqueSetting.TabStop = false;
             this.gbPositionTorqueSetting.Text = "Setting";
+            // 
+            // gbBias
+            // 
+            this.gbBias.Controls.Add(this.btnBiasDown);
+            this.gbBias.Controls.Add(this.btnBiasUp);
+            this.gbBias.Location = new System.Drawing.Point(257, 13);
+            this.gbBias.Name = "gbBias";
+            this.gbBias.Size = new System.Drawing.Size(190, 61);
+            this.gbBias.TabIndex = 26;
+            this.gbBias.TabStop = false;
+            this.gbBias.Text = "Bias";
+            // 
+            // btnBiasDown
+            // 
+            this.btnBiasDown.Location = new System.Drawing.Point(97, 24);
+            this.btnBiasDown.Name = "btnBiasDown";
+            this.btnBiasDown.Size = new System.Drawing.Size(75, 23);
+            this.btnBiasDown.TabIndex = 27;
+            this.btnBiasDown.Text = "Down";
+            this.btnBiasDown.UseVisualStyleBackColor = true;
+            // 
+            // btnBiasUp
+            // 
+            this.btnBiasUp.Location = new System.Drawing.Point(6, 24);
+            this.btnBiasUp.Name = "btnBiasUp";
+            this.btnBiasUp.Size = new System.Drawing.Size(75, 23);
+            this.btnBiasUp.TabIndex = 26;
+            this.btnBiasUp.Text = "Up";
+            this.btnBiasUp.UseVisualStyleBackColor = true;
             // 
             // cbOpenOrClosed
             // 
@@ -1060,35 +1101,6 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // gbBias
-            // 
-            this.gbBias.Controls.Add(this.btnBiasDown);
-            this.gbBias.Controls.Add(this.btnBiasUp);
-            this.gbBias.Location = new System.Drawing.Point(257, 13);
-            this.gbBias.Name = "gbBias";
-            this.gbBias.Size = new System.Drawing.Size(190, 61);
-            this.gbBias.TabIndex = 26;
-            this.gbBias.TabStop = false;
-            this.gbBias.Text = "Bias";
-            // 
-            // btnBiasUp
-            // 
-            this.btnBiasUp.Location = new System.Drawing.Point(6, 24);
-            this.btnBiasUp.Name = "btnBiasUp";
-            this.btnBiasUp.Size = new System.Drawing.Size(75, 23);
-            this.btnBiasUp.TabIndex = 26;
-            this.btnBiasUp.Text = "Up";
-            this.btnBiasUp.UseVisualStyleBackColor = true;
-            // 
-            // btnBiasDown
-            // 
-            this.btnBiasDown.Location = new System.Drawing.Point(97, 24);
-            this.btnBiasDown.Name = "btnBiasDown";
-            this.btnBiasDown.Size = new System.Drawing.Size(75, 23);
-            this.btnBiasDown.TabIndex = 27;
-            this.btnBiasDown.Text = "Down";
-            this.btnBiasDown.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1122,6 +1134,7 @@
             this.tpStep2.PerformLayout();
             this.gbPositionTorqueSetting.ResumeLayout(false);
             this.gbPositionTorqueSetting.PerformLayout();
+            this.gbBias.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tpSetp3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -1129,7 +1142,6 @@
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.gbBias.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1226,6 +1238,7 @@
         private System.Windows.Forms.GroupBox gbBias;
         private System.Windows.Forms.Button btnBiasDown;
         private System.Windows.Forms.Button btnBiasUp;
+        private System.Windows.Forms.ToolStripMenuItem resultBrowserToolStripMenuItem;
     }
 }
 

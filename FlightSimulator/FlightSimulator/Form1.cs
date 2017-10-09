@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using rorationSimulation;
 using XControl;
-
+using System.IO;
 
 namespace FlightSimulator
 {
@@ -81,14 +81,18 @@ namespace FlightSimulator
             if (rbTest_1.Checked)
             {
                 trainOrTest_1.Add(false);
-                experimentTime_1.Add(int.Parse(tbLastTime_1.Text));
+                
                 if (isSecond_1)
                 {
+                    experimentTime_1.Add(int.Parse(tbLastTime_1.Text));
                     lbExpSequence_1.Items.Add(trainOrTest_1.Count.ToString("00") + "   " + "Test  " + tbLastTime_1.Text + "s");
                 }
                 else
                 {
-                    lbExpSequence_1.Items.Add(trainOrTest_1.Count.ToString("00") + "   " + "Test  " + tbLastTime_1.Text + "m");
+
+                    experimentTime_1.Add(60 * int.Parse(tbLastTime_1.Text));
+                    lbExpSequence_1.Items.Add(trainOrTest_1.Count.ToString("00") + "   " + "Test  " + 60*int.Parse(tbLastTime_1.Text) + "s");
+
                 }
 
 
@@ -96,14 +100,16 @@ namespace FlightSimulator
             else
             {
                 trainOrTest_1.Add(true);
-                experimentTime_1.Add(int.Parse(tbLastTime_1.Text));
+                
                 if (isSecond_1)
                 {
+                    experimentTime_1.Add(int.Parse(tbLastTime_1.Text));
                     lbExpSequence_1.Items.Add(trainOrTest_1.Count.ToString("00") + "  " + "Train  " + tbLastTime_1.Text + "s");
                 }
                 else
                 {
-                    lbExpSequence_1.Items.Add(trainOrTest_1.Count.ToString("00") + "  " + "Train  " + tbLastTime_1.Text + "m");
+                    experimentTime_1.Add(60 * int.Parse(tbLastTime_1.Text));
+                    lbExpSequence_1.Items.Add(trainOrTest_1.Count.ToString("00") + "  " + "Train  " + 60*int.Parse(tbLastTime_1.Text) + "s");
                 }
 
 
@@ -161,14 +167,16 @@ namespace FlightSimulator
             if (rbTest_2.Checked)
             {
                 trainOrTest_2.Add(false);
-                experimentTime_2.Add(int.Parse(tbLastTime_2.Text));
+                
                 if (isSecond_2)
                 {
+                    experimentTime_2.Add(int.Parse(tbLastTime_2.Text));
                     lbExpSequence_2.Items.Add(trainOrTest_2.Count.ToString("00") + "   " + "Test  " + tbLastTime_2.Text + "s");
                 }
                 else
                 {
-                    lbExpSequence_2.Items.Add(trainOrTest_2.Count.ToString("00") + "   " + "Test  " + tbLastTime_2.Text + "m");
+                    experimentTime_2.Add(60*int.Parse(tbLastTime_2.Text));
+                    lbExpSequence_2.Items.Add(trainOrTest_2.Count.ToString("00") + "   " + "Test  " + 60 * int.Parse(tbLastTime_2.Text) + "s");
                 }
 
 
@@ -176,14 +184,16 @@ namespace FlightSimulator
             else
             {
                 trainOrTest_2.Add(true);
-                experimentTime_2.Add(int.Parse(tbLastTime_2.Text));
+                
                 if (isSecond_2)
                 {
+                    experimentTime_2.Add(int.Parse(tbLastTime_2.Text));
                     lbExpSequence_2.Items.Add(trainOrTest_2.Count.ToString("00") + "  " + "Train  " + tbLastTime_2.Text + "s");
                 }
                 else
                 {
-                    lbExpSequence_2.Items.Add(trainOrTest_2.Count.ToString("00") + "  " + "Train  " + tbLastTime_2.Text + "m");
+                    experimentTime_2.Add(60*int.Parse(tbLastTime_2.Text));
+                    lbExpSequence_2.Items.Add(trainOrTest_2.Count.ToString("00") + "  " + "Train  " + 60 * int.Parse(tbLastTime_2.Text) + "s");
                 }
 
 
@@ -195,14 +205,16 @@ namespace FlightSimulator
             if (rbTest_3.Checked)
             {
                 trainOrTest_3.Add(false);
-                experimentTime_3.Add(int.Parse(tbLastTime_3.Text));
+                
                 if (isSecond_3)
                 {
+                    experimentTime_3.Add(int.Parse(tbLastTime_3.Text));
                     lbExpSequence_3.Items.Add(trainOrTest_3.Count.ToString("00") + "   " + "Test  " + tbLastTime_3.Text + "s");
                 }
                 else
                 {
-                    lbExpSequence_3.Items.Add(trainOrTest_3.Count.ToString("00") + "   " + "Test  " + tbLastTime_3.Text + "m");
+                    experimentTime_3.Add(60*int.Parse(tbLastTime_3.Text));
+                    lbExpSequence_3.Items.Add(trainOrTest_3.Count.ToString("00") + "   " + "Test  " + 60 * int.Parse(tbLastTime_3.Text) + "s");
                 }
 
 
@@ -210,14 +222,16 @@ namespace FlightSimulator
             else
             {
                 trainOrTest_3.Add(true);
-                experimentTime_3.Add(int.Parse(tbLastTime_3.Text));
+                
                 if (isSecond_3)
                 {
+                    experimentTime_3.Add(int.Parse(tbLastTime_3.Text));
                     lbExpSequence_3.Items.Add(trainOrTest_3.Count.ToString("00") + "  " + "Train  " + tbLastTime_3.Text + "s");
                 }
                 else
                 {
-                    lbExpSequence_3.Items.Add(trainOrTest_3.Count.ToString("00") + "  " + "Train  " + tbLastTime_3.Text + "m");
+                    experimentTime_3.Add(60*int.Parse(tbLastTime_3.Text));
+                    lbExpSequence_3.Items.Add(trainOrTest_3.Count.ToString("00") + "  " + "Train  " + 60 * int.Parse(tbLastTime_3.Text) + "m");
                 }
 
 
@@ -326,6 +340,38 @@ namespace FlightSimulator
 
         private void btnSetSequenceSave_3_Click(object sender, EventArgs e)
         {
+            if (trainOrTest_3.Count == 0)
+            {
+                MessageBox.Show("Not item found");
+            }
+            else
+            {
+
+                FileStream fs3 = new FileStream(Application.StartupPath + "\\set-3.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                StreamWriter sw = new StreamWriter(fs3);
+                sw.WriteLine(trainOrTest_3.Count);//开始写入值
+                for (int i = 0; i < trainOrTest_3.Count; i++)
+                {
+                    if (trainOrTest_3[i] == true)
+                    {
+                        sw.WriteLine("Train");
+                        sw.WriteLine(experimentTime_3[i].ToString());
+
+                    }
+                    else
+                    {
+                        sw.WriteLine("Test");
+                        sw.WriteLine(experimentTime_3[i].ToString());
+                    }
+                }
+
+                sw.Close();
+                fs3.Close();
+
+
+            }
+
+
 
         }
 
@@ -422,6 +468,91 @@ namespace FlightSimulator
             pc.AnalogPortConfigurationIn();
             pc.AnalogPortConfigurationOut();
             pc.DigitalConfigurationOut();
+
+
+            StreamReader sR = File.OpenText(Application.StartupPath+"\\set-1.txt");
+            int length = int.Parse(sR.ReadLine());
+            for (int i = 0; i != length; i++)
+            {
+                string temp = sR.ReadLine();
+                if (temp == "Train")
+                {
+                    trainOrTest_1.Add(true);
+                    experimentTime_1.Add(int.Parse(sR.ReadLine()));
+                    lbExpSequence_1.Items.Add(trainOrTest_1.Count.ToString("00") + "   " + "Train  " + experimentTime_1[i] + "s");
+                }
+                else
+                {
+                    trainOrTest_1.Add(false);
+                    experimentTime_1.Add(int.Parse(sR.ReadLine()));
+                    lbExpSequence_1.Items.Add(trainOrTest_1.Count.ToString("00") + "   " + "Test   " + experimentTime_1[i] + "s");
+                }
+
+
+                
+
+
+
+            }
+            sR.Close();
+
+
+            StreamReader sR2 = File.OpenText(Application.StartupPath + "\\set-2.txt");
+            int length2 = int.Parse(sR2.ReadLine());
+            for (int i = 0; i != length2; i++)
+            {
+                string temp = sR2.ReadLine();
+                if (temp == "Train")
+                {
+                    trainOrTest_2.Add(true);
+                    experimentTime_2.Add(int.Parse(sR2.ReadLine()));
+                    lbExpSequence_2.Items.Add(trainOrTest_2.Count.ToString("00") + "   " + "Train  " + experimentTime_2[i] + "s");
+                }
+                else
+                {
+                    trainOrTest_2.Add(false);
+                    experimentTime_2.Add(int.Parse(sR2.ReadLine()));
+                    lbExpSequence_2.Items.Add(trainOrTest_2.Count.ToString("00") + "   " + "Test   " + experimentTime_2[i] + "s");
+                }
+
+
+
+
+
+
+            }
+            sR2.Close();
+
+            StreamReader sR3 = File.OpenText(Application.StartupPath + "\\set-2.txt");
+            int length3 = int.Parse(sR3.ReadLine());
+            for (int i = 0; i != length3; i++)
+            {
+                string temp = sR3.ReadLine();
+                if (temp == "Train")
+                {
+                    trainOrTest_3.Add(true);
+                    experimentTime_3.Add(int.Parse(sR3.ReadLine()));
+                    lbExpSequence_3.Items.Add(trainOrTest_3.Count.ToString("00") + "   " + "Train  " + experimentTime_3[i] + "s");
+                }
+                else
+                {
+                    trainOrTest_3.Add(false);
+                    experimentTime_3.Add(int.Parse(sR3.ReadLine()));
+                    lbExpSequence_3.Items.Add(trainOrTest_3.Count.ToString("00") + "   " + "Test   " + experimentTime_3[i] + "s");
+                }
+
+
+
+
+
+
+            }
+            sR3.Close();
+
+
+
+
+
 
             timer1.Interval = 10;
             timer2.Interval = 100;
@@ -685,6 +816,103 @@ namespace FlightSimulator
                 this.btnSeOrMi_3.Text = "S";
                 isSecond_3 = true;
             }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void resultBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResultBrowser rb = new ResultBrowser();
+            rb.Show();
+        }
+
+        private void btnSetSequenceSave_1_Click(object sender, EventArgs e)
+        {
+            if (trainOrTest_1.Count == 0)
+            {
+                MessageBox.Show("Not item found");
+            }
+            else
+            {
+               
+                    FileStream fs1 = new FileStream(Application.StartupPath + "\\set-1.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    StreamWriter sw = new StreamWriter(fs1);
+                    sw.WriteLine(trainOrTest_1.Count);//开始写入值
+                    for (int i = 0; i < trainOrTest_1.Count; i++)
+                    {
+                        if (trainOrTest_1[i] == true)
+                        {
+                            sw.WriteLine("Train");
+                            sw.WriteLine(experimentTime_1[i].ToString());
+
+                        }
+                        else
+                        {
+                            sw.WriteLine("Test");
+                            sw.WriteLine(experimentTime_1[i].ToString());
+                        }
+                    }
+
+                    sw.Close();
+                    fs1.Close();
+
+
+            }
+          
+
+
+
+
+
+
+
+            
+        }
+
+        private void btnSetSequenceSave_2_Click(object sender, EventArgs e)
+        {
+            if (trainOrTest_2.Count == 0)
+            {
+                MessageBox.Show("Not item found");
+            }
+            else
+            {
+
+                FileStream fs1 = new FileStream(Application.StartupPath + "\\set-2.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                StreamWriter sw = new StreamWriter(fs1);
+                sw.WriteLine(trainOrTest_2.Count);//开始写入值
+                for (int i = 0; i < trainOrTest_2.Count; i++)
+                {
+                    if (trainOrTest_2[i] == true)
+                    {
+                        sw.WriteLine("Train");
+                        sw.WriteLine(experimentTime_2[i].ToString());
+
+                    }
+                    else
+                    {
+                        sw.WriteLine("Test");
+                        sw.WriteLine(experimentTime_2[i].ToString());
+                    }
+                }
+
+                sw.Close();
+                fs1.Close();
+
+
+            }
+
+
+
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
