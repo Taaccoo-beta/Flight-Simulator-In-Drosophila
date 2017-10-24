@@ -757,6 +757,8 @@ namespace FlightSimulator
             {
                 this.button1.Enabled = false;
                 controls[controls.Count - 1].BackColor = Color.White;
+                SigleExpResultPre serp = new SigleExpResultPre();
+                serp.Show();
             }
             
         }
@@ -913,6 +915,12 @@ namespace FlightSimulator
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void createRecordFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RecordFileSetting rfs = new RecordFileSetting();
+            rfs.Show();
         }
     }
 }
