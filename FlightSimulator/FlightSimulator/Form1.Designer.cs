@@ -34,6 +34,7 @@
             this.debugModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resultBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createRecordFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpStep1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -71,6 +72,8 @@
             this.rbPCShake = new System.Windows.Forms.RadioButton();
             this.rbPCHeat = new System.Windows.Forms.RadioButton();
             this.gbSetName = new System.Windows.Forms.GroupBox();
+            this.lblRecordFileName = new System.Windows.Forms.Label();
+            this.lblRecordFileLabel = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.lblExName = new System.Windows.Forms.Label();
             this.gbSetDataPath = new System.Windows.Forms.GroupBox();
@@ -119,9 +122,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.lblRecordFileLabel = new System.Windows.Forms.Label();
-            this.lblRecordFileName = new System.Windows.Forms.Label();
-            this.createRecordFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -169,9 +169,12 @@
             // 
             // debugModeToolStripMenuItem
             // 
+            this.debugModeToolStripMenuItem.Checked = true;
+            this.debugModeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.debugModeToolStripMenuItem.Name = "debugModeToolStripMenuItem";
             this.debugModeToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.debugModeToolStripMenuItem.Text = "DebugMode";
+            this.debugModeToolStripMenuItem.Click += new System.EventHandler(this.debugModeToolStripMenuItem_Click);
             // 
             // portDetectionToolStripMenuItem
             // 
@@ -186,6 +189,13 @@
             this.resultBrowserToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.resultBrowserToolStripMenuItem.Text = "ResultBrowser";
             this.resultBrowserToolStripMenuItem.Click += new System.EventHandler(this.resultBrowserToolStripMenuItem_Click);
+            // 
+            // createRecordFileToolStripMenuItem
+            // 
+            this.createRecordFileToolStripMenuItem.Name = "createRecordFileToolStripMenuItem";
+            this.createRecordFileToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.createRecordFileToolStripMenuItem.Text = "CreateRecordFile";
+            this.createRecordFileToolStripMenuItem.Click += new System.EventHandler(this.createRecordFileToolStripMenuItem_Click);
             // 
             // tabControl
             // 
@@ -602,6 +612,24 @@
             this.gbSetName.TabIndex = 24;
             this.gbSetName.TabStop = false;
             this.gbSetName.Text = "ExInit-SetName";
+            // 
+            // lblRecordFileName
+            // 
+            this.lblRecordFileName.AutoSize = true;
+            this.lblRecordFileName.Location = new System.Drawing.Point(144, 83);
+            this.lblRecordFileName.Name = "lblRecordFileName";
+            this.lblRecordFileName.Size = new System.Drawing.Size(39, 15);
+            this.lblRecordFileName.TabIndex = 30;
+            this.lblRecordFileName.Text = "NULL";
+            // 
+            // lblRecordFileLabel
+            // 
+            this.lblRecordFileLabel.AutoSize = true;
+            this.lblRecordFileLabel.Location = new System.Drawing.Point(28, 83);
+            this.lblRecordFileLabel.Name = "lblRecordFileLabel";
+            this.lblRecordFileLabel.Size = new System.Drawing.Size(110, 15);
+            this.lblRecordFileLabel.TabIndex = 2;
+            this.lblRecordFileLabel.Text = "Record File：";
             // 
             // textBox2
             // 
@@ -1106,31 +1134,6 @@
             // timer2
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // lblRecordFileLabel
-            // 
-            this.lblRecordFileLabel.AutoSize = true;
-            this.lblRecordFileLabel.Location = new System.Drawing.Point(28, 83);
-            this.lblRecordFileLabel.Name = "lblRecordFileLabel";
-            this.lblRecordFileLabel.Size = new System.Drawing.Size(110, 15);
-            this.lblRecordFileLabel.TabIndex = 2;
-            this.lblRecordFileLabel.Text = "Record File：";
-            // 
-            // lblRecordFileName
-            // 
-            this.lblRecordFileName.AutoSize = true;
-            this.lblRecordFileName.Location = new System.Drawing.Point(144, 83);
-            this.lblRecordFileName.Name = "lblRecordFileName";
-            this.lblRecordFileName.Size = new System.Drawing.Size(39, 15);
-            this.lblRecordFileName.TabIndex = 30;
-            this.lblRecordFileName.Text = "NULL";
-            // 
-            // createRecordFileToolStripMenuItem
-            // 
-            this.createRecordFileToolStripMenuItem.Name = "createRecordFileToolStripMenuItem";
-            this.createRecordFileToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
-            this.createRecordFileToolStripMenuItem.Text = "CreateRecordFile";
-            this.createRecordFileToolStripMenuItem.Click += new System.EventHandler(this.createRecordFileToolStripMenuItem_Click);
             // 
             // Form1
             // 

@@ -676,7 +676,7 @@ namespace FlightSimulator
 
 
             this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            imageNow = dp2.drawCommunitivePoint(troque, true);
+            imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode);
             this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
             
 
@@ -921,6 +921,20 @@ namespace FlightSimulator
         {
             RecordFileSetting rfs = new RecordFileSetting();
             rfs.Show();
+        }
+
+        private void debugModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (debugModeToolStripMenuItem.Checked)
+            {
+                debugModeToolStripMenuItem.Checked = false;
+                ifStartDebugMode = false;
+            }
+            else
+            {
+                debugModeToolStripMenuItem.Checked = true;
+                ifStartDebugMode = true;
+            }
         }
     }
 }

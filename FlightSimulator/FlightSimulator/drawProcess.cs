@@ -36,7 +36,8 @@ namespace rorationSimulation
             this.width = width;
             this.height = height;
 
-            pnrLength = (int)(width-20);
+
+            pnrLength = (int)(width - 20);
             positionNumberRecord = new int[pnrLength];
 
             ///test positionNumber
@@ -45,7 +46,7 @@ namespace rorationSimulation
             //    positionNumberRecord[i] = i;
             //}
 
-            
+
 
 
             image1 = new Bitmap(width, height);
@@ -74,6 +75,9 @@ namespace rorationSimulation
         //positionTransform
         private void positionTransform(float number)
         {
+
+            
+
             float interval = 4096 / pnrLength;
 
 
