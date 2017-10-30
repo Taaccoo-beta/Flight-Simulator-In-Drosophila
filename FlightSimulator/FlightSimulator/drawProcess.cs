@@ -85,6 +85,8 @@ namespace rorationSimulation
         }
 
 
+        
+
         public Bitmap drawPosition(float torque)
         {
             g2.Clear(bc);
@@ -220,7 +222,7 @@ namespace rorationSimulation
             return image2;
         }
 
-
+        
 
         public Bitmap drawSignalCurve(List<float> lpf1,List<float> lpf2)
         {
@@ -288,7 +290,8 @@ namespace rorationSimulation
             {
                 for (int i = 0; i < lpf1.Count - 1; i++)
                 {
-                    g1.DrawLine(Pens.Yellow, 65 + i, lpf1[i] * intervale / 256 + 60 + intervale, 65 + i + 1, lpf1[i + 1] * intervale / 256 + 60 + intervale);
+
+                    g1.DrawLine(Pens.Yellow, 65 + i, (lpf1[i]-720) * (height-110) / 2048 + 60, 65 + i + 1, (lpf1[i] - 720) * (height - 110) / 2048 + 60);
                 }
 
             }

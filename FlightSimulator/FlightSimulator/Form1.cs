@@ -570,7 +570,7 @@ namespace FlightSimulator
 
             if (ifStartDebugMode)
             {
-                position = position / 100;
+                position = 1744;
                 troque = troque / 100;
             }
 
@@ -686,27 +686,46 @@ namespace FlightSimulator
         {
             dp1 = new drawProcess(this.pictureBox2.Width, this.pictureBox2.Height, Color.DarkCyan);
             dp2 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height, Color.DarkCyan);
-            for (int i = 0; i < 6; i++)
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    if (i % 2 == 0)
+            //    {
+            //        trainOrTestForTest.Add(true);
+            //    }
+            //    else
+            //    {
+            //        trainOrTestForTest.Add(false);
+            //    }
+
+            //    experimentTimeForTest.Add(300);
+
+
+            //}
+            List<bool> trainOrTestUsed;
+            List<int> experimentTimeUsed;
+
+        int controlsLength;
+            if (cbSetSeqChoosed_1.Checked)
             {
-                if (i % 2 == 0)
-                {
-                    trainOrTestForTest.Add(true);
-                }
-                else
-                {
-                    trainOrTestForTest.Add(false);
-                }
-
-                experimentTimeForTest.Add(300);
-
-                
+                controlsLength = trainOrTest_1.Count;
+                trainOrTestUsed = trainOrTest_1;
+                experimentTimeUsed = experimentTime_1;
+            }
+            else if (cbSetSeqChoosed_2.Checked)
+            {
+                controlsLength = trainOrTest_2.Count;
+                trainOrTestUsed = trainOrTest_2;
+                experimentTimeUsed = experimentTime_2;
+            }
+            else
+            {
+                controlsLength = trainOrTest_3.Count;
+                trainOrTestUsed = trainOrTest_3;
+                experimentTimeUsed = experimentTime_3;
             }
 
-
-           
-
             controls = new List<Control>();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < controlsLength; i++)
             {
                 Label l = new Label();
                 l.Name = "lblDForSequence" + i.ToString();
@@ -714,13 +733,13 @@ namespace FlightSimulator
                 l.BorderStyle = BorderStyle.FixedSingle;
                 l.Margin = new System.Windows.Forms.Padding(3);
                 l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                if (trainOrTestForTest[i] == true)
+                if (trainOrTestUsed[i] == true)
                 {
-                    l.Text = "Tr: " + experimentTimeForTest[i].ToString();
+                    l.Text = "Tr: " + experimentTimeUsed[i].ToString();
                 }
                 else
                 {
-                    l.Text = "Te: " + experimentTimeForTest[i].ToString();
+                    l.Text = "Te: " + experimentTimeUsed[i].ToString();
                 }
                 controls.Add(l);
                 

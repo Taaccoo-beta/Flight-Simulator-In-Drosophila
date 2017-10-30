@@ -96,11 +96,11 @@ namespace FlightSimulator
         {
             if (this.cbShutter.Checked)
             {
-                this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
+                this.pc.DigitOutput(0, MccDaq.DigitalLogicState.High);
             }
             else
             {
-                this.pc.DigitOutput(0, MccDaq.DigitalLogicState.High);
+                this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
             }
         }
 
@@ -108,11 +108,11 @@ namespace FlightSimulator
         {
             if (this.cbHeat.Checked)
             {
-                this.pc.DigitOutput(1, MccDaq.DigitalLogicState.Low);
+                this.pc.DigitOutput(1, MccDaq.DigitalLogicState.High);
             }
             else
             {
-                this.pc.DigitOutput(1, MccDaq.DigitalLogicState.High);
+                this.pc.DigitOutput(1, MccDaq.DigitalLogicState.Low);
             }
         }
 
@@ -120,11 +120,11 @@ namespace FlightSimulator
         {
             if (this.cbIntergrator.Checked)
             {
-                this.pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
+                this.pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
             }
             else
             {
-                this.pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+                this.pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
             }
         }
 
@@ -132,11 +132,11 @@ namespace FlightSimulator
         {
             if (this.cbCloseOpen.Checked)
             {
-                this.pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+                this.pc.DigitOutput(3, MccDaq.DigitalLogicState.High);
             }
             else
             {
-                this.pc.DigitOutput(3, MccDaq.DigitalLogicState.High);
+                this.pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
             }
         }
 
@@ -144,11 +144,11 @@ namespace FlightSimulator
         {
             if (this.cbRotatingBias.Checked)
             {
-                this.pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
+                this.pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
             }
             else
             {
-                this.pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
+                this.pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
             }
         }
 
@@ -156,11 +156,11 @@ namespace FlightSimulator
         {
             if (this.cbHighOrLow.Checked)
             {
-                this.pc.DigitOutput(int.Parse(tbPortNumber.Text), MccDaq.DigitalLogicState.Low);
+                this.pc.DigitOutput(int.Parse(tbPortNumber.Text), MccDaq.DigitalLogicState.High);
             }
             else
             {
-                this.pc.DigitOutput(int.Parse(tbPortNumber.Text), MccDaq.DigitalLogicState.High);
+                this.pc.DigitOutput(int.Parse(tbPortNumber.Text), MccDaq.DigitalLogicState.Low);
             }
         }
     }
