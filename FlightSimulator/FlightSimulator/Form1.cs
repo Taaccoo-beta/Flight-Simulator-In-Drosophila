@@ -13,7 +13,7 @@ using System.IO;
 
 namespace FlightSimulator
 {
-    public partial class Form1 : Form
+    public partial class FlightSimulator : Form
     {
         //Train  true    Test  false
         private List<bool> trainOrTest_1 = new List<bool>();
@@ -66,7 +66,7 @@ namespace FlightSimulator
         //
         private bool isOpenCircle = true;
 
-        public Form1()
+        public FlightSimulator()
         {
             InitializeComponent();
         }
@@ -977,10 +977,11 @@ namespace FlightSimulator
         {
             if (isOpenCircle)
             {
-                if (upBiasCount<5)
+                if (iniBiasValue<4.6)
                 {
-                    iniBiasValue += 2.5f;
-                    upBiasCount++;
+                    iniBiasValue += 0.5f;
+                    pc.VOutput(0, iniBiasValue);
+                    lblShowRotatingBias.Text = iniBiasValue.ToString();
                 }
                 
             }
@@ -994,15 +995,43 @@ namespace FlightSimulator
         {
             if (isOpenCircle)
             {
-                if (downBiasCount < 5)
+                if (iniBiasValue > 0.4)
                 {
-                    iniBiasValue -= 2.5f;
-                    downBiasCount++;
+                    iniBiasValue -= 0.5f;
+                    pc.VOutput(0, iniBiasValue);
+                    lblShowRotatingBias.Text = iniBiasValue.ToString();
                 }
             }
             else
             {
                 MessageBox.Show("Not Open circle");
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (isOpenCircle)
+            {
+                timer3.Interval = 100;
+                timer3.Start();
+            }
+            else
+            {
+                MessageBox.Show("Not Open circle");
+            }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            float positionVoltageValue;
+            float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
+            int centerValue = 1744;
+            if ((int)position == centerValue)
+            {
+
+                pc.VOutput(0, 2.5f);
+                iniBiasValue = 2.5f;
+                lblShowRotatingBias.Text = iniBiasValue.ToString();
             }
         }
     }
