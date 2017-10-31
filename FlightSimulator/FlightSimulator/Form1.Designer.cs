@@ -122,6 +122,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.lblShowRotatingBias = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -924,13 +925,14 @@
             // 
             // gbBias
             // 
+            this.gbBias.Controls.Add(this.lblShowRotatingBias);
             this.gbBias.Controls.Add(this.btnBiasDown);
             this.gbBias.Controls.Add(this.btnBiasUp);
             this.gbBias.Location = new System.Drawing.Point(193, 11);
             this.gbBias.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbBias.Name = "gbBias";
             this.gbBias.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.gbBias.Size = new System.Drawing.Size(142, 53);
+            this.gbBias.Size = new System.Drawing.Size(192, 53);
             this.gbBias.TabIndex = 26;
             this.gbBias.TabStop = false;
             this.gbBias.Text = "Bias";
@@ -944,6 +946,7 @@
             this.btnBiasDown.TabIndex = 27;
             this.btnBiasDown.Text = "Down";
             this.btnBiasDown.UseVisualStyleBackColor = true;
+            this.btnBiasDown.Click += new System.EventHandler(this.btnBiasDown_Click);
             // 
             // btnBiasUp
             // 
@@ -954,6 +957,7 @@
             this.btnBiasUp.TabIndex = 26;
             this.btnBiasUp.Text = "Up";
             this.btnBiasUp.UseVisualStyleBackColor = true;
+            this.btnBiasUp.Click += new System.EventHandler(this.btnBiasUp_Click);
             // 
             // cbOpenOrClosed
             // 
@@ -969,7 +973,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(89, 33);
+            this.btnBack.Location = new System.Drawing.Point(88, 33);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(79, 20);
@@ -1215,6 +1219,15 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // lblShowRotatingBias
+            // 
+            this.lblShowRotatingBias.AutoSize = true;
+            this.lblShowRotatingBias.Location = new System.Drawing.Point(146, 25);
+            this.lblShowRotatingBias.Name = "lblShowRotatingBias";
+            this.lblShowRotatingBias.Size = new System.Drawing.Size(35, 13);
+            this.lblShowRotatingBias.TabIndex = 26;
+            this.lblShowRotatingBias.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1250,6 +1263,7 @@
             this.gbPositionTorqueSetting.ResumeLayout(false);
             this.gbPositionTorqueSetting.PerformLayout();
             this.gbBias.ResumeLayout(false);
+            this.gbBias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tpSetp3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -1357,6 +1371,7 @@
         private System.Windows.Forms.ToolStripMenuItem createRecordFileToolStripMenuItem;
         private System.Windows.Forms.Label lblRecordFileName;
         private System.Windows.Forms.Label lblRecordFileLabel;
+        private System.Windows.Forms.Label lblShowRotatingBias;
     }
 }
 

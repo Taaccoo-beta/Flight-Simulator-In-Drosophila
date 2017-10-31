@@ -36,9 +36,9 @@ namespace FlightSimulator
         drawProcess dp2;
 
 
-
-       
-
+        private int upBiasCount = 0;
+        private int downBiasCount = 0;
+        private float iniBiasValue = 2.5f;
 
         private int sequenceIndex = 0;
 
@@ -61,6 +61,10 @@ namespace FlightSimulator
         private bool isSecond_1 = true;
         private bool isSecond_2 = true;
         private bool isSecond_3 = true;
+
+
+        //
+        private bool isOpenCircle = true;
 
         public Form1()
         {
@@ -628,10 +632,23 @@ namespace FlightSimulator
             if (cbOpenOrClosed.Checked)
             {
                 cbOpenOrClosed.Text = "Closed";
+                pc.DigitOutput(3, MccDaq.DigitalLogicState.High);
+                pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
+                pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
+                isOpenCircle = false;
+                
+
+
             }
             else
             {
                 cbOpenOrClosed.Text = "Open";
+                pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+                pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
+                pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+                isOpenCircle = true;
+                float v = 2.5f;
+                pc.VOutput(0,v);
             }
         }
 
@@ -953,6 +970,39 @@ namespace FlightSimulator
             {
                 debugModeToolStripMenuItem.Checked = true;
                 ifStartDebugMode = true;
+            }
+        }
+
+        private void btnBiasUp_Click(object sender, EventArgs e)
+        {
+            if (isOpenCircle)
+            {
+                if (upBiasCount<5)
+                {
+                    iniBiasValue += 2.5f;
+                    upBiasCount++;
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Not Open circle");
+            }
+        }
+
+        private void btnBiasDown_Click(object sender, EventArgs e)
+        {
+            if (isOpenCircle)
+            {
+                if (downBiasCount < 5)
+                {
+                    iniBiasValue -= 2.5f;
+                    downBiasCount++;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Not Open circle");
             }
         }
     }

@@ -163,5 +163,66 @@ namespace FlightSimulator
                 this.pc.DigitOutput(int.Parse(tbPortNumber.Text), MccDaq.DigitalLogicState.Low);
             }
         }
+
+        private void btnPortDetSendSwitchHigh_1_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(0, MccDaq.DigitalLogicState.High);
+            lblShutterState.Text = "High";
+        }
+
+        private void btnPortDetSendSwitchLow_1_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
+            lblShutterState.Text = "Low";
+        }
+
+        private void btnPortDetSendSwitchHigh_2_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(1, MccDaq.DigitalLogicState.High);
+            lblHeatState.Text = "High";
+        }
+
+        private void btnPortDetSendSwitchLow_2_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(1, MccDaq.DigitalLogicState.Low);
+            lblHeatState.Text = "Low";
+        }
+
+        private void btnPortDetSendSwitchHigh_3_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+            lblIntergratorState.Text = "High";
+        }
+
+        private void btnPortDetSendSwitchLow_3_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
+            lblIntergratorState.Text = "Low";
+        }
+
+        private void btnPortDetSendSwitchHigh_4_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(3, MccDaq.DigitalLogicState.High);
+            lblCloseOpenState.Text = "High";
+
+        }
+
+        private void btnPortDetSendSwitchLow_4_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+            lblCloseOpenState.Text = "Low";
+        }
+
+        private void btnPortDetSendSwitchHigh_5_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
+            lblRotatingBias.Text = "High";
+        }
+
+        private void btnPortDetSendSwitchLow_5_Click(object sender, EventArgs e)
+        {
+            this.pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
+            lblRotatingBias.Text = "Low";
+        }
     }
 }
