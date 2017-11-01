@@ -291,7 +291,11 @@ namespace rorationSimulation
                 for (int i = 0; i < lpf1.Count - 1; i++)
                 {
 
-                    g1.DrawLine(Pens.Yellow, 65 + i, (lpf1[i]-720) * (height-110) / 2048 + 60, 65 + i + 1, (lpf1[i] - 720) * (height - 110) / 2048 + 60);
+                    if (Math.Abs(lpf1[i] - lpf1[i + 1]) < 1000)
+                    {
+                        g1.DrawLine(Pens.Yellow, 65 + i, (lpf1[i] - 720) * (height - 110) / 2048 + 60, 65 + i + 1, (lpf1[i + 1] - 720) * (height - 110) / 2048 + 60);
+                    }
+                    
                 }
 
             }

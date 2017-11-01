@@ -63,6 +63,9 @@ namespace FlightSimulator
         private bool isSecond_3 = true;
 
 
+
+        private bool backToZeroControlSwitch = true;
+
         //
         private bool isOpenCircle = true;
 
@@ -975,50 +978,78 @@ namespace FlightSimulator
 
         private void btnBiasUp_Click(object sender, EventArgs e)
         {
-            if (isOpenCircle)
-            {
-                if (iniBiasValue<4.6)
-                {
-                    iniBiasValue += 0.5f;
-                    pc.VOutput(0, iniBiasValue);
-                    lblShowRotatingBias.Text = iniBiasValue.ToString();
-                }
-                
-            }
-            else
-            {
-                MessageBox.Show("Not Open circle");
-            }
-        }
 
-        private void btnBiasDown_Click(object sender, EventArgs e)
-        {
-            if (isOpenCircle)
-            {
-                if (iniBiasValue > 0.4)
+            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
+            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+
+            if (iniBiasValue > 0.4)
                 {
                     iniBiasValue -= 0.5f;
                     pc.VOutput(0, iniBiasValue);
                     lblShowRotatingBias.Text = iniBiasValue.ToString();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Not Open circle");
-            }
+          
+        }
+
+        private void btnBiasDown_Click(object sender, EventArgs e)
+        {
+
+
+            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
+            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+
+
+            if (iniBiasValue < 4.6)
+                {
+                    iniBiasValue += 0.5f;
+                    pc.VOutput(0, iniBiasValue);
+                    lblShowRotatingBias.Text = iniBiasValue.ToString();
+                }
+
+           
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if (isOpenCircle)
+
+            timer3.Stop();
+            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
+            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+            
+            float positionVoltageValue;
+            float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
+            if (position < 1744)
             {
-                timer3.Interval = 100;
-                timer3.Start();
+                backToZeroControlSwitch = true;
+                if (Math.Abs(position - 1744) > 30)
+                {
+                    pc.VOutput(0, 3f);
+                }
+                else
+                {
+                    pc.VOutput(0, 2.6f);
+                }
+                
             }
             else
             {
-                MessageBox.Show("Not Open circle");
+                backToZeroControlSwitch = false;
+                if (Math.Abs(position - 1744) > 30)
+                {
+                    pc.VOutput(0, 2f);
+                }
+                else
+                {
+                    pc.VOutput(0, 2.4f);
+                }
             }
+            timer3.Interval = 10;
+            timer3.Start();
+           
         }
 
         private void timer3_Tick(object sender, EventArgs e)
@@ -1026,13 +1057,52 @@ namespace FlightSimulator
             float positionVoltageValue;
             float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
             int centerValue = 1744;
-            if ((int)position == centerValue)
+            if (backToZeroControlSwitch)
             {
+                if (Math.Abs((int)position - centerValue) < 20)
+                {
 
-                pc.VOutput(0, 2.5f);
-                iniBiasValue = 2.5f;
-                lblShowRotatingBias.Text = iniBiasValue.ToString();
+                    pc.VOutput(0, 2.6f);
+
+                }
+                if (Math.Abs((int)position - centerValue) < 10)
+                {
+                    pc.VOutput(0, 2.5f);
+                    iniBiasValue = 2.5f;
+                    lblShowRotatingBias.Text = iniBiasValue.ToString();
+                    pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+                    pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
+                    pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
+                    timer3.Stop();
+                }
             }
+            else
+            {
+                if (Math.Abs((int)position - centerValue) < 20)
+                {
+
+                    pc.VOutput(0, 2.4f);
+
+                }
+                if (Math.Abs((int)position - centerValue) < 10) 
+                {
+                    pc.VOutput(0, 2.5f);
+                    iniBiasValue = 2.5f;
+                    lblShowRotatingBias.Text = iniBiasValue.ToString();
+                    pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+                    pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
+                    pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
+                    timer3.Stop();
+                }
+            }
+            
+        }
+
+        private void btnStopRotating_Click(object sender, EventArgs e)
+        {
+            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+            pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
+            pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
         }
     }
 }
