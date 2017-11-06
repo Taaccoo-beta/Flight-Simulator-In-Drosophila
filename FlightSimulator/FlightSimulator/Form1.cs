@@ -1104,5 +1104,11 @@ namespace FlightSimulator
             pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
             pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
         }
+
+        private void speedDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SpeedDetection sd = new SpeedDetection();
+            sd.Show();
+        }
     }
 }

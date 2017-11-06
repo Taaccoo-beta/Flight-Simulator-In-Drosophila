@@ -125,6 +125,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.speedDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -165,7 +166,8 @@
             this.debugModeToolStripMenuItem,
             this.portDetectionToolStripMenuItem,
             this.resultBrowserToolStripMenuItem,
-            this.createRecordFileToolStripMenuItem});
+            this.createRecordFileToolStripMenuItem,
+            this.speedDetectionToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.settingToolStripMenuItem.Text = "File";
@@ -1247,6 +1249,13 @@
             // 
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
+            // speedDetectionToolStripMenuItem
+            // 
+            this.speedDetectionToolStripMenuItem.Name = "speedDetectionToolStripMenuItem";
+            this.speedDetectionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.speedDetectionToolStripMenuItem.Text = "SpeedDetection";
+            this.speedDetectionToolStripMenuItem.Click += new System.EventHandler(this.speedDetectionToolStripMenuItem_Click);
+            // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1393,6 +1402,7 @@
         private System.Windows.Forms.Label lblShowRotatingBias;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Button btnStopRotating;
+        private System.Windows.Forms.ToolStripMenuItem speedDetectionToolStripMenuItem;
     }
 }
 

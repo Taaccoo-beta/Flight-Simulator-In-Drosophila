@@ -90,6 +90,12 @@
     <Compile Include="SigleExpResultPre.Designer.cs">
       <DependentUpon>SigleExpResultPre.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpeedDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpeedDetection.Designer.cs">
+      <DependentUpon>SpeedDetection.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SigleExpResultPre.resx">
       <DependentUpon>SigleExpResultPre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpeedDetection.resx">
+      <DependentUpon>SpeedDetection.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
