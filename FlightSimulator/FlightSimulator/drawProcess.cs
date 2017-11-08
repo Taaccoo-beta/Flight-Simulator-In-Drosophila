@@ -304,7 +304,7 @@ namespace rorationSimulation
             {
                 for (int i = 0; i < lpf2.Count - 1; i++)
                 {
-                    g1.DrawLine(Pens.Red, 65 + i, lpf2[i] * intervale / 256 + 60 + intervale, 65 + i + 1, lpf2[i + 1] * intervale / 256 + 60 + intervale);
+                    g1.DrawLine(Pens.Red, 65 + i, (lpf2[i]-65) * (height-110)/(2797) + 60 , 65 + i + 1, (lpf2[i+1] - 65) * (height - 110) / (2797) + 60);
                 }
 
             }

@@ -568,23 +568,25 @@ namespace FlightSimulator
         private void timer1_Tick(object sender, EventArgs e)
         {
 
+
+            
             float positionVoltageValue;
             float torqueVoltageValue;
 
-            float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
+            float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
             float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
-            
+            this.label1.Text = torqueVoltageValue.ToString("00.00");
 
             if (ifStartDebugMode)
             {
                 position = 1744;
-                troque = troque / 100;
+                troque = 2862;
             }
 
 
             this.lblPositionValue.Text = position.ToString();
             this.lblTorqueValue.Text = troque.ToString();
-           
+            
         
 
 
@@ -665,7 +667,7 @@ namespace FlightSimulator
             float positionVoltageValue;
             float torqueVoltageValue;
 
-            float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
+            float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
             float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
 
 

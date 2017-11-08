@@ -189,14 +189,24 @@ namespace XControl
 
         public string AnalogInput(int portNumber,out float EngUnits)
         {
-            ULStat = DaqBoard.AIn(portNumber, Range.Bip10Volts, out DataValue);
+            ULStat = DaqBoard.AIn(portNumber, Range.Bip5Volts, out DataValue);
 
-            ULStat = DaqBoard.ToEngUnits(Range.Bip10Volts,DataValue, out EngUnits);
+            ULStat = DaqBoard.ToEngUnits(Range.Bip5Volts,DataValue, out EngUnits);
 
-           
+            
             return DataValue.ToString(); 
         }
 
+
+        public string AnalogInput10(int portNumber, out float EngUnits)
+        {
+            ULStat = DaqBoard.AIn(portNumber, Range.Bip10Volts, out DataValue);
+
+            ULStat = DaqBoard.ToEngUnits(Range.Bip10Volts, DataValue, out EngUnits);
+
+
+            return DataValue.ToString();
+        }
 
         /// <summary>
         /// Output by a int value

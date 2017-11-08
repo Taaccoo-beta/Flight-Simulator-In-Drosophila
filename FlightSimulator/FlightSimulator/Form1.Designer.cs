@@ -35,6 +35,7 @@
             this.portDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resultBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createRecordFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speedDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpStep1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -125,7 +126,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.speedDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -201,6 +202,13 @@
             this.createRecordFileToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.createRecordFileToolStripMenuItem.Text = "CreateRecordFile";
             this.createRecordFileToolStripMenuItem.Click += new System.EventHandler(this.createRecordFileToolStripMenuItem_Click);
+            // 
+            // speedDetectionToolStripMenuItem
+            // 
+            this.speedDetectionToolStripMenuItem.Name = "speedDetectionToolStripMenuItem";
+            this.speedDetectionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.speedDetectionToolStripMenuItem.Text = "SpeedDetection";
+            this.speedDetectionToolStripMenuItem.Click += new System.EventHandler(this.speedDetectionToolStripMenuItem_Click);
             // 
             // tabControl
             // 
@@ -879,6 +887,7 @@
             // 
             // tpStep2
             // 
+            this.tpStep2.Controls.Add(this.label1);
             this.tpStep2.Controls.Add(this.btnGoStep_3);
             this.tpStep2.Controls.Add(this.gbPositionTorqueSetting);
             this.tpStep2.Controls.Add(this.lblOpenClosed);
@@ -1249,12 +1258,15 @@
             // 
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // speedDetectionToolStripMenuItem
+            // label1
             // 
-            this.speedDetectionToolStripMenuItem.Name = "speedDetectionToolStripMenuItem";
-            this.speedDetectionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.speedDetectionToolStripMenuItem.Text = "SpeedDetection";
-            this.speedDetectionToolStripMenuItem.Click += new System.EventHandler(this.speedDetectionToolStripMenuItem_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(127, 650);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "NULL";
             // 
             // FlightSimulator
             // 
@@ -1403,6 +1415,7 @@
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Button btnStopRotating;
         private System.Windows.Forms.ToolStripMenuItem speedDetectionToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
     }
 }
 
