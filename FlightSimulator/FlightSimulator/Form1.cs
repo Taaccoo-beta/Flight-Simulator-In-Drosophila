@@ -1112,5 +1112,11 @@ namespace FlightSimulator
             SpeedDetection sd = new SpeedDetection();
             sd.Show();
         }
+
+        private void replayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Replay r = new Replay();
+            r.Show();
+        }
     }
 }

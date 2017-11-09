@@ -78,6 +78,12 @@
     <Compile Include="RecordFileSetting.Designer.cs">
       <DependentUpon>RecordFileSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Replay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Replay.Designer.cs">
+      <DependentUpon>Replay.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResultBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </Compile>
     <EmbeddedResource Include="RecordFileSetting.resx">
       <DependentUpon>RecordFileSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Replay.resx">
+      <DependentUpon>Replay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResultBrowser.resx">
       <DependentUpon>ResultBrowser.cs</DependentUpon>
