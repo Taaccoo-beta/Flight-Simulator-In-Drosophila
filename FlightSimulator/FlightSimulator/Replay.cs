@@ -26,8 +26,8 @@ namespace FlightSimulator
         private List<float> lpf2 = new List<float>();
         private List<int> positionRawData;
         private List<int> torqueRawData;
-             
-        
+
+        private int ii = 0;
         private void btnTestDrawing_Click(object sender, EventArgs e)
         {
             lblChooseDisplay.Visible = true;
@@ -41,6 +41,8 @@ namespace FlightSimulator
 
             positionRawData = getRawData("dataPosition.txt");
             torqueRawData = getRawData("dataTorque.txt");
+            MessageBox.Show("finished");
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -52,21 +54,29 @@ namespace FlightSimulator
             float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
             
 
-            if (true)
+            //if (true)
+            //{
+            //    position = 1744;
+            //    troque = 2862;
+            //}
+
+
+            this.lblPositionValue.Text = positionRawData[ii].ToString();
+            this.lblTorqueValue.Text = torqueRawData[ii].ToString();
+
+
+            if (ii < positionRawData.Count)
             {
-                position = 1744;
-                troque = 2862;
+                lpf1.Add(positionRawData[ii]);
+                lpf2.Add(torqueRawData[ii]);
+            }
+            else
+            {
+                lpf1.Add(positionRawData[0]);
+                lpf2.Add(torqueRawData[0]);
             }
 
-
-            this.lblPositionValue.Text = position.ToString();
-            this.lblTorqueValue.Text = troque.ToString();
-
-
-
-
-            lpf1.Add(position);
-            lpf2.Add(troque);
+           
             if (lpf1.Count == 400)
             {
                 lpf1.Remove(lpf1[0]);
@@ -77,7 +87,7 @@ namespace FlightSimulator
                 lpf2.Remove(lpf2[0]);
             }
 
-
+            ii++;
 
             this.pictureBox1.CreateGraphics().DrawImage(dp.drawSignalCurve(lpf1, lpf2), 0, 0);
         }
