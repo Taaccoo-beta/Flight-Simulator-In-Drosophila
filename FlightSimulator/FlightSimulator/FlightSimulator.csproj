@@ -63,6 +63,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="PICalc.cs" />
     <Compile Include="PortControl.cs" />
     <Compile Include="PortDection.cs">
       <SubType>Form</SubType>

@@ -13,7 +13,6 @@ namespace rorationSimulation
 
         private Graphics g1;
         private Graphics g2;
-        private Graphics g3;
         private float widthCenter, heightCenter;
         
         private int width, height;
@@ -25,11 +24,14 @@ namespace rorationSimulation
 
         //position number record
         int[] positionNumberRecord;
-        private uint shortNumber = 0;
+        private uint shortNumber = 1;
         int pnrLength;
 
         bool ifStartDebugModeForTorque = false;
+
+
         
+
         public drawProcess(int width, int height, Color bc)
         {
             this.widthCenter = width / 2;
@@ -40,14 +42,14 @@ namespace rorationSimulation
 
             pnrLength = (int)(width - 20);
             positionNumberRecord = new int[pnrLength];
-           
 
+            shortNumber = 1;
+            
             ///test positionNumber
             //for (int i = 0; i < pnrLength; i++)
             //{
             //    positionNumberRecord[i] = i;
             //}
-
 
 
 
@@ -86,7 +88,7 @@ namespace rorationSimulation
 
             
             positionNumberRecord[index]++;
-            if (positionNumberRecord[index] > 400)
+            if (positionNumberRecord[index]/shortNumber > 300)
             {
                 shortNumber++;
             }
@@ -224,7 +226,7 @@ namespace rorationSimulation
 
             for (int i = 0; i < pnrLength; i++)
             {
-                g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - positionNumberRecord[i]);
+                g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - (positionNumberRecord[i]/shortNumber));
             }
 
 

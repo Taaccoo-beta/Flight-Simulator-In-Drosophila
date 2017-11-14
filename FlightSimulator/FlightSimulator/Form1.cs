@@ -54,6 +54,11 @@ namespace FlightSimulator
         private List<float> lpf3 = new List<float>();
         private List<float> lpf4 = new List<float>();
 
+        private uint timeIndex = 0;
+        private int sequenceIndexForExperiment = 0;
+        private List<List<float>> positionForEverySequence;
+        private List<List<float>> torqueForEverySequence;
+
 
         private PortControl pc;
 
@@ -62,7 +67,8 @@ namespace FlightSimulator
         private bool isSecond_2 = true;
         private bool isSecond_3 = true;
 
-
+        List<bool> trainOrTestUsed;
+        List<int> experimentTimeUsed;
 
         private bool backToZeroControlSwitch = true;
 
@@ -476,6 +482,9 @@ namespace FlightSimulator
             pc.AnalogPortConfigurationOut();
             pc.DigitalConfigurationOut();
 
+            positionForEverySequence = new List<List<float>>();
+            torqueForEverySequence = new List<List<float>>();
+
 
             StreamReader sR = File.OpenText(Application.StartupPath+"\\set-1.txt");
             int length = int.Parse(sR.ReadLine());
@@ -662,6 +671,15 @@ namespace FlightSimulator
             tabControl.SelectTab(2);
         }
 
+
+
+
+        private void DataSave()
+        {
+            string ExpFinishTime = DateTime.Now.ToString();
+
+        }
+
         private void timer2_Tick(object sender, EventArgs e)
         {
             float positionVoltageValue;
@@ -669,6 +687,50 @@ namespace FlightSimulator
 
             float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
             float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+
+            positionForEverySequence[sequenceIndexForExperiment].Add(position);
+            torqueForEverySequence[sequenceIndexForExperiment].Add(position);
+
+
+
+            timeIndex++;
+            if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
+            {
+                timeIndex = 0;
+                sequenceIndexForExperiment++;
+                if (sequenceIndexForExperiment == experimentTimeUsed.Count)
+                {
+                    timer2.Stop();
+                    this.btnStep3Start.Enabled = true;
+                    MessageBox.Show(positionForEverySequence[sequenceIndexForExperiment-1].Count.ToString());
+
+                }
+                else
+                {
+                    positionForEverySequence.Add(new List<float>());
+                    torqueForEverySequence.Add(new List<float>());
+                    controls[sequenceIndexForExperiment].BackColor = Color.DarkCyan;
+                }
+
+
+
+                Bitmap imageHere = new Bitmap(imageNow);
+                PictureBox pb = new PictureBox();
+                float width = this.flpBottomForImageList.Size.Width - 30;
+                float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
+                pb.Size = new Size((int)width, (int)height);
+
+                pb.Image = imageHere;
+                pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                this.flpBottomForImageList.Controls.Add(pb);
+            }
+          
+
+
+                    
+            
+          
+           
 
 
             if (ifStartDebugMode)
@@ -723,9 +785,11 @@ namespace FlightSimulator
 
 
             //}
-            List<bool> trainOrTestUsed;
-            List<int> experimentTimeUsed;
-
+            lpf3.Clear();
+            lpf4.Clear();  
+            sequenceIndexForExperiment = 0;
+            this.flpTopForLabel.Controls.Clear();
+            this.flpBottomForImageList.Controls.Clear();
             int controlsLength;
             if (cbSetSeqChoosed_1.Checked)
             {
@@ -769,6 +833,8 @@ namespace FlightSimulator
             }
             controls[0].BackColor = Color.DarkCyan;
 
+            positionForEverySequence.Add(new List<float>());
+            torqueForEverySequence.Add(new List<float>());
 
             timer2.Start();
             timer1.Stop();
