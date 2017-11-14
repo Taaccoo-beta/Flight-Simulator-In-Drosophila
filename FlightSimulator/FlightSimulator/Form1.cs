@@ -673,12 +673,84 @@ namespace FlightSimulator
 
 
 
-
+        /// <summary>
+        /// save data after finished a sigle experiment
+        /// </summary>
         private void DataSave()
         {
             string ExpFinishTime = DateTime.Now.ToString();
 
+            List<int> ExpTime = experimentTimeUsed;
+
+            List<bool> TrainOrTest = trainOrTestUsed;
+            string ExpName = tbExperimentName.Text;
+            bool ifTPunishment = rbUpT.Checked ? true : false;
+            //positionForEverySequence
+            //torqueForEverySequence
+
+
+            string path = this.lblDPValue.Text.ToString() + "\\" + ExpName + ".txt";
+            
+
+            FileInfo myFile = new FileInfo(path);
+            StreamWriter sW = myFile.CreateText();
+
+            sW.WriteLine("ExpName: " + ExpName);
+            sW.WriteLine("Date: "+ExpFinishTime);
+
+            sW.Write("ExpSequence: ");
+            foreach (var item in TrainOrTest)
+            {
+                if (item)
+                {
+                    sW.Write("Te;");
+                }
+                else
+                {
+                    sW.Write("Tr;");
+                }
+            }
+
+            sW.WriteLine();
+            sW.Write("TimeSequence: ");
+            foreach (var item in ExpTime)
+            {
+                sW.Write(item.ToString() + ";");
+            }
+
+            sW.WriteLine();
+            sW.Write("If_T_Punishment: " + (ifTPunishment ? 1 : 0).ToString());
+
+            sW.WriteLine();
+            sW.WriteLine();
+
+            int index = positionForEverySequence.Count;
+            for (int i = 0; i != index; i++)
+            {
+                int indexInside = positionForEverySequence[i].Count;
+                for (int j = 0; j != indexInside; j++)
+                {
+                    sW.WriteLine(positionForEverySequence[i][j].ToString("00.00") + "," + torqueForEverySequence[i][j].ToString("00.00"));
+                }
+            }
+            
+            sW.Close();
+
+
+
+
         }
+
+
+        /// <summary>
+        /// control the port to punish the fruit fly
+        /// </summary>
+        private void punishment()
+        {
+            ;
+        }
+
+        
 
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -702,7 +774,9 @@ namespace FlightSimulator
                 {
                     timer2.Stop();
                     this.btnStep3Start.Enabled = true;
-                    MessageBox.Show(positionForEverySequence[sequenceIndexForExperiment-1].Count.ToString());
+                    DataSave();
+
+                    
 
                 }
                 else
@@ -785,89 +859,76 @@ namespace FlightSimulator
 
 
             //}
-            lpf3.Clear();
-            lpf4.Clear();  
-            sequenceIndexForExperiment = 0;
-            this.flpTopForLabel.Controls.Clear();
-            this.flpBottomForImageList.Controls.Clear();
-            int controlsLength;
-            if (cbSetSeqChoosed_1.Checked)
+
+            if (tbExperimentName.Text == "")
             {
-                controlsLength = trainOrTest_1.Count;
-                trainOrTestUsed = trainOrTest_1;
-                experimentTimeUsed = experimentTime_1;
-            }
-            else if (cbSetSeqChoosed_2.Checked)
-            {
-                controlsLength = trainOrTest_2.Count;
-                trainOrTestUsed = trainOrTest_2;
-                experimentTimeUsed = experimentTime_2;
+                MessageBox.Show("ExpName is NULL");
             }
             else
             {
-                controlsLength = trainOrTest_3.Count;
-                trainOrTestUsed = trainOrTest_3;
-                experimentTimeUsed = experimentTime_3;
-            }
-
-            controls = new List<Control>();
-            for (int i = 0; i < controlsLength; i++)
-            {
-                Label l = new Label();
-                l.Name = "lblDForSequence" + i.ToString();
-                l.AutoSize = true;
-                l.BorderStyle = BorderStyle.FixedSingle;
-                l.Margin = new System.Windows.Forms.Padding(3);
-                l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                if (trainOrTestUsed[i] == true)
+                lpf3.Clear();
+                lpf4.Clear();
+                sequenceIndexForExperiment = 0;
+                this.flpTopForLabel.Controls.Clear();
+                this.flpBottomForImageList.Controls.Clear();
+                int controlsLength;
+                if (cbSetSeqChoosed_1.Checked)
                 {
-                    l.Text = "Tr: " + experimentTimeUsed[i].ToString();
+                    controlsLength = trainOrTest_1.Count;
+                    trainOrTestUsed = trainOrTest_1;
+                    experimentTimeUsed = experimentTime_1;
+                }
+                else if (cbSetSeqChoosed_2.Checked)
+                {
+                    controlsLength = trainOrTest_2.Count;
+                    trainOrTestUsed = trainOrTest_2;
+                    experimentTimeUsed = experimentTime_2;
                 }
                 else
                 {
-                    l.Text = "Te: " + experimentTimeUsed[i].ToString();
+                    controlsLength = trainOrTest_3.Count;
+                    trainOrTestUsed = trainOrTest_3;
+                    experimentTimeUsed = experimentTime_3;
                 }
-                controls.Add(l);
-                
-                this.flpTopForLabel.Controls.Add(l);
+
+                controls = new List<Control>();
+                for (int i = 0; i < controlsLength; i++)
+                {
+                    Label l = new Label();
+                    l.Name = "lblDForSequence" + i.ToString();
+                    l.AutoSize = true;
+                    l.BorderStyle = BorderStyle.FixedSingle;
+                    l.Margin = new System.Windows.Forms.Padding(3);
+                    l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    if (trainOrTestUsed[i] == true)
+                    {
+                        l.Text = "Tr: " + experimentTimeUsed[i].ToString();
+                    }
+                    else
+                    {
+                        l.Text = "Te: " + experimentTimeUsed[i].ToString();
+                    }
+                    controls.Add(l);
+
+                    this.flpTopForLabel.Controls.Add(l);
+                }
+                controls[0].BackColor = Color.DarkCyan;
+
+                positionForEverySequence.Add(new List<float>());
+                torqueForEverySequence.Add(new List<float>());
+
+                timer2.Start();
+                timer1.Stop();
+                this.btnStep3Start.Enabled = false;
             }
-            controls[0].BackColor = Color.DarkCyan;
-
-            positionForEverySequence.Add(new List<float>());
-            torqueForEverySequence.Add(new List<float>());
-
-            timer2.Start();
-            timer1.Stop();
-            this.btnStep3Start.Enabled = false;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            Bitmap imageHere = new Bitmap(imageNow);
-            PictureBox pb = new PictureBox();
-            float width = this.flpBottomForImageList.Size.Width - 30;
-            float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
-            pb.Size = new Size((int)width,(int)height);
-          
-            pb.Image = imageHere;
-            pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.flpBottomForImageList.Controls.Add(pb);
-
-            sequenceIndex++;
-            if (sequenceIndex < controls.Count)
-            {
-                controls[sequenceIndex].BackColor = Color.DarkCyan;
-                controls[sequenceIndex - 1].BackColor = Color.White;
-            }
-            else
-            {
-                this.button1.Enabled = false;
-                controls[controls.Count - 1].BackColor = Color.White;
-                SigleExpResultPre serp = new SigleExpResultPre();
-                serp.Show();
-            }
-            
+            SigleExpResultPre s = new SigleExpResultPre();
+            s.Show();
+           
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
