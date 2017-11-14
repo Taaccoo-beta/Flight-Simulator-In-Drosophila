@@ -36,6 +36,8 @@
             this.resultBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createRecordFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speedDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.杀死对方ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.replayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpStep1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -126,9 +128,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.杀死对方ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.replayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerForBackToZero = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -159,7 +159,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1364, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1369, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -213,6 +213,21 @@
             this.speedDetectionToolStripMenuItem.Text = "SpeedDetection";
             this.speedDetectionToolStripMenuItem.Click += new System.EventHandler(this.speedDetectionToolStripMenuItem_Click);
             // 
+            // 杀死对方ToolStripMenuItem
+            // 
+            this.杀死对方ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.replayToolStripMenuItem});
+            this.杀死对方ToolStripMenuItem.Name = "杀死对方ToolStripMenuItem";
+            this.杀死对方ToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.杀死对方ToolStripMenuItem.Text = "Tools";
+            // 
+            // replayToolStripMenuItem
+            // 
+            this.replayToolStripMenuItem.Name = "replayToolStripMenuItem";
+            this.replayToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.replayToolStripMenuItem.Text = "Replay";
+            this.replayToolStripMenuItem.Click += new System.EventHandler(this.replayToolStripMenuItem_Click);
+            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tpStep1);
@@ -238,7 +253,7 @@
             this.tpStep1.Location = new System.Drawing.Point(4, 25);
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
-            this.tpStep1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpStep1.Padding = new System.Windows.Forms.Padding(3);
             this.tpStep1.Size = new System.Drawing.Size(1351, 961);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
@@ -306,6 +321,7 @@
             this.btnSetSettings.TabIndex = 21;
             this.btnSetSettings.Text = "SaveAll";
             this.btnSetSettings.UseVisualStyleBackColor = true;
+            this.btnSetSettings.Click += new System.EventHandler(this.btnSetSettings_Click);
             // 
             // gbSetSequence_3
             // 
@@ -848,7 +864,7 @@
             this.tpStep2.Controls.Add(this.pictureBox1);
             this.tpStep2.Location = new System.Drawing.Point(4, 25);
             this.tpStep2.Name = "tpStep2";
-            this.tpStep2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpStep2.Padding = new System.Windows.Forms.Padding(3);
             this.tpStep2.Size = new System.Drawing.Size(1351, 961);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";
@@ -1186,30 +1202,15 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // timer3
+            // timerForBackToZero
             // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // 杀死对方ToolStripMenuItem
-            // 
-            this.杀死对方ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.replayToolStripMenuItem});
-            this.杀死对方ToolStripMenuItem.Name = "杀死对方ToolStripMenuItem";
-            this.杀死对方ToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.杀死对方ToolStripMenuItem.Text = "Tools";
-            // 
-            // replayToolStripMenuItem
-            // 
-            this.replayToolStripMenuItem.Name = "replayToolStripMenuItem";
-            this.replayToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.replayToolStripMenuItem.Text = "Replay";
-            this.replayToolStripMenuItem.Click += new System.EventHandler(this.replayToolStripMenuItem_Click);
+            this.timerForBackToZero.Tick += new System.EventHandler(this.timer3_Tick);
             // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1364, 952);
+            this.ClientSize = new System.Drawing.Size(1369, 952);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -1348,7 +1349,7 @@
         private System.Windows.Forms.Label lblRecordFileName;
         private System.Windows.Forms.Label lblRecordFileLabel;
         private System.Windows.Forms.Label lblShowRotatingBias;
-        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Timer timerForBackToZero;
         private System.Windows.Forms.Button btnStopRotating;
         private System.Windows.Forms.ToolStripMenuItem speedDetectionToolStripMenuItem;
         private System.Windows.Forms.Label label1;

@@ -25,6 +25,7 @@ namespace rorationSimulation
 
         //position number record
         int[] positionNumberRecord;
+        private uint shortNumber = 0;
         int pnrLength;
 
         bool ifStartDebugModeForTorque = false;
@@ -39,6 +40,7 @@ namespace rorationSimulation
 
             pnrLength = (int)(width - 20);
             positionNumberRecord = new int[pnrLength];
+           
 
             ///test positionNumber
             //for (int i = 0; i < pnrLength; i++)
@@ -80,8 +82,16 @@ namespace rorationSimulation
 
             float interval = 4096 / pnrLength;
 
+            int index = (int)(number / interval);
 
-            positionNumberRecord[(int)(number/interval)]++;
+            
+            positionNumberRecord[index]++;
+            if (positionNumberRecord[index] > 400)
+            {
+                shortNumber++;
+            }
+
+            
         }
 
 
@@ -142,7 +152,7 @@ namespace rorationSimulation
         }
 
 
-        public Bitmap drawCommunitivePoint(float torque,bool debugMode)
+        public Bitmap drawCommunitivePoint(float position,bool debugMode)
         {
             g2.Clear(bc);
             int widthHere = width;
@@ -206,7 +216,7 @@ namespace rorationSimulation
             }
             else
             {
-                positionTransform(torque);
+                positionTransform(position);
             }
             
             ////draw commulative position points

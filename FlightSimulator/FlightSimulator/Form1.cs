@@ -726,7 +726,7 @@ namespace FlightSimulator
             List<bool> trainOrTestUsed;
             List<int> experimentTimeUsed;
 
-        int controlsLength;
+            int controlsLength;
             if (cbSetSeqChoosed_1.Checked)
             {
                 controlsLength = trainOrTest_1.Count;
@@ -1017,7 +1017,7 @@ namespace FlightSimulator
         private void btnBack_Click(object sender, EventArgs e)
         {
 
-            timer3.Stop();
+            timerForBackToZero.Stop();
             pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
             pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
             pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
@@ -1049,8 +1049,8 @@ namespace FlightSimulator
                     pc.VOutput(0, 2.4f);
                 }
             }
-            timer3.Interval = 10;
-            timer3.Start();
+            timerForBackToZero.Interval = 100;
+            timerForBackToZero.Start();
            
         }
 
@@ -1075,7 +1075,7 @@ namespace FlightSimulator
                     pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
                     pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
                     pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
-                    timer3.Stop();
+                    timerForBackToZero.Stop();
                 }
             }
             else
@@ -1094,7 +1094,7 @@ namespace FlightSimulator
                     pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
                     pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
                     pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
-                    timer3.Stop();
+                    timerForBackToZero.Stop();
                 }
             }
             
@@ -1117,6 +1117,11 @@ namespace FlightSimulator
         {
             Replay r = new Replay();
             r.Show();
+        }
+
+        private void btnSetSettings_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
