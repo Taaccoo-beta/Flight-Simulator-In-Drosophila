@@ -736,8 +736,10 @@ namespace FlightSimulator
             
             sW.Close();
 
-
-
+            SigleExpResultPre serp = new SigleExpResultPre(ExpFinishTime, ExpName, ExpTime, TrainOrTest, ifTPunishment);
+            serp.setPositionAndTroque(positionForEverySequence, torqueForEverySequence);
+            serp.showResult();
+            serp.Show();
 
         }
 
@@ -745,9 +747,13 @@ namespace FlightSimulator
         /// <summary>
         /// control the port to punish the fruit fly
         /// </summary>
-        private void punishment()
+        private void punishmentByHeat()
         {
-            ;
+            this.pc.DigitOutput(1, MccDaq.DigitalLogicState.High);
+        }
+        private void unPunishmentByHeat()
+        {
+            this.pc.DigitOutput(1, MccDaq.DigitalLogicState.Low);
         }
 
         
@@ -764,6 +770,15 @@ namespace FlightSimulator
             torqueForEverySequence[sequenceIndexForExperiment].Add(position);
 
 
+            if (position > 1488 || position < 2000 || position > 2516 || position < 976)
+            {
+                punishmentByHeat();
+            }
+            else
+            {
+                unPunishmentByHeat();
+            }
+
 
             timeIndex++;
             if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
@@ -775,7 +790,7 @@ namespace FlightSimulator
                     timer2.Stop();
                     this.btnStep3Start.Enabled = true;
                     DataSave();
-
+                    
                     
 
                 }
@@ -926,8 +941,7 @@ namespace FlightSimulator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SigleExpResultPre s = new SigleExpResultPre();
-            s.Show();
+           
            
         }
 

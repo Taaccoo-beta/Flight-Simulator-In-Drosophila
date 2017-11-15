@@ -20,27 +20,29 @@ namespace FlightSimulator
         private bool ifTPunishment;
         private List<List<float>> position;
         private List<List<float>> torque;
+        private List<float> getPIValue;
 
-
-        //public SigleExpResultPre(string dateTime,string expName,List<int> ExpTime,List<bool> TrainOrTest,bool ifPublishment)
-        //{
-        //    this.dateTime = dateTime;
-        //    this.expName = expName;
-        //    this.Exptime = ExpTime;
-        //    this.TrainOrTest = TrainOrTest;
-        //    this.ifTPunishment = ifPublishment;
-
-        //    InitializeComponent();
-        //}
-
-        public SigleExpResultPre()
+        public SigleExpResultPre(string dateTime, string expName, List<int> ExpTime, List<bool> TrainOrTest, bool ifPublishment)
         {
+            this.dateTime = dateTime;
+            this.expName = expName;
+            this.Exptime = ExpTime;
+            this.TrainOrTest = TrainOrTest;
+            this.ifTPunishment = ifPublishment;
+
             InitializeComponent();
         }
+
+        //public SigleExpResultPre()
+        //{
+        //    InitializeComponent();
+        //}
         public void setPositionAndTroque(List<List<float>> position, List<List<float>> torque)
         {
             this.position = position;
             this.torque = torque;
+            PICalc pc = new PICalc(position, torque, ifTPunishment);
+            getPIValue = pc.getPIValue();
         }
 
         private void SigleExpResultPre_Load(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace FlightSimulator
         public void showResult()
         {
             List<Control> controls = new List<Control>();
-            int controlsLength = 3;
+            int controlsLength = position.Count;
 
 
             for (int i = 0; i < controlsLength; i++)
@@ -74,21 +76,39 @@ namespace FlightSimulator
 
                 this.flowLayoutPanel1.Controls.Add(l);
             }
-            
-        }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
+            lblExpName.Text = expName;
+            lblExpTime.Text = dateTime;
 
-            Exptime = new List<int>();
-            TrainOrTest = new List<bool>();
-            for (int i = 0; i != 3; i++)
+            if (ifTPunishment)
             {
-                Exptime.Add(i * 10);
-                TrainOrTest.Add(i % 2 == 0 ? true : false);
+                lblPunishmentImage.Text = "UP_T";
+            }
+            else
+            {
+                lblPunishmentImage.Text = "Down_T";
             }
 
-            showResult();
+            string PISequence="";
+            for (int i = 0; i != getPIValue.Count; i++)
+            {
+                if (i == getPIValue.Count - 1)
+                {
+                    PISequence += getPIValue[i].ToString("00.00");
+                }
+                else
+                {
+                    PISequence += getPIValue[i].ToString("00.00") + ",  ";
+                }
+                
+            }
+            lblPIValue.Text = "[" + PISequence + "]";
+
+
         }
+
+
+
+       
     }
 }
