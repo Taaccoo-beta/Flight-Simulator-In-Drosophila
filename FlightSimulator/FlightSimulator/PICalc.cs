@@ -39,7 +39,9 @@ namespace FlightSimulator
                     }
                    
                 }
+                
                 PIValue.Add(indexT / (indexT + indexInverseT));
+
             }
             return PIValue;
         }

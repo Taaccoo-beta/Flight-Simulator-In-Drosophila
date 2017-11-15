@@ -883,6 +883,8 @@ namespace FlightSimulator
             {
                 lpf3.Clear();
                 lpf4.Clear();
+                positionForEverySequence.Clear();
+                torqueForEverySequence.Clear();
                 sequenceIndexForExperiment = 0;
                 this.flpTopForLabel.Controls.Clear();
                 this.flpBottomForImageList.Controls.Clear();
