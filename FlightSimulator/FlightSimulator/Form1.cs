@@ -648,7 +648,7 @@ namespace FlightSimulator
                 cbOpenOrClosed.Text = "Closed";
                 pc.DigitOutput(3, MccDaq.DigitalLogicState.High);
                 pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
-                pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
+                pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
                 isOpenCircle = false;
                 
 
@@ -749,11 +749,11 @@ namespace FlightSimulator
         /// </summary>
         private void punishmentByHeat()
         {
-            this.pc.DigitOutput(1, MccDaq.DigitalLogicState.High);
+            this.pc.DigitOutput(0, MccDaq.DigitalLogicState.High);
         }
         private void unPunishmentByHeat()
         {
-            this.pc.DigitOutput(1, MccDaq.DigitalLogicState.Low);
+            this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
         }
 
         
