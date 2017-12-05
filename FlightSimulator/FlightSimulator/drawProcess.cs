@@ -96,7 +96,13 @@ namespace rorationSimulation
             
         }
 
-
+        public void clearCommunitivePosition()
+        {
+            for (int i = 0; i != positionNumberRecord.Length; i++)
+            {
+                positionNumberRecord[i] = 0;
+            }
+        }
         
 
         public Bitmap drawPosition(float torque)

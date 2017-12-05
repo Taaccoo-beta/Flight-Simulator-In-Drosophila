@@ -72,7 +72,14 @@ namespace XControl
 
 
 
-
+        public void ClearALLDigitalPort()
+        {
+            for(int i =0;i!=8;i++)
+            {
+                DaqBoard.DBitOut(BitPort, i, DigitalLogicState.Low);
+            }
+            
+        }
         /// <summary>
         /// 
         /// </summary>

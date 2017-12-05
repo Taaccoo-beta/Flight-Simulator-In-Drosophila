@@ -80,6 +80,7 @@ namespace FlightSimulator
             InitializeComponent();
         }
 
+        
         private void portDetectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PortDection pt = new PortDection();
@@ -641,14 +642,26 @@ namespace FlightSimulator
             }
         }
 
+        private void OpenLoop()
+        {
+            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
+            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
+            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+        }
+
+        private void ClosedLoop()
+        {
+            pc.DigitOutput(3, MccDaq.DigitalLogicState.High);
+            pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
+            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+        }
+
         private void cbOpenOrClosed_CheckedChanged(object sender, EventArgs e)
         {
             if (cbOpenOrClosed.Checked)
             {
                 cbOpenOrClosed.Text = "Closed";
-                pc.DigitOutput(3, MccDaq.DigitalLogicState.High);
-                pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
-                pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+                ClosedLoop();
                 isOpenCircle = false;
                 
 
@@ -657,9 +670,7 @@ namespace FlightSimulator
             else
             {
                 cbOpenOrClosed.Text = "Open";
-                pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
-                pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
-                pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+                OpenLoop();
                 isOpenCircle = true;
                 float v = 2.5f;
                 pc.VOutput(0,v);
@@ -760,6 +771,7 @@ namespace FlightSimulator
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+
             float positionVoltageValue;
             float torqueVoltageValue;
 
@@ -767,29 +779,37 @@ namespace FlightSimulator
             float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
 
             positionForEverySequence[sequenceIndexForExperiment].Add(position);
-            torqueForEverySequence[sequenceIndexForExperiment].Add(position);
+            torqueForEverySequence[sequenceIndexForExperiment].Add(troque);
 
 
-            if (position > 1488 || position < 2000 || position > 2516 || position < 976)
+            if (trainOrTestUsed[sequenceIndexForExperiment])
             {
-                punishmentByHeat();
+                if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+                {
+                    punishmentByHeat();
+                }
+                else
+                {
+                    unPunishmentByHeat();
+                }
             }
-            else
-            {
-                unPunishmentByHeat();
-            }
-
 
             timeIndex++;
             if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
             {
                 timeIndex = 0;
                 sequenceIndexForExperiment++;
+                dp2.clearCommunitivePosition();
+                lpf3.Clear();
+                lpf4.Clear();
                 if (sequenceIndexForExperiment == experimentTimeUsed.Count)
                 {
                     timer2.Stop();
                     this.btnStep3Start.Enabled = true;
+                    pc.ClearALLDigitalPort();
+                    OpenLoop();
                     DataSave();
+                    
                     
                     
 
@@ -824,8 +844,8 @@ namespace FlightSimulator
 
             if (ifStartDebugMode)
             {
-                position = position / 100;
-                troque = troque / 100;
+                position = 1765;
+                troque = 100;
             }
 
 

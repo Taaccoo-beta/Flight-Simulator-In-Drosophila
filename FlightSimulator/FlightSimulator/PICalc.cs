@@ -50,7 +50,7 @@ namespace FlightSimulator
         {
             if (isTpunishment)
             {
-                if (value > 1488 || value < 2000 || value > 2516 || value < 976)
+                if ((value > 1488 & value < 2000) || (value > 2516 || value < 976))
                 {
                     return true;
                 }
@@ -61,7 +61,7 @@ namespace FlightSimulator
             }
             else
             {
-                if (value > 1488 || value < 2000 || value > 2516 || value < 976)
+                if ((value > 1488 & value < 2000) || (value > 2516 || value < 976))
                 {
                     return false;
                 }
