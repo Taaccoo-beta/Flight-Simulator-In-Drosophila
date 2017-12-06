@@ -43,6 +43,7 @@ namespace rorationSimulation
             pnrLength = (int)(width - 20);
             positionNumberRecord = new int[pnrLength];
 
+
             shortNumber = 1;
             
             ///test positionNumber
@@ -82,9 +83,17 @@ namespace rorationSimulation
 
             
 
-            float interval = 4096 / pnrLength;
+            float interval = 2048f / (float)pnrLength;
 
-            int index = (int)(number / interval);
+            if (number > 2721)
+            {
+                number = 2721;
+            }
+            if (number < 721)
+            {
+                number = 721;
+            }
+            int index = (int)((number-721) / interval);
 
             
             positionNumberRecord[index]++;
@@ -170,32 +179,55 @@ namespace rorationSimulation
 
             //draw two borders
             g2.DrawRectangle(Pens.MidnightBlue, new Rectangle(10, 5, widthHere - 20, heightHere - 10));
+            float intervalForXAxis = (widthHere-20) / 4;
 
 
             //draw axis
             Pen dashPen = new Pen(Color.DarkBlue);
-            dashPen.DashStyle = DashStyle.DashDot;
-            for (int i = 1; i < 4; i++)
-            {
-               
-                g2.DrawLine(dashPen, (widthHere - 20) / 4 * i+10, 5, (widthHere - 20) / 4 * i+10, heightHere - 5);
-            }
+            dashPen.DashStyle = DashStyle.DashDot; 
+            g2.DrawLine(dashPen, intervalForXAxis / 2 + 10, 5, intervalForXAxis / 2 + 10, heightHere - 5);
+            g2.DrawLine(dashPen, 3*intervalForXAxis / 2 + 10, 5, 3*intervalForXAxis / 2 + 10, heightHere - 5);
+            g2.DrawLine(dashPen, 5*intervalForXAxis / 2 + 10, 5, 5*intervalForXAxis / 2 + 10, heightHere - 5);
+            g2.DrawLine(dashPen, 7*intervalForXAxis / 2 + 10, 5, 7*intervalForXAxis / 2 + 10, heightHere - 5);
+           
 
-            for (int i = 0; i < 4; i++)
-            {
-                if (i % 2 == 0)
-                {
-                    g2.DrawString("P", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere- 20) / 4 * i, 20);
-                   
 
-                }
-                else
-                {
-                    g2.DrawString("N", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere - 20) / 4 * i, 20);
-                  
-                }
 
-            }
+            //draw T signs
+            //g2.DrawRectangle(Pens.Yellow, new Rectangle(30, 5, 5, 3));
+            g2.FillRectangle(new SolidBrush(Color.Yellow), new Rectangle(20 , 8, 12, 5));
+            g2.FillRectangle(new SolidBrush(Color.Yellow), new Rectangle(18, 8, 5, 16));
+
+            g2.FillRectangle(new SolidBrush(Color.Yellow), new RectangleF(2+2*intervalForXAxis, 8, 16, 5));
+            g2.FillRectangle(new SolidBrush(Color.Yellow), new RectangleF(8+2*intervalForXAxis, 10, 5, 16));
+
+            g2.FillRectangle(new SolidBrush(Color.Red), new RectangleF(2 + 1 * intervalForXAxis, 24, 16, 5));
+            g2.FillRectangle(new SolidBrush(Color.Red), new RectangleF(8 + 1 * intervalForXAxis, 10, 5, 15));
+
+            g2.FillRectangle(new SolidBrush(Color.Red), new RectangleF(2 + 3 * intervalForXAxis, 24, 16, 5));
+            g2.FillRectangle(new SolidBrush(Color.Red), new RectangleF(8 + 3 * intervalForXAxis, 10, 5, 15));
+
+            g2.FillRectangle(new SolidBrush(Color.Yellow), new RectangleF(-10+8*intervalForXAxis/2, 8, 12, 5));
+            g2.FillRectangle(new SolidBrush(Color.Yellow), new RectangleF(-1+8*intervalForXAxis/2, 8, 5, 16));
+
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    if (i % 2 == 0)
+            //    {
+            //        g2.DrawString("P", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere- 20) / 4 * i, 20);
+
+
+            //    }
+            //    else
+            //    {
+            //        g2.DrawString("N", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere - 20) / 4 * i, 20);
+
+            //    }
+
+            //}
+
+
+
             if (debugMode)
             {
                 Random ran = new Random();
@@ -232,7 +264,31 @@ namespace rorationSimulation
 
             for (int i = 0; i < pnrLength; i++)
             {
-                g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - (positionNumberRecord[i]/shortNumber));
+
+                int value = positionNumberRecord[i];
+                if (value != 0)
+                {
+                    if (i == 0)
+                    {
+                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                    }
+                    else if (i == pnrLength)
+                    {
+                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                    }
+                    else
+                    {
+                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                    }
+                    
+                }
+
             }
 
 

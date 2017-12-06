@@ -482,7 +482,7 @@ namespace FlightSimulator
             pc.AnalogPortConfigurationIn();
             pc.AnalogPortConfigurationOut();
             pc.DigitalConfigurationOut();
-
+            pc.ClearALLDigitalPort();
             positionForEverySequence = new List<List<float>>();
             torqueForEverySequence = new List<List<float>>();
 
@@ -787,11 +787,18 @@ namespace FlightSimulator
                 if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
                 {
                     punishmentByHeat();
+                    lblPunishmentStateValue.Text = "True";
                 }
                 else
                 {
                     unPunishmentByHeat();
+                    lblPunishmentStateValue.Text = "False";
                 }
+            }
+            else
+            {
+                unPunishmentByHeat();
+                lblPunishmentStateValue.Text = "False";
             }
 
             timeIndex++;
@@ -808,6 +815,8 @@ namespace FlightSimulator
                     this.btnStep3Start.Enabled = true;
                     pc.ClearALLDigitalPort();
                     OpenLoop();
+                    cbOpenOrClosed.Checked = false;
+                    cbOpenOrClosed.Text = "Open";
                     DataSave();
                     
                     
@@ -842,11 +851,10 @@ namespace FlightSimulator
            
 
 
-            if (ifStartDebugMode)
-            {
-                position = 1765;
-                troque = 100;
-            }
+             ////debug mode
+             //   position = 721;
+             //   troque = 100;
+            
 
 
           
@@ -1212,7 +1220,7 @@ namespace FlightSimulator
                     pc.VOutput(0, 2.4f);
                 }
             }
-            timerForBackToZero.Interval = 100;
+            timerForBackToZero.Interval = 10;
             timerForBackToZero.Start();
            
         }
@@ -1224,13 +1232,13 @@ namespace FlightSimulator
             int centerValue = 1744;
             if (backToZeroControlSwitch)
             {
-                if (Math.Abs((int)position - centerValue) < 20)
+                if (Math.Abs((int)position - centerValue) < 30)
                 {
 
                     pc.VOutput(0, 2.6f);
 
                 }
-                if (Math.Abs((int)position - centerValue) < 10)
+                if (Math.Abs((int)position - centerValue) < 20)
                 {
                     pc.VOutput(0, 2.5f);
                     iniBiasValue = 2.5f;
@@ -1243,13 +1251,13 @@ namespace FlightSimulator
             }
             else
             {
-                if (Math.Abs((int)position - centerValue) < 20)
+                if (Math.Abs((int)position - centerValue) < 30)
                 {
 
                     pc.VOutput(0, 2.4f);
 
                 }
-                if (Math.Abs((int)position - centerValue) < 10) 
+                if (Math.Abs((int)position - centerValue) < 20) 
                 {
                     pc.VOutput(0, 2.5f);
                     iniBiasValue = 2.5f;
@@ -1283,6 +1291,11 @@ namespace FlightSimulator
         }
 
         private void btnSetSettings_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tpSetp3_Click(object sender, EventArgs e)
         {
 
         }

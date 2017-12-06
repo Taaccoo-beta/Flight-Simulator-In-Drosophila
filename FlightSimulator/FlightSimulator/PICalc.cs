@@ -39,8 +39,8 @@ namespace FlightSimulator
                     }
                    
                 }
-                
-                PIValue.Add(indexT / (indexT + indexInverseT));
+                float PIValueNow = (float)(indexT - indexInverseT) / (float)(indexT + indexInverseT);
+                PIValue.Add(PIValueNow);
 
             }
             return PIValue;
@@ -52,22 +52,22 @@ namespace FlightSimulator
             {
                 if ((value > 1488 & value < 2000) || (value > 2516 || value < 976))
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
             else
             {
                 if ((value > 1488 & value < 2000) || (value > 2516 || value < 976))
                 {
-                    return false;
+                    return true;
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
             }
         }
