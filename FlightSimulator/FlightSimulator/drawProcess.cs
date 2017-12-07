@@ -29,7 +29,7 @@ namespace rorationSimulation
 
         bool ifStartDebugModeForTorque = false;
 
-
+        private List<bool> trainOrTest;
         
 
         public drawProcess(int width, int height, Color bc)
@@ -43,6 +43,7 @@ namespace rorationSimulation
             pnrLength = (int)(width - 20);
             positionNumberRecord = new int[pnrLength];
 
+            this.trainOrTest = trainOrTest;
 
             shortNumber = 1;
             
@@ -77,6 +78,10 @@ namespace rorationSimulation
         }
 
 
+        public void getTrainOrTestSequence(List<bool> trainOrTest)
+        {
+            this.trainOrTest = trainOrTest;
+        }
         //positionTransform
         private void positionTransform(float number)
         {
@@ -169,7 +174,7 @@ namespace rorationSimulation
         }
 
 
-        public Bitmap drawCommunitivePoint(float position,bool debugMode)
+        public Bitmap drawCommunitivePoint(float position,bool debugMode,int sequenceForExperiment)
         {
             g2.Clear(bc);
             int widthHere = width;
@@ -220,12 +225,26 @@ namespace rorationSimulation
             //    }
             //    else
             //    {
-            //        g2.DrawString("N", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere - 20) / 4 * i, 20);
+            //        
 
             //    }
 
             //}
 
+            if (sequenceForExperiment!=trainOrTest.Count)
+            { if (trainOrTest[sequenceForExperiment])
+                {
+                    g2.DrawString("Train: " + (sequenceForExperiment + 1).ToString(), new Font("Arial", 15), new SolidBrush(Color.LightGray), 30, 20);
+                }
+                else
+                {
+                    g2.DrawString(" Test: " + (sequenceForExperiment + 1).ToString(), new Font("Arial", 15), new SolidBrush(Color.LightGray), 30, 20);
+                }
+            }
+            
+
+
+            
 
 
             if (debugMode)
@@ -273,18 +292,24 @@ namespace rorationSimulation
                         g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                         g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                         g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i + 3, heightHere - 6, 10 + i + 3, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i + 4, heightHere - 6, 10 + i + 4, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                     }
-                    else if (i == pnrLength)
+                    else if (i == pnrLength-1)
                     {
                         g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                         g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                         g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i - 3, heightHere - 6, 10 + i - 3, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i - 4, heightHere - 6, 10 + i - 4, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                     }
                     else
                     {
                         g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                         g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                         g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
                     }
                     
                 }

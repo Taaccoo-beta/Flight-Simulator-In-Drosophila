@@ -840,6 +840,7 @@ namespace FlightSimulator
 
                 pb.Image = imageHere;
                 pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                
                 this.flpBottomForImageList.Controls.Add(pb);
             }
           
@@ -877,7 +878,7 @@ namespace FlightSimulator
 
 
             this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode);
+            imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
             this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
             
 
@@ -935,6 +936,10 @@ namespace FlightSimulator
                     trainOrTestUsed = trainOrTest_3;
                     experimentTimeUsed = experimentTime_3;
                 }
+
+
+                dp1.getTrainOrTestSequence(trainOrTestUsed);
+                dp2.getTrainOrTestSequence(trainOrTestUsed);
 
                 controls = new List<Control>();
                 for (int i = 0; i < controlsLength; i++)

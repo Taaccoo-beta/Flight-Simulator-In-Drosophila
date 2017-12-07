@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator
 {
+    /// <summary>
+    /// 计算PI值
+    /// </summary>
     class PICalc
     {
         private List<List<float>> position = new List<List<float>>();
@@ -20,6 +23,10 @@ namespace FlightSimulator
 
         }
 
+        /// <summary>
+        /// 计算并返回PI值
+        /// </summary>
+        /// <returns></returns>
         public List<float> getPIValue()
         {
 
@@ -46,6 +53,11 @@ namespace FlightSimulator
             return PIValue;
         }
 
+        /// <summary>
+        /// 获取当前位置属于哪个区域
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private bool getPIDecision(float value)
         {
             if (isTpunishment)

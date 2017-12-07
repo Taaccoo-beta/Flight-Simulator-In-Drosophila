@@ -193,7 +193,12 @@ namespace XControl
         //}
 
 
-
+        /// <summary>
+        /// input a analog value,the range is 5volts
+        /// </summary>
+        /// <param name="portNumber"></param>
+        /// <param name="EngUnits"></param>
+        /// <returns></returns>
         public string AnalogInput(int portNumber,out float EngUnits)
         {
             ULStat = DaqBoard.AIn(portNumber, Range.Bip5Volts, out DataValue);
@@ -204,7 +209,12 @@ namespace XControl
             return DataValue.ToString(); 
         }
 
-
+        /// <summary>
+        /// input a analog value，the range is 10volts
+        /// </summary>
+        /// <param name="portNumber"></param>
+        /// <param name="EngUnits"></param>
+        /// <returns></returns>
         public string AnalogInput10(int portNumber, out float EngUnits)
         {
             ULStat = DaqBoard.AIn(portNumber, Range.Bip10Volts, out DataValue);
@@ -226,7 +236,7 @@ namespace XControl
         }
 
         /// <summary>
-        /// output a voltage which can be float
+        /// output a voltage，the voltage can be float
         /// </summary>
         /// <param name="portNumber"></param>
         /// <param name="value"></param>
@@ -252,6 +262,9 @@ namespace XControl
         }
 
 
+        /// <summary>
+        /// A/D convertor 初始化
+        /// </summary>
         private void InitUL()
         {
 
