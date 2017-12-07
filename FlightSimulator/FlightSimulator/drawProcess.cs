@@ -381,7 +381,11 @@ namespace rorationSimulation
                 g1.DrawLine(Pens.DarkBlue,  60, intervalePositionFor45 * i + 60, width - 40, intervalePositionFor45 * i + 60);
             }
 
-            g1.DrawString("Yellow(Position)   Red(Torque)", new Font("Arial", 14), new SolidBrush(Color.White), widthCenter-100, 10);
+            //draw title
+            g1.DrawString("Position", new Font("Arial", 14), new SolidBrush(Color.Yellow), widthCenter-100, 10);            
+            g1.DrawString(" Torque", new Font("Arial", 14), new SolidBrush(Color.Red), widthCenter - 20, 10);
+            //g1.FillRectangle(new SolidBrush(Color.Yellow), widthCenter - 100, 10, 15, 10);
+
 
             //g1.DrawString(isPosition.ToString(), new Font("Arial", 12), new SolidBrush(Color.Green), 0, 10);
 

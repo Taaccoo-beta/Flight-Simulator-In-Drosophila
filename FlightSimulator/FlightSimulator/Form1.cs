@@ -475,7 +475,7 @@ namespace FlightSimulator
         {
 
         }
-
+        private CoreControl cc;
         private void Form1_Load(object sender, EventArgs e)
         {
             pc = new PortControl(0);
@@ -485,7 +485,7 @@ namespace FlightSimulator
             pc.ClearALLDigitalPort();
             positionForEverySequence = new List<List<float>>();
             torqueForEverySequence = new List<List<float>>();
-
+            cc = new CoreControl();
 
             StreamReader sR = File.OpenText(Application.StartupPath+"\\set-1.txt");
             int length = int.Parse(sR.ReadLine());
@@ -583,9 +583,13 @@ namespace FlightSimulator
             float positionVoltageValue;
             float torqueVoltageValue;
 
-            float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
-            float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
-            this.label1.Text = torqueVoltageValue.ToString("00.00");
+            //float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
+            //float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+            //this.label1.Text = torqueVoltageValue.ToString("00.00");
+
+
+            float position = cc.getPositionSignal();
+            float troque = cc.getTorqueSignal();
 
             if (ifStartDebugMode)
             {
@@ -1303,6 +1307,11 @@ namespace FlightSimulator
         private void tpSetp3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }
