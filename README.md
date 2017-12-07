@@ -1,5 +1,13 @@
 # Flight-Simulator-In-Drosophila
-Flight simulator device for drosophila
+This is software to control the flight simulator device which is an classicial behavior pattern in drosophila.
 
-## BaseSimulationDemo
-This module is a demo of plot accumulative point.
+### File Introduction
+
+#### Analysis
+Data analysis script for the data produced by flight simulator
+
+#### FlightSimulator
+The control software which can control the whole hardware.
+
+#### PortDetection
+Detect the A/D convertor port,including the analog and digit port
