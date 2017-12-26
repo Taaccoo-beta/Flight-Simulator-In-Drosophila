@@ -707,51 +707,53 @@ namespace FlightSimulator
             string path = this.lblDPValue.Text.ToString() + "\\" + ExpName + ".txt";
             
 
-            FileInfo myFile = new FileInfo(path);
-            StreamWriter sW = myFile.CreateText();
 
-            sW.WriteLine("ExpName: " + ExpName);
-            sW.WriteLine("Date: "+ExpFinishTime);
 
-            sW.Write("ExpSequence: ");
-            foreach (var item in TrainOrTest)
-            {
-                if (item)
-                {
-                    sW.Write("Te;");
-                }
-                else
-                {
-                    sW.Write("Tr;");
-                }
-            }
+            //FileInfo myFile = new FileInfo(path);
+            //StreamWriter sW = myFile.CreateText();
 
-            sW.WriteLine();
-            sW.Write("TimeSequence: ");
-            foreach (var item in ExpTime)
-            {
-                sW.Write(item.ToString() + ";");
-            }
+            //sW.WriteLine("ExpName: " + ExpName);
+            //sW.WriteLine("Date: "+ExpFinishTime);
 
-            sW.WriteLine();
-            sW.Write("If_T_Punishment: " + (ifTPunishment ? 1 : 0).ToString());
+            //sW.Write("ExpSequence: ");
+            //foreach (var item in TrainOrTest)
+            //{
+            //    if (item)
+            //    {
+            //        sW.Write("Te;");
+            //    }
+            //    else
+            //    {
+            //        sW.Write("Tr;");
+            //    }
+            //}
 
-            sW.WriteLine();
-            sW.WriteLine();
+            //sW.WriteLine();
+            //sW.Write("TimeSequence: ");
+            //foreach (var item in ExpTime)
+            //{
+            //    sW.Write(item.ToString() + ";");
+            //}
 
-            int index = positionForEverySequence.Count;
-            for (int i = 0; i != index; i++)
-            {
-                int indexInside = positionForEverySequence[i].Count;
-                for (int j = 0; j != indexInside; j++)
-                {
-                    sW.WriteLine(positionForEverySequence[i][j].ToString("00.00") + "," + torqueForEverySequence[i][j].ToString("00.00"));
-                }
-            }
+            //sW.WriteLine();
+            //sW.Write("If_T_Punishment: " + (ifTPunishment ? 1 : 0).ToString());
+
+            //sW.WriteLine();
+            //sW.WriteLine();
+
+            //int index = positionForEverySequence.Count;
+            //for (int i = 0; i != index; i++)
+            //{
+            //    int indexInside = positionForEverySequence[i].Count;
+            //    for (int j = 0; j != indexInside; j++)
+            //    {
+            //        sW.WriteLine(positionForEverySequence[i][j].ToString("00.00") + "," + torqueForEverySequence[i][j].ToString("00.00"));
+            //    }
+            //}
             
-            sW.Close();
+            //sW.Close();
 
-            SigleExpResultPre serp = new SigleExpResultPre(ExpFinishTime, ExpName, ExpTime, TrainOrTest, ifTPunishment);
+            SigleExpResultPre serp = new SigleExpResultPre(ExpFinishTime, ExpName, ExpTime, TrainOrTest, ifTPunishment,path,positionForEverySequence,torqueForEverySequence);
             serp.setPositionAndTroque(positionForEverySequence, torqueForEverySequence);
             serp.showResult();
             serp.Show();
@@ -788,16 +790,34 @@ namespace FlightSimulator
 
             if (trainOrTestUsed[sequenceIndexForExperiment])
             {
-                if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+
+                if (rbUpT.Checked)
                 {
-                    punishmentByHeat();
-                    lblPunishmentStateValue.Text = "True";
+                    if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+                    {
+                        punishmentByHeat();
+                        lblPunishmentStateValue.Text = "True";
+                    }
+                    else
+                    {
+                        unPunishmentByHeat();
+                        lblPunishmentStateValue.Text = "False";
+                    }
                 }
                 else
                 {
-                    unPunishmentByHeat();
-                    lblPunishmentStateValue.Text = "False";
+                    if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+                    {
+                        unPunishmentByHeat();
+                        lblPunishmentStateValue.Text = "False";
+                    }
+                    else
+                    {
+                        punishmentByHeat();
+                        lblPunishmentStateValue.Text = "True";
+                    }
                 }
+                
             }
             else
             {
@@ -1312,6 +1332,11 @@ namespace FlightSimulator
         private void button1_Click_1(object sender, EventArgs e)
         {
             
+        }
+
+        private void rbUpT_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

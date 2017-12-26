@@ -34,17 +34,19 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(12, 12);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Location = new System.Drawing.Point(9, 10);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(15, 17);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1202, 627);
+            this.webBrowser1.Size = new System.Drawing.Size(902, 543);
             this.webBrowser1.TabIndex = 1;
             // 
             // btnWebpageOpen
             // 
-            this.btnWebpageOpen.Location = new System.Drawing.Point(1235, 61);
+            this.btnWebpageOpen.Location = new System.Drawing.Point(926, 53);
+            this.btnWebpageOpen.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnWebpageOpen.Name = "btnWebpageOpen";
-            this.btnWebpageOpen.Size = new System.Drawing.Size(99, 36);
+            this.btnWebpageOpen.Size = new System.Drawing.Size(74, 31);
             this.btnWebpageOpen.TabIndex = 2;
             this.btnWebpageOpen.Text = "Open";
             this.btnWebpageOpen.UseVisualStyleBackColor = true;
@@ -52,11 +54,12 @@
             // 
             // ResultBrowser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1345, 658);
+            this.ClientSize = new System.Drawing.Size(1030, 567);
             this.Controls.Add(this.btnWebpageOpen);
             this.Controls.Add(this.webBrowser1);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "ResultBrowser";
             this.Text = "ResultBrowser";
             this.Load += new System.EventHandler(this.ResultBrowser_Load);
