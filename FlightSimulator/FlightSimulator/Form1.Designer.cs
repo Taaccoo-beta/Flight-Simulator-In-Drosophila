@@ -257,7 +257,7 @@
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
             this.tpStep1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep1.Size = new System.Drawing.Size(1134, 939);
+            this.tpStep1.Size = new System.Drawing.Size(1137, 939);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
             this.tpStep1.UseVisualStyleBackColor = true;
@@ -268,7 +268,7 @@
             this.panel1.Controls.Add(this.rbDownT);
             this.panel1.Controls.Add(this.rbUpT);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(626, 478);
+            this.panel1.Location = new System.Drawing.Point(606, 527);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(244, 44);
@@ -313,7 +313,7 @@
             // 
             // btnGoStep_2
             // 
-            this.btnGoStep_2.Location = new System.Drawing.Point(782, 587);
+            this.btnGoStep_2.Location = new System.Drawing.Point(764, 677);
             this.btnGoStep_2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGoStep_2.Name = "btnGoStep_2";
             this.btnGoStep_2.Size = new System.Drawing.Size(106, 50);
@@ -324,7 +324,7 @@
             // 
             // btnSetSettings
             // 
-            this.btnSetSettings.Location = new System.Drawing.Point(622, 587);
+            this.btnSetSettings.Location = new System.Drawing.Point(604, 677);
             this.btnSetSettings.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSetSettings.Name = "btnSetSettings";
             this.btnSetSettings.Size = new System.Drawing.Size(106, 50);
@@ -627,7 +627,7 @@
             this.gbPunishmentChoose.Controls.Add(this.label6);
             this.gbPunishmentChoose.Controls.Add(this.rbPCShake);
             this.gbPunishmentChoose.Controls.Add(this.rbPCHeat);
-            this.gbPunishmentChoose.Location = new System.Drawing.Point(622, 426);
+            this.gbPunishmentChoose.Location = new System.Drawing.Point(602, 475);
             this.gbPunishmentChoose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbPunishmentChoose.Name = "gbPunishmentChoose";
             this.gbPunishmentChoose.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -677,7 +677,7 @@
             this.gbSetName.Controls.Add(this.lblRecordFileLabel);
             this.gbSetName.Controls.Add(this.tbExperimentName);
             this.gbSetName.Controls.Add(this.lblExName);
-            this.gbSetName.Location = new System.Drawing.Point(356, 426);
+            this.gbSetName.Location = new System.Drawing.Point(336, 475);
             this.gbSetName.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetName.Name = "gbSetName";
             this.gbSetName.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -730,7 +730,7 @@
             // 
             this.gbSetDataPath.Controls.Add(this.btnChooseDataPath);
             this.gbSetDataPath.Controls.Add(this.lblDPValue);
-            this.gbSetDataPath.Location = new System.Drawing.Point(104, 426);
+            this.gbSetDataPath.Location = new System.Drawing.Point(84, 475);
             this.gbSetDataPath.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetDataPath.Name = "gbSetDataPath";
             this.gbSetDataPath.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -937,7 +937,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(135, 776);
+            this.label1.Location = new System.Drawing.Point(162, 868);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
@@ -946,7 +946,7 @@
             // 
             // btnGoStep_3
             // 
-            this.btnGoStep_3.Location = new System.Drawing.Point(839, 709);
+            this.btnGoStep_3.Location = new System.Drawing.Point(866, 801);
             this.btnGoStep_3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGoStep_3.Name = "btnGoStep_3";
             this.btnGoStep_3.Size = new System.Drawing.Size(82, 58);
@@ -961,7 +961,7 @@
             this.gbPositionTorqueSetting.Controls.Add(this.gbBias);
             this.gbPositionTorqueSetting.Controls.Add(this.cbOpenOrClosed);
             this.gbPositionTorqueSetting.Controls.Add(this.btnBack);
-            this.gbPositionTorqueSetting.Location = new System.Drawing.Point(202, 709);
+            this.gbPositionTorqueSetting.Location = new System.Drawing.Point(229, 801);
             this.gbPositionTorqueSetting.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbPositionTorqueSetting.Name = "gbPositionTorqueSetting";
             this.gbPositionTorqueSetting.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1052,7 +1052,7 @@
             // lblOpenClosed
             // 
             this.lblOpenClosed.AutoSize = true;
-            this.lblOpenClosed.Location = new System.Drawing.Point(256, 713);
+            this.lblOpenClosed.Location = new System.Drawing.Point(283, 805);
             this.lblOpenClosed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOpenClosed.Name = "lblOpenClosed";
             this.lblOpenClosed.Size = new System.Drawing.Size(0, 13);
@@ -1063,7 +1063,7 @@
             this.lblChooseDisplay.AutoSize = true;
             this.lblChooseDisplay.BackColor = System.Drawing.Color.DarkCyan;
             this.lblChooseDisplay.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblChooseDisplay.Location = new System.Drawing.Point(370, 650);
+            this.lblChooseDisplay.Location = new System.Drawing.Point(397, 741);
             this.lblChooseDisplay.Name = "lblChooseDisplay";
             this.lblChooseDisplay.Size = new System.Drawing.Size(81, 13);
             this.lblChooseDisplay.TabIndex = 21;
@@ -1077,7 +1077,7 @@
             this.cbIsTorque.Checked = true;
             this.cbIsTorque.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsTorque.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsTorque.Location = new System.Drawing.Point(544, 648);
+            this.cbIsTorque.Location = new System.Drawing.Point(571, 739);
             this.cbIsTorque.Name = "cbIsTorque";
             this.cbIsTorque.Size = new System.Drawing.Size(60, 17);
             this.cbIsTorque.TabIndex = 20;
@@ -1093,7 +1093,7 @@
             this.cbIsPosition.Checked = true;
             this.cbIsPosition.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsPosition.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsPosition.Location = new System.Drawing.Point(468, 648);
+            this.cbIsPosition.Location = new System.Drawing.Point(495, 739);
             this.cbIsPosition.Name = "cbIsPosition";
             this.cbIsPosition.Size = new System.Drawing.Size(63, 17);
             this.cbIsPosition.TabIndex = 19;
@@ -1105,7 +1105,7 @@
             // lblTorqueValue
             // 
             this.lblTorqueValue.AutoSize = true;
-            this.lblTorqueValue.Location = new System.Drawing.Point(135, 742);
+            this.lblTorqueValue.Location = new System.Drawing.Point(162, 834);
             this.lblTorqueValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTorqueValue.Name = "lblTorqueValue";
             this.lblTorqueValue.Size = new System.Drawing.Size(35, 13);
@@ -1115,7 +1115,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(84, 742);
+            this.label3.Location = new System.Drawing.Point(111, 834);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
@@ -1125,7 +1125,7 @@
             // lblPositionValue
             // 
             this.lblPositionValue.AutoSize = true;
-            this.lblPositionValue.Location = new System.Drawing.Point(135, 716);
+            this.lblPositionValue.Location = new System.Drawing.Point(162, 808);
             this.lblPositionValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPositionValue.Name = "lblPositionValue";
             this.lblPositionValue.Size = new System.Drawing.Size(35, 13);
@@ -1135,7 +1135,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(72, 716);
+            this.lblPosition.Location = new System.Drawing.Point(99, 808);
             this.lblPosition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(47, 13);
@@ -1144,7 +1144,7 @@
             // 
             // btnSaveSettingInStep2
             // 
-            this.btnSaveSettingInStep2.Location = new System.Drawing.Point(769, 747);
+            this.btnSaveSettingInStep2.Location = new System.Drawing.Point(796, 839);
             this.btnSaveSettingInStep2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSaveSettingInStep2.Name = "btnSaveSettingInStep2";
             this.btnSaveSettingInStep2.Size = new System.Drawing.Size(56, 20);
@@ -1154,7 +1154,7 @@
             // 
             // btnTestDrawing
             // 
-            this.btnTestDrawing.Location = new System.Drawing.Point(769, 709);
+            this.btnTestDrawing.Location = new System.Drawing.Point(796, 801);
             this.btnTestDrawing.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTestDrawing.Name = "btnTestDrawing";
             this.btnTestDrawing.Size = new System.Drawing.Size(56, 20);
@@ -1169,7 +1169,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(2, 3);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1133, 684);
+            this.pictureBox1.Size = new System.Drawing.Size(1133, 765);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
