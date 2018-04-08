@@ -10,11 +10,22 @@ using System.Windows.Forms;
 using rorationSimulation;
 using XControl;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace FlightSimulator
 {
     public partial class FlightSimulator : Form
     {
+        [DllImport("winmm")]
+        static extern uint timeGetTime();
+
+        [DllImport("winmm")]
+        static extern void timeBeginPeriod(int t);
+        [DllImport("winmm")]
+        static extern void timeEndPeriod(int t);
+
+
+
         //Train  true    Test  false
         private List<bool> trainOrTest_1 = new List<bool>();
         private List<int> experimentTime_1 = new List<int>();
@@ -1214,6 +1225,62 @@ namespace FlightSimulator
 
         }
 
+
+        //private void backToZeroTimer()
+        //{
+        //    timeBeginPeriod(1);
+        //    uint start = timeGetTime();
+        //    uint newStart;
+
+        //    while (!isTheardCircleClosed)
+        //    {
+
+        //        float positionVoltageValue;
+        //        endPosition = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
+
+        //        timeCount++;
+        //        if (timeCount > 100)
+        //        {
+        //            if (UpOrDown)
+        //            {
+        //                if (endPosition > iniPosition)
+        //                {
+
+        //                    isTheardCircleClosed = true;
+        //                    newStart = timeGetTime();
+        //                    timeSpent = newStart - start;
+        //                    this.lblTimespan.Text = timeSpent.ToString();
+        //                    pc.VOutput(0, 2.5f);
+        //                    Close();
+        //                    timer1.Stop();
+        //                    t.Abort();
+
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (endPosition < iniPosition)
+        //                {
+
+        //                    isTheardCircleClosed = true;
+        //                    newStart = timeGetTime();
+        //                    timeSpent = newStart - start;
+        //                    this.lblTimespan.Text = timeSpent.ToString();
+        //                    pc.VOutput(0, 2.5f);
+        //                    Close();
+        //                    timer1.Stop();
+        //                    t.Abort();
+        //                }
+        //            }
+        //        }
+
+        //    }
+
+
+        //}
+
+
+
         private void btnBack_Click(object sender, EventArgs e)
         {
 
@@ -1264,10 +1331,10 @@ namespace FlightSimulator
                 if (Math.Abs((int)position - centerValue) < 30)
                 {
 
-                    pc.VOutput(0, 2.6f);
+                    pc.VOutput(0, 2.52f);
 
                 }
-                if (Math.Abs((int)position - centerValue) < 20)
+                if (Math.Abs((int)position - centerValue) < 5)
                 {
                     pc.VOutput(0, 2.5f);
                     iniBiasValue = 2.5f;
@@ -1283,10 +1350,10 @@ namespace FlightSimulator
                 if (Math.Abs((int)position - centerValue) < 30)
                 {
 
-                    pc.VOutput(0, 2.4f);
+                    pc.VOutput(0, 2.48f);
 
                 }
-                if (Math.Abs((int)position - centerValue) < 20) 
+                if (Math.Abs((int)position - centerValue) < 5) 
                 {
                     pc.VOutput(0, 2.5f);
                     iniBiasValue = 2.5f;
