@@ -1296,11 +1296,11 @@ namespace FlightSimulator
                 backToZeroControlSwitch = true;
                 if (Math.Abs(position - 1744) > 30)
                 {
-                    pc.VOutput(0, 3f);
+                    pc.VOutput(0, 2.6f);
                 }
                 else
                 {
-                    pc.VOutput(0, 2.6f);
+                    pc.VOutput(0, 2.52f);
                 }
                 
             }
@@ -1309,11 +1309,11 @@ namespace FlightSimulator
                 backToZeroControlSwitch = false;
                 if (Math.Abs(position - 1744) > 30)
                 {
-                    pc.VOutput(0, 2f);
+                    pc.VOutput(0, 2.4f);
                 }
                 else
                 {
-                    pc.VOutput(0, 2.4f);
+                    pc.VOutput(0, 2.48f);
                 }
             }
             timerForBackToZero.Interval = 10;
@@ -1325,7 +1325,7 @@ namespace FlightSimulator
         {
             float positionVoltageValue;
             float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
-            int centerValue = 1744;
+            int centerValue = 1420;
             if (backToZeroControlSwitch)
             {
                 if (Math.Abs((int)position - centerValue) < 30)

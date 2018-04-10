@@ -81,7 +81,7 @@ namespace FlightSimulator
                 {
                     if (UpOrDown)
                     {
-                        if (endPosition > iniPosition)
+                        if (endPosition > iniPosition && Math.Abs(endPosition-iniPosition)>100)
                         {
 
                             isTheardCircleClosed = true;
@@ -97,7 +97,7 @@ namespace FlightSimulator
                     }
                     else
                     {
-                        if (endPosition < iniPosition)
+                        if (endPosition < iniPosition && Math.Abs(endPosition - iniPosition) > 100)
                         {
 
                             isTheardCircleClosed = true;
@@ -128,8 +128,8 @@ namespace FlightSimulator
             {
                 MessageBox.Show("Voltage is NULL");
             }
-
-            iniPosition = 1750;
+            float positionVoltageValue;
+            iniPosition = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
 
 
             timeCount = 0;
