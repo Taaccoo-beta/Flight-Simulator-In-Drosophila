@@ -77,12 +77,12 @@ namespace FlightSimulator
             }
 
            
-            if (lpf1.Count == 400)
+            if (lpf1.Count == 900)
             {
                 lpf1.Remove(lpf1[0]);
             }
 
-            if (lpf2.Count == 400)
+            if (lpf2.Count == 900)
             {
                 lpf2.Remove(lpf2[0]);
             }
@@ -122,7 +122,7 @@ namespace FlightSimulator
             pc.AnalogPortConfigurationIn();
             pc.AnalogPortConfigurationOut();
             pc.DigitalConfigurationOut();
-            timer1.Interval = 100;
+            timer1.Interval = 100; 
         }
     }
 }
