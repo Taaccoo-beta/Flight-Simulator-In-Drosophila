@@ -478,6 +478,9 @@ namespace FlightSimulator
 
             dp = new drawProcess(this.pictureBox1.Size.Width, this.pictureBox1.Size.Height,Color.DarkCyan);
             this.timer1.Start();
+
+            visionStimulation v = new visionStimulation();
+            v.Show();
             
             //this.pictureBox1.CreateGraphics().DrawImage(dp.drawTest(), 0, 0);
         }
