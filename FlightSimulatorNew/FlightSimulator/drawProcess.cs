@@ -355,7 +355,7 @@ namespace rorationSimulation
                 // g1.DrawLine(Pens.DarkBlue, 60, 60 + intervale * i, 80, 60 + intervale * i);
                 g1.DrawLine(Pens.DarkBlue, 60, intervale* i+60, 65, intervale * i+60);
             }
-            
+
             g1.DrawString((0).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), 20, 50 + intervale * 5);
             g1.DrawString((20).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), 20, 50 + intervale * 3);
             g1.DrawString((40).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), 20, 50 + intervale * 1);
@@ -393,6 +393,7 @@ namespace rorationSimulation
 
             //g1.DrawString(isPosition.ToString(), new Font("Arial", 12), new SolidBrush(Color.Green), 0, 10);
 
+            g1.DrawLine(Pens.Yellow, 10, 10, 200, 200);
             if (isPosition)
             {
                 for (int i = 0; i < lpf1.Count - 1; i++)
@@ -400,7 +401,8 @@ namespace rorationSimulation
 
                     if (Math.Abs(lpf1[i] - lpf1[i + 1]) < 1000)
                     {
-                        g1.DrawLine(Pens.Yellow, 65 + i, (lpf1[i] - 720) * (height - 110) / 2048 + 60, 65 + i + 1, (lpf1[i + 1] - 720) * (height - 110) / 2048 + 60);
+                        //g1.DrawLine(Pens.Yellow, 65 + i, (lpf1[i] - 720) * (height - 110) / 2048 + 60, 65 + i + 1, (lpf1[i + 1] - 720) * (height - 110) / 2048 + 60);
+                        g1.DrawLine(Pens.Yellow,10,10,200,200);
                     }
                     
                 }

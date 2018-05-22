@@ -494,8 +494,8 @@ namespace FlightSimulator
             int count = 0;
             int i = 0, j = 0;
             ifStop = false;
-            
 
+            dp1 = new drawProcess(this.pictureBox1.Width, this.pictureBox1.Height, Color.White);
             
 
             while (!ifStop)
@@ -509,6 +509,10 @@ namespace FlightSimulator
                     float torqueVoltageValue;
                     float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
                     troque_trans = (troque - 2048) / 2048 * 80;
+
+
+                    //debug mode
+                    troque_trans = 10;
 
                     count++;
                     start = newStart;
@@ -533,6 +537,22 @@ namespace FlightSimulator
                         degree = degree + 360;
                     }
                     v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+
+                    lpf1.Add(degree);
+                    lpf2.Add(troque_trans);
+
+                    if (lpf1.Count == 900)
+                    {
+                        lpf1.Remove(lpf1[0]);
+                    }
+
+                    if (lpf2.Count == 900)
+                    {
+                        lpf2.Remove(lpf2[0]);
+                    }
+
+                    this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+
 
                 }
 
@@ -564,7 +584,9 @@ namespace FlightSimulator
             positionForEverySequence = new List<List<float>>();
             torqueForEverySequence = new List<List<float>>();
             cc = new CoreControl();
-
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
+            SetStyle(ControlStyles.DoubleBuffer, true); // 双缓冲
             StreamReader sR = File.OpenText(Application.StartupPath+"\\set-1.txt");
             int length = int.Parse(sR.ReadLine());
             for (int i = 0; i != length; i++)
@@ -683,17 +705,7 @@ namespace FlightSimulator
         
 
 
-            lpf1.Add(position);
-            lpf2.Add(troque);
-            if (lpf1.Count == 900)
-            {
-                lpf1.Remove(lpf1[0]);
-            }
-
-            if (lpf2.Count == 900)
-            {
-                lpf2.Remove(lpf2[0]);
-            }
+            
 
 
 
