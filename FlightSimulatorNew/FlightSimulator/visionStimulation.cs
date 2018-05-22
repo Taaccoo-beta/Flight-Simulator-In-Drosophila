@@ -19,6 +19,9 @@ namespace FlightSimulator
         private vStimulation v;
         private void visionStimulation_Load(object sender, EventArgs e)
         {
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
+            SetStyle(ControlStyles.DoubleBuffer, true); // 双缓冲
             v = new vStimulation(this.pictureBox1.Width, this.pictureBox1.Height, 1);
         }
 
@@ -55,13 +58,23 @@ namespace FlightSimulator
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            degree -= 1;
+            degree -= 10;
+            this.label3.Text = degree.ToString();
+            if (degree < -180)
+            {
+                degree = 360 + degree;
+            }
 
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            degree += 1;
+            degree += 10;
+            this.label3.Text = degree.ToString();
+            if (degree > 180)
+            {
+                degree = degree - 360;
+            }
         }
     }
 }

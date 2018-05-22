@@ -1242,7 +1242,7 @@ namespace FlightSimulator
                 {
                     iniBiasValue -= 0.5f;
                     pc.VOutput(0, iniBiasValue);
-                    lblShowRotatingBias.Text = iniBiasValue.ToString();
+                    
                 }
           
         }
@@ -1260,7 +1260,7 @@ namespace FlightSimulator
                 {
                     iniBiasValue += 0.5f;
                     pc.VOutput(0, iniBiasValue);
-                    lblShowRotatingBias.Text = iniBiasValue.ToString();
+                    
                 }
 
            
@@ -1326,41 +1326,7 @@ namespace FlightSimulator
         private void btnBack_Click(object sender, EventArgs e)
         {
 
-            timerForBackToZero.Stop();
-            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
-            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
-            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
-            
-            float positionVoltageValue;
-            float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
-            if (position < 1744)
-            {
-                backToZeroControlSwitch = true;
-                if (Math.Abs(position - 1744) > 30)
-                {
-                    pc.VOutput(0, 2.6f);
-                }
-                else
-                {
-                    pc.VOutput(0, 2.52f);
-                }
-                
-            }
-            else
-            {
-                backToZeroControlSwitch = false;
-                if (Math.Abs(position - 1744) > 30)
-                {
-                    pc.VOutput(0, 2.4f);
-                }
-                else
-                {
-                    pc.VOutput(0, 2.48f);
-                }
-            }
-            timerForBackToZero.Interval = 10;
-            timerForBackToZero.Start();
-           
+            degree = 0;
         }
 
         private void timer3_Tick(object sender, EventArgs e)
@@ -1380,7 +1346,7 @@ namespace FlightSimulator
                 {
                     pc.VOutput(0, 2.5f);
                     iniBiasValue = 2.5f;
-                    lblShowRotatingBias.Text = iniBiasValue.ToString();
+                   
                     pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
                     pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
                     pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
@@ -1399,7 +1365,7 @@ namespace FlightSimulator
                 {
                     pc.VOutput(0, 2.5f);
                     iniBiasValue = 2.5f;
-                    lblShowRotatingBias.Text = iniBiasValue.ToString();
+                    
                     pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
                     pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
                     pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);

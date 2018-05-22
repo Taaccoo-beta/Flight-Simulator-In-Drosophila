@@ -100,7 +100,6 @@
             this.gbPositionTorqueSetting = new System.Windows.Forms.GroupBox();
             this.btnStopRotating = new System.Windows.Forms.Button();
             this.gbBias = new System.Windows.Forms.GroupBox();
-            this.lblShowRotatingBias = new System.Windows.Forms.Label();
             this.btnBiasDown = new System.Windows.Forms.Button();
             this.btnBiasUp = new System.Windows.Forms.Button();
             this.cbOpenOrClosed = new System.Windows.Forms.CheckBox();
@@ -114,7 +113,7 @@
             this.lblPositionValue = new System.Windows.Forms.Label();
             this.lblPosition = new System.Windows.Forms.Label();
             this.btnSaveSettingInStep2 = new System.Windows.Forms.Button();
-            this.btnTestDrawing = new System.Windows.Forms.Button();
+            this.btnCalibrate = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tpSetp3 = new System.Windows.Forms.TabPage();
             this.lblPunishmentStateValue = new System.Windows.Forms.Label();
@@ -255,7 +254,7 @@
             this.tpStep1.Location = new System.Drawing.Point(4, 25);
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
-            this.tpStep1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpStep1.Padding = new System.Windows.Forms.Padding(3);
             this.tpStep1.Size = new System.Drawing.Size(1260, 932);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
@@ -852,6 +851,7 @@
             // 
             // tpStep2
             // 
+            this.tpStep2.Controls.Add(this.btnStopRotating);
             this.tpStep2.Controls.Add(this.label1);
             this.tpStep2.Controls.Add(this.btnGoStep_3);
             this.tpStep2.Controls.Add(this.gbPositionTorqueSetting);
@@ -864,11 +864,11 @@
             this.tpStep2.Controls.Add(this.lblPositionValue);
             this.tpStep2.Controls.Add(this.lblPosition);
             this.tpStep2.Controls.Add(this.btnSaveSettingInStep2);
-            this.tpStep2.Controls.Add(this.btnTestDrawing);
+            this.tpStep2.Controls.Add(this.btnCalibrate);
             this.tpStep2.Controls.Add(this.pictureBox1);
             this.tpStep2.Location = new System.Drawing.Point(4, 25);
             this.tpStep2.Name = "tpStep2";
-            this.tpStep2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpStep2.Padding = new System.Windows.Forms.Padding(3);
             this.tpStep2.Size = new System.Drawing.Size(1260, 932);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";
@@ -886,7 +886,7 @@
             // 
             // btnGoStep_3
             // 
-            this.btnGoStep_3.Location = new System.Drawing.Point(1126, 837);
+            this.btnGoStep_3.Location = new System.Drawing.Point(1122, 804);
             this.btnGoStep_3.Name = "btnGoStep_3";
             this.btnGoStep_3.Size = new System.Drawing.Size(109, 67);
             this.btnGoStep_3.TabIndex = 25;
@@ -896,20 +896,19 @@
             // 
             // gbPositionTorqueSetting
             // 
-            this.gbPositionTorqueSetting.Controls.Add(this.btnStopRotating);
             this.gbPositionTorqueSetting.Controls.Add(this.gbBias);
             this.gbPositionTorqueSetting.Controls.Add(this.cbOpenOrClosed);
             this.gbPositionTorqueSetting.Controls.Add(this.btnBack);
-            this.gbPositionTorqueSetting.Location = new System.Drawing.Point(190, 824);
+            this.gbPositionTorqueSetting.Location = new System.Drawing.Point(186, 791);
             this.gbPositionTorqueSetting.Name = "gbPositionTorqueSetting";
-            this.gbPositionTorqueSetting.Size = new System.Drawing.Size(648, 80);
+            this.gbPositionTorqueSetting.Size = new System.Drawing.Size(426, 80);
             this.gbPositionTorqueSetting.TabIndex = 24;
             this.gbPositionTorqueSetting.TabStop = false;
             this.gbPositionTorqueSetting.Text = "Setting";
             // 
             // btnStopRotating
             // 
-            this.btnStopRotating.Location = new System.Drawing.Point(541, 29);
+            this.btnStopRotating.Location = new System.Drawing.Point(933, 809);
             this.btnStopRotating.Name = "btnStopRotating";
             this.btnStopRotating.Size = new System.Drawing.Size(80, 33);
             this.btnStopRotating.TabIndex = 27;
@@ -919,25 +918,14 @@
             // 
             // gbBias
             // 
-            this.gbBias.Controls.Add(this.lblShowRotatingBias);
             this.gbBias.Controls.Add(this.btnBiasDown);
             this.gbBias.Controls.Add(this.btnBiasUp);
             this.gbBias.Location = new System.Drawing.Point(228, 13);
             this.gbBias.Name = "gbBias";
-            this.gbBias.Size = new System.Drawing.Size(256, 61);
+            this.gbBias.Size = new System.Drawing.Size(185, 61);
             this.gbBias.TabIndex = 26;
             this.gbBias.TabStop = false;
             this.gbBias.Text = "Bias";
-            // 
-            // lblShowRotatingBias
-            // 
-            this.lblShowRotatingBias.AutoSize = true;
-            this.lblShowRotatingBias.Location = new System.Drawing.Point(195, 29);
-            this.lblShowRotatingBias.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblShowRotatingBias.Name = "lblShowRotatingBias";
-            this.lblShowRotatingBias.Size = new System.Drawing.Size(39, 15);
-            this.lblShowRotatingBias.TabIndex = 26;
-            this.lblShowRotatingBias.Text = "NULL";
             // 
             // btnBiasDown
             // 
@@ -983,7 +971,7 @@
             // lblOpenClosed
             // 
             this.lblOpenClosed.AutoSize = true;
-            this.lblOpenClosed.Location = new System.Drawing.Point(391, 842);
+            this.lblOpenClosed.Location = new System.Drawing.Point(387, 809);
             this.lblOpenClosed.Name = "lblOpenClosed";
             this.lblOpenClosed.Size = new System.Drawing.Size(0, 15);
             this.lblOpenClosed.TabIndex = 22;
@@ -993,7 +981,7 @@
             this.lblChooseDisplay.AutoSize = true;
             this.lblChooseDisplay.BackColor = System.Drawing.Color.DarkCyan;
             this.lblChooseDisplay.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblChooseDisplay.Location = new System.Drawing.Point(603, 762);
+            this.lblChooseDisplay.Location = new System.Drawing.Point(525, 731);
             this.lblChooseDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblChooseDisplay.Name = "lblChooseDisplay";
             this.lblChooseDisplay.Size = new System.Drawing.Size(127, 15);
@@ -1008,7 +996,7 @@
             this.cbIsTorque.Checked = true;
             this.cbIsTorque.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsTorque.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsTorque.Location = new System.Drawing.Point(835, 760);
+            this.cbIsTorque.Location = new System.Drawing.Point(795, 730);
             this.cbIsTorque.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbIsTorque.Name = "cbIsTorque";
             this.cbIsTorque.Size = new System.Drawing.Size(77, 19);
@@ -1025,7 +1013,7 @@
             this.cbIsPosition.Checked = true;
             this.cbIsPosition.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsPosition.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsPosition.Location = new System.Drawing.Point(733, 760);
+            this.cbIsPosition.Location = new System.Drawing.Point(681, 731);
             this.cbIsPosition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbIsPosition.Name = "cbIsPosition";
             this.cbIsPosition.Size = new System.Drawing.Size(93, 19);
@@ -1038,7 +1026,7 @@
             // lblTorqueValue
             // 
             this.lblTorqueValue.AutoSize = true;
-            this.lblTorqueValue.Location = new System.Drawing.Point(106, 866);
+            this.lblTorqueValue.Location = new System.Drawing.Point(102, 833);
             this.lblTorqueValue.Name = "lblTorqueValue";
             this.lblTorqueValue.Size = new System.Drawing.Size(39, 15);
             this.lblTorqueValue.TabIndex = 6;
@@ -1047,7 +1035,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 866);
+            this.label3.Location = new System.Drawing.Point(36, 833);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 5;
@@ -1056,7 +1044,7 @@
             // lblPositionValue
             // 
             this.lblPositionValue.AutoSize = true;
-            this.lblPositionValue.Location = new System.Drawing.Point(106, 836);
+            this.lblPositionValue.Location = new System.Drawing.Point(102, 803);
             this.lblPositionValue.Name = "lblPositionValue";
             this.lblPositionValue.Size = new System.Drawing.Size(39, 15);
             this.lblPositionValue.TabIndex = 4;
@@ -1065,7 +1053,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(24, 836);
+            this.lblPosition.Location = new System.Drawing.Point(20, 803);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(79, 15);
             this.lblPosition.TabIndex = 2;
@@ -1073,29 +1061,29 @@
             // 
             // btnSaveSettingInStep2
             // 
-            this.btnSaveSettingInStep2.Location = new System.Drawing.Point(1045, 875);
+            this.btnSaveSettingInStep2.Location = new System.Drawing.Point(852, 848);
             this.btnSaveSettingInStep2.Name = "btnSaveSettingInStep2";
             this.btnSaveSettingInStep2.Size = new System.Drawing.Size(75, 23);
             this.btnSaveSettingInStep2.TabIndex = 3;
             this.btnSaveSettingInStep2.Text = "Save";
             this.btnSaveSettingInStep2.UseVisualStyleBackColor = true;
             // 
-            // btnTestDrawing
+            // btnCalibrate
             // 
-            this.btnTestDrawing.Location = new System.Drawing.Point(247, 411);
-            this.btnTestDrawing.Name = "btnTestDrawing";
-            this.btnTestDrawing.Size = new System.Drawing.Size(75, 23);
-            this.btnTestDrawing.TabIndex = 1;
-            this.btnTestDrawing.Text = "Draw";
-            this.btnTestDrawing.UseVisualStyleBackColor = true;
-            this.btnTestDrawing.Click += new System.EventHandler(this.btnTestDrawing_Click);
+            this.btnCalibrate.Location = new System.Drawing.Point(618, 809);
+            this.btnCalibrate.Name = "btnCalibrate";
+            this.btnCalibrate.Size = new System.Drawing.Size(101, 23);
+            this.btnCalibrate.TabIndex = 1;
+            this.btnCalibrate.Text = "Calibrate";
+            this.btnCalibrate.UseVisualStyleBackColor = true;
+            this.btnCalibrate.Click += new System.EventHandler(this.btnTestDrawing_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1254, 807);
+            this.pictureBox1.Size = new System.Drawing.Size(1254, 771);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -1256,7 +1244,6 @@
             this.gbPositionTorqueSetting.ResumeLayout(false);
             this.gbPositionTorqueSetting.PerformLayout();
             this.gbBias.ResumeLayout(false);
-            this.gbBias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tpSetp3.ResumeLayout(false);
             this.tpSetp3.PerformLayout();
@@ -1332,7 +1319,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnSaveSettingInStep2;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnTestDrawing;
+        private System.Windows.Forms.Button btnCalibrate;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblTorqueValue;
         private System.Windows.Forms.Label label3;
@@ -1364,7 +1351,6 @@
         private System.Windows.Forms.ToolStripMenuItem createRecordFileToolStripMenuItem;
         private System.Windows.Forms.Label lblRecordFileName;
         private System.Windows.Forms.Label lblRecordFileLabel;
-        private System.Windows.Forms.Label lblShowRotatingBias;
         private System.Windows.Forms.Timer timerForBackToZero;
         private System.Windows.Forms.Button btnStopRotating;
         private System.Windows.Forms.ToolStripMenuItem speedDetectionToolStripMenuItem;
