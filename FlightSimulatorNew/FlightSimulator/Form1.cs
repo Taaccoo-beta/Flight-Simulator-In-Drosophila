@@ -477,11 +477,14 @@ namespace FlightSimulator
         private vStimulation vSti;
         private float degree = 0;
         private bool ifStop=false;
+        private float troque_trans;
         private void btnTestDrawing_Click(object sender, EventArgs e)
         {
             lblChooseDisplay.Visible = true;
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
+            timer2.Interval = 100;
+            timer2.Start();
 
             vSti = new vStimulation(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
@@ -490,6 +493,10 @@ namespace FlightSimulator
             uint newStart;
             int count = 0;
             int i = 0, j = 0;
+            ifStop = false;
+            
+
+            
 
             while (!ifStop)
             {
@@ -499,18 +506,37 @@ namespace FlightSimulator
                 if (newStart - start >= 100)
                 {
 
-                    v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+                    float torqueVoltageValue;
+                    float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+                    troque_trans = (troque - 2048) / 2048 * 80;
+
                     count++;
                     start = newStart;
-                    degree++;
+
+                    //Wert = p1_c1 * p1_c2 * trq + p1_c3 * p1_c4 * p1_bias_  'p1_c1=0/1 (open closed); p1_c2=+1/-1 (norm/inverted); p1_c3=0/1 (p1_bias on/off); p1_c4=+1/-1 (cw/ccw)
+                    //dPsi1 = p1_k * Wert * dt_
+                    //ArenaPos1 = ArenaPos1 + dPsi1
+
+
+                    float k = float.Parse(tbKValue.Text);
+                    degree += troque_trans * k * 0.01f;
                     this.lblPositionValue.Text = degree.ToString();
+                    this.lblTorqueValue.Text = troque.ToString();
+                    this.lblTroqueTrans.Text = troque_trans.ToString();
+
                     if (degree > 180)
                     {
                         degree = degree - 360;
                     }
+                    if (degree < -180)
+                    {
+                        degree = degree + 360;
+                    }
+                    v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+
                 }
 
-                if (count == 2000)
+                if (count == 20000)
                 {
                     ifStop = true;
                     break;
@@ -831,95 +857,91 @@ namespace FlightSimulator
         private void timer2_Tick(object sender, EventArgs e)
         {
 
-            float positionVoltageValue;
-            float torqueVoltageValue;
+           
 
-            float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
-            float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
-
-            positionForEverySequence[sequenceIndexForExperiment].Add(position);
-            torqueForEverySequence[sequenceIndexForExperiment].Add(troque);
+            //positionForEverySequence[sequenceIndexForExperiment].Add(degree);
+            //torqueForEverySequence[sequenceIndexForExperiment].Add(torq);
 
 
-            if (trainOrTestUsed[sequenceIndexForExperiment])
-            {
+            //if (trainOrTestUsed[sequenceIndexForExperiment])
+            //{
 
-                if (rbUpT.Checked)
-                {
-                    if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
-                    {
-                        punishmentByHeat();
-                        lblPunishmentStateValue.Text = "True";
-                    }
-                    else
-                    {
-                        unPunishmentByHeat();
-                        lblPunishmentStateValue.Text = "False";
-                    }
-                }
-                else
-                {
-                    if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
-                    {
-                        unPunishmentByHeat();
-                        lblPunishmentStateValue.Text = "False";
-                    }
-                    else
-                    {
-                        punishmentByHeat();
-                        lblPunishmentStateValue.Text = "True";
-                    }
-                }
+            //    if (rbUpT.Checked)
+            //    {
+            //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+            //        {
+            //            punishmentByHeat();
+            //            lblPunishmentStateValue.Text = "True";
+            //        }
+            //        else
+            //        {
+            //            unPunishmentByHeat();
+            //            lblPunishmentStateValue.Text = "False";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+            //        {
+            //            unPunishmentByHeat();
+            //            lblPunishmentStateValue.Text = "False";
+            //        }
+            //        else
+            //        {
+            //            punishmentByHeat();
+            //            lblPunishmentStateValue.Text = "True";
+            //        }
+            //    }
                 
-            }
-            else
-            {
-                unPunishmentByHeat();
-                lblPunishmentStateValue.Text = "False";
-            }
+            //}
+            //else
+            //{
+            //    unPunishmentByHeat();
+            //    lblPunishmentStateValue.Text = "False";
+            //}
 
-            timeIndex++;
-            if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
-            {
-                timeIndex = 0;
-                sequenceIndexForExperiment++;
-                dp2.clearCommunitivePosition();
-                lpf3.Clear();
-                lpf4.Clear();
-                if (sequenceIndexForExperiment == experimentTimeUsed.Count)
-                {
-                    timer2.Stop();
-                    this.btnStep3Start.Enabled = true;
-                    pc.ClearALLDigitalPort();
-                    OpenLoop();
-                    cbOpenOrClosed.Checked = false;
-                    cbOpenOrClosed.Text = "Open";
-                    DataSave();
+            //timeIndex++;
+            //if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
+            //{
+            //    timeIndex = 0;
+            //    sequenceIndexForExperiment++;
+            //    dp2.clearCommunitivePosition();
+            //    lpf3.Clear();
+            //    lpf4.Clear();
+            //    if (sequenceIndexForExperiment == experimentTimeUsed.Count)
+            //    {
+            //        timer2.Stop();
+            //        this.btnStep3Start.Enabled = true;
+            //        pc.ClearALLDigitalPort();
+            //        OpenLoop();
+            //        cbOpenOrClosed.Checked = false;
+            //        cbOpenOrClosed.Text = "Open";
+            //        DataSave();
                     
                     
                     
 
-                }
-                else
-                {
-                    positionForEverySequence.Add(new List<float>());
-                    torqueForEverySequence.Add(new List<float>());
-                    controls[sequenceIndexForExperiment].BackColor = Color.DarkCyan;
-                }
+            //    }
+            //    else
+            //    {
+            //        positionForEverySequence.Add(new List<float>());
+            //        torqueForEverySequence.Add(new List<float>());
+            //        controls[sequenceIndexForExperiment].BackColor = Color.DarkCyan;
+            //    }
 
 
 
-                Bitmap imageHere = new Bitmap(imageNow);
-                PictureBox pb = new PictureBox();
-                float width = this.flpBottomForImageList.Size.Width - 30;
-                float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
-                pb.Size = new Size((int)width, (int)height);
+            //    Bitmap imageHere = new Bitmap(imageNow);
+            //    PictureBox pb = new PictureBox();
+            //    float width = this.flpBottomForImageList.Size.Width - 30;
+            //    float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
+            //    pb.Size = new Size((int)width, (int)height);
 
-                pb.Image = imageHere;
-                pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            //    pb.Image = imageHere;
+            //    pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
                 
-                this.flpBottomForImageList.Controls.Add(pb);
-            }
+            //    this.flpBottomForImageList.Controls.Add(pb);
+            //}
           
 
 
@@ -929,9 +951,9 @@ namespace FlightSimulator
            
 
 
-             ////debug mode
-             //   position = 721;
-             //   troque = 100;
+            // ////debug mode
+            // //   position = 721;
+            // //   troque = 100;
             
 
 
@@ -940,23 +962,23 @@ namespace FlightSimulator
 
 
 
-            lpf3.Add(position);
-            lpf4.Add(troque);
-            if (lpf3.Count == 150)
-            {
-                lpf3.Remove(lpf3[0]);
-            }
+            //lpf3.Add(position);
+            //lpf4.Add(troque);
+            //if (lpf3.Count == 150)
+            //{
+            //    lpf3.Remove(lpf3[0]);
+            //}
 
-            if (lpf4.Count == 150)
-            {
-                lpf4.Remove(lpf4[0]);
-            }
+            //if (lpf4.Count == 150)
+            //{
+            //    lpf4.Remove(lpf4[0]);
+            //}
 
 
 
-            this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
-            this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
+            //this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+            //imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
+            //this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
             
 
     }
@@ -1234,34 +1256,13 @@ namespace FlightSimulator
         private void btnBiasUp_Click(object sender, EventArgs e)
         {
 
-            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
-            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
-            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
-
-            if (iniBiasValue > 0.4)
-                {
-                    iniBiasValue -= 0.5f;
-                    pc.VOutput(0, iniBiasValue);
-                    
-                }
-          
+            degree += 5;
         }
 
         private void btnBiasDown_Click(object sender, EventArgs e)
         {
 
-
-            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
-            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
-            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
-
-
-            if (iniBiasValue < 4.6)
-                {
-                    iniBiasValue += 0.5f;
-                    pc.VOutput(0, iniBiasValue);
-                    
-                }
+            degree -= 5;
 
            
 
@@ -1377,9 +1378,8 @@ namespace FlightSimulator
 
         private void btnStopRotating_Click(object sender, EventArgs e)
         {
-            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
-            pc.DigitOutput(4, MccDaq.DigitalLogicState.Low);
-            pc.DigitOutput(2, MccDaq.DigitalLogicState.Low);
+            ifStop = true;
+            timer2.Stop();
         }
 
         private void speedDetectionToolStripMenuItem_Click(object sender, EventArgs e)
