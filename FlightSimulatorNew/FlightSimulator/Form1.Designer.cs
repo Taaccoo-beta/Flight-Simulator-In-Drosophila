@@ -139,7 +139,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pbChoosedPattern = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSelectPattern = new System.Windows.Forms.ComboBox();
             this.btnRunPattern = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -174,7 +174,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(951, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1136, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -253,7 +253,7 @@
             this.tabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(951, 833);
+            this.tabControl.Size = new System.Drawing.Size(1136, 965);
             this.tabControl.TabIndex = 1;
             // 
             // tpStep1
@@ -271,7 +271,7 @@
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
             this.tpStep1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep1.Size = new System.Drawing.Size(943, 807);
+            this.tpStep1.Size = new System.Drawing.Size(1128, 939);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
             this.tpStep1.UseVisualStyleBackColor = true;
@@ -282,7 +282,7 @@
             this.panel1.Controls.Add(this.rbDownT);
             this.panel1.Controls.Add(this.rbUpT);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(16, 47);
+            this.panel1.Location = new System.Drawing.Point(4, 46);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(216, 44);
@@ -291,7 +291,7 @@
             // rbDownT
             // 
             this.rbDownT.AutoSize = true;
-            this.rbDownT.Location = new System.Drawing.Point(143, 11);
+            this.rbDownT.Location = new System.Drawing.Point(145, 11);
             this.rbDownT.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rbDownT.Name = "rbDownT";
             this.rbDownT.Size = new System.Drawing.Size(60, 17);
@@ -327,7 +327,7 @@
             // 
             // btnGoStep_2
             // 
-            this.btnGoStep_2.Location = new System.Drawing.Point(764, 677);
+            this.btnGoStep_2.Location = new System.Drawing.Point(657, 614);
             this.btnGoStep_2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGoStep_2.Name = "btnGoStep_2";
             this.btnGoStep_2.Size = new System.Drawing.Size(106, 50);
@@ -338,7 +338,7 @@
             // 
             // btnSetSettings
             // 
-            this.btnSetSettings.Location = new System.Drawing.Point(611, 677);
+            this.btnSetSettings.Location = new System.Drawing.Point(531, 614);
             this.btnSetSettings.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSetSettings.Name = "btnSetSettings";
             this.btnSetSettings.Size = new System.Drawing.Size(106, 50);
@@ -769,7 +769,7 @@
             // 
             this.lblDPValue.AutoSize = true;
             this.lblDPValue.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblDPValue.Location = new System.Drawing.Point(24, 35);
+            this.lblDPValue.Location = new System.Drawing.Point(24, 42);
             this.lblDPValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDPValue.Name = "lblDPValue";
             this.lblDPValue.Size = new System.Drawing.Size(47, 12);
@@ -947,7 +947,7 @@
             this.tpStep2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tpStep2.Name = "tpStep2";
             this.tpStep2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep2.Size = new System.Drawing.Size(943, 807);
+            this.tpStep2.Size = new System.Drawing.Size(1128, 939);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";
             this.tpStep2.UseVisualStyleBackColor = true;
@@ -1036,7 +1036,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(162, 868);
+            this.label1.Location = new System.Drawing.Point(175, 784);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
@@ -1246,7 +1246,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(2, 3);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(939, 668);
+            this.pictureBox1.Size = new System.Drawing.Size(1124, 668);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -1262,7 +1262,7 @@
             this.tpSetp3.Location = new System.Drawing.Point(4, 22);
             this.tpSetp3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tpSetp3.Name = "tpSetp3";
-            this.tpSetp3.Size = new System.Drawing.Size(943, 807);
+            this.tpSetp3.Size = new System.Drawing.Size(1128, 939);
             this.tpSetp3.TabIndex = 2;
             this.tpSetp3.Text = "Step-3";
             this.tpSetp3.UseVisualStyleBackColor = true;
@@ -1291,7 +1291,7 @@
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(2, 807);
+            this.splitter1.Size = new System.Drawing.Size(2, 939);
             this.splitter1.TabIndex = 6;
             this.splitter1.TabStop = false;
             // 
@@ -1379,16 +1379,19 @@
             // 
             // pbChoosedPattern
             // 
+            this.pbChoosedPattern.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbChoosedPattern.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbChoosedPattern.Location = new System.Drawing.Point(11, 31);
             this.pbChoosedPattern.Name = "pbChoosedPattern";
             this.pbChoosedPattern.Size = new System.Drawing.Size(225, 74);
+            this.pbChoosedPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbChoosedPattern.TabIndex = 30;
             this.pbChoosedPattern.TabStop = false;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnRunPattern);
-            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.cbSelectPattern);
             this.groupBox3.Controls.Add(this.pbChoosedPattern);
             this.groupBox3.Location = new System.Drawing.Point(29, 541);
             this.groupBox3.Name = "groupBox3";
@@ -1397,13 +1400,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ChoosePattern";
             // 
-            // comboBox1
+            // cbSelectPattern
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(249, 31);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 31;
+            this.cbSelectPattern.FormattingEnabled = true;
+            this.cbSelectPattern.Items.AddRange(new object[] {
+            "Test"});
+            this.cbSelectPattern.Location = new System.Drawing.Point(249, 31);
+            this.cbSelectPattern.Name = "cbSelectPattern";
+            this.cbSelectPattern.Size = new System.Drawing.Size(121, 21);
+            this.cbSelectPattern.TabIndex = 31;
+            this.cbSelectPattern.Text = "Test_1";
             // 
             // btnRunPattern
             // 
@@ -1414,12 +1420,13 @@
             this.btnRunPattern.TabIndex = 32;
             this.btnRunPattern.Text = "Run";
             this.btnRunPattern.UseVisualStyleBackColor = true;
+            this.btnRunPattern.Click += new System.EventHandler(this.btnRunPattern_Click);
             // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 857);
+            this.ClientSize = new System.Drawing.Size(1136, 989);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -1581,7 +1588,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnRunPattern;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbSelectPattern;
         private System.Windows.Forms.PictureBox pbChoosedPattern;
     }
 }

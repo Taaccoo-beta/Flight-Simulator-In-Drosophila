@@ -1081,11 +1081,134 @@ namespace FlightSimulator
                 positionForEverySequence.Add(new List<float>());
                 torqueForEverySequence.Add(new List<float>());
 
-                timer2.Start();
-                timer1.Stop();
+               
                 this.btnStep3Start.Enabled = false;
+
+
+                //positionForEverySequence[sequenceIndexForExperiment].Add(degree);
+                //torqueForEverySequence[sequenceIndexForExperiment].Add(torq);
+
+
+                //if (trainOrTestUsed[sequenceIndexForExperiment])
+                //{
+
+                //    if (rbUpT.Checked)
+                //    {
+                //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+                //        {
+                //            punishmentByHeat();
+                //            lblPunishmentStateValue.Text = "True";
+                //        }
+                //        else
+                //        {
+                //            unPunishmentByHeat();
+                //            lblPunishmentStateValue.Text = "False";
+                //        }
+                //    }
+                //    else
+                //    {
+                //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+                //        {
+                //            unPunishmentByHeat();
+                //            lblPunishmentStateValue.Text = "False";
+                //        }
+                //        else
+                //        {
+                //            punishmentByHeat();
+                //            lblPunishmentStateValue.Text = "True";
+                //        }
+                //    }
+
+                //}
+                //else
+                //{
+                //    unPunishmentByHeat();
+                //    lblPunishmentStateValue.Text = "False";
+                //}
+
+                //timeIndex++;
+                //if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
+                //{
+                //    timeIndex = 0;
+                //    sequenceIndexForExperiment++;
+                //    dp2.clearCommunitivePosition();
+                //    lpf3.Clear();
+                //    lpf4.Clear();
+                //    if (sequenceIndexForExperiment == experimentTimeUsed.Count)
+                //    {
+                //        timer2.Stop();
+                //        this.btnStep3Start.Enabled = true;
+                //        pc.ClearALLDigitalPort();
+                //        OpenLoop();
+                //        cbOpenOrClosed.Checked = false;
+                //        cbOpenOrClosed.Text = "Open";
+                //        DataSave();
+
+
+
+
+                //    }
+                //    else
+                //    {
+                //        positionForEverySequence.Add(new List<float>());
+                //        torqueForEverySequence.Add(new List<float>());
+                //        controls[sequenceIndexForExperiment].BackColor = Color.DarkCyan;
+                //    }
+
+
+
+                //    Bitmap imageHere = new Bitmap(imageNow);
+                //    PictureBox pb = new PictureBox();
+                //    float width = this.flpBottomForImageList.Size.Width - 30;
+                //    float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
+                //    pb.Size = new Size((int)width, (int)height);
+
+                //    pb.Image = imageHere;
+                //    pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+
+                //    this.flpBottomForImageList.Controls.Add(pb);
+                //}
+
+
+
+
+
+
+
+
+
+                // ////debug mode
+                // //   position = 721;
+                // //   troque = 100;
+
+
+
+
+
+
+
+
+                //lpf3.Add(position);
+                //lpf4.Add(troque);
+                //if (lpf3.Count == 150)
+                //{
+                //    lpf3.Remove(lpf3[0]);
+                //}
+
+                //if (lpf4.Count == 150)
+                //{
+                //    lpf4.Remove(lpf4[0]);
+                //}
+
+
+
+                //this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+                //imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
+                //this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
+
+
             }
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1438,6 +1561,16 @@ namespace FlightSimulator
         private void FlightSimulator_FormClosing(object sender, FormClosingEventArgs e)
         {
             ifStop = true;
+        }
+
+        private bool selectPatternIfStop;
+        private void btnRunPattern_Click(object sender, EventArgs e)
+        {
+           
+
+            vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
+
+            this.pbChoosedPattern.BackgroundImage = vSti.DrawV_Test(0);
         }
     }
 }
