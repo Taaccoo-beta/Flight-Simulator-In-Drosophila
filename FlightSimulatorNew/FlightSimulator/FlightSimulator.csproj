@@ -109,7 +109,7 @@
     <Compile Include="visionStimulation.Designer.cs">
       <DependentUpon>visionStimulation.cs</DependentUpon>
     </Compile>
-    <Compile Include="vStimulation.cs" />
+    <Compile Include="Stimulations.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

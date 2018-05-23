@@ -95,6 +95,13 @@
             this.rbTrain_1 = new System.Windows.Forms.RadioButton();
             this.lblLastTime_1 = new System.Windows.Forms.Label();
             this.tpStep2 = new System.Windows.Forms.TabPage();
+            this.lblTroqueTransValue = new System.Windows.Forms.Label();
+            this.lblTroqueTrans = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblBiasLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbKValue = new System.Windows.Forms.TextBox();
+            this.lblKLabel = new System.Windows.Forms.Label();
             this.btnStopRotating = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnGoStep_3 = new System.Windows.Forms.Button();
@@ -129,13 +136,11 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timerForBackToZero = new System.Windows.Forms.Timer(this.components);
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblKLabel = new System.Windows.Forms.Label();
-            this.tbKValue = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblBiasLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTroqueTrans = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.pbChoosedPattern = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnRunPattern = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -147,6 +152,7 @@
             this.gbSetDataPath.SuspendLayout();
             this.gbSetSequence_1.SuspendLayout();
             this.tpStep2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.gbPositionTorqueSetting.SuspendLayout();
             this.gbBias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -155,7 +161,8 @@
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChoosedPattern)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -251,7 +258,7 @@
             // 
             // tpStep1
             // 
-            this.tpStep1.Controls.Add(this.panel1);
+            this.tpStep1.Controls.Add(this.groupBox3);
             this.tpStep1.Controls.Add(this.btnGoStep_2);
             this.tpStep1.Controls.Add(this.btnSetSettings);
             this.tpStep1.Controls.Add(this.gbSetSequence_3);
@@ -275,10 +282,10 @@
             this.panel1.Controls.Add(this.rbDownT);
             this.panel1.Controls.Add(this.rbUpT);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(606, 527);
+            this.panel1.Location = new System.Drawing.Point(16, 47);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 44);
+            this.panel1.Size = new System.Drawing.Size(216, 44);
             this.panel1.TabIndex = 29;
             // 
             // rbDownT
@@ -311,7 +318,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(3, 13);
+            this.label5.Location = new System.Drawing.Point(3, 14);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 12);
@@ -353,7 +360,7 @@
             this.gbSetSequence_3.Controls.Add(this.lblTrainOrTest_3);
             this.gbSetSequence_3.Controls.Add(this.rbTrain_3);
             this.gbSetSequence_3.Controls.Add(this.lblLastTime_3);
-            this.gbSetSequence_3.Location = new System.Drawing.Point(622, 22);
+            this.gbSetSequence_3.Location = new System.Drawing.Point(527, 22);
             this.gbSetSequence_3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetSequence_3.Name = "gbSetSequence_3";
             this.gbSetSequence_3.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -497,7 +504,7 @@
             this.gbSetSequence_2.Controls.Add(this.lblTrainOrTest_2);
             this.gbSetSequence_2.Controls.Add(this.rbTrain_2);
             this.gbSetSequence_2.Controls.Add(this.lblLastTime_2);
-            this.gbSetSequence_2.Location = new System.Drawing.Point(356, 22);
+            this.gbSetSequence_2.Location = new System.Drawing.Point(278, 22);
             this.gbSetSequence_2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetSequence_2.Name = "gbSetSequence_2";
             this.gbSetSequence_2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -632,13 +639,14 @@
             // gbPunishmentChoose
             // 
             this.gbPunishmentChoose.Controls.Add(this.label6);
+            this.gbPunishmentChoose.Controls.Add(this.panel1);
             this.gbPunishmentChoose.Controls.Add(this.rbPCShake);
             this.gbPunishmentChoose.Controls.Add(this.rbPCHeat);
-            this.gbPunishmentChoose.Location = new System.Drawing.Point(602, 475);
+            this.gbPunishmentChoose.Location = new System.Drawing.Point(527, 424);
             this.gbPunishmentChoose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbPunishmentChoose.Name = "gbPunishmentChoose";
             this.gbPunishmentChoose.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.gbPunishmentChoose.Size = new System.Drawing.Size(266, 107);
+            this.gbPunishmentChoose.Size = new System.Drawing.Size(236, 107);
             this.gbPunishmentChoose.TabIndex = 26;
             this.gbPunishmentChoose.TabStop = false;
             this.gbPunishmentChoose.Text = "ExInit-setPunishment";
@@ -684,7 +692,7 @@
             this.gbSetName.Controls.Add(this.lblRecordFileLabel);
             this.gbSetName.Controls.Add(this.tbExperimentName);
             this.gbSetName.Controls.Add(this.lblExName);
-            this.gbSetName.Location = new System.Drawing.Point(336, 475);
+            this.gbSetName.Location = new System.Drawing.Point(281, 418);
             this.gbSetName.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetName.Name = "gbSetName";
             this.gbSetName.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -696,7 +704,7 @@
             // lblRecordFileName
             // 
             this.lblRecordFileName.AutoSize = true;
-            this.lblRecordFileName.Location = new System.Drawing.Point(108, 72);
+            this.lblRecordFileName.Location = new System.Drawing.Point(100, 72);
             this.lblRecordFileName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRecordFileName.Name = "lblRecordFileName";
             this.lblRecordFileName.Size = new System.Drawing.Size(35, 13);
@@ -737,7 +745,7 @@
             // 
             this.gbSetDataPath.Controls.Add(this.btnChooseDataPath);
             this.gbSetDataPath.Controls.Add(this.lblDPValue);
-            this.gbSetDataPath.Location = new System.Drawing.Point(84, 475);
+            this.gbSetDataPath.Location = new System.Drawing.Point(29, 418);
             this.gbSetDataPath.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetDataPath.Name = "gbSetDataPath";
             this.gbSetDataPath.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -782,7 +790,7 @@
             this.gbSetSequence_1.Controls.Add(this.lblTrainOrTest_1);
             this.gbSetSequence_1.Controls.Add(this.rbTrain_1);
             this.gbSetSequence_1.Controls.Add(this.lblLastTime_1);
-            this.gbSetSequence_1.Location = new System.Drawing.Point(94, 22);
+            this.gbSetSequence_1.Location = new System.Drawing.Point(29, 22);
             this.gbSetSequence_1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetSequence_1.Name = "gbSetSequence_1";
             this.gbSetSequence_1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -917,7 +925,7 @@
             // 
             // tpStep2
             // 
-            this.tpStep2.Controls.Add(this.label2);
+            this.tpStep2.Controls.Add(this.lblTroqueTransValue);
             this.tpStep2.Controls.Add(this.lblTroqueTrans);
             this.tpStep2.Controls.Add(this.groupBox2);
             this.tpStep2.Controls.Add(this.btnStopRotating);
@@ -944,6 +952,75 @@
             this.tpStep2.Text = "Step-2";
             this.tpStep2.UseVisualStyleBackColor = true;
             this.tpStep2.Click += new System.EventHandler(this.tpStep2_Click);
+            // 
+            // lblTroqueTransValue
+            // 
+            this.lblTroqueTransValue.AutoSize = true;
+            this.lblTroqueTransValue.Location = new System.Drawing.Point(76, 742);
+            this.lblTroqueTransValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTroqueTransValue.Name = "lblTroqueTransValue";
+            this.lblTroqueTransValue.Size = new System.Drawing.Size(35, 13);
+            this.lblTroqueTransValue.TabIndex = 30;
+            this.lblTroqueTransValue.Text = "NULL";
+            // 
+            // lblTroqueTrans
+            // 
+            this.lblTroqueTrans.AutoSize = true;
+            this.lblTroqueTrans.Location = new System.Drawing.Point(27, 742);
+            this.lblTroqueTrans.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTroqueTrans.Name = "lblTroqueTrans";
+            this.lblTroqueTrans.Size = new System.Drawing.Size(44, 13);
+            this.lblTroqueTrans.TabIndex = 29;
+            this.lblTroqueTrans.Text = "Torque:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblBiasLabel);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.tbKValue);
+            this.groupBox2.Controls.Add(this.lblKLabel);
+            this.groupBox2.Location = new System.Drawing.Point(465, 686);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(142, 69);
+            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
+            // 
+            // lblBiasLabel
+            // 
+            this.lblBiasLabel.AutoSize = true;
+            this.lblBiasLabel.Location = new System.Drawing.Point(67, 20);
+            this.lblBiasLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBiasLabel.Name = "lblBiasLabel";
+            this.lblBiasLabel.Size = new System.Drawing.Size(27, 13);
+            this.lblBiasLabel.TabIndex = 10;
+            this.lblBiasLabel.Text = "Bias";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(62, 36);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(50, 20);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.Text = "0";
+            // 
+            // tbKValue
+            // 
+            this.tbKValue.Location = new System.Drawing.Point(6, 36);
+            this.tbKValue.Name = "tbKValue";
+            this.tbKValue.Size = new System.Drawing.Size(50, 20);
+            this.tbKValue.TabIndex = 8;
+            this.tbKValue.Text = "-11";
+            // 
+            // lblKLabel
+            // 
+            this.lblKLabel.AutoSize = true;
+            this.lblKLabel.Location = new System.Drawing.Point(14, 20);
+            this.lblKLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKLabel.Name = "lblKLabel";
+            this.lblKLabel.Size = new System.Drawing.Size(14, 13);
+            this.lblKLabel.TabIndex = 7;
+            this.lblKLabel.Text = "K";
             // 
             // btnStopRotating
             // 
@@ -1040,7 +1117,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(74, 32);
+            this.btnBack.Location = new System.Drawing.Point(74, 31);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(79, 20);
@@ -1135,7 +1212,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(24, 697);
+            this.lblPosition.Location = new System.Drawing.Point(24, 696);
             this.lblPosition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(47, 13);
@@ -1300,74 +1377,43 @@
             // 
             this.timerForBackToZero.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // groupBox2
+            // pbChoosedPattern
             // 
-            this.groupBox2.Controls.Add(this.lblBiasLabel);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.tbKValue);
-            this.groupBox2.Controls.Add(this.lblKLabel);
-            this.groupBox2.Location = new System.Drawing.Point(465, 686);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(142, 69);
-            this.groupBox2.TabIndex = 28;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.pbChoosedPattern.Location = new System.Drawing.Point(11, 31);
+            this.pbChoosedPattern.Name = "pbChoosedPattern";
+            this.pbChoosedPattern.Size = new System.Drawing.Size(225, 74);
+            this.pbChoosedPattern.TabIndex = 30;
+            this.pbChoosedPattern.TabStop = false;
             // 
-            // lblKLabel
+            // groupBox3
             // 
-            this.lblKLabel.AutoSize = true;
-            this.lblKLabel.Location = new System.Drawing.Point(14, 20);
-            this.lblKLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblKLabel.Name = "lblKLabel";
-            this.lblKLabel.Size = new System.Drawing.Size(14, 13);
-            this.lblKLabel.TabIndex = 7;
-            this.lblKLabel.Text = "K";
+            this.groupBox3.Controls.Add(this.btnRunPattern);
+            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.pbChoosedPattern);
+            this.groupBox3.Location = new System.Drawing.Point(29, 541);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(410, 123);
+            this.groupBox3.TabIndex = 31;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "ChoosePattern";
             // 
-            // tbKValue
+            // comboBox1
             // 
-            this.tbKValue.Location = new System.Drawing.Point(6, 36);
-            this.tbKValue.Name = "tbKValue";
-            this.tbKValue.Size = new System.Drawing.Size(50, 20);
-            this.tbKValue.TabIndex = 8;
-            this.tbKValue.Text = "-11.0";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(249, 31);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 31;
             // 
-            // textBox1
+            // btnRunPattern
             // 
-            this.textBox1.Location = new System.Drawing.Point(62, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(50, 20);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.Text = "0";
-            // 
-            // lblBiasLabel
-            // 
-            this.lblBiasLabel.AutoSize = true;
-            this.lblBiasLabel.Location = new System.Drawing.Point(67, 20);
-            this.lblBiasLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblBiasLabel.Name = "lblBiasLabel";
-            this.lblBiasLabel.Size = new System.Drawing.Size(27, 13);
-            this.lblBiasLabel.TabIndex = 10;
-            this.lblBiasLabel.Text = "Bias";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(76, 742);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "NULL";
-            // 
-            // lblTroqueTrans
-            // 
-            this.lblTroqueTrans.AutoSize = true;
-            this.lblTroqueTrans.Location = new System.Drawing.Point(27, 742);
-            this.lblTroqueTrans.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTroqueTrans.Name = "lblTroqueTrans";
-            this.lblTroqueTrans.Size = new System.Drawing.Size(44, 13);
-            this.lblTroqueTrans.TabIndex = 29;
-            this.lblTroqueTrans.Text = "Torque:";
+            this.btnRunPattern.Location = new System.Drawing.Point(249, 70);
+            this.btnRunPattern.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnRunPattern.Name = "btnRunPattern";
+            this.btnRunPattern.Size = new System.Drawing.Size(121, 25);
+            this.btnRunPattern.TabIndex = 32;
+            this.btnRunPattern.Text = "Run";
+            this.btnRunPattern.UseVisualStyleBackColor = true;
             // 
             // FlightSimulator
             // 
@@ -1380,6 +1426,8 @@
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "FlightSimulator";
             this.Text = "FlightSimulator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FlightSimulator_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FlightSimulator_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -1401,6 +1449,8 @@
             this.gbSetSequence_1.PerformLayout();
             this.tpStep2.ResumeLayout(false);
             this.tpStep2.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.gbPositionTorqueSetting.ResumeLayout(false);
             this.gbPositionTorqueSetting.PerformLayout();
             this.gbBias.ResumeLayout(false);
@@ -1412,8 +1462,8 @@
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbChoosedPattern)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1526,8 +1576,13 @@
         private System.Windows.Forms.TextBox tbKValue;
         private System.Windows.Forms.Label lblBiasLabel;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTroqueTransValue;
         private System.Windows.Forms.Label lblTroqueTrans;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnRunPattern;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.PictureBox pbChoosedPattern;
     }
 }
 

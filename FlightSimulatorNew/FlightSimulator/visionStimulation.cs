@@ -16,13 +16,13 @@ namespace FlightSimulator
         {
             InitializeComponent();
         }
-        private vStimulation v;
+        private Stimulations v;
         private void visionStimulation_Load(object sender, EventArgs e)
         {
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
             SetStyle(ControlStyles.DoubleBuffer, true); // 双缓冲
-            v = new vStimulation(this.pictureBox1.Width, this.pictureBox1.Height, 1);
+            v = new Stimulations(this.pictureBox1.Width, this.pictureBox1.Height, 1);
         }
 
         private void btnDraw_Click(object sender, EventArgs e)

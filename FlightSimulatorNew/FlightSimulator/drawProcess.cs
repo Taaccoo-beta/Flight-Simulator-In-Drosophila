@@ -324,7 +324,7 @@ namespace rorationSimulation
         }
 
         
-
+        //used painting funciton
         public Bitmap drawSignalCurve(List<float> lpf1,List<float> lpf2)
         {
 
@@ -393,7 +393,7 @@ namespace rorationSimulation
 
             //g1.DrawString(isPosition.ToString(), new Font("Arial", 12), new SolidBrush(Color.Green), 0, 10);
 
-            g1.DrawLine(Pens.Yellow, 10, 10, 200, 200);
+            //g1.DrawLine(Pens.Yellow, 10, 10, 200, 200);
             if (isPosition)
             {
                 for (int i = 0; i < lpf1.Count - 1; i++)
@@ -401,19 +401,23 @@ namespace rorationSimulation
 
                     if (Math.Abs(lpf1[i] - lpf1[i + 1]) < 1000)
                     {
-                        //g1.DrawLine(Pens.Yellow, 65 + i, (lpf1[i] - 720) * (height - 110) / 2048 + 60, 65 + i + 1, (lpf1[i + 1] - 720) * (height - 110) / 2048 + 60);
-                        g1.DrawLine(Pens.Yellow,10,10,200,200);
+                        g1.DrawLine(Pens.Yellow, 65 + i, (height-110)/2f-(height-110)/360f*lpf1[i] + 60, 65 + i + 1, (height - 110) / 2f - (height - 110) / 360f * lpf1[i+1] + 60);
+                        
                     }
                     
                 }
 
             }
-
+           
+            //+-50
             if (isTorque)
             {
                 for (int i = 0; i < lpf2.Count - 1; i++)
                 {
-                    g1.DrawLine(Pens.Red, 65 + i, (lpf2[i]-65) * (height-110)/(2797) + 60 , 65 + i + 1, (lpf2[i+1] - 65) * (height - 110) / (2797) + 60);
+                g1.DrawLine(Pens.Red, 65 + i, (height - 110) / 2f - (height - 110) / 100f * lpf2[i] + 60, 65 + i + 1, (height - 110) / 2f - (height - 110) / 100f * lpf2[i+1] + 60);
+
+                //g1.DrawLine(Pens.Yellow, 10, 10, 200, 200);
+
                 }
 
             }

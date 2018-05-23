@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator
 {
-    class vStimulation
+    class Stimulations
     {
         private Graphics g1;
         private Graphics g2;
@@ -25,7 +25,7 @@ namespace FlightSimulator
         private float blockHeight;
 
 
-        public vStimulation(int width,int height,ushort stiNumber)
+        public Stimulations(int width,int height,ushort stiNumber)
         {
             
             image1 = new Bitmap(width, height);

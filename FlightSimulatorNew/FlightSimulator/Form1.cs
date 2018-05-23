@@ -474,7 +474,7 @@ namespace FlightSimulator
         {
             tabControl.SelectTab(1);
         }
-        private vStimulation vSti;
+        private Stimulations vSti;
         private float degree = 0;
         private bool ifStop=false;
         private float troque_trans;
@@ -486,7 +486,7 @@ namespace FlightSimulator
             timer2.Interval = 100;
             timer2.Start();
 
-            vSti = new vStimulation(v.pictureBox1.Width, v.pictureBox1.Height, 1);
+            vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
             timeBeginPeriod(1);
             uint start = timeGetTime();
@@ -495,7 +495,7 @@ namespace FlightSimulator
             int i = 0, j = 0;
             ifStop = false;
 
-            dp1 = new drawProcess(this.pictureBox1.Width, this.pictureBox1.Height, Color.White);
+            dp1 = new drawProcess(this.pictureBox1.Width, this.pictureBox1.Height, Color.DarkCyan);
             
 
             while (!ifStop)
@@ -508,11 +508,12 @@ namespace FlightSimulator
 
                     float torqueVoltageValue;
                     float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+                    troque = troque / 100;
                     troque_trans = (troque - 2048) / 2048 * 80;
 
 
                     //debug mode
-                    troque_trans = 10;
+                    //troque_trans = 10;
 
                     count++;
                     start = newStart;
@@ -526,7 +527,7 @@ namespace FlightSimulator
                     degree += troque_trans * k * 0.01f;
                     this.lblPositionValue.Text = degree.ToString();
                     this.lblTorqueValue.Text = troque.ToString();
-                    this.lblTroqueTrans.Text = troque_trans.ToString();
+                    this.lblTroqueTransValue.Text = troque_trans.ToString();
 
                     if (degree > 180)
                     {
@@ -541,17 +542,19 @@ namespace FlightSimulator
                     lpf1.Add(degree);
                     lpf2.Add(troque_trans);
 
-                    if (lpf1.Count == 900)
+                    //lpf1.Add(180);
+                    //lpf2.Add(10);
+                    if (lpf1.Count == 400)
                     {
                         lpf1.Remove(lpf1[0]);
                     }
 
-                    if (lpf2.Count == 900)
+                    if (lpf2.Count == 400)
                     {
                         lpf2.Remove(lpf2[0]);
                     }
-
-                    this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+                    
+                    this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
 
 
                 }
@@ -1424,6 +1427,17 @@ namespace FlightSimulator
         private void rbUpT_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FlightSimulator_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ifStop = true;
+            Application.Exit();
+        }
+
+        private void FlightSimulator_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ifStop = true;
         }
     }
 }
