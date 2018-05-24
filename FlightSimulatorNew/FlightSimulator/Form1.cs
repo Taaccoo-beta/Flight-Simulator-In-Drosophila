@@ -472,7 +472,26 @@ namespace FlightSimulator
 
         private void btnGoStep_2_Click(object sender, EventArgs e)
         {
-            tabControl.SelectTab(1);
+            string dataPath = this.lblDPValue.Text;
+            DirectoryInfo folder = new DirectoryInfo(dataPath);
+            string expFileName = this.tbExperimentName.Text + ".txt";
+            foreach (FileInfo file in folder.GetFiles("*.txt"))
+            {
+                if (expFileName.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    DialogResult dr = MessageBox.Show("实验名重复，是否重设？", "是",MessageBoxButtons.OKCancel);
+                    if (dr == DialogResult.OK)
+                    {
+                        tabControl.SelectTab(0);
+                    }
+                    else
+                    {
+                        ifFromTab1ToTab2 = false;
+                        tabControl.SelectTab(1);
+                    }
+                }
+            }
+            
         }
         private Stimulations vSti;
         private float degree = 0;
@@ -570,11 +589,6 @@ namespace FlightSimulator
             }
 
             //this.pictureBox1.CreateGraphics().DrawImage(dp.drawTest(), 0, 0);
-        }
-
-        private void tpStep2_Click(object sender, EventArgs e)
-        {
-
         }
         private CoreControl cc;
         private void Form1_Load(object sender, EventArgs e)
@@ -1534,7 +1548,7 @@ namespace FlightSimulator
 
         private void btnSetSettings_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void tpSetp3_Click(object sender, EventArgs e)
@@ -1571,6 +1585,43 @@ namespace FlightSimulator
             vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
             this.pbChoosedPattern.BackgroundImage = vSti.DrawV_Test(0);
+        }
+
+        private void tpStep2_Click(object sender, EventArgs e)
+        {
+            ;
+        }
+
+        private bool ifFromTab1ToTab2 = true;
+        private void tabControl_Selected(object sender, TabControlEventArgs e)
+        {
+            if (tabControl.SelectedIndex == 1 & ifFromTab1ToTab2)
+            {
+                string dataPath = this.lblDPValue.Text;
+                DirectoryInfo folder = new DirectoryInfo(dataPath);
+                string expFileName = this.tbExperimentName.Text + ".txt";
+                foreach (FileInfo file in folder.GetFiles("*.txt"))
+                {
+                    if (expFileName.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        DialogResult dr = MessageBox.Show("实验名重复，是否重设？", "是", MessageBoxButtons.OKCancel);
+                        if (dr == DialogResult.OK)
+                        {
+                            tabControl.SelectTab(0);
+                        }
+                        else
+                        {
+                            tabControl.SelectTab(1);
+                        }
+                    }
+                }
+                ifFromTab1ToTab2 = false;
+            }
+            if (tabControl.SelectedIndex == 0)
+            {
+                ifFromTab1ToTab2 = true;
+            }
+
         }
     }
 }
