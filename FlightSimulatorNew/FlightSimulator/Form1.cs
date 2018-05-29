@@ -771,7 +771,6 @@ namespace FlightSimulator
             if (cbOpenOrClosed.Checked)
             {
                 cbOpenOrClosed.Text = "Closed";
-                ClosedLoop();
                 isOpenCircle = false;
                 
 
@@ -780,10 +779,8 @@ namespace FlightSimulator
             else
             {
                 cbOpenOrClosed.Text = "Open";
-                OpenLoop();
                 isOpenCircle = true;
-                float v = 2.5f;
-                pc.VOutput(0,v);
+               
             }
         }
 
@@ -872,11 +869,11 @@ namespace FlightSimulator
         /// </summary>
         private void punishmentByHeat()
         {
-            this.pc.DigitOutput(0, MccDaq.DigitalLogicState.High);
+            //this.pc.DigitOutput(0, MccDaq.DigitalLogicState.High);
         }
         private void unPunishmentByHeat()
         {
-            this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
+            //this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
         }
 
         
@@ -1012,214 +1009,235 @@ namespace FlightSimulator
 
         private void btnStep3Start_Click(object sender, EventArgs e)
         {
-            dp1 = new drawProcess(this.pictureBox2.Width, this.pictureBox2.Height, Color.DarkCyan);
-            dp2 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height, Color.DarkCyan);
-            //for (int i = 0; i < 6; i++)
-            //{
-            //    if (i % 2 == 0)
-            //    {
-            //        trainOrTestForTest.Add(true);
-            //    }
-            //    else
-            //    {
-            //        trainOrTestForTest.Add(false);
-            //    }
+            lblChooseDisplay.Visible = true;
+            cbIsPosition.Visible = true;
+            cbIsTorque.Visible = true;
 
-            //    experimentTimeForTest.Add(300);
+            vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
+            timeBeginPeriod(1);
+            uint start = timeGetTime();
+            uint newStart;
+            int count = 0;
+            int i = 0, j = 0;
+            ifStop = false;
 
-            //}
+            dp1 = new drawProcess(this.pbPosition.Width, this.pbPosition.Height, Color.DarkCyan);
+            dp2 = new drawProcess(this.pbCommunitive.Width, this.pbCommunitive.Height, Color.DarkCyan);
 
-            if (tbExperimentName.Text == "")
+            lpf3.Clear();
+            lpf4.Clear();
+            positionForEverySequence.Clear();
+            torqueForEverySequence.Clear();
+            sequenceIndexForExperiment = 0;
+            this.flpTopForLabel.Controls.Clear();
+            this.flpBottomForImageList.Controls.Clear();
+            int controlsLength;
+            if (cbSetSeqChoosed_1.Checked)
             {
-                MessageBox.Show("ExpName is NULL");
+                controlsLength = trainOrTest_1.Count;
+                trainOrTestUsed = trainOrTest_1;
+                experimentTimeUsed = experimentTime_1;
+            }
+            else if (cbSetSeqChoosed_2.Checked)
+            {
+                controlsLength = trainOrTest_2.Count;
+                trainOrTestUsed = trainOrTest_2;
+                experimentTimeUsed = experimentTime_2;
             }
             else
             {
-                lpf3.Clear();
-                lpf4.Clear();
-                positionForEverySequence.Clear();
-                torqueForEverySequence.Clear();
-                sequenceIndexForExperiment = 0;
-                this.flpTopForLabel.Controls.Clear();
-                this.flpBottomForImageList.Controls.Clear();
-                int controlsLength;
-                if (cbSetSeqChoosed_1.Checked)
+                controlsLength = trainOrTest_3.Count;
+                trainOrTestUsed = trainOrTest_3;
+                experimentTimeUsed = experimentTime_3;
+            }
+
+
+            dp1.getTrainOrTestSequence(trainOrTestUsed);
+            dp2.getTrainOrTestSequence(trainOrTestUsed);
+
+            controls = new List<Control>();
+            for (int ii = 0; ii < controlsLength; ii++)
+            {
+                Label l = new Label();
+                l.Name = "lblDForSequence" + i.ToString();
+                l.AutoSize = true;
+                l.BorderStyle = BorderStyle.FixedSingle;
+                l.Margin = new System.Windows.Forms.Padding(3);
+                l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                if (trainOrTestUsed[i] == true)
                 {
-                    controlsLength = trainOrTest_1.Count;
-                    trainOrTestUsed = trainOrTest_1;
-                    experimentTimeUsed = experimentTime_1;
-                }
-                else if (cbSetSeqChoosed_2.Checked)
-                {
-                    controlsLength = trainOrTest_2.Count;
-                    trainOrTestUsed = trainOrTest_2;
-                    experimentTimeUsed = experimentTime_2;
+                    l.Text = "Tr: " + experimentTimeUsed[i].ToString();
                 }
                 else
                 {
-                    controlsLength = trainOrTest_3.Count;
-                    trainOrTestUsed = trainOrTest_3;
-                    experimentTimeUsed = experimentTime_3;
+                    l.Text = "Te: " + experimentTimeUsed[i].ToString();
                 }
+                controls.Add(l);
+
+                this.flpTopForLabel.Controls.Add(l);
+            }
+            controls[0].BackColor = Color.DarkCyan;
+
+            positionForEverySequence.Add(new List<float>());
+            torqueForEverySequence.Add(new List<float>());
 
 
-                dp1.getTrainOrTestSequence(trainOrTestUsed);
-                dp2.getTrainOrTestSequence(trainOrTestUsed);
+            this.btnStep3Start.Enabled = false;
 
-                controls = new List<Control>();
-                for (int i = 0; i < controlsLength; i++)
+
+            while (!ifStop)
+            {
+                Application.DoEvents();
+                newStart = timeGetTime();
+
+                if (newStart - start >= 100)
                 {
-                    Label l = new Label();
-                    l.Name = "lblDForSequence" + i.ToString();
-                    l.AutoSize = true;
-                    l.BorderStyle = BorderStyle.FixedSingle;
-                    l.Margin = new System.Windows.Forms.Padding(3);
-                    l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                    if (trainOrTestUsed[i] == true)
-                    {
-                        l.Text = "Tr: " + experimentTimeUsed[i].ToString();
-                    }
-                    else
-                    {
-                        l.Text = "Te: " + experimentTimeUsed[i].ToString();
-                    }
-                    controls.Add(l);
 
-                    this.flpTopForLabel.Controls.Add(l);
+                    float torqueVoltageValue;
+                    float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+                    //troque = troque / 100;
+                    troque_trans = (troque - 2048) / 2048 * 80;
+
+
+                    //debug mode
+                    //troque_trans = 10;
+
+                    count++;
+                    start = newStart;
+
+                    //Wert = p1_c1 * p1_c2 * trq + p1_c3 * p1_c4 * p1_bias_  'p1_c1=0/1 (open closed); p1_c2=+1/-1 (norm/inverted); p1_c3=0/1 (p1_bias on/off); p1_c4=+1/-1 (cw/ccw)
+                    //dPsi1 = p1_k * Wert * dt_
+                    //ArenaPos1 = ArenaPos1 + dPsi1
+
+
+                    float k = float.Parse(tbKValue.Text);
+                    degree += troque_trans * k * 0.01f;
+                    this.lblPositionValue.Text = degree.ToString();
+                    this.lblTorqueValue.Text = troque.ToString();
+                    this.lblTroqueTransValue.Text = troque_trans.ToString();
+
+                    if (degree > 180)
+                    {
+                        degree = degree - 360;
+                    }
+                    if (degree < -180)
+                    {
+                        degree = degree + 360;
+                    }
+                    v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+
+                    lpf3.Add(degree);
+                    lpf4.Add(troque_trans);
+
+                    positionForEverySequence[sequenceIndexForExperiment].Add(degree);
+                    torqueForEverySequence[sequenceIndexForExperiment].Add(troque_trans);
+                    if (trainOrTestUsed[sequenceIndexForExperiment])
+                    {
+
+                        if (rbUpT.Checked)
+                        {
+                            if ((degree>-45 & degree<45) || (degree<-135 & degree>135))
+                            {
+                                punishmentByHeat();
+                                lblPunishmentStateValue.Text = "True";
+                            }
+                            else
+                            {
+                                unPunishmentByHeat();
+                                lblPunishmentStateValue.Text = "False";
+                            }
+                        }
+                        else
+                        {
+                            if ((degree < -45 & degree > -135) || (degree > 45 || degree < 135))
+                            {
+                                unPunishmentByHeat();
+                                lblPunishmentStateValue.Text = "False";
+                            }
+                            else
+                            {
+                                punishmentByHeat();
+                                lblPunishmentStateValue.Text = "True";
+                            }
+                        }
+
+                    }
+                    //else
+                    //{
+                    //    unPunishmentByHeat();
+                    //    lblPunishmentStateValue.Text = "False";
+                    //}
+
+
+                    if (count == experimentTimeUsed[sequenceIndexForExperiment] * 10)
+                    {
+                        count = 0;
+                        sequenceIndexForExperiment++;
+                        dp2.clearCommunitivePosition();
+                        lpf3.Clear();
+                        lpf4.Clear();
+                        if (sequenceIndexForExperiment == experimentTimeUsed.Count)
+                        {
+                            ifStop = true;
+                            this.btnStep3Start.Enabled = true;
+                            pc.ClearALLDigitalPort();
+                            //OpenLoop();
+                            cbOpenOrClosed.Checked = false;
+                            cbOpenOrClosed.Text = "Open";
+                            DataSave();
+                            
+                        }
+                        else
+                        {
+                            positionForEverySequence.Add(new List<float>());
+                            torqueForEverySequence.Add(new List<float>());
+                            controls[sequenceIndexForExperiment].BackColor = Color.DarkCyan;
+                        }
+
+
+
+                        Bitmap imageHere = new Bitmap(imageNow);
+                        PictureBox pb = new PictureBox();
+                        float width = this.flpBottomForImageList.Size.Width - 30;
+                        float height = (int)(((float)this.pbCommunitive.Size.Height / (float)this.pbCommunitive.Size.Width) * width);
+                        pb.Size = new Size((int)width, (int)height);
+
+                        pb.Image = imageHere;
+                        pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+
+                        this.flpBottomForImageList.Controls.Add(pb);
+                    }
+
+                    
+                    //this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+                    
+                    if (lpf3.Count == 400)
+                    {
+                        lpf3.Remove(lpf3[0]);
+                    }
+
+                    if (lpf4.Count == 400)
+                    {
+                        lpf4.Remove(lpf4[0]);
+                    }
+
+                    this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+                    imageNow = dp2.drawCommunitivePoint(degree, false,sequenceIndexForExperiment);
+                    this.pbCommunitive.CreateGraphics().DrawImage(imageNow, 0, 0);
+
                 }
-                controls[0].BackColor = Color.DarkCyan;
-
-                positionForEverySequence.Add(new List<float>());
-                torqueForEverySequence.Add(new List<float>());
-
-               
-                this.btnStep3Start.Enabled = false;
 
 
-                //positionForEverySequence[sequenceIndexForExperiment].Add(degree);
-                //torqueForEverySequence[sequenceIndexForExperiment].Add(torq);
-
-
-                //if (trainOrTestUsed[sequenceIndexForExperiment])
-                //{
-
-                //    if (rbUpT.Checked)
-                //    {
-                //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
-                //        {
-                //            punishmentByHeat();
-                //            lblPunishmentStateValue.Text = "True";
-                //        }
-                //        else
-                //        {
-                //            unPunishmentByHeat();
-                //            lblPunishmentStateValue.Text = "False";
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
-                //        {
-                //            unPunishmentByHeat();
-                //            lblPunishmentStateValue.Text = "False";
-                //        }
-                //        else
-                //        {
-                //            punishmentByHeat();
-                //            lblPunishmentStateValue.Text = "True";
-                //        }
-                //    }
-
-                //}
-                //else
-                //{
-                //    unPunishmentByHeat();
-                //    lblPunishmentStateValue.Text = "False";
-                //}
-
-                //timeIndex++;
-                //if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
-                //{
-                //    timeIndex = 0;
-                //    sequenceIndexForExperiment++;
-                //    dp2.clearCommunitivePosition();
-                //    lpf3.Clear();
-                //    lpf4.Clear();
-                //    if (sequenceIndexForExperiment == experimentTimeUsed.Count)
-                //    {
-                //        timer2.Stop();
-                //        this.btnStep3Start.Enabled = true;
-                //        pc.ClearALLDigitalPort();
-                //        OpenLoop();
-                //        cbOpenOrClosed.Checked = false;
-                //        cbOpenOrClosed.Text = "Open";
-                //        DataSave();
-
-
-
-
-                //    }
-                //    else
-                //    {
-                //        positionForEverySequence.Add(new List<float>());
-                //        torqueForEverySequence.Add(new List<float>());
-                //        controls[sequenceIndexForExperiment].BackColor = Color.DarkCyan;
-                //    }
-
-
-
-                //    Bitmap imageHere = new Bitmap(imageNow);
-                //    PictureBox pb = new PictureBox();
-                //    float width = this.flpBottomForImageList.Size.Width - 30;
-                //    float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
-                //    pb.Size = new Size((int)width, (int)height);
-
-                //    pb.Image = imageHere;
-                //    pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-
-                //    this.flpBottomForImageList.Controls.Add(pb);
-                //}
-
-
-
-
-
-
-
-
-
-                // ////debug mode
-                // //   position = 721;
-                // //   troque = 100;
-
-
-
-
-
-
-
-
-                //lpf3.Add(position);
-                //lpf4.Add(troque);
-                //if (lpf3.Count == 150)
-                //{
-                //    lpf3.Remove(lpf3[0]);
-                //}
-
-                //if (lpf4.Count == 150)
-                //{
-                //    lpf4.Remove(lpf4[0]);
-                //}
-
-
-
-                //this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-                //imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
-                //this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
 
 
             }
+
+           
+
+
+          
+            
 
         }
 
@@ -1529,7 +1547,7 @@ namespace FlightSimulator
         private void btnStopRotating_Click(object sender, EventArgs e)
         {
             ifStop = true;
-            timer2.Stop();
+           
         }
 
         private void speedDetectionToolStripMenuItem_Click(object sender, EventArgs e)
