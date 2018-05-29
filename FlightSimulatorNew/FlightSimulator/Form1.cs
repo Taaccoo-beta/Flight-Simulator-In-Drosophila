@@ -502,9 +502,7 @@ namespace FlightSimulator
             lblChooseDisplay.Visible = true;
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
-            timer2.Interval = 100;
-            timer2.Start();
-
+           
             vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
             timeBeginPeriod(1);
@@ -527,7 +525,7 @@ namespace FlightSimulator
 
                     float torqueVoltageValue;
                     float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
-                    troque = troque / 100;
+                    //troque = troque / 100;
                     troque_trans = (troque - 2048) / 2048 * 80;
 
 
