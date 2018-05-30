@@ -1113,9 +1113,9 @@ namespace FlightSimulator
 
                     float k = float.Parse(tbKValue.Text);
                     degree += troque_trans * k * 0.01f;
-                    this.lblPositionValue.Text = degree.ToString();
-                    this.lblTorqueValue.Text = troque.ToString();
-                    this.lblTroqueTransValue.Text = troque_trans.ToString();
+                    this.lblEXPStateP.Text = degree.ToString();
+                    this.lblEXPStateTRaw.Text = troque.ToString();
+                    this.lblEXPSTateT.Text = troque_trans.ToString();
 
                     if (degree > 180)
                     {
@@ -1132,6 +1132,8 @@ namespace FlightSimulator
 
                     positionForEverySequence[sequenceIndexForExperiment].Add(degree);
                     torqueForEverySequence[sequenceIndexForExperiment].Add(troque_trans);
+
+
                     if (trainOrTestUsed[sequenceIndexForExperiment])
                     {
 
@@ -1638,6 +1640,12 @@ namespace FlightSimulator
                 ifFromTab1ToTab2 = true;
             }
 
+        }
+
+        private void btnEXPStop_Click(object sender, EventArgs e)
+        {
+            btnStep3Start.Enabled = true;
+            ifStop = true;
         }
     }
 }

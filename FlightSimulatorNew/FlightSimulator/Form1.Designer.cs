@@ -1414,6 +1414,7 @@
             this.btnEXPStop.TabIndex = 38;
             this.btnEXPStop.Text = "Stop";
             this.btnEXPStop.UseVisualStyleBackColor = true;
+            this.btnEXPStop.Click += new System.EventHandler(this.btnEXPStop_Click);
             // 
             // lblEXPPunStateLabel
             // 
