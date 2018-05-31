@@ -83,29 +83,29 @@ namespace rorationSimulation
             this.trainOrTest = trainOrTest;
         }
         //positionTransform
-        private void positionTransform(float number)
+        private void positionTransform(float number,int widthhere)
         {
 
             
 
-            float interval = 2048f / (float)pnrLength;
+            //float interval = 2048f / (float)pnrLength;
 
-            if (number > 2721)
-            {
-                number = 2721;
-            }
-            if (number < 721)
-            {
-                number = 721;
-            }
-            int index = (int)((number-721) / interval);
+            //if (number > 2721)
+            //{
+            //    number = 2721;
+            //}
+            //if (number < 721)
+            //{
+            //    number = 721;
+            //}
+            //int index = (int)((number-721) / interval);
 
             
-            positionNumberRecord[index]++;
-            if (positionNumberRecord[index]/shortNumber > 300)
-            {
-                shortNumber++;
-            }
+            //positionNumberRecord[index]++;
+            //if (positionNumberRecord[index]/shortNumber > 300)
+            //{
+            //    shortNumber++;
+            //}
 
             
         }
@@ -160,7 +160,7 @@ namespace rorationSimulation
                 
             }
 
-            positionTransform(torque);
+            //positionTransform(torque);
             //draw commulative position points
             int positionDrawHeightLimit = (int)(heightHere - 30);
 
@@ -277,7 +277,7 @@ namespace rorationSimulation
             }
             else
             {
-                positionTransform(position);
+                positionTransform(position,widthHere-20);
             }
             
             ////draw commulative position points
