@@ -337,11 +337,11 @@ namespace rorationSimulation
 
 
             //draw axis
-            g1.DrawRectangle(Pens.MidnightBlue, new Rectangle(60, 60, width - 100, height - 110));
+            g1.DrawRectangle(Pens.MidnightBlue, new Rectangle(60, 60, width - 100, height - 80));
 
-            float intervale = (height - 110) / 10f;
-            float intervalePosition = (height - 110) / 4f;
-            float intervalePositionFor45 = (height - 110) / 8f;
+            float intervale = (height - 80) / 10f;
+            float intervalePosition = (height - 80) / 4f;
+            float intervalePositionFor45 = (height - 80) / 8f;
             //for (int i = 1; i < 18; i++)
             //{
             //    g1.DrawLine(Pens.DarkBlue, 60, 60 + intervale * i, 80, 60 + intervale * i);
@@ -374,11 +374,11 @@ namespace rorationSimulation
             dashPen.DashStyle = DashStyle.DashDot;
             //g1.DrawLine(dashPen, 60, intervale * 5 + 60, width - 40, intervale * 5 + 60);
             g1.DrawLine(dashPen, 60, intervale * 5 + 60, width - 40, intervalePosition * 2 + 60);
-            g1.DrawString((0).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), width-40, 50 + intervalePosition * 2);
-            g1.DrawString((90).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), width - 40, 50 + intervalePosition * 1);
-            g1.DrawString((180).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), width - 40, 50 + intervalePosition * 0);
-            g1.DrawString((-90).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), width - 40, 50 + intervalePosition * 3);
-            g1.DrawString((-180).ToString(), new Font("Arial", 12), new SolidBrush(Color.Black), width - 40, 50 + intervalePosition * 4);
+            g1.DrawString((0).ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), width-40, 50 + intervalePosition * 2);
+            g1.DrawString((90).ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), width - 40, 50 + intervalePosition * 1);
+            g1.DrawString((180).ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), width - 40, 50 + intervalePosition * 0);
+            g1.DrawString((-90).ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), width - 40, 50 + intervalePosition * 3);
+            g1.DrawString((-180).ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), width - 40, 50 + intervalePosition * 4);
             for (int i = 1; i < 8; i+=2)
             {
                 // g1.DrawLine(Pens.DarkBlue, 60, 60 + intervale * i, 80, 60 + intervale * i);
@@ -386,8 +386,8 @@ namespace rorationSimulation
             }
 
             //draw title
-            g1.DrawString("Position", new Font("Arial", 14), new SolidBrush(Color.Yellow), widthCenter-100, 10);            
-            g1.DrawString(" Torque", new Font("Arial", 14), new SolidBrush(Color.Red), widthCenter - 20, 10);
+            g1.DrawString("Position", new Font("Arial", 10), new SolidBrush(Color.Yellow), widthCenter-100, 10);            
+            g1.DrawString(" Torque", new Font("Arial", 10), new SolidBrush(Color.Red), widthCenter - 20, 10);
             //g1.FillRectangle(new SolidBrush(Color.Yellow), widthCenter - 100, 10, 15, 10);
 
 

@@ -344,7 +344,7 @@
             // 
             // btnGoStep_2
             // 
-            this.btnGoStep_2.Location = new System.Drawing.Point(667, 611);
+            this.btnGoStep_2.Location = new System.Drawing.Point(641, 596);
             this.btnGoStep_2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGoStep_2.Name = "btnGoStep_2";
             this.btnGoStep_2.Size = new System.Drawing.Size(106, 50);

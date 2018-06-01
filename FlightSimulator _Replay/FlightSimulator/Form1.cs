@@ -464,26 +464,102 @@ namespace FlightSimulator
         {
 
         }
-
+        private bool ifFromTab1ToTab2 = true;
         private void btnGoStep_2_Click(object sender, EventArgs e)
         {
-            tabControl.SelectTab(1);
+            string dataPath = this.lblDPValue.Text;
+            DirectoryInfo folder = new DirectoryInfo(dataPath);
+            string expFileName = this.tbExperimentName.Text + ".txt";
+            foreach (FileInfo file in folder.GetFiles("*.txt"))
+            {
+                if (expFileName.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    DialogResult dr = MessageBox.Show("实验名重复，是否重设？", "是", MessageBoxButtons.OKCancel);
+                    if (dr == DialogResult.OK)
+                    {
+                        tabControl.SelectTab(0);
+                    }
+                    else
+                    {
+                        ifFromTab1ToTab2 = false;
+                        tabControl.SelectTab(1);
+                    }
+                }
+            }
         }
 
+        bool ifStop;
         private void btnTestDrawing_Click(object sender, EventArgs e)
         {
             lblChooseDisplay.Visible = true;
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
 
-            dp = new drawProcess(this.pictureBox1.Size.Width, this.pictureBox1.Size.Height,Color.DarkCyan);
-            this.timer1.Start();
+            dp = new drawProcess(this.pictureBox1.Size.Width, this.pictureBox1.Size.Height, Color.DarkCyan);
 
-            visionStimulation v = new visionStimulation();
-            v.Show();
-            
-            //this.pictureBox1.CreateGraphics().DrawImage(dp.drawTest(), 0, 0);
+            timer1.Interval = 100;
+            timer1.Start();
+
+            //timeBeginPeriod(1);
+            //uint start = timeGetTime();
+            //uint newStart;
+            //int count = 0;
+            //int i = 0, j = 0;
+            //ifStop = false;
+
+
+            //while (!ifStop)
+            //{
+            //    Application.DoEvents();
+            //    newStart = timeGetTime();
+
+            //    if (newStart - start >= 100)
+            //    {
+
+                    
+
+
+            //        float position = cc.getPositionSignal();
+            //        float troque = cc.getTorqueSignal();
+
+            //        if (ifStartDebugMode)
+            //        {
+            //            position = 1744;
+            //            troque = 2862;
+            //        }
+
+
+            //        this.lblPositionValue.Text = position.ToString();
+            //        this.lblTorqueValue.Text = troque.ToString();
+
+
+            //        count++;
+            //        start = newStart;
+                    
+            //        lpf1.Add(position);
+            //        lpf2.Add(troque);
+
+                   
+            //        if (lpf1.Count == 400)
+            //        {
+            //            lpf1.Remove(lpf1[0]);
+            //        }
+
+            //        if (lpf2.Count == 400)
+            //        {
+            //            lpf2.Remove(lpf2[0]);
+            //        }
+
+            //        this.pictureBox1.CreateGraphics().DrawImage(dp.drawSignalCurve(lpf1, lpf2), 0, 0);
+
+
+            //    }
+
+               
+
+            //}
         }
+
 
         private void tpStep2_Click(object sender, EventArgs e)
         {
@@ -592,16 +668,7 @@ namespace FlightSimulator
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-
             
-            float positionVoltageValue;
-            float torqueVoltageValue;
-
-            //float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
-            //float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
-            //this.label1.Text = torqueVoltageValue.ToString("00.00");
-
-
             float position = cc.getPositionSignal();
             float troque = cc.getTorqueSignal();
 
@@ -616,22 +683,18 @@ namespace FlightSimulator
             this.lblTorqueValue.Text = troque.ToString();
             
         
-
-
             lpf1.Add(position);
             lpf2.Add(troque);
-            if (lpf1.Count == 900)
+            if (lpf1.Count == 300)
             {
                 lpf1.Remove(lpf1[0]);
             }
 
-            if (lpf2.Count == 900)
+            if (lpf2.Count == 300)
             {
                 lpf2.Remove(lpf2[0]);
             }
-
-
-
+            
             this.pictureBox1.CreateGraphics().DrawImage(dp.drawSignalCurve(lpf1, lpf2), 0, 0);
             
         }
@@ -698,6 +761,7 @@ namespace FlightSimulator
         private void btnGoStep_3_Click(object sender, EventArgs e)
         {
             tabControl.SelectTab(2);
+            timer1.Stop();
         }
 
 
@@ -1283,44 +1347,67 @@ namespace FlightSimulator
         //}
 
 
-
+        private bool ifBackToZeroStop = true;
         private void btnBack_Click(object sender, EventArgs e)
         {
 
-            timerForBackToZero.Stop();
-            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
-            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
-            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
             
-            float positionVoltageValue;
-            float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
-            if (position < 1744)
+            OpenLoop();
+            timeBeginPeriod(1);
+            uint start = timeGetTime();
+            uint newStart;
+            int count = 0;
+            int i = 0, j = 0;
+            ifBackToZeroStop = false;
+
+
+            while (!ifBackToZeroStop)
             {
-                backToZeroControlSwitch = true;
-                if (Math.Abs(position - 1744) > 30)
+                Application.DoEvents();
+                newStart = timeGetTime();
+
+                if (newStart - start >= 5)
                 {
-                    pc.VOutput(0, 2.6f);
+                    
+                    count++;
+                    start = newStart;
+
+                    float a = 10000000 * 1000000f;
+                    //float positionVoltageValue;
+                    //float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
+                    //if (position < 1744)
+                    //{
+                    //    backToZeroControlSwitch = true;
+                    //    if (Math.Abs(position - 1744) > 30)
+                    //    {
+                    //        pc.VOutput(0, 2.6f);
+                    //    }
+                    //    else
+                    //    {
+                    //        pc.VOutput(0, 2.52f);
+                    //    }
+
+                    //}
+                    //else
+                    //{
+                    //    backToZeroControlSwitch = false;
+                    //    if (Math.Abs(position - 1744) > 30)
+                    //    {
+                    //        pc.VOutput(0, 2.4f);
+                    //    }
+                    //    else
+                    //    {
+                    //        pc.VOutput(0, 2.48f);
+                    //    }
+                    //}
+
                 }
-                else
-                {
-                    pc.VOutput(0, 2.52f);
-                }
-                
+
+
+
             }
-            else
-            {
-                backToZeroControlSwitch = false;
-                if (Math.Abs(position - 1744) > 30)
-                {
-                    pc.VOutput(0, 2.4f);
-                }
-                else
-                {
-                    pc.VOutput(0, 2.48f);
-                }
-            }
-            timerForBackToZero.Interval = 10;
-            timerForBackToZero.Start();
+            
+            
            
         }
 
@@ -1407,6 +1494,47 @@ namespace FlightSimulator
         private void rbUpT_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tabControl_Selected(object sender, TabControlEventArgs e)
+        {
+            if (tabControl.SelectedIndex == 1 & ifFromTab1ToTab2)
+            {
+                string dataPath = this.lblDPValue.Text;
+                DirectoryInfo folder = new DirectoryInfo(dataPath);
+                string expFileName = this.tbExperimentName.Text + ".txt";
+                foreach (FileInfo file in folder.GetFiles("*.txt"))
+                {
+                    if (expFileName.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        DialogResult dr = MessageBox.Show("实验名重复，是否重设？", "是", MessageBoxButtons.OKCancel);
+                        if (dr == DialogResult.OK)
+                        {
+                            tabControl.SelectTab(0);
+                        }
+                        else
+                        {
+                            tabControl.SelectTab(1);
+                        }
+                    }
+                }
+                ifFromTab1ToTab2 = false;
+            }
+            if (tabControl.SelectedIndex == 0)
+            {
+                ifFromTab1ToTab2 = true;
+            }
+
+            if (tabControl.SelectedIndex == 2)
+            {
+                timer1.Stop();
+            }
+
+        }
+
+        private void btnSaveSettingInStep2_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
         }
     }
 }
