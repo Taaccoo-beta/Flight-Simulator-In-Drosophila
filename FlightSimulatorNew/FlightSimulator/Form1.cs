@@ -505,86 +505,86 @@ namespace FlightSimulator
            
             vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
-            timeBeginPeriod(1);
-            uint start = timeGetTime();
-            uint newStart;
-            int count = 0;
-            int i = 0, j = 0;
-            ifStop = false;
-
-            dp1 = new drawProcess(this.pictureBox1.Width, this.pictureBox1.Height, Color.DarkCyan);
             
 
-            while (!ifStop)
-            {
-                Application.DoEvents();
-                newStart = timeGetTime();
+            dp1 = new drawProcess(this.pictureBox1.Width, this.pictureBox1.Height, Color.DarkCyan);
 
-                if (newStart - start >= 100)
-                {
+            timer2.Start();
+            //while (!ifStop)
+            //{
+            //    Application.DoEvents();
+            //    newStart = timeGetTime();
 
-                    float torqueVoltageValue;
-                    float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
-                    //troque = troque / 100;
-                    troque_trans = (troque - 2048) / 2048 * 80;
+            //    if (newStart - start >= 100)
+            //    {
 
 
-                    //debug mode
-                    //troque_trans = 10;
-
-                    count++;
-                    start = newStart;
-
-                    //Wert = p1_c1 * p1_c2 * trq + p1_c3 * p1_c4 * p1_bias_  'p1_c1=0/1 (open closed); p1_c2=+1/-1 (norm/inverted); p1_c3=0/1 (p1_bias on/off); p1_c4=+1/-1 (cw/ccw)
-                    //dPsi1 = p1_k * Wert * dt_
-                    //ArenaPos1 = ArenaPos1 + dPsi1
-
-
-                    float k = float.Parse(tbKValue.Text);
-                    degree += troque_trans * k * 0.01f;
-                    this.lblPositionValue.Text = degree.ToString();
-                    this.lblTorqueValue.Text = troque.ToString();
-                    this.lblTroqueTransValue.Text = troque_trans.ToString();
-
-                    if (degree > 180)
-                    {
-                        degree = degree - 360;
-                    }
-                    if (degree < -180)
-                    {
-                        degree = degree + 360;
-                    }
-                    v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
-
-                    lpf1.Add(degree);
-                    lpf2.Add(troque_trans);
-
-                    //lpf1.Add(180);
-                    //lpf2.Add(10);
-                    if (lpf1.Count == 400)
-                    {
-                        lpf1.Remove(lpf1[0]);
-                    }
-
-                    if (lpf2.Count == 400)
-                    {
-                        lpf2.Remove(lpf2[0]);
-                    }
-                    
-                    this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
+            //        if (isOpenCircle)
+            //        {
+            //            degree += degree;
+            //        }
+            //        float torqueVoltageValue;
+            //        float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+            //        troque = troque / 100;
+            //        troque_trans = (troque - 2048) / 2048 * 80;
 
 
-                }
+            //        debug mode
+            //        troque_trans = 10;
 
-                if (count == 20000)
-                {
-                    ifStop = true;
-                    break;
-                }
-               
+            //        count++;
+            //        start = newStart;
+
+            //        Wert = p1_c1 * p1_c2 * trq + p1_c3 * p1_c4 * p1_bias_  'p1_c1=0/1 (open closed); p1_c2=+1/-1 (norm/inverted); p1_c3=0/1 (p1_bias on/off); p1_c4=+1/-1 (cw/ccw)
+            //        dPsi1 = p1_k * Wert * dt_
+            //        ArenaPos1 = ArenaPos1 + dPsi1
 
 
-            }
+            //        float k = float.Parse(tbKValue.Text);
+            //        degree += troque_trans * k * 0.01f;
+            //        this.lblPositionValue.Text = degree.ToString();
+            //        this.lblTorqueValue.Text = troque.ToString();
+            //        this.lblTroqueTransValue.Text = troque_trans.ToString();
+
+            //        if (degree > 180)
+            //        {
+            //            degree = degree - 360;
+            //        }
+            //        if (degree < -180)
+            //        {
+            //            degree = degree + 360;
+            //        }
+            //        v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+
+            //        lpf1.Add(degree);
+            //        lpf2.Add(troque_trans);
+
+            //        lpf1.Add(180);
+            //        lpf2.Add(10);
+            //        if (lpf1.Count == 400)
+            //        {
+            //            lpf1.Remove(lpf1[0]);
+            //        }
+
+            //        if (lpf2.Count == 400)
+            //        {
+            //            lpf2.Remove(lpf2[0]);
+            //        }
+
+            //        this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
+
+
+            //    }
+
+            //    if (count == 20000)
+            //    {
+            //        ifStop = true;
+            //        break;
+            //    }
+
+
+
+            //}
 
             //this.pictureBox1.CreateGraphics().DrawImage(dp.drawTest(), 0, 0);
         }
@@ -786,6 +786,7 @@ namespace FlightSimulator
 
         private void btnGoStep_3_Click(object sender, EventArgs e)
         {
+            timer2.Stop();
             tabControl.SelectTab(2);
         }
 
@@ -876,136 +877,189 @@ namespace FlightSimulator
             //this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
         }
 
-        
 
+        private int count = 0;
         private void timer2_Tick(object sender, EventArgs e)
         {
 
-           
-
-            //positionForEverySequence[sequenceIndexForExperiment].Add(degree);
-            //torqueForEverySequence[sequenceIndexForExperiment].Add(torq);
-
-
-            //if (trainOrTestUsed[sequenceIndexForExperiment])
-            //{
-
-            //    if (rbUpT.Checked)
-            //    {
-            //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
-            //        {
-            //            punishmentByHeat();
-            //            lblPunishmentStateValue.Text = "True";
-            //        }
-            //        else
-            //        {
-            //            unPunishmentByHeat();
-            //            lblPunishmentStateValue.Text = "False";
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
-            //        {
-            //            unPunishmentByHeat();
-            //            lblPunishmentStateValue.Text = "False";
-            //        }
-            //        else
-            //        {
-            //            punishmentByHeat();
-            //            lblPunishmentStateValue.Text = "True";
-            //        }
-            //    }
+            float torqueVoltageValue;
+            float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+            //troque = troque / 100;
+            troque_trans = (troque - 2048) / 2048 * 80;
+            if (!isOpenCircle)
+            {
+               
+                //debug mode
+                //troque_trans = 10;
                 
-            //}
-            //else
-            //{
-            //    unPunishmentByHeat();
-            //    lblPunishmentStateValue.Text = "False";
-            //}
-
-            //timeIndex++;
-            //if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
-            //{
-            //    timeIndex = 0;
-            //    sequenceIndexForExperiment++;
-            //    dp2.clearCommunitivePosition();
-            //    lpf3.Clear();
-            //    lpf4.Clear();
-            //    if (sequenceIndexForExperiment == experimentTimeUsed.Count)
-            //    {
-            //        timer2.Stop();
-            //        this.btnStep3Start.Enabled = true;
-            //        pc.ClearALLDigitalPort();
-            //        OpenLoop();
-            //        cbOpenOrClosed.Checked = false;
-            //        cbOpenOrClosed.Text = "Open";
-            //        DataSave();
-                    
-                    
-                    
-
-            //    }
-            //    else
-            //    {
-            //        positionForEverySequence.Add(new List<float>());
-            //        torqueForEverySequence.Add(new List<float>());
-            //        controls[sequenceIndexForExperiment].BackColor = Color.DarkCyan;
-            //    }
+                //Wert = p1_c1 * p1_c2 * trq + p1_c3 * p1_c4 * p1_bias_  'p1_c1=0/1 (open closed); p1_c2=+1/-1 (norm/inverted); p1_c3=0/1 (p1_bias on/off); p1_c4=+1/-1 (cw/ccw)
+                //dPsi1 = p1_k * Wert * dt_
+                //ArenaPos1 = ArenaPos1 + dPsi1
 
 
-
-            //    Bitmap imageHere = new Bitmap(imageNow);
-            //    PictureBox pb = new PictureBox();
-            //    float width = this.flpBottomForImageList.Size.Width - 30;
-            //    float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
-            //    pb.Size = new Size((int)width, (int)height);
-
-            //    pb.Image = imageHere;
-            //    pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                float k = float.Parse(tbKValue.Text);
+                degree += troque_trans * k * 0.01f;
                 
-            //    this.flpBottomForImageList.Controls.Add(pb);
-            //}
-          
-
-
-                    
+            }
             
-          
-           
+            this.lblPositionValue.Text = degree.ToString();
+            this.lblTorqueValue.Text = troque.ToString();
+            this.lblTroqueTransValue.Text = troque_trans.ToString();
+
+            if (degree > 180)
+            {
+                degree = degree - 360;
+            }
+            if (degree < -180)
+            {
+                degree = degree + 360;
+            }
+            v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+
+            lpf1.Add(degree);
+            lpf2.Add(troque_trans);
+
+            //lpf1.Add(180);
+            //lpf2.Add(10);
+            if (lpf1.Count == 400)
+            {
+                lpf1.Remove(lpf1[0]);
+            }
+
+            if (lpf2.Count == 400)
+            {
+                lpf2.Remove(lpf2[0]);
+            }
+
+            this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
 
 
-            // ////debug mode
-            // //   position = 721;
-            // //   troque = 100;
-            
+        
+
+              
+    //positionForEverySequence[sequenceIndexForExperiment].Add(degree);
+    //torqueForEverySequence[sequenceIndexForExperiment].Add(torq);
 
 
-          
+    //if (trainOrTestUsed[sequenceIndexForExperiment])
+    //{
+
+    //    if (rbUpT.Checked)
+    //    {
+    //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+    //        {
+    //            punishmentByHeat();
+    //            lblPunishmentStateValue.Text = "True";
+    //        }
+    //        else
+    //        {
+    //            unPunishmentByHeat();
+    //            lblPunishmentStateValue.Text = "False";
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+    //        {
+    //            unPunishmentByHeat();
+    //            lblPunishmentStateValue.Text = "False";
+    //        }
+    //        else
+    //        {
+    //            punishmentByHeat();
+    //            lblPunishmentStateValue.Text = "True";
+    //        }
+    //    }
+
+    //}
+    //else
+    //{
+    //    unPunishmentByHeat();
+    //    lblPunishmentStateValue.Text = "False";
+    //}
+
+    //timeIndex++;
+    //if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
+    //{
+    //    timeIndex = 0;
+    //    sequenceIndexForExperiment++;
+    //    dp2.clearCommunitivePosition();
+    //    lpf3.Clear();
+    //    lpf4.Clear();
+    //    if (sequenceIndexForExperiment == experimentTimeUsed.Count)
+    //    {
+    //        timer2.Stop();
+    //        this.btnStep3Start.Enabled = true;
+    //        pc.ClearALLDigitalPort();
+    //        OpenLoop();
+    //        cbOpenOrClosed.Checked = false;
+    //        cbOpenOrClosed.Text = "Open";
+    //        DataSave();
 
 
 
 
-            //lpf3.Add(position);
-            //lpf4.Add(troque);
-            //if (lpf3.Count == 150)
-            //{
-            //    lpf3.Remove(lpf3[0]);
-            //}
-
-            //if (lpf4.Count == 150)
-            //{
-            //    lpf4.Remove(lpf4[0]);
-            //}
+    //    }
+    //    else
+    //    {
+    //        positionForEverySequence.Add(new List<float>());
+    //        torqueForEverySequence.Add(new List<float>());
+    //        controls[sequenceIndexForExperiment].BackColor = Color.DarkCyan;
+    //    }
 
 
 
-            //this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            //imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
-            //this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
-            
+    //    Bitmap imageHere = new Bitmap(imageNow);
+    //    PictureBox pb = new PictureBox();
+    //    float width = this.flpBottomForImageList.Size.Width - 30;
+    //    float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
+    //    pb.Size = new Size((int)width, (int)height);
 
-    }
+    //    pb.Image = imageHere;
+    //    pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+
+    //    this.flpBottomForImageList.Controls.Add(pb);
+    //}
+
+
+
+
+
+
+
+
+
+    // ////debug mode
+    // //   position = 721;
+    // //   troque = 100;
+
+
+
+
+
+
+
+
+    //lpf3.Add(position);
+    //lpf4.Add(troque);
+    //if (lpf3.Count == 150)
+    //{
+    //    lpf3.Remove(lpf3[0]);
+    //}
+
+    //if (lpf4.Count == 150)
+    //{
+    //    lpf4.Remove(lpf4[0]);
+    //}
+
+
+
+    //this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+    //imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
+    //this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
+
+
+}
 
         private void btnStep3Start_Click(object sender, EventArgs e)
         {
@@ -1112,10 +1166,14 @@ namespace FlightSimulator
 
 
                     float k = float.Parse(tbKValue.Text);
-                    degree += troque_trans * k * 0.01f;
+                    //degree += troque_trans * k * 0.01f;
                     this.lblEXPStateP.Text = degree.ToString();
                     this.lblEXPStateTRaw.Text = troque.ToString();
                     this.lblEXPSTateT.Text = troque_trans.ToString();
+
+
+                    //debug mode
+                    degree += 1;
 
                     if (degree > 180)
                     {
@@ -1548,7 +1606,7 @@ namespace FlightSimulator
 
         private void btnStopRotating_Click(object sender, EventArgs e)
         {
-            ifStop = true;
+            timer2.Stop();
            
         }
 
@@ -1640,12 +1698,22 @@ namespace FlightSimulator
                 ifFromTab1ToTab2 = true;
             }
 
+            if (tabControl.SelectedIndex == 2)
+            {
+                timer2.Stop();
+            }
+
         }
 
         private void btnEXPStop_Click(object sender, EventArgs e)
         {
             btnStep3Start.Enabled = true;
             ifStop = true;
+        }
+
+        private void btnSaveSettingInStep2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

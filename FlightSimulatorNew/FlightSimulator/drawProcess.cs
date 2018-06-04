@@ -86,26 +86,18 @@ namespace rorationSimulation
         private void positionTransform(float number,int widthhere)
         {
 
-            
+            float newPosition = widthhere / 360 * (number+180);
+            int pNow = (int)(newPosition);
 
-            //float interval = 2048f / (float)pnrLength;
-
-            //if (number > 2721)
-            //{
-            //    number = 2721;
-            //}
-            //if (number < 721)
-            //{
-            //    number = 721;
-            //}
-            //int index = (int)((number-721) / interval);
-
-            
-            //positionNumberRecord[index]++;
-            //if (positionNumberRecord[index]/shortNumber > 300)
-            //{
-            //    shortNumber++;
-            //}
+            Console.Write(pNow);
+            positionNumberRecord[pNow]+=6;
+            if (positionNumberRecord[pNow] > 300)
+            {
+                for (int i = 0; i < positionNumberRecord.Length; i++)
+                {
+                    positionNumberRecord[i] = positionNumberRecord[i] / 2;
+                }
+            }
 
             
         }
@@ -277,7 +269,7 @@ namespace rorationSimulation
             }
             else
             {
-                positionTransform(position,widthHere-20);
+                positionTransform(position,pnrLength);
             }
             
             ////draw commulative position points
@@ -291,27 +283,28 @@ namespace rorationSimulation
                 {
                     if (i == 0)
                     {
-                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i + 3, heightHere - 6, 10 + i + 3, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i + 4, heightHere - 6, 10 + i + 4, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        
+                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i + 3, heightHere - 6, 10 + i + 3, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i + 4, heightHere - 6, 10 + i + 4, heightHere - 6 - value);
                     }
                     else if (i == pnrLength-1)
                     {
-                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i - 3, heightHere - 6, 10 + i - 3, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i - 4, heightHere - 6, 10 + i - 4, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i - 3, heightHere - 6, 10 + i - 3, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i - 4, heightHere - 6, 10 + i - 4, heightHere - 6 - value);
                     }
                     else
                     {
-                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
-                        g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 4 - (positionNumberRecord[i] / shortNumber));
+                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 6 - value);
                     }
                     
                 }
