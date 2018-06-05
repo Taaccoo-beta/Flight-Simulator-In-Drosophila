@@ -83,19 +83,30 @@ namespace rorationSimulation
             this.trainOrTest = trainOrTest;
         }
         //positionTransform
+        private int addNumber = 6;
         private void positionTransform(float number,int widthhere)
         {
 
-            float newPosition = widthhere / 360 * (number+180);
+            float newPosition = widthhere / 360f * (number+180);
             int pNow = (int)(newPosition);
-
-            Console.Write(pNow);
-            positionNumberRecord[pNow]+=6;
+            if (pNow == widthhere)
+            {
+                pNow = widthhere - 1;
+            }
+          
+                positionNumberRecord[pNow] += addNumber;
+           
+            
             if (positionNumberRecord[pNow] > 300)
             {
                 for (int i = 0; i < positionNumberRecord.Length; i++)
                 {
                     positionNumberRecord[i] = positionNumberRecord[i] / 2;
+                }
+                addNumber /= 2;
+                if (addNumber == 0)
+                {
+                    addNumber = 1;
                 }
             }
 
@@ -167,6 +178,13 @@ namespace rorationSimulation
 
         }
 
+        private bool ifSetPIValue = false;
+        private float PIValue;
+        public void setPIValue(float value)
+        {
+            ifSetPIValue = true;
+            PIValue = value;
+        }
 
         public Bitmap drawCommunitivePoint(float position,bool debugMode,int sequenceForExperiment)
         {
@@ -229,10 +247,22 @@ namespace rorationSimulation
             { if (trainOrTest[sequenceForExperiment])
                 {
                     g2.DrawString("Train: " + (sequenceForExperiment + 1).ToString(), new Font("Arial", 15), new SolidBrush(Color.LightGray), 30, 20);
+
+                    if (ifSetPIValue)
+                    {
+                        g2.DrawString("PI: " + (PIValue).ToString(), new Font("Arial", 15), new SolidBrush(Color.LightGray),30, 40);
+                        ifSetPIValue = false;
+                    }
                 }
                 else
                 {
                     g2.DrawString(" Test: " + (sequenceForExperiment + 1).ToString(), new Font("Arial", 15), new SolidBrush(Color.LightGray), 30, 20);
+
+                    if (ifSetPIValue)
+                    {
+                        g2.DrawString("PI: " + (PIValue).ToString(), new Font("Arial", 15), new SolidBrush(Color.LightGray), 30, 40);
+                        ifSetPIValue = false;
+                    }
                 }
             }
             
@@ -283,28 +313,44 @@ namespace rorationSimulation
                 {
                     if (i == 0)
                     {
-                        
-                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i + 3, heightHere - 6, 10 + i + 3, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i + 4, heightHere - 6, 10 + i + 4, heightHere - 6 - value);
+
+                        g2.DrawLine(Pens.Yellow, 11 + i, heightHere - 6, 11 + i, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 1, heightHere - 6, 11 + i + 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 2, heightHere - 6, 11 + i + 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 3, heightHere - 6, 11 + i + 3, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 4, heightHere - 6, 11 + i + 4, heightHere - 6 - value);
                     }
-                    else if (i == pnrLength-1)
+                    else if(i == 1)
                     {
-                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i - 3, heightHere - 6, 10 + i - 3, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i - 4, heightHere - 6, 10 + i - 4, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i, heightHere - 6, 11 + i, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 1, heightHere - 6, 11 + i - 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 2, heightHere - 6, 11 + i + 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 3, heightHere - 6, 11 + i + 3, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 1, heightHere - 6, 11 + i + 1, heightHere - 6 - value);
+                    }
+                    else if (i == pnrLength - 2)
+                    {
+                        g2.DrawLine(Pens.Yellow, 11 + i, heightHere - 6, 11 + i, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 2, heightHere - 6, 11 + i - 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 3, heightHere - 6, 11 + i - 3, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 4, heightHere - 6, 11 + i - 4, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 5, heightHere - 6, 11 + i - 5, heightHere - 6 - value);
+                    }
+                    else if (i == pnrLength - 3)
+                    {
+                        g2.DrawLine(Pens.Yellow, 11 + i - 1, heightHere - 6, 11 + i - 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 2, heightHere - 6, 11 + i - 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 3, heightHere - 6, 11 + i - 3, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 4, heightHere - 6, 11 + i - 4, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i , heightHere - 6, 11 + i , heightHere - 6 - value);
                     }
                     else
                     {
-                        g2.DrawLine(Pens.Yellow, 10 + i, heightHere - 6, 10 + i, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i - 1, heightHere - 6, 10 + i - 1, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i + 1, heightHere - 6, 10 + i + 1, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i - 2, heightHere - 6, 10 + i - 2, heightHere - 6 - value);
-                        g2.DrawLine(Pens.Yellow, 10 + i + 2, heightHere - 6, 10 + i + 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i, heightHere - 6, 11 + i, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 1, heightHere - 6, 11 + i - 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 1, heightHere - 6, 11 + i + 1, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i - 2, heightHere - 6, 11 + i - 2, heightHere - 6 - value);
+                        g2.DrawLine(Pens.Yellow, 11 + i + 2, heightHere - 6, 11 + i + 2, heightHere - 6 - value);
                     }
                     
                 }

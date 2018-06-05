@@ -96,11 +96,11 @@ namespace FlightSimulator
             {
                 if (i == getPIValue.Count - 1)
                 {
-                    PISequence += getPIValue[i].ToString("00.00");
+                    PISequence += getPIValue[i].ToString("0.00");
                 }
                 else
                 {
-                    PISequence += getPIValue[i].ToString("00.00") + ",  ";
+                    PISequence += getPIValue[i].ToString("0.00") + ",  ";
                 }
 
             }
@@ -168,11 +168,11 @@ namespace FlightSimulator
             {
                 if (i == getPIValue.Count - 1)
                 {
-                    PISequence += getPIValue[i].ToString("00.00");
+                    PISequence += getPIValue[i].ToString("0.00");
                 }
                 else
                 {
-                    PISequence += getPIValue[i].ToString("00.00") + ",  ";
+                    PISequence += getPIValue[i].ToString("0.00") + ",  ";
                 }
                 
             }

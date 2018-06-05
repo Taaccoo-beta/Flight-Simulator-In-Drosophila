@@ -1166,14 +1166,14 @@ namespace FlightSimulator
 
 
                     float k = float.Parse(tbKValue.Text);
-                    //degree += troque_trans * k * 0.01f;
+                    degree += troque_trans * k * 0.01f;
                     this.lblEXPStateP.Text = degree.ToString();
                     this.lblEXPStateTRaw.Text = troque.ToString();
                     this.lblEXPSTateT.Text = troque_trans.ToString();
 
 
                     //debug mode
-                    degree += 1;
+                    //degree += 1;
 
                     if (degree > 180)
                     {
@@ -1187,7 +1187,7 @@ namespace FlightSimulator
 
                     lpf3.Add(degree);
                     lpf4.Add(troque_trans);
-
+                    //Console.WriteLine(degree);
                     positionForEverySequence[sequenceIndexForExperiment].Add(degree);
                     torqueForEverySequence[sequenceIndexForExperiment].Add(troque_trans);
 
@@ -1258,6 +1258,11 @@ namespace FlightSimulator
 
 
                         Bitmap imageHere = new Bitmap(imageNow);
+                        Graphics g1 = Graphics.FromImage(imageHere);
+                        
+                        PICalc piC = new PICalc(positionForEverySequence[sequenceIndexForExperiment - 1], torqueForEverySequence[sequenceIndexForExperiment - 1], rbUpT.Checked ? true : false);
+                        float PIValueNow = piC.getSinglePIValue();
+                        g1.DrawString("PI: " + (PIValueNow).ToString("0.00"), new Font("Arial", 15), new SolidBrush(Color.LightGray), 30, 50);
                         PictureBox pb = new PictureBox();
                         float width = this.flpBottomForImageList.Size.Width - 30;
                         float height = (int)(((float)this.pbCommunitive.Size.Height / (float)this.pbCommunitive.Size.Width) * width);

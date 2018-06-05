@@ -13,6 +13,9 @@ namespace FlightSimulator
     {
         private List<List<float>> position = new List<List<float>>();
         private List<List<float>> troque = new List<List<float>>();
+
+        private List<float> singlePosition = new List<float>();
+        private List<float> singleTroque = new List<float>();
         private List<float> PIValue = new List<float>();
         private bool isTpunishment;
         public PICalc(List<List<float>> position, List<List<float>> troque,bool isTpunishment)
@@ -22,7 +25,41 @@ namespace FlightSimulator
             this.isTpunishment = isTpunishment;
 
         }
+        public PICalc(List<float> position,List<float> torque, bool isTpunishment)
+        {
+            this.singlePosition = position;
+            this.singleTroque = torque;
+            this.isTpunishment = isTpunishment;
+        }
 
+
+        public float getSinglePIValue()
+        {
+            int indexT = 0;
+            int indexInverseT = 0;
+            float PIValueNow=0f;
+            for (int i = 0; i != singlePosition.Count; i++)
+            {
+                
+               
+               if (getPIDecision(singlePosition[i]))
+               {
+                        indexT++;
+               }
+               else
+               {
+                        indexInverseT++;
+               }
+
+                PIValueNow = (float)(indexT - indexInverseT) / (float)(indexT + indexInverseT);
+                
+
+            }
+            return PIValueNow;
+
+
+            
+        }
         /// <summary>
         /// 计算并返回PI值
         /// </summary>
@@ -62,7 +99,7 @@ namespace FlightSimulator
         {
             if (isTpunishment)
             {
-                if ((value > 1488 & value < 2000) || (value > 2516 || value < 976))
+                if ((value > -45 & value < 45) || (value > 135 || value < -135))
                 {
                     return true;
                 }
@@ -73,7 +110,7 @@ namespace FlightSimulator
             }
             else
             {
-                if ((value > 1488 & value < 2000) || (value > 2516 || value < 976))
+                if ((value > -135 & value < -45) || (value > 45 || value < 135))
                 {
                     return false;
                 }
