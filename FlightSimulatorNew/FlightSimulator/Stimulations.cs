@@ -167,6 +167,11 @@ namespace FlightSimulator
 
 
 
+        public void MovingStrip()
+        {
+            Matrix m = new Matrix();
+        }
+
 
 
 

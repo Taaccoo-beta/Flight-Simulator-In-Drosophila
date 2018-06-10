@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analog.cs" />
+    <Compile Include="ArrayForDraw.cs" />
     <Compile Include="CoreControl.cs" />
     <Compile Include="Counters.cs" />
     <Compile Include="DataSerialize.cs" />
