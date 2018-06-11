@@ -36,8 +36,15 @@ namespace FlightSimulator
         {
             this.lblShowHeight.Text = this.pictureBox1.Height.ToString();
             this.lblShowWidth.Text = this.pictureBox1.Width.ToString();
+            degree += 2;
+            this.label3.Text = degree.ToString();
+            if (degree > 180)
+            {
+                degree = 360 - degree;
+            }
+            v.MoveRight((int)degree);
+            this.pictureBox1.CreateGraphics().DrawImage(v.DrawCBar(degree), 0, 0);
             
-            this.pictureBox1.CreateGraphics().DrawImage(v.DrawV_Test(degree), 0, 0);
             
         }
 
@@ -69,12 +76,14 @@ namespace FlightSimulator
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            degree += 10;
+            degree += 2;
             this.label3.Text = degree.ToString();
-            if (degree > 180)
+            if (degree >180)
             {
-                degree = degree - 360;
+                degree = 360 - degree;
             }
+            v.MoveRight((int)degree);
+            
         }
     }
 }

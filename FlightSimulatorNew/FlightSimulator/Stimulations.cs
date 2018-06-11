@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ww;
 
 namespace FlightSimulator
 {
@@ -24,10 +25,11 @@ namespace FlightSimulator
         private float blockWidth;
         private float blockHeight;
 
-
-        public Stimulations(int width,int height,ushort stiNumber)
+        private ArrayForDraw afd;
+        int[,] painting;
+        public Stimulations(int width, int height, ushort stiNumber)
         {
-            
+
             image1 = new Bitmap(width, height);
             g1 = Graphics.FromImage(image1);
             //使绘图质量最高，即消除锯齿  
@@ -41,6 +43,9 @@ namespace FlightSimulator
 
             blockWidth = 100f;
             blockHeight = 40f;
+
+            afd = new ArrayForDraw(width, height);
+
         }
 
         public void setWH(int width, int height)
@@ -54,6 +59,37 @@ namespace FlightSimulator
 
         }
 
+
+        public void MoveRight(int degree)
+        {
+
+            afd.MoveRightForDegree(degree);
+
+        }
+        public Bitmap DrawCBar(float degree)
+        {
+            
+
+            g1.Clear(Color.White);
+            for (int i = 0; i != height; i++)
+            {
+                for (int j = 0; j != width; j++)
+                {
+                    if (afd.Painting[i, j] == 0)
+                    {
+                        g1.DrawEllipse(Pens.Black, j, i, 1, 1);
+                    }
+                }
+            }
+
+
+
+            return image1;
+        }
+        //public Bitmap DrawACBar(float degree)
+        //{
+        //    ;
+        //}
 
         public Bitmap DrawV_Test(float degree)
         {
