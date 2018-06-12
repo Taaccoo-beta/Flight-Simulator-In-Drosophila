@@ -25,9 +25,9 @@ namespace FlightSimulator
         private string path;
         private List<List<float>> positionForEverySequence;
         private List<List<float>> torqueForEverySequence;
+        private List<List<int>> rightOrLeftForEverySequence;
 
-
-        public SigleExpResultPre(string dateTime, string expName, List<int> ExpTime, List<bool> TrainOrTest, bool ifPublishment,string path, List<List<float>> positionForEverySequence, List<List<float>> torqueForEverySequence)
+        public SigleExpResultPre(string dateTime, string expName, List<int> ExpTime, List<bool> TrainOrTest, bool ifPublishment,string path)
         {
             this.dateTime = dateTime;
             this.expName = expName;
@@ -36,18 +36,20 @@ namespace FlightSimulator
             this.ifTPunishment = ifPublishment;
             this.path = path;
             InitializeComponent();
-            this.positionForEverySequence = positionForEverySequence;
-            this.torqueForEverySequence = torqueForEverySequence;
+           
         }
 
         //public SigleExpResultPre()
         //{
         //    InitializeComponent();
         //}
-        public void setPositionAndTroque(List<List<float>> position, List<List<float>> torque)
+        public void setPositionAndTroque(List<List<float>> position, List<List<float>> torque,List<List<int>> rightOrleft)
         {
             this.position = position;
             this.torque = torque;
+            this.positionForEverySequence = position;
+            this.torqueForEverySequence = torque;
+            this.rightOrLeftForEverySequence = rightOrleft;
             PICalc pc = new PICalc(position, torque, ifTPunishment);
             getPIValue = pc.getPIValue();
         }
@@ -118,7 +120,7 @@ namespace FlightSimulator
                 int indexInside = positionForEverySequence[i].Count;
                 for (int j = 0; j != indexInside; j++)
                 {
-                    sW.WriteLine(positionForEverySequence[i][j].ToString("00.00") + "," + torqueForEverySequence[i][j].ToString("00.00"));
+                    sW.WriteLine(positionForEverySequence[i][j].ToString("00.00") + ",  " + torqueForEverySequence[i][j].ToString("00.00")+",  "+rightOrLeftForEverySequence[i][j].ToString());
                 }
             }
 

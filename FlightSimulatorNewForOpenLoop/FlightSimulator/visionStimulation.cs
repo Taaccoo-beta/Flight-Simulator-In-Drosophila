@@ -16,6 +16,7 @@ namespace FlightSimulator
         {
             InitializeComponent();
         }
+
         private Stimulations v;
         private void visionStimulation_Load(object sender, EventArgs e)
         {
@@ -25,6 +26,15 @@ namespace FlightSimulator
             v = new Stimulations(this.pictureBox1.Width, this.pictureBox1.Height, 1);
         }
 
+        public int getDegree()
+        {
+            return v.getDegree();
+        }
+
+        public bool getRightOrLeft()
+        {
+            return v.getRightOrLeft();
+        }
         private void btnDraw_Click(object sender, EventArgs e)
         {
             this.timer1.Interval = 150;

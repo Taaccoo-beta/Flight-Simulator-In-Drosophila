@@ -68,11 +68,12 @@ namespace FlightSimulator
             return width / 2f + width / 360f * degree;
 
         }
-        [DllImport("Gdi32.dll")]
-        public static extern int GetPixel(IntPtr hDC, int x, int y);
-        [DllImport("Gdi32.dll")]
-        public static extern int SetPixel(IntPtr hDC, int x, int y, int color);
 
+        public int ValueToDegree(float value)
+        {
+            return (int)((value - width / 2f) * 360 / width);
+        }
+        
 
 
         public void setRightLeft(bool ifRight)
@@ -90,6 +91,14 @@ namespace FlightSimulator
         {
             SpeedDegree = value;
         }
+        public int getDegree()
+        {
+            return ValueToDegree(positionNow)+barWidth/2;
+        }
+        public bool getRightOrLeft()
+        {
+            return ifMoveRight;
+        }
 
         public void setBarWidth(float value)
         {
@@ -97,7 +106,7 @@ namespace FlightSimulator
             afd = new ArrayForDraw(barWidth, height, 2);
             bar = afd.GiveValueForRandow();
         }
-        private int positionNow;
+        private int positionNow=0;
         private int SpeedDegree = 0;
         private int start;
         private int end;
@@ -106,6 +115,8 @@ namespace FlightSimulator
 
         public Bitmap DrawCBar()
         {
+
+
             if (ifMoveRight)
             {
                 positionNow += SpeedDegree;
