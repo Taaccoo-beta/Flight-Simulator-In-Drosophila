@@ -920,7 +920,7 @@ namespace FlightSimulator
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
 
-            vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
+            //vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
             timeBeginPeriod(1);
             uint start = timeGetTime();

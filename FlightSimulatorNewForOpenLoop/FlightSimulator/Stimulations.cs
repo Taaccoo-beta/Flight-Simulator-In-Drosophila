@@ -117,22 +117,7 @@ namespace FlightSimulator
         {
 
 
-            if (ifMoveRight)
-            {
-                positionNow += SpeedDegree;
-                if (positionNow > end)
-                {
-                    positionNow = start;
-                }
-            }
-            else
-            {
-                positionNow -= SpeedDegree;
-                if (positionNow < start)
-                {
-                    positionNow = end;
-                }
-            }
+            
             g1.Clear(Color.White);
             for (int i = 0; i != height; i++)
             {
