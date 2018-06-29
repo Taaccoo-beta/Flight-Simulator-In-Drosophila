@@ -104,13 +104,13 @@
     <Compile Include="SpeedDetection.Designer.cs">
       <DependentUpon>SpeedDetection.cs</DependentUpon>
     </Compile>
-    <Compile Include="visionStimulation.cs">
+    <Compile Include="Stimulations.cs" />
+    <Compile Include="VisionFigure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="visionStimulation.Designer.cs">
-      <DependentUpon>visionStimulation.cs</DependentUpon>
+    <Compile Include="VisionFigure.Designer.cs">
+      <DependentUpon>VisionFigure.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stimulations.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,8 +141,8 @@
     <EmbeddedResource Include="SpeedDetection.resx">
       <DependentUpon>SpeedDetection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="visionStimulation.resx">
-      <DependentUpon>visionStimulation.cs</DependentUpon>
+    <EmbeddedResource Include="VisionFigure.resx">
+      <DependentUpon>VisionFigure.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

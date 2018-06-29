@@ -90,7 +90,7 @@ namespace FlightSimulator
         //
         private bool isOpenCircle = true;
 
-        private visionStimulation v;
+       
         public FlightSimulator()
         {
             InitializeComponent();
@@ -503,8 +503,6 @@ namespace FlightSimulator
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
            
-            vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
-
             
 
             dp1 = new drawProcess(this.pictureBox1.Width, this.pictureBox1.Height, Color.DarkCyan);
@@ -589,6 +587,7 @@ namespace FlightSimulator
             //this.pictureBox1.CreateGraphics().DrawImage(dp.drawTest(), 0, 0);
         }
         private CoreControl cc;
+        private VisionFigure vf;
         private void Form1_Load(object sender, EventArgs e)
         {
             pc = new PortControl(0);
@@ -683,10 +682,11 @@ namespace FlightSimulator
 
 
 
-
-            v = new visionStimulation();
-            v.Show();
-
+            vf = new VisionFigure();
+            vf.Size = new System.Drawing.Size(1038, 369);
+            vf.Show();
+            vf.Location = new Point(10, 10);
+            //vf.Location = new Point(2959, 524);
             timer1.Interval = 10;
             timer2.Interval = 100;
         }
@@ -914,7 +914,7 @@ namespace FlightSimulator
             {
                 degree = degree + 360;
             }
-            v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+            
 
             lpf1.Add(degree);
             lpf2.Add(troque_trans);
@@ -1067,7 +1067,7 @@ namespace FlightSimulator
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
 
-            vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
+            //vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
             timeBeginPeriod(1);
             uint start = timeGetTime();
@@ -1183,7 +1183,7 @@ namespace FlightSimulator
                     {
                         degree = degree + 360;
                     }
-                    v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+                    //v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
 
                     lpf3.Add(degree);
                     lpf4.Add(troque_trans);
@@ -1663,7 +1663,7 @@ namespace FlightSimulator
         {
            
 
-            vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
+            //vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
             this.pbChoosedPattern.BackgroundImage = vSti.DrawV_Test(0);
         }
