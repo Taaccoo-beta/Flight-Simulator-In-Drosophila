@@ -27,13 +27,13 @@ namespace FlightSimulator
         private List<List<float>> torqueForEverySequence;
 
 
-        public SigleExpResultPre(string dateTime, string expName, List<int> ExpTime, List<bool> TrainOrTest, bool ifPublishment,string path, List<List<float>> positionForEverySequence, List<List<float>> torqueForEverySequence)
+        public SigleExpResultPre(string dateTime, string expName, List<int> ExpTime, List<bool> TrainOrTest,string path, List<List<float>> positionForEverySequence, List<List<float>> torqueForEverySequence)
         {
             this.dateTime = dateTime;
             this.expName = expName;
             this.Exptime = ExpTime;
             this.TrainOrTest = TrainOrTest;
-            this.ifTPunishment = ifPublishment;
+           
             this.path = path;
             InitializeComponent();
             this.positionForEverySequence = positionForEverySequence;
@@ -88,28 +88,10 @@ namespace FlightSimulator
                 sW.Write(item.ToString() + ";");
             }
 
+          
             sW.WriteLine();
-            sW.Write("If_T_Punishment: " + (ifTPunishment ? 1 : 0).ToString());
-
-            string PISequence = "";
-            for (int i = 0; i != getPIValue.Count; i++)
-            {
-                if (i == getPIValue.Count - 1)
-                {
-                    PISequence += getPIValue[i].ToString("0.00");
-                }
-                else
-                {
-                    PISequence += getPIValue[i].ToString("0.00") + ",  ";
-                }
-
-            }
-            
-
             sW.WriteLine();
-            sW.Write("PISequence: " + "[" + PISequence + "]");
-
-            sW.WriteLine();
+            sW.Write("Position" + " " + "Torque");
             sW.WriteLine();
 
             int index = positionForEverySequence.Count;
@@ -126,63 +108,26 @@ namespace FlightSimulator
         }
         public void showResult()
         {
-            List<Control> controls = new List<Control>();
-            int controlsLength = position.Count;
-
-
-            for (int i = 0; i < controlsLength; i++)
-            {
-                Label l = new Label();
-                l.Name = "lblDForSequence" + i.ToString();
-                l.AutoSize = true;
-                l.BorderStyle = BorderStyle.FixedSingle;
-                l.Margin = new System.Windows.Forms.Padding(3);
-                l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                if (TrainOrTest[i] == true)
-                {
-                    l.Text = "Tr: " + Exptime[i].ToString();
-                }
-                else
-                {
-                    l.Text = "Te: " + Exptime[i].ToString();
-                }
-                controls.Add(l);
-
-                this.flowLayoutPanel1.Controls.Add(l);
-            }
+           
+            
 
             lblExpName.Text = expName;
             lblExpTime.Text = dateTime;
-
-            if (ifTPunishment)
-            {
-                lblPunishmentImage.Text = "UP_T";
-            }
-            else
-            {
-                lblPunishmentImage.Text = "Down_T";
-            }
-
-            string PISequence="";
-            for (int i = 0; i != getPIValue.Count; i++)
-            {
-                if (i == getPIValue.Count - 1)
-                {
-                    PISequence += getPIValue[i].ToString("0.00");
-                }
-                else
-                {
-                    PISequence += getPIValue[i].ToString("0.00") + ",  ";
-                }
-                
-            }
-            lblPIValue.Text = "[" + PISequence + "]";
-
+            lblPathValue.Text = path;
             DataSave();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Press OK to delete", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                File.Delete("e:/data/Test.txt");
+                this.Close();
+            }
+            else
+            {
+                this.Close();
+            }
 
         }
     }

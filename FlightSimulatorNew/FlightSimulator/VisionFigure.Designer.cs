@@ -28,27 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pbCanvas = new System.Windows.Forms.PictureBox();
+            this.simpleOpenGlControl1 = new Tao.Platform.Windows.SimpleOpenGlControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             this.SuspendLayout();
             // 
             // pbCanvas
             // 
-            this.pbCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbCanvas.Dock = System.Windows.Forms.DockStyle.Top;
             this.pbCanvas.Location = new System.Drawing.Point(0, 0);
+            this.pbCanvas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(1020, 322);
+            this.pbCanvas.Size = new System.Drawing.Size(772, 330);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
             // 
+            // simpleOpenGlControl1
+            // 
+            this.simpleOpenGlControl1.AccumBits = ((byte)(0));
+            this.simpleOpenGlControl1.AutoCheckErrors = false;
+            this.simpleOpenGlControl1.AutoFinish = false;
+            this.simpleOpenGlControl1.AutoMakeCurrent = true;
+            this.simpleOpenGlControl1.AutoSwapBuffers = true;
+            this.simpleOpenGlControl1.BackColor = System.Drawing.Color.Black;
+            this.simpleOpenGlControl1.ColorBits = ((byte)(32));
+            this.simpleOpenGlControl1.DepthBits = ((byte)(16));
+            this.simpleOpenGlControl1.Location = new System.Drawing.Point(0, 346);
+            this.simpleOpenGlControl1.Name = "simpleOpenGlControl1";
+            this.simpleOpenGlControl1.Size = new System.Drawing.Size(20, 18);
+            this.simpleOpenGlControl1.StencilBits = ((byte)(0));
+            this.simpleOpenGlControl1.TabIndex = 1;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // VisionFigure
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 322);
+            this.ClientSize = new System.Drawing.Size(772, 370);
+            this.Controls.Add(this.simpleOpenGlControl1);
             this.Controls.Add(this.pbCanvas);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "VisionFigure";
             this.Text = "VisionFigure";
+            this.Load += new System.EventHandler(this.VisionFigure_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             this.ResumeLayout(false);
 
@@ -56,6 +83,8 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbCanvas;
+        public System.Windows.Forms.PictureBox pbCanvas;
+        public Tao.Platform.Windows.SimpleOpenGlControl simpleOpenGlControl1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
