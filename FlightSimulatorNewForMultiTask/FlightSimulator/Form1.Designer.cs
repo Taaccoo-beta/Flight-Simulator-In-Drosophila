@@ -248,7 +248,7 @@
             this.tpStep1.Location = new System.Drawing.Point(4, 25);
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
-            this.tpStep1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpStep1.Padding = new System.Windows.Forms.Padding(3);
             this.tpStep1.Size = new System.Drawing.Size(1509, 771);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
@@ -278,6 +278,7 @@
             this.gbSetSequence_3.Controls.Add(this.lblTrainOrTest_3);
             this.gbSetSequence_3.Controls.Add(this.rbTrain_3);
             this.gbSetSequence_3.Controls.Add(this.lblLastTime_3);
+            this.gbSetSequence_3.Enabled = false;
             this.gbSetSequence_3.Location = new System.Drawing.Point(703, 25);
             this.gbSetSequence_3.Name = "gbSetSequence_3";
             this.gbSetSequence_3.Size = new System.Drawing.Size(315, 425);
@@ -410,6 +411,7 @@
             this.gbSetSequence_2.Controls.Add(this.lblTrainOrTest_2);
             this.gbSetSequence_2.Controls.Add(this.rbTrain_2);
             this.gbSetSequence_2.Controls.Add(this.lblLastTime_2);
+            this.gbSetSequence_2.Enabled = false;
             this.gbSetSequence_2.Location = new System.Drawing.Point(371, 25);
             this.gbSetSequence_2.Name = "gbSetSequence_2";
             this.gbSetSequence_2.Size = new System.Drawing.Size(315, 425);
@@ -624,6 +626,7 @@
             this.gbSetSequence_1.Controls.Add(this.lblTrainOrTest_1);
             this.gbSetSequence_1.Controls.Add(this.rbTrain_1);
             this.gbSetSequence_1.Controls.Add(this.lblLastTime_1);
+            this.gbSetSequence_1.Enabled = false;
             this.gbSetSequence_1.Location = new System.Drawing.Point(39, 25);
             this.gbSetSequence_1.Name = "gbSetSequence_1";
             this.gbSetSequence_1.Size = new System.Drawing.Size(315, 425);
@@ -768,7 +771,7 @@
             this.tpStep2.Controls.Add(this.pictureBox1);
             this.tpStep2.Location = new System.Drawing.Point(4, 25);
             this.tpStep2.Name = "tpStep2";
-            this.tpStep2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpStep2.Padding = new System.Windows.Forms.Padding(3);
             this.tpStep2.Size = new System.Drawing.Size(1509, 771);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";

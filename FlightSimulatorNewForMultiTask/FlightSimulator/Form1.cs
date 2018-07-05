@@ -888,7 +888,7 @@ namespace FlightSimulator
 
         System.Diagnostics.Stopwatch sw;
         private int count = 0;
-        private float settingDegree = -135;
+        private float settingDegree = 0;
         private float oritation = 1;
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -900,11 +900,11 @@ namespace FlightSimulator
             troque_trans = (troque - 2048) / 2048 * 80;
             
             settingDegree += 1.8f*oritation;
-            if (settingDegree >= 135)
+            if (settingDegree >= 90)
             {
                 oritation = -1;
             }
-            if (settingDegree <= -135)
+            if (settingDegree <= -90)
             {
                 oritation = 1;
             }
@@ -1026,7 +1026,7 @@ namespace FlightSimulator
 
             this.btnStep3Start.Enabled = false;
 
-            float settingDegree = -135;
+            float settingDegree = 0;
             oritation = 1;
             vf.SetRandomPoint();
 
@@ -1061,11 +1061,11 @@ namespace FlightSimulator
 
 
                     settingDegree += 1.8f * oritation;
-                    if (settingDegree >= 135)
+                    if (settingDegree >= 90)
                     {
                         oritation = -1;
                     }
-                    if (settingDegree <= -135)
+                    if (settingDegree <= -90)
                     {
                         oritation = 1;
                     }
@@ -1091,7 +1091,7 @@ namespace FlightSimulator
 
                     
 
-                    if (count == experimentTimeUsed[sequenceIndexForExperiment] * 20)
+                    if (count == 10 * 20)
                     {
                         count = 0;
                         sequenceIndexForExperiment++;
