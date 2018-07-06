@@ -19,38 +19,32 @@ namespace FlightSimulator
         private List<int> Exptime;
         private List<bool> TrainOrTest;
         private bool ifTPunishment;
-        private List<List<float>> position;
-        private List<List<float>> torque;
+        
         private List<float> getPIValue;
         private string path;
-        private List<List<float>> positionForEverySequence;
-        private List<List<float>> torqueForEverySequence;
+        private Dictionary<int,List<float>> positionData;
+        private Dictionary<int,List<float>> troqueData;
+        private int[] expOrder;
 
-
-        public SigleExpResultPre(string dateTime, string expName, List<int> ExpTime, List<bool> TrainOrTest,string path, List<List<float>> positionForEverySequence, List<List<float>> torqueForEverySequence)
+        public SigleExpResultPre(string dateTime, string expName, List<int> ExpTime, List<bool> TrainOrTest,string path, Dictionary<int,List<float>> positionData, Dictionary<int,List<float>> troqueData,int[] expOrder)
         {
             this.dateTime = dateTime;
             this.expName = expName;
             this.Exptime = ExpTime;
             this.TrainOrTest = TrainOrTest;
-           
+            this.positionData = positionData;
+            this.troqueData = troqueData;
             this.path = path;
+            this.expOrder = expOrder;
             InitializeComponent();
-            this.positionForEverySequence = positionForEverySequence;
-            this.torqueForEverySequence = torqueForEverySequence;
+            
         }
 
         //public SigleExpResultPre()
         //{
         //    InitializeComponent();
         //}
-        public void setPositionAndTroque(List<List<float>> position, List<List<float>> torque)
-        {
-            this.position = position;
-            this.torque = torque;
-            PICalc pc = new PICalc(position, torque, ifTPunishment);
-            getPIValue = pc.getPIValue();
-        }
+        
         public List<float> outPIValue()
         {
             return getPIValue;
@@ -68,42 +62,33 @@ namespace FlightSimulator
             sW.WriteLine("ExpName: " + expName);
             sW.WriteLine("Date: " + dateTime);
 
-            sW.Write("ExpSequence: ");
-            foreach (var item in TrainOrTest)
+            sW.Write("ExpOrder:  [");
+            foreach (var item in expOrder)
             {
-                if (item)
-                {
-                    sW.Write("Tr;");
-                }
-                else
-                {
-                    sW.Write("Te;");
-                }
+                sW.Write(item + ",");
             }
+            sW.Write("]");
 
             sW.WriteLine();
-            sW.Write("TimeSequence: ");
-            foreach (var item in Exptime)
-            {
-                sW.Write(item.ToString() + ";");
-            }
 
-          
+
             sW.WriteLine();
             sW.WriteLine();
             sW.Write("Position" + " " + "Torque");
             sW.WriteLine();
 
-            int index = positionForEverySequence.Count;
-            for (int i = 0; i != index; i++)
+            for (int i = 1; i != 7; i++)
             {
-                int indexInside = positionForEverySequence[i].Count;
+                sW.Write("exp"+i);
+                sW.WriteLine();
+                int indexInside = positionData[i].Count;
                 for (int j = 0; j != indexInside; j++)
                 {
-                    sW.WriteLine(positionForEverySequence[i][j].ToString("00.00") + "," + torqueForEverySequence[i][j].ToString("00.00"));
+                    sW.WriteLine(positionData[i][j].ToString("00.00") + "," + troqueData[i][j].ToString("00.00"));
                 }
+                
             }
-
+           
             sW.Close();
         }
         public void showResult()

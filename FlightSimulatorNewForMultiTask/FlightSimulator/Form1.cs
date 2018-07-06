@@ -806,7 +806,7 @@ namespace FlightSimulator
         /// <summary>
         /// save data after finished a sigle experiment
         /// </summary>
-        private void DataSave()
+        private void DataSave(int[] expOrder,int circleNumber)
         {
             string ExpFinishTime = DateTime.Now.ToString();
 
@@ -819,9 +819,12 @@ namespace FlightSimulator
             //torqueForEverySequence
 
 
-            string path = this.lblDPValue.Text.ToString() + "\\" + ExpName + ".txt";
-            
+            string path = this.lblDPValue.Text.ToString() + "\\" + ExpName +"_"+ (circleNumber+1).ToString()+".txt";
 
+            SigleExpResultPre serp = new SigleExpResultPre(ExpFinishTime, ExpName, ExpTime, TrainOrTest, path,positionData,torqueData,expOrder);
+            
+            serp.showResult();
+            serp.Show();
 
 
             //FileInfo myFile = new FileInfo(path);
@@ -865,13 +868,10 @@ namespace FlightSimulator
             //        sW.WriteLine(positionForEverySequence[i][j].ToString("00.00") + "," + torqueForEverySequence[i][j].ToString("00.00"));
             //    }
             //}
-            
+
             //sW.Close();
 
-            //SigleExpResultPre serp = new SigleExpResultPre(ExpFinishTime, ExpName, ExpTime, TrainOrTest, path,positionForEverySequence,torqueForEverySequence);
-            //serp.setPositionAndTroque(positionForEverySequence, torqueForEverySequence);
-            //serp.showResult();
-            //serp.Show();
+
 
         }
 
@@ -1069,13 +1069,13 @@ namespace FlightSimulator
                         int time;
                         if (expID > 3)
                         {
-                            time = 10;
-                            settingDegree += 1.8f * oritation;
+                            time = 4;
+                            settingDegree += 4.5f * oritation;
                         }
                         else
                         {
                             settingDegree += 1.8f * oritation;
-                            time = 4;
+                            time = 10;
                         }
                         
                         if (settingDegree >= 90)
@@ -1114,15 +1114,22 @@ namespace FlightSimulator
                             
                             lpf3.Clear();
                             lpf4.Clear();
-                            settingDegree = 0;
+                            degree = 0;
                             oritation = 1;
 
-
+                            
                             expIndex++;
-                            expID = expOrder[expIndex];
-                            torqueData.Add(expID, new List<float>());
-                            positionData.Add(expID, new List<float>());
+                            if (expIndex < 6)
+                            {
+                                expID = expOrder[expIndex];
 
+                                torqueData.Add(expID, new List<float>());
+                                positionData.Add(expID, new List<float>());
+                            }
+                            else
+                            {
+                                ;
+                            }
                             isExpModule = false;
                             isInterModule = true;
 
@@ -1147,7 +1154,28 @@ namespace FlightSimulator
                         //imageNow = dp2.drawCommunitivePoint(degree, false,sequenceIndexForExperiment);
                         //this.pbCommunitive.CreateGraphics().DrawImage(imageNow, 0, 0);
 
-                        this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageBackGround(settingDegree), 0, 0);
+
+                        
+                        switch (expID)
+                        {
+                            case 1:
+                            case 4:
+                                this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageSingleBar(settingDegree), 0, 0);
+                                break;
+                            case 2:
+                            case 5:
+                                this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageBackGround(settingDegree), 0, 0);
+                                break;
+                            case 3:
+                            case 6:
+                                this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageBarAndBackGround(settingDegree), 0, 0);
+                                break;
+                            default:
+                                break;
+                        }
+
+
+                       
                         this.vf.simpleOpenGlControl1.Refresh();
 
                         sw.Stop();
@@ -1162,7 +1190,7 @@ namespace FlightSimulator
                     {
 
 
-                        degree = troque_trans * k * 0.01f;
+                        degree += troque_trans * k * 0.01f;
 
                         this.lblEXPStateP.Text = degree.ToString();
                         this.lblEXPStateTRaw.Text = troque.ToString();
@@ -1195,6 +1223,9 @@ namespace FlightSimulator
                             if (expIndex == 6)
                             {
 
+                                
+                                DataSave(expOrder,TotalCircle);
+
                                 TotalCircle++;
                                 if (TotalCircle == 3)
                                 {
@@ -1204,9 +1235,8 @@ namespace FlightSimulator
                                     //OpenLoop();
                                     cbOpenOrClosed.Checked = false;
                                     cbOpenOrClosed.Text = "Open";
-                                   
+
                                 }
-                                DataSave();
 
                                 positionData.Clear();
                                 torqueData.Clear();
