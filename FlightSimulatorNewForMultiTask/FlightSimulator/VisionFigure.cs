@@ -44,7 +44,22 @@ namespace FlightSimulator
         }
 
 
-        public Bitmap getImage(float degree)
+        public Bitmap getImageBarAndBackGround(float degree)
+        {
+            //Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
+            Bitmap b = (Bitmap)rp.getBitmapForBackground(degree).Clone();
+
+            return b;
+        }
+
+        public Bitmap getImageSingleBar(float degree)
+        {
+            //Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
+            Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
+
+            return b;
+        }
+        public Bitmap getImageBackGround(float degree)
         {
             //Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
             Bitmap b = (Bitmap)rp.getBitmapBackgroundMBarStop(degree).Clone();
@@ -52,8 +67,16 @@ namespace FlightSimulator
             return b;
         }
 
-        
-        
+        public Bitmap getBlackBarWhiteBackground(float degree)
+        {
+            //Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
+            Bitmap b = (Bitmap)rp.getBlackBar(degree).Clone();
+
+            return b;
+        }
+
+
+
         private void timer1_Tick(object sender, EventArgs e)
         {
 

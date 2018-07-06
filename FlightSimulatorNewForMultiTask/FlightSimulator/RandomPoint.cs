@@ -255,6 +255,25 @@ namespace Game
 
         }
 
+        public Bitmap getBlackBar(float degree)
+        {
+
+            float position = DegreeToValue(degree);
+            g.Clear(Color.White);
+           
+           
+            
+            int newBarSize = barSize * pointSize;
+            g.FillRectangle(new SolidBrush(Color.Black), position - newBarSize / 2, 0, barSize * pointSize, height);
+
+
+            
+            return bm;
+
+
+
+
+        }
 
 
 

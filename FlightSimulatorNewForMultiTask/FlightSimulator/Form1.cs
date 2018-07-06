@@ -73,7 +73,7 @@ namespace FlightSimulator
         private int sequenceIndexForExperiment = 0;
         private List<List<float>> positionForEverySequence;
         private List<List<float>> torqueForEverySequence;
-
+        private List<int> expSequence;
 
         private PortControl pc;
 
@@ -600,6 +600,7 @@ namespace FlightSimulator
             pc.ClearALLDigitalPort();
             positionForEverySequence = new List<List<float>>();
             torqueForEverySequence = new List<List<float>>();
+            expSequence = new List<int>();
             cc = new CoreControl();
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
@@ -937,7 +938,7 @@ namespace FlightSimulator
 
             this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
 
-            this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImage(settingDegree), 0, 0);
+            this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getBlackBarWhiteBackground(settingDegree), 0, 0);
             this.vf.simpleOpenGlControl1.Refresh();
             
             sw.Stop();
@@ -947,7 +948,48 @@ namespace FlightSimulator
         }
 
 
+        //bar move  1
+        //background move 2
+        //both move 3
+        //black bar 0
+
+
+
+        public int[] getShufferArr(int number)
+        {
+            int[] arr = new int[number];
+            for (int i = 0; i != arr.Length; i++)
+            {
+                arr[i] = i + 1;
+            }
+
+
+            int k = 0;
+            int[] newarr = new int[number];
+            while (k < arr.Length)
+            {
+                int temp = new Random().Next(0, arr.Length);
+                if (arr[temp] != 0)
+                {
+                    newarr[k] = arr[temp];
+                    k++;
+                    arr[temp] = 0;
+                }
+            }
+
+            return newarr;
+
+        }
+
         private float k;
+        private const int expCircle = 3;
+        private const int intervalTime = 5;
+        private const int expTime_20_pps = 10;
+        private const int expTime_50_pps = 5;
+        private const int expCount = 1;
+        private bool ifClosedLoop = false;
+
+
         private void btnStep3Start_Click(object sender, EventArgs e)
         {
             lblChooseDisplay.Visible = true;
@@ -970,55 +1012,13 @@ namespace FlightSimulator
             lpf4.Clear();
             positionForEverySequence.Clear();
             torqueForEverySequence.Clear();
+            expSequence.Clear();
             sequenceIndexForExperiment = 0;
-            //this.flpTopForLabel.Controls.Clear();
-            //this.flpBottomForImageList.Controls.Clear();
-            int controlsLength;
-            if (cbSetSeqChoosed_1.Checked)
-            {
-                controlsLength = trainOrTest_1.Count;
-                trainOrTestUsed = trainOrTest_1;
-                experimentTimeUsed = experimentTime_1;
-            }
-            else if (cbSetSeqChoosed_2.Checked)
-            {
-                controlsLength = trainOrTest_2.Count;
-                trainOrTestUsed = trainOrTest_2;
-                experimentTimeUsed = experimentTime_2;
-            }
-            else
-            {
-                controlsLength = trainOrTest_3.Count;
-                trainOrTestUsed = trainOrTest_3;
-                experimentTimeUsed = experimentTime_3;
-            }
 
 
-            dp1.getTrainOrTestSequence(trainOrTestUsed);
-            //dp2.getTrainOrTestSequence(trainOrTestUsed);
-
-            //controls = new List<Control>();
-            //for (int ii = 0; ii < controlsLength; ii++)
-            //{
-            //    Label l = new Label();
-            //    l.Name = "lblDForSequence" + i.ToString();
-            //    l.AutoSize = true;
-            //    l.BorderStyle = BorderStyle.FixedSingle;
-            //    l.Margin = new System.Windows.Forms.Padding(3);
-            //    l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            //    if (trainOrTestUsed[i] == true)
-            //    {
-            //        l.Text = "Tr: " + experimentTimeUsed[i].ToString();
-            //    }
-            //    else
-            //    {
-            //        l.Text = "Te: " + experimentTimeUsed[i].ToString();
-            //    }
-            //    controls.Add(l);
-
-            //    this.flpTopForLabel.Controls.Add(l);
-            //}
-            //controls[0].BackColor = Color.DarkCyan;
+            int[] expOrder = getShufferArr(6);
+            int expOrderNow = 0;
+            
 
             positionForEverySequence.Add(new List<float>());
             torqueForEverySequence.Add(new List<float>());
@@ -1138,7 +1138,8 @@ namespace FlightSimulator
                     this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
                     //imageNow = dp2.drawCommunitivePoint(degree, false,sequenceIndexForExperiment);
                     //this.pbCommunitive.CreateGraphics().DrawImage(imageNow, 0, 0);
-                    this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImage(settingDegree), 0, 0);
+
+                    this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageBackGround(settingDegree), 0, 0);
                     this.vf.simpleOpenGlControl1.Refresh();
 
                     sw.Stop();
@@ -1626,6 +1627,17 @@ namespace FlightSimulator
         private void button1_Click_2(object sender, EventArgs e)
         {
             timer2.Stop();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int[] arr = getShufferArr(6);
+            for (int i = 0; i != arr.Length; i++)
+            {
+                Console.WriteLine(arr[i]);
+
+            }
+            Console.WriteLine("divideLine");
         }
     }
 }
