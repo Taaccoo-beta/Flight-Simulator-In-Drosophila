@@ -40,10 +40,6 @@
             this.replayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpStep1 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rbDownT = new System.Windows.Forms.RadioButton();
-            this.rbUpT = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnGoStep_2 = new System.Windows.Forms.Button();
             this.gbSetSequence_3 = new System.Windows.Forms.GroupBox();
             this.btnSeOrMi_3 = new System.Windows.Forms.Button();
@@ -70,6 +66,10 @@
             this.rbTrain_2 = new System.Windows.Forms.RadioButton();
             this.lblLastTime_2 = new System.Windows.Forms.Label();
             this.gbPunishmentChoose = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rbDownT = new System.Windows.Forms.RadioButton();
+            this.rbUpT = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.rbPCShake = new System.Windows.Forms.RadioButton();
             this.rbPCHeat = new System.Windows.Forms.RadioButton();
@@ -132,10 +132,10 @@
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.gbSetSequence_3.SuspendLayout();
             this.gbSetSequence_2.SuspendLayout();
             this.gbPunishmentChoose.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.gbSetName.SuspendLayout();
             this.gbSetDataPath.SuspendLayout();
             this.gbSetSequence_1.SuspendLayout();
@@ -159,7 +159,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(701, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1089, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -238,7 +238,7 @@
             this.tabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(701, 535);
+            this.tabControl.Size = new System.Drawing.Size(1089, 710);
             this.tabControl.TabIndex = 1;
             this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl_Selected);
             // 
@@ -255,63 +255,15 @@
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
             this.tpStep1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep1.Size = new System.Drawing.Size(693, 509);
+            this.tpStep1.Size = new System.Drawing.Size(1081, 684);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
             this.tpStep1.UseVisualStyleBackColor = true;
             this.tpStep1.Click += new System.EventHandler(this.tpStep1_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.rbDownT);
-            this.panel1.Controls.Add(this.rbUpT);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(4, 54);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 44);
-            this.panel1.TabIndex = 29;
-            // 
-            // rbDownT
-            // 
-            this.rbDownT.AutoSize = true;
-            this.rbDownT.Location = new System.Drawing.Point(143, 11);
-            this.rbDownT.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rbDownT.Name = "rbDownT";
-            this.rbDownT.Size = new System.Drawing.Size(60, 17);
-            this.rbDownT.TabIndex = 16;
-            this.rbDownT.TabStop = true;
-            this.rbDownT.Text = "DownT";
-            this.rbDownT.UseVisualStyleBackColor = true;
-            // 
-            // rbUpT
-            // 
-            this.rbUpT.AutoSize = true;
-            this.rbUpT.Checked = true;
-            this.rbUpT.Location = new System.Drawing.Point(92, 11);
-            this.rbUpT.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rbUpT.Name = "rbUpT";
-            this.rbUpT.Size = new System.Drawing.Size(46, 17);
-            this.rbUpT.TabIndex = 15;
-            this.rbUpT.TabStop = true;
-            this.rbUpT.Text = "UpT";
-            this.rbUpT.UseVisualStyleBackColor = true;
-            this.rbUpT.CheckedChanged += new System.EventHandler(this.rbUpT_CheckedChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(3, 13);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 12);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Orientation：";
-            // 
             // btnGoStep_2
             // 
-            this.btnGoStep_2.Location = new System.Drawing.Point(593, 361);
+            this.btnGoStep_2.Location = new System.Drawing.Point(727, 469);
             this.btnGoStep_2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGoStep_2.Name = "btnGoStep_2";
             this.btnGoStep_2.Size = new System.Drawing.Size(83, 34);
@@ -333,7 +285,7 @@
             this.gbSetSequence_3.Controls.Add(this.lblTrainOrTest_3);
             this.gbSetSequence_3.Controls.Add(this.rbTrain_3);
             this.gbSetSequence_3.Controls.Add(this.lblLastTime_3);
-            this.gbSetSequence_3.Location = new System.Drawing.Point(455, 6);
+            this.gbSetSequence_3.Location = new System.Drawing.Point(579, 22);
             this.gbSetSequence_3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetSequence_3.Name = "gbSetSequence_3";
             this.gbSetSequence_3.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -477,7 +429,7 @@
             this.gbSetSequence_2.Controls.Add(this.lblTrainOrTest_2);
             this.gbSetSequence_2.Controls.Add(this.rbTrain_2);
             this.gbSetSequence_2.Controls.Add(this.lblLastTime_2);
-            this.gbSetSequence_2.Location = new System.Drawing.Point(231, 6);
+            this.gbSetSequence_2.Location = new System.Drawing.Point(317, 22);
             this.gbSetSequence_2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetSequence_2.Name = "gbSetSequence_2";
             this.gbSetSequence_2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -615,7 +567,7 @@
             this.gbPunishmentChoose.Controls.Add(this.label6);
             this.gbPunishmentChoose.Controls.Add(this.rbPCShake);
             this.gbPunishmentChoose.Controls.Add(this.rbPCHeat);
-            this.gbPunishmentChoose.Location = new System.Drawing.Point(327, 282);
+            this.gbPunishmentChoose.Location = new System.Drawing.Point(558, 326);
             this.gbPunishmentChoose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbPunishmentChoose.Name = "gbPunishmentChoose";
             this.gbPunishmentChoose.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -623,6 +575,54 @@
             this.gbPunishmentChoose.TabIndex = 26;
             this.gbPunishmentChoose.TabStop = false;
             this.gbPunishmentChoose.Text = "ExInit-setPunishment";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rbDownT);
+            this.panel1.Controls.Add(this.rbUpT);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(4, 54);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(244, 44);
+            this.panel1.TabIndex = 29;
+            // 
+            // rbDownT
+            // 
+            this.rbDownT.AutoSize = true;
+            this.rbDownT.Location = new System.Drawing.Point(143, 11);
+            this.rbDownT.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.rbDownT.Name = "rbDownT";
+            this.rbDownT.Size = new System.Drawing.Size(60, 17);
+            this.rbDownT.TabIndex = 16;
+            this.rbDownT.TabStop = true;
+            this.rbDownT.Text = "DownT";
+            this.rbDownT.UseVisualStyleBackColor = true;
+            // 
+            // rbUpT
+            // 
+            this.rbUpT.AutoSize = true;
+            this.rbUpT.Checked = true;
+            this.rbUpT.Location = new System.Drawing.Point(92, 11);
+            this.rbUpT.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.rbUpT.Name = "rbUpT";
+            this.rbUpT.Size = new System.Drawing.Size(46, 17);
+            this.rbUpT.TabIndex = 15;
+            this.rbUpT.TabStop = true;
+            this.rbUpT.Text = "UpT";
+            this.rbUpT.UseVisualStyleBackColor = true;
+            this.rbUpT.CheckedChanged += new System.EventHandler(this.rbUpT_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(3, 13);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 12);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Orientation：";
             // 
             // label6
             // 
@@ -665,7 +665,7 @@
             this.gbSetName.Controls.Add(this.lblRecordFileLabel);
             this.gbSetName.Controls.Add(this.tbExperimentName);
             this.gbSetName.Controls.Add(this.lblExName);
-            this.gbSetName.Location = new System.Drawing.Point(114, 282);
+            this.gbSetName.Location = new System.Drawing.Point(286, 326);
             this.gbSetName.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetName.Name = "gbSetName";
             this.gbSetName.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -718,11 +718,11 @@
             // 
             this.gbSetDataPath.Controls.Add(this.btnChooseDataPath);
             this.gbSetDataPath.Controls.Add(this.lblDPValue);
-            this.gbSetDataPath.Location = new System.Drawing.Point(4, 282);
+            this.gbSetDataPath.Location = new System.Drawing.Point(59, 326);
             this.gbSetDataPath.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetDataPath.Name = "gbSetDataPath";
             this.gbSetDataPath.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.gbSetDataPath.Size = new System.Drawing.Size(106, 113);
+            this.gbSetDataPath.Size = new System.Drawing.Size(165, 113);
             this.gbSetDataPath.TabIndex = 23;
             this.gbSetDataPath.TabStop = false;
             this.gbSetDataPath.Text = "ExInit-SetPath";
@@ -747,7 +747,7 @@
             this.lblDPValue.Name = "lblDPValue";
             this.lblDPValue.Size = new System.Drawing.Size(47, 12);
             this.lblDPValue.TabIndex = 19;
-            this.lblDPValue.Text = "E:/Data";
+            this.lblDPValue.Text = "D:/Data";
             this.lblDPValue.Click += new System.EventHandler(this.lblDPValue_Click);
             // 
             // gbSetSequence_1
@@ -763,7 +763,7 @@
             this.gbSetSequence_1.Controls.Add(this.lblTrainOrTest_1);
             this.gbSetSequence_1.Controls.Add(this.rbTrain_1);
             this.gbSetSequence_1.Controls.Add(this.lblLastTime_1);
-            this.gbSetSequence_1.Location = new System.Drawing.Point(4, 6);
+            this.gbSetSequence_1.Location = new System.Drawing.Point(59, 22);
             this.gbSetSequence_1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbSetSequence_1.Name = "gbSetSequence_1";
             this.gbSetSequence_1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -916,7 +916,7 @@
             this.tpStep2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tpStep2.Name = "tpStep2";
             this.tpStep2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep2.Size = new System.Drawing.Size(693, 509);
+            this.tpStep2.Size = new System.Drawing.Size(1081, 684);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";
             this.tpStep2.UseVisualStyleBackColor = true;
@@ -934,7 +934,7 @@
             // 
             // btnGoStep_3
             // 
-            this.btnGoStep_3.Location = new System.Drawing.Point(604, 413);
+            this.btnGoStep_3.Location = new System.Drawing.Point(767, 602);
             this.btnGoStep_3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGoStep_3.Name = "btnGoStep_3";
             this.btnGoStep_3.Size = new System.Drawing.Size(82, 64);
@@ -949,18 +949,18 @@
             this.gbPositionTorqueSetting.Controls.Add(this.gbBias);
             this.gbPositionTorqueSetting.Controls.Add(this.cbOpenOrClosed);
             this.gbPositionTorqueSetting.Controls.Add(this.btnBack);
-            this.gbPositionTorqueSetting.Location = new System.Drawing.Point(112, 408);
+            this.gbPositionTorqueSetting.Location = new System.Drawing.Point(204, 597);
             this.gbPositionTorqueSetting.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbPositionTorqueSetting.Name = "gbPositionTorqueSetting";
             this.gbPositionTorqueSetting.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.gbPositionTorqueSetting.Size = new System.Drawing.Size(425, 69);
+            this.gbPositionTorqueSetting.Size = new System.Drawing.Size(496, 69);
             this.gbPositionTorqueSetting.TabIndex = 24;
             this.gbPositionTorqueSetting.TabStop = false;
             this.gbPositionTorqueSetting.Text = "Setting";
             // 
             // btnStopRotating
             // 
-            this.btnStopRotating.Location = new System.Drawing.Point(350, 25);
+            this.btnStopRotating.Location = new System.Drawing.Point(416, 27);
             this.btnStopRotating.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnStopRotating.Name = "btnStopRotating";
             this.btnStopRotating.Size = new System.Drawing.Size(60, 29);
@@ -974,7 +974,7 @@
             this.gbBias.Controls.Add(this.lblShowRotatingBias);
             this.gbBias.Controls.Add(this.btnBiasDown);
             this.gbBias.Controls.Add(this.btnBiasUp);
-            this.gbBias.Location = new System.Drawing.Point(143, 10);
+            this.gbBias.Location = new System.Drawing.Point(181, 10);
             this.gbBias.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbBias.Name = "gbBias";
             this.gbBias.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1028,7 +1028,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(60, 31);
+            this.btnBack.Location = new System.Drawing.Point(66, 31);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(79, 20);
@@ -1040,7 +1040,7 @@
             // lblOpenClosed
             // 
             this.lblOpenClosed.AutoSize = true;
-            this.lblOpenClosed.Location = new System.Drawing.Point(186, 413);
+            this.lblOpenClosed.Location = new System.Drawing.Point(349, 602);
             this.lblOpenClosed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOpenClosed.Name = "lblOpenClosed";
             this.lblOpenClosed.Size = new System.Drawing.Size(0, 13);
@@ -1051,12 +1051,13 @@
             this.lblChooseDisplay.AutoSize = true;
             this.lblChooseDisplay.BackColor = System.Drawing.Color.DarkCyan;
             this.lblChooseDisplay.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblChooseDisplay.Location = new System.Drawing.Point(219, 388);
+            this.lblChooseDisplay.Location = new System.Drawing.Point(416, 574);
             this.lblChooseDisplay.Name = "lblChooseDisplay";
             this.lblChooseDisplay.Size = new System.Drawing.Size(81, 13);
             this.lblChooseDisplay.TabIndex = 21;
             this.lblChooseDisplay.Text = "Choose display:";
             this.lblChooseDisplay.Visible = false;
+            this.lblChooseDisplay.Click += new System.EventHandler(this.lblChooseDisplay_Click);
             // 
             // cbIsTorque
             // 
@@ -1065,7 +1066,7 @@
             this.cbIsTorque.Checked = true;
             this.cbIsTorque.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsTorque.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsTorque.Location = new System.Drawing.Point(375, 388);
+            this.cbIsTorque.Location = new System.Drawing.Point(572, 574);
             this.cbIsTorque.Name = "cbIsTorque";
             this.cbIsTorque.Size = new System.Drawing.Size(60, 17);
             this.cbIsTorque.TabIndex = 20;
@@ -1081,7 +1082,7 @@
             this.cbIsPosition.Checked = true;
             this.cbIsPosition.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsPosition.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsPosition.Location = new System.Drawing.Point(306, 388);
+            this.cbIsPosition.Location = new System.Drawing.Point(503, 574);
             this.cbIsPosition.Name = "cbIsPosition";
             this.cbIsPosition.Size = new System.Drawing.Size(63, 17);
             this.cbIsPosition.TabIndex = 19;
@@ -1093,7 +1094,7 @@
             // lblTorqueValue
             // 
             this.lblTorqueValue.AutoSize = true;
-            this.lblTorqueValue.Location = new System.Drawing.Point(65, 441);
+            this.lblTorqueValue.Location = new System.Drawing.Point(149, 628);
             this.lblTorqueValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTorqueValue.Name = "lblTorqueValue";
             this.lblTorqueValue.Size = new System.Drawing.Size(35, 13);
@@ -1103,7 +1104,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 441);
+            this.label3.Location = new System.Drawing.Point(99, 628);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
@@ -1113,7 +1114,7 @@
             // lblPositionValue
             // 
             this.lblPositionValue.AutoSize = true;
-            this.lblPositionValue.Location = new System.Drawing.Point(65, 415);
+            this.lblPositionValue.Location = new System.Drawing.Point(149, 602);
             this.lblPositionValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPositionValue.Name = "lblPositionValue";
             this.lblPositionValue.Size = new System.Drawing.Size(35, 13);
@@ -1123,7 +1124,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(3, 415);
+            this.lblPosition.Location = new System.Drawing.Point(87, 602);
             this.lblPosition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(47, 13);
@@ -1132,7 +1133,7 @@
             // 
             // btnSaveSettingInStep2
             // 
-            this.btnSaveSettingInStep2.Location = new System.Drawing.Point(541, 449);
+            this.btnSaveSettingInStep2.Location = new System.Drawing.Point(704, 638);
             this.btnSaveSettingInStep2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSaveSettingInStep2.Name = "btnSaveSettingInStep2";
             this.btnSaveSettingInStep2.Size = new System.Drawing.Size(56, 28);
@@ -1143,7 +1144,7 @@
             // 
             // btnTestDrawing
             // 
-            this.btnTestDrawing.Location = new System.Drawing.Point(541, 413);
+            this.btnTestDrawing.Location = new System.Drawing.Point(704, 602);
             this.btnTestDrawing.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTestDrawing.Name = "btnTestDrawing";
             this.btnTestDrawing.Size = new System.Drawing.Size(56, 30);
@@ -1158,7 +1159,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(2, 3);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(689, 404);
+            this.pictureBox1.Size = new System.Drawing.Size(1077, 588);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -1174,7 +1175,7 @@
             this.tpSetp3.Location = new System.Drawing.Point(4, 22);
             this.tpSetp3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tpSetp3.Name = "tpSetp3";
-            this.tpSetp3.Size = new System.Drawing.Size(693, 509);
+            this.tpSetp3.Size = new System.Drawing.Size(1081, 684);
             this.tpSetp3.TabIndex = 2;
             this.tpSetp3.Text = "Step-3";
             this.tpSetp3.UseVisualStyleBackColor = true;
@@ -1183,7 +1184,7 @@
             // lblPunishmentStateValue
             // 
             this.lblPunishmentStateValue.AutoSize = true;
-            this.lblPunishmentStateValue.Location = new System.Drawing.Point(135, 431);
+            this.lblPunishmentStateValue.Location = new System.Drawing.Point(980, 24);
             this.lblPunishmentStateValue.Name = "lblPunishmentStateValue";
             this.lblPunishmentStateValue.Size = new System.Drawing.Size(35, 13);
             this.lblPunishmentStateValue.TabIndex = 8;
@@ -1192,7 +1193,7 @@
             // lblPunishment
             // 
             this.lblPunishment.AutoSize = true;
-            this.lblPunishment.Location = new System.Drawing.Point(87, 431);
+            this.lblPunishment.Location = new System.Drawing.Point(932, 24);
             this.lblPunishment.Name = "lblPunishment";
             this.lblPunishment.Size = new System.Drawing.Size(42, 13);
             this.lblPunishment.TabIndex = 7;
@@ -1203,16 +1204,16 @@
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(2, 509);
+            this.splitter1.Size = new System.Drawing.Size(2, 684);
             this.splitter1.TabIndex = 6;
             this.splitter1.TabStop = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(370, 17);
+            this.groupBox1.Location = new System.Drawing.Point(529, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(318, 485);
+            this.groupBox1.Size = new System.Drawing.Size(318, 641);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FinishedExp";
@@ -1225,7 +1226,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 21);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(318, 438);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(318, 600);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // flpTopForLabel
@@ -1244,13 +1245,13 @@
             this.flpBottomForImageList.Location = new System.Drawing.Point(6, 3);
             this.flpBottomForImageList.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.flpBottomForImageList.Name = "flpBottomForImageList";
-            this.flpBottomForImageList.Size = new System.Drawing.Size(307, 403);
+            this.flpBottomForImageList.Size = new System.Drawing.Size(307, 586);
             this.flpBottomForImageList.TabIndex = 2;
             this.flpBottomForImageList.WrapContents = false;
             // 
             // btnStep3Start
             // 
-            this.btnStep3Start.Location = new System.Drawing.Point(17, 424);
+            this.btnStep3Start.Location = new System.Drawing.Point(862, 17);
             this.btnStep3Start.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnStep3Start.Name = "btnStep3Start";
             this.btnStep3Start.Size = new System.Drawing.Size(56, 20);
@@ -1264,18 +1265,19 @@
             this.pictureBox3.Location = new System.Drawing.Point(7, 17);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(348, 183);
+            this.pictureBox3.Size = new System.Drawing.Size(490, 315);
             this.pictureBox3.TabIndex = 1;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(2, 206);
+            this.pictureBox2.Location = new System.Drawing.Point(7, 348);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(353, 203);
+            this.pictureBox2.Size = new System.Drawing.Size(490, 317);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // timer1
             // 
@@ -1293,7 +1295,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 559);
+            this.ClientSize = new System.Drawing.Size(1089, 734);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -1305,14 +1307,14 @@
             this.menuStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tpStep1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.gbSetSequence_3.ResumeLayout(false);
             this.gbSetSequence_3.PerformLayout();
             this.gbSetSequence_2.ResumeLayout(false);
             this.gbSetSequence_2.PerformLayout();
             this.gbPunishmentChoose.ResumeLayout(false);
             this.gbPunishmentChoose.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.gbSetName.ResumeLayout(false);
             this.gbSetName.PerformLayout();
             this.gbSetDataPath.ResumeLayout(false);

@@ -470,19 +470,26 @@ namespace FlightSimulator
             string dataPath = this.lblDPValue.Text;
             DirectoryInfo folder = new DirectoryInfo(dataPath);
             string expFileName = this.tbExperimentName.Text + ".txt";
-            foreach (FileInfo file in folder.GetFiles("*.txt"))
+            if (folder.GetFiles("*.txt").Length == 0)
             {
-                if (expFileName.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
+                tabControl.SelectTab(1);
+            }
+            else
+            {
+                foreach (FileInfo file in folder.GetFiles("*.txt"))
                 {
-                    DialogResult dr = MessageBox.Show("实验名重复，是否重设？", "是", MessageBoxButtons.OKCancel);
-                    if (dr == DialogResult.OK)
+                    if (expFileName.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
                     {
-                        tabControl.SelectTab(0);
-                    }
-                    else
-                    {
-                        ifFromTab1ToTab2 = false;
-                        tabControl.SelectTab(1);
+                        DialogResult dr = MessageBox.Show("实验名重复，是否重设？", "是", MessageBoxButtons.OKCancel);
+                        if (dr == DialogResult.OK)
+                        {
+                            tabControl.SelectTab(0);
+                        }
+                        else
+                        {
+                            ifFromTab1ToTab2 = false;
+                            tabControl.SelectTab(1);
+                        }
                     }
                 }
             }
@@ -674,7 +681,7 @@ namespace FlightSimulator
 
             if (ifStartDebugMode)
             {
-                position = 1744;
+                position = 2721;
                 troque = 2862;
             }
 
@@ -1372,34 +1379,34 @@ namespace FlightSimulator
                     count++;
                     start = newStart;
 
-                    float a = 10000000 * 1000000f;
-                    //float positionVoltageValue;
-                    //float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
-                    //if (position < 1744)
-                    //{
-                    //    backToZeroControlSwitch = true;
-                    //    if (Math.Abs(position - 1744) > 30)
-                    //    {
-                    //        pc.VOutput(0, 2.6f);
-                    //    }
-                    //    else
-                    //    {
-                    //        pc.VOutput(0, 2.52f);
-                    //    }
+                    
+                    float positionVoltageValue;
+                    float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
+                    if (position < 1744)
+                    {
+                        backToZeroControlSwitch = true;
+                        if (Math.Abs(position - 1744) > 30)
+                        {
+                            pc.VOutput(0, 2.6f);
+                        }
+                        else
+                        {
+                            pc.VOutput(0, 2.52f);
+                        }
 
-                    //}
-                    //else
-                    //{
-                    //    backToZeroControlSwitch = false;
-                    //    if (Math.Abs(position - 1744) > 30)
-                    //    {
-                    //        pc.VOutput(0, 2.4f);
-                    //    }
-                    //    else
-                    //    {
-                    //        pc.VOutput(0, 2.48f);
-                    //    }
-                    //}
+                    }
+                    else
+                    {
+                        backToZeroControlSwitch = false;
+                        if (Math.Abs(position - 1744) > 30)
+                        {
+                            pc.VOutput(0, 2.4f);
+                        }
+                        else
+                        {
+                            pc.VOutput(0, 2.48f);
+                        }
+                    }
 
                 }
 
@@ -1503,18 +1510,26 @@ namespace FlightSimulator
                 string dataPath = this.lblDPValue.Text;
                 DirectoryInfo folder = new DirectoryInfo(dataPath);
                 string expFileName = this.tbExperimentName.Text + ".txt";
-                foreach (FileInfo file in folder.GetFiles("*.txt"))
+                if (folder.GetFiles("*.txt").Length == 0)
                 {
-                    if (expFileName.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
+                    tabControl.SelectTab(1);
+                }
+                else
+                {
+                    foreach (FileInfo file in folder.GetFiles("*.txt"))
                     {
-                        DialogResult dr = MessageBox.Show("实验名重复，是否重设？", "是", MessageBoxButtons.OKCancel);
-                        if (dr == DialogResult.OK)
+                        if (expFileName.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
                         {
-                            tabControl.SelectTab(0);
-                        }
-                        else
-                        {
-                            tabControl.SelectTab(1);
+                            DialogResult dr = MessageBox.Show("实验名重复，是否重设？", "是", MessageBoxButtons.OKCancel);
+                            if (dr == DialogResult.OK)
+                            {
+                                tabControl.SelectTab(0);
+                            }
+                            else
+                            {
+                                ifFromTab1ToTab2 = false;
+                                tabControl.SelectTab(1);
+                            }
                         }
                     }
                 }
@@ -1535,6 +1550,16 @@ namespace FlightSimulator
         private void btnSaveSettingInStep2_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblChooseDisplay_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
