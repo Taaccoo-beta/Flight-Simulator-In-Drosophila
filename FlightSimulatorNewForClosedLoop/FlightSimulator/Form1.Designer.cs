@@ -86,22 +86,20 @@
             this.rbTrain_1 = new System.Windows.Forms.RadioButton();
             this.lblLastTime_1 = new System.Windows.Forms.Label();
             this.tpStep2 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnClosedTest = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnRecorectBias = new System.Windows.Forms.Button();
             this.lblDebugTime = new System.Windows.Forms.Label();
             this.lblTroqueTransValue = new System.Windows.Forms.Label();
             this.lblTroqueTrans = new System.Windows.Forms.Label();
-            this.gbSetPar = new System.Windows.Forms.GroupBox();
-            this.btnDegreeDown = new System.Windows.Forms.Button();
-            this.btnDegreeUp = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblBiasLabel = new System.Windows.Forms.Label();
-            this.tbIniDegree = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbKValue = new System.Windows.Forms.TextBox();
             this.lblKLabel = new System.Windows.Forms.Label();
             this.btnStopRotating = new System.Windows.Forms.Button();
             this.btnGoStep_3 = new System.Windows.Forms.Button();
+            this.gbPositionTorqueSetting = new System.Windows.Forms.GroupBox();
+            this.cbOpenOrClosed = new System.Windows.Forms.CheckBox();
             this.lblOpenClosed = new System.Windows.Forms.Label();
             this.lblChooseDisplay = new System.Windows.Forms.Label();
             this.cbIsTorque = new System.Windows.Forms.CheckBox();
@@ -131,7 +129,6 @@
             this.timerForBackToZero = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -141,7 +138,8 @@
             this.gbSetDataPath.SuspendLayout();
             this.gbSetSequence_1.SuspendLayout();
             this.tpStep2.SuspendLayout();
-            this.gbSetPar.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.gbPositionTorqueSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tpSetp3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -157,7 +155,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1092, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1132, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -236,7 +234,7 @@
             this.tabControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1092, 694);
+            this.tabControl.Size = new System.Drawing.Size(1132, 694);
             this.tabControl.TabIndex = 1;
             this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl_Selected);
             // 
@@ -252,7 +250,7 @@
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
             this.tpStep1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep1.Size = new System.Drawing.Size(1084, 668);
+            this.tpStep1.Size = new System.Drawing.Size(943, 668);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
             this.tpStep1.UseVisualStyleBackColor = true;
@@ -800,16 +798,15 @@
             // 
             // tpStep2
             // 
-            this.tpStep2.Controls.Add(this.button2);
-            this.tpStep2.Controls.Add(this.btnClosedTest);
             this.tpStep2.Controls.Add(this.button1);
             this.tpStep2.Controls.Add(this.btnRecorectBias);
             this.tpStep2.Controls.Add(this.lblDebugTime);
             this.tpStep2.Controls.Add(this.lblTroqueTransValue);
             this.tpStep2.Controls.Add(this.lblTroqueTrans);
-            this.tpStep2.Controls.Add(this.gbSetPar);
+            this.tpStep2.Controls.Add(this.groupBox2);
             this.tpStep2.Controls.Add(this.btnStopRotating);
             this.tpStep2.Controls.Add(this.btnGoStep_3);
+            this.tpStep2.Controls.Add(this.gbPositionTorqueSetting);
             this.tpStep2.Controls.Add(this.lblOpenClosed);
             this.tpStep2.Controls.Add(this.lblChooseDisplay);
             this.tpStep2.Controls.Add(this.cbIsTorque);
@@ -824,37 +821,15 @@
             this.tpStep2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tpStep2.Name = "tpStep2";
             this.tpStep2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep2.Size = new System.Drawing.Size(1084, 668);
+            this.tpStep2.Size = new System.Drawing.Size(1124, 668);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";
             this.tpStep2.UseVisualStyleBackColor = true;
             this.tpStep2.Click += new System.EventHandler(this.tpStep2_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(458, 629);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 20);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "Stop";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // btnClosedTest
-            // 
-            this.btnClosedTest.Location = new System.Drawing.Point(458, 595);
-            this.btnClosedTest.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnClosedTest.Name = "btnClosedTest";
-            this.btnClosedTest.Size = new System.Drawing.Size(81, 20);
-            this.btnClosedTest.TabIndex = 34;
-            this.btnClosedTest.Text = "CLTest";
-            this.btnClosedTest.UseVisualStyleBackColor = true;
-            this.btnClosedTest.Click += new System.EventHandler(this.btnClosedTest_Click);
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(557, 628);
+            this.button1.Location = new System.Drawing.Point(554, 621);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(81, 20);
@@ -865,7 +840,7 @@
             // 
             // btnRecorectBias
             // 
-            this.btnRecorectBias.Location = new System.Drawing.Point(659, 595);
+            this.btnRecorectBias.Location = new System.Drawing.Point(453, 587);
             this.btnRecorectBias.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnRecorectBias.Name = "btnRecorectBias";
             this.btnRecorectBias.Size = new System.Drawing.Size(81, 20);
@@ -877,7 +852,7 @@
             // lblDebugTime
             // 
             this.lblDebugTime.AutoSize = true;
-            this.lblDebugTime.Location = new System.Drawing.Point(871, 595);
+            this.lblDebugTime.Location = new System.Drawing.Point(771, 587);
             this.lblDebugTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDebugTime.Name = "lblDebugTime";
             this.lblDebugTime.Size = new System.Drawing.Size(35, 13);
@@ -904,62 +879,36 @@
             this.lblTroqueTrans.TabIndex = 29;
             this.lblTroqueTrans.Text = "Torque:";
             // 
-            // gbSetPar
+            // groupBox2
             // 
-            this.gbSetPar.Controls.Add(this.button3);
-            this.gbSetPar.Controls.Add(this.btnDegreeDown);
-            this.gbSetPar.Controls.Add(this.btnDegreeUp);
-            this.gbSetPar.Controls.Add(this.lblBiasLabel);
-            this.gbSetPar.Controls.Add(this.tbIniDegree);
-            this.gbSetPar.Controls.Add(this.tbKValue);
-            this.gbSetPar.Controls.Add(this.lblKLabel);
-            this.gbSetPar.Enabled = false;
-            this.gbSetPar.Location = new System.Drawing.Point(140, 582);
-            this.gbSetPar.Name = "gbSetPar";
-            this.gbSetPar.Size = new System.Drawing.Size(292, 69);
-            this.gbSetPar.TabIndex = 28;
-            this.gbSetPar.TabStop = false;
-            this.gbSetPar.Text = "Setting";
-            // 
-            // btnDegreeDown
-            // 
-            this.btnDegreeDown.Location = new System.Drawing.Point(177, 35);
-            this.btnDegreeDown.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnDegreeDown.Name = "btnDegreeDown";
-            this.btnDegreeDown.Size = new System.Drawing.Size(46, 20);
-            this.btnDegreeDown.TabIndex = 37;
-            this.btnDegreeDown.Text = "Down";
-            this.btnDegreeDown.UseVisualStyleBackColor = true;
-            this.btnDegreeDown.Click += new System.EventHandler(this.btnDegreeDown_Click);
-            // 
-            // btnDegreeUp
-            // 
-            this.btnDegreeUp.Location = new System.Drawing.Point(125, 35);
-            this.btnDegreeUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnDegreeUp.Name = "btnDegreeUp";
-            this.btnDegreeUp.Size = new System.Drawing.Size(48, 20);
-            this.btnDegreeUp.TabIndex = 36;
-            this.btnDegreeUp.Text = "Up";
-            this.btnDegreeUp.UseVisualStyleBackColor = true;
-            this.btnDegreeUp.Click += new System.EventHandler(this.btnDegreeUp_Click);
+            this.groupBox2.Controls.Add(this.lblBiasLabel);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.tbKValue);
+            this.groupBox2.Controls.Add(this.lblKLabel);
+            this.groupBox2.Location = new System.Drawing.Point(275, 582);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(142, 69);
+            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Setting";
             // 
             // lblBiasLabel
             // 
             this.lblBiasLabel.AutoSize = true;
-            this.lblBiasLabel.Location = new System.Drawing.Point(67, 16);
+            this.lblBiasLabel.Location = new System.Drawing.Point(67, 20);
             this.lblBiasLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBiasLabel.Name = "lblBiasLabel";
-            this.lblBiasLabel.Size = new System.Drawing.Size(53, 13);
+            this.lblBiasLabel.Size = new System.Drawing.Size(27, 13);
             this.lblBiasLabel.TabIndex = 10;
-            this.lblBiasLabel.Text = "IniDegree";
+            this.lblBiasLabel.Text = "Bias";
             // 
-            // tbIniDegree
+            // textBox1
             // 
-            this.tbIniDegree.Location = new System.Drawing.Point(70, 36);
-            this.tbIniDegree.Name = "tbIniDegree";
-            this.tbIniDegree.Size = new System.Drawing.Size(50, 20);
-            this.tbIniDegree.TabIndex = 9;
-            this.tbIniDegree.Text = "0";
+            this.textBox1.Location = new System.Drawing.Point(62, 36);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(50, 20);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.Text = "0";
             // 
             // tbKValue
             // 
@@ -981,7 +930,7 @@
             // 
             // btnStopRotating
             // 
-            this.btnStopRotating.Location = new System.Drawing.Point(659, 628);
+            this.btnStopRotating.Location = new System.Drawing.Point(453, 621);
             this.btnStopRotating.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnStopRotating.Name = "btnStopRotating";
             this.btnStopRotating.Size = new System.Drawing.Size(81, 20);
@@ -992,7 +941,7 @@
             // 
             // btnGoStep_3
             // 
-            this.btnGoStep_3.Location = new System.Drawing.Point(779, 595);
+            this.btnGoStep_3.Location = new System.Drawing.Point(659, 587);
             this.btnGoStep_3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGoStep_3.Name = "btnGoStep_3";
             this.btnGoStep_3.Size = new System.Drawing.Size(77, 54);
@@ -1000,6 +949,32 @@
             this.btnGoStep_3.Text = "NextStep";
             this.btnGoStep_3.UseVisualStyleBackColor = true;
             this.btnGoStep_3.Click += new System.EventHandler(this.btnGoStep_3_Click);
+            // 
+            // gbPositionTorqueSetting
+            // 
+            this.gbPositionTorqueSetting.Controls.Add(this.cbOpenOrClosed);
+            this.gbPositionTorqueSetting.Location = new System.Drawing.Point(156, 582);
+            this.gbPositionTorqueSetting.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.gbPositionTorqueSetting.Name = "gbPositionTorqueSetting";
+            this.gbPositionTorqueSetting.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.gbPositionTorqueSetting.Size = new System.Drawing.Size(91, 69);
+            this.gbPositionTorqueSetting.TabIndex = 24;
+            this.gbPositionTorqueSetting.TabStop = false;
+            this.gbPositionTorqueSetting.Text = "Setting";
+            // 
+            // cbOpenOrClosed
+            // 
+            this.cbOpenOrClosed.AutoSize = true;
+            this.cbOpenOrClosed.Checked = true;
+            this.cbOpenOrClosed.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.cbOpenOrClosed.Location = new System.Drawing.Point(18, 32);
+            this.cbOpenOrClosed.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cbOpenOrClosed.Name = "cbOpenOrClosed";
+            this.cbOpenOrClosed.Size = new System.Drawing.Size(52, 17);
+            this.cbOpenOrClosed.TabIndex = 23;
+            this.cbOpenOrClosed.Text = "Open";
+            this.cbOpenOrClosed.UseVisualStyleBackColor = true;
+            this.cbOpenOrClosed.CheckedChanged += new System.EventHandler(this.cbOpenOrClosed_CheckedChanged);
             // 
             // lblOpenClosed
             // 
@@ -1096,12 +1071,12 @@
             // 
             // btnCalibrate
             // 
-            this.btnCalibrate.Location = new System.Drawing.Point(557, 595);
+            this.btnCalibrate.Location = new System.Drawing.Point(554, 587);
             this.btnCalibrate.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCalibrate.Name = "btnCalibrate";
             this.btnCalibrate.Size = new System.Drawing.Size(81, 20);
             this.btnCalibrate.TabIndex = 1;
-            this.btnCalibrate.Text = "OLTest";
+            this.btnCalibrate.Text = "PreTest";
             this.btnCalibrate.UseVisualStyleBackColor = true;
             this.btnCalibrate.Click += new System.EventHandler(this.btnTestDrawing_Click);
             // 
@@ -1111,7 +1086,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(2, 3);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1080, 565);
+            this.pictureBox1.Size = new System.Drawing.Size(1120, 565);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -1125,7 +1100,7 @@
             this.tpSetp3.Location = new System.Drawing.Point(4, 22);
             this.tpSetp3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tpSetp3.Name = "tpSetp3";
-            this.tpSetp3.Size = new System.Drawing.Size(1084, 668);
+            this.tpSetp3.Size = new System.Drawing.Size(1124, 668);
             this.tpSetp3.TabIndex = 2;
             this.tpSetp3.Text = "Step-3";
             this.tpSetp3.UseVisualStyleBackColor = true;
@@ -1286,22 +1261,11 @@
             // 
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick_1);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(227, 35);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(48, 20);
-            this.button3.TabIndex = 38;
-            this.button3.Text = "Clear";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1092, 718);
+            this.ClientSize = new System.Drawing.Size(1132, 718);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -1327,8 +1291,10 @@
             this.gbSetSequence_1.PerformLayout();
             this.tpStep2.ResumeLayout(false);
             this.tpStep2.PerformLayout();
-            this.gbSetPar.ResumeLayout(false);
-            this.gbSetPar.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.gbPositionTorqueSetting.ResumeLayout(false);
+            this.gbPositionTorqueSetting.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tpSetp3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -1399,7 +1365,9 @@
         private System.Windows.Forms.Label lblChooseDisplay;
         private System.Windows.Forms.CheckBox cbIsTorque;
         private System.Windows.Forms.CheckBox cbIsPosition;
+        private System.Windows.Forms.CheckBox cbOpenOrClosed;
         private System.Windows.Forms.Label lblOpenClosed;
+        private System.Windows.Forms.GroupBox gbPositionTorqueSetting;
         private System.Windows.Forms.Button btnGoStep_3;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.PictureBox pbPosition;
@@ -1417,11 +1385,11 @@
         private System.Windows.Forms.ToolStripMenuItem speedDetectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 杀死对方ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem replayToolStripMenuItem;
-        private System.Windows.Forms.GroupBox gbSetPar;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblKLabel;
         private System.Windows.Forms.TextBox tbKValue;
         private System.Windows.Forms.Label lblBiasLabel;
-        private System.Windows.Forms.TextBox tbIniDegree;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblTroqueTransValue;
         private System.Windows.Forms.Label lblTroqueTrans;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -1439,11 +1407,6 @@
         private System.Windows.Forms.Button btnRecorectBias;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnClosedTest;
-        private System.Windows.Forms.Button btnDegreeDown;
-        private System.Windows.Forms.Button btnDegreeUp;
-        private System.Windows.Forms.Button button3;
     }
 }
 

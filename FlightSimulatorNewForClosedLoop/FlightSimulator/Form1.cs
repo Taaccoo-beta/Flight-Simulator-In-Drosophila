@@ -501,8 +501,7 @@ namespace FlightSimulator
         {
 
             this.timer3.Stop();
-            this.timer1.Stop();
-            this.gbSetPar.Enabled = false;
+
             lblChooseDisplay.Visible = true;
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
@@ -697,84 +696,45 @@ namespace FlightSimulator
             vf.pbCanvas.Size = new System.Drawing.Size(1022, 330);
             //vf.Location = new Point(3043, 439);
             
-           
+            timer1.Interval = 10;
+            timer2.Interval = 100;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
 
 
-
-            sw = new System.Diagnostics.Stopwatch();
-            sw.Start();
+            
+            float positionVoltageValue;
             float torqueVoltageValue;
-            float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
-            //troque = troque / 100;
-            troque_trans = (troque - 2048) / 2048 * 80;
+
+            //float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
+            //float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+            //this.label1.Text = torqueVoltageValue.ToString("00.00");
 
 
-            this.lblPositionValue.Text = degreeForClosedLoop.ToString();
+            float position = cc.getPositionSignal();
+            float troque = cc.getTorqueSignal();
 
+            if (ifStartDebugMode)
+            {
+                position = 1744;
+                troque = 2862;
+            }
+
+
+            this.lblPositionValue.Text = position.ToString();
             this.lblTorqueValue.Text = troque.ToString();
-            this.lblTroqueTransValue.Text = troque_trans.ToString();
-            try
-            {
-                k = float.Parse(this.tbKValue.Text);
-            }
-            catch
-            {
-                k = -11;
-            }
-
-            if (ifDegreeForDebugUp)
-            {
-                degreeForClosedLoop += 2;
-            }
-            else if (ifDegreeForDebugDown)
-            {
-                degreeForClosedLoop -= 2;
-            }
-            else
-            {
-                degreeForClosedLoop += troque_trans * k * 0.01f;
-            }
+            
+        
 
 
-            if (degreeForClosedLoop >= 180)
-            {
-                degreeForClosedLoop = 360 - degreeForClosedLoop;
-            }
-            if (degreeForClosedLoop <= -180)
-            {
-                degreeForClosedLoop = 360 + degreeForClosedLoop;
-            }
-
-            lpf1.Add(degreeForClosedLoop);
-            lpf2.Add(troque_trans);
-
-            //lpf1.Add(180);
-            //lpf2.Add(10);
-            if (lpf1.Count == 400)
-            {
-                lpf1.Remove(lpf1[0]);
-            }
-
-            if (lpf2.Count == 400)
-            {
-                lpf2.Remove(lpf2[0]);
-            }
-
-            this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
-
-            this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getBlackBarWhiteBackground(degreeForClosedLoop), 0, 0);
-            this.vf.simpleOpenGlControl1.Refresh();
-
-            sw.Stop();
-            TimeSpan ts = sw.Elapsed;
-            this.lblDebugTime.Text = ts.Milliseconds.ToString();
+            
 
 
 
+            this.pictureBox1.CreateGraphics().DrawImage(dp.drawSignalCurve(lpf1, lpf2), 0, 0);
+            
         }
 
         private void cbIsPosition_CheckedChanged(object sender, EventArgs e)
@@ -932,7 +892,6 @@ namespace FlightSimulator
         private int count = 0;
         private float settingDegree = 0;
         private float oritation = 1;
-        private float degreeForClosedLoop = 0;
         private void timer2_Tick(object sender, EventArgs e)
         {
             sw = new System.Diagnostics.Stopwatch();
@@ -942,22 +901,26 @@ namespace FlightSimulator
             //troque = troque / 100;
             troque_trans = (troque - 2048) / 2048 * 80;
             
-           
-            this.lblPositionValue.Text = settingDegree.ToString();
-           
-            this.lblTorqueValue.Text = troque.ToString();
-            this.lblTroqueTransValue.Text = troque_trans.ToString();
-
-            settingDegree += oritation * 2;
-
-            if (settingDegree > 90)
+            settingDegree += 1.8f*oritation;
+            if (settingDegree >= 90)
             {
                 oritation = -1;
             }
-            if (settingDegree < -90)
+            if (settingDegree <= -90)
             {
                 oritation = 1;
             }
+            this.lblPositionValue.Text = settingDegree.ToString();
+           
+            
+
+            
+
+            this.lblTorqueValue.Text = troque.ToString();
+            this.lblTroqueTransValue.Text = troque_trans.ToString();
+
+           
+            
 
             lpf1.Add(settingDegree);
             lpf2.Add(troque_trans);
@@ -982,112 +945,6 @@ namespace FlightSimulator
             sw.Stop();
             TimeSpan ts = sw.Elapsed;
             this.lblDebugTime.Text = ts.Milliseconds.ToString();
-
-
-
-            //degree += troque_trans * k * 0.01f;
-
-            //lpf3.Add(degree);
-            //lpf4.Add(troque_trans);
-
-            //if (lpf3.Count == 400)
-            //{
-            //    lpf3.Remove(lpf3[0]);
-            //}
-
-            //if (lpf4.Count == 400)
-            //{
-            //    lpf4.Remove(lpf4[0]);
-            //}
-
-
-            //this.lblEXPStateP.Text = degree.ToString();
-            //this.lblEXPStateTRaw.Text = troque.ToString();
-            //this.lblEXPSTateT.Text = troque_trans.ToString();
-
-            //if (degree > 180)
-            //{
-            //    degree = degree - 180;
-            //}
-            //if (degree < -180)
-            //{
-            //    degree = degree + 180;
-            //}
-            ////debug mode
-            ////degree += 1;
-
-            //this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            ////v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
-
-
-
-            //if (count == 5 * 20)
-            //{
-            //    count = 0;
-
-            //    lpf3.Clear();
-            //    lpf4.Clear();
-            //    settingDegree = 0;
-            //    oritation = -1;
-            //    if (expIndex == 6)
-            //    {
-
-
-            //        DataSave(expOrder, TotalCircle);
-
-            //        TotalCircle++;
-            //        if (TotalCircle == 3)
-            //        {
-            //            ifStop = true;
-            //            this.btnStep3Start.Enabled = true;
-            //            pc.ClearALLDigitalPort();
-            //            //OpenLoop();
-            //            cbOpenOrClosed.Checked = false;
-            //            cbOpenOrClosed.Text = "Open";
-
-            //        }
-
-            //        positionData.Clear();
-            //        torqueData.Clear();
-            //        expOrder = getShufferArr(6);
-            //        expIndex = 0;
-
-            //        expID = expOrder[expIndex];
-            //        torqueData.Add(expID, new List<float>());
-            //        positionData.Add(expID, new List<float>());
-
-
-            //    }
-            //    else
-            //    {
-
-            //    }
-            //    isExpModule = true;
-            //    isInterModule = false;
-
-
-
-            //}
-
-
-
-
-            //if (lpf3.Count == 400)
-            //{
-            //    lpf3.Remove(lpf3[0]);
-            //}
-
-            //if (lpf4.Count == 400)
-            //{
-            //    lpf4.Remove(lpf4[0]);
-            //}
-
-            //this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            ////imageNow = dp2.drawCommunitivePoint(degree, false,sequenceIndexForExperiment);
-            ////this.pbCommunitive.CreateGraphics().DrawImage(imageNow, 0, 0);
-
-            //this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getBlackBarWhiteBackground(degree), 0, 0);
-            //this.vf.simpleOpenGlControl1.Refresh();
 
         }
 
@@ -1391,7 +1248,8 @@ namespace FlightSimulator
                                     this.btnStep3Start.Enabled = true;
                                     pc.ClearALLDigitalPort();
                                     //OpenLoop();
-                                    
+                                    cbOpenOrClosed.Checked = false;
+                                    cbOpenOrClosed.Text = "Open";
 
                                 }
 
@@ -1878,8 +1736,6 @@ namespace FlightSimulator
         private void btnRecorectBias_Click(object sender, EventArgs e)
         {
             timer2.Stop();
-            timer1.Stop();
-            this.gbSetPar.Enabled = false;
             lblChooseDisplay.Visible = true;
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
@@ -1939,48 +1795,6 @@ namespace FlightSimulator
 
             }
             Console.WriteLine("divideLine");
-        }
-
-        private bool ifDegreeForDebugUp = false;
-        private bool ifDegreeForDebugDown = false;
-        private void btnDegreeUp_Click(object sender, EventArgs e)
-        {
-            ifDegreeForDebugUp = true;
-            ifDegreeForDebugDown = false;
-        }
-
-        private void btnDegreeDown_Click(object sender, EventArgs e)
-        {
-            ifDegreeForDebugDown = true;
-            ifDegreeForDebugUp = false;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ifDegreeForDebugDown = false;
-            ifDegreeForDebugUp = false;
-        }
-
-        private void btnClosedTest_Click(object sender, EventArgs e)
-        {
-            this.timer3.Stop();
-            this.timer2.Stop();
-            this.gbSetPar.Enabled = true;
-            lblChooseDisplay.Visible = true;
-            cbIsPosition.Visible = true;
-            cbIsTorque.Visible = true;
-
-            degreeForClosedLoop = float.Parse(tbIniDegree.Text);
-            dp1 = new drawProcess(this.pictureBox1.Width, this.pictureBox1.Height, Color.DarkCyan);
-            vf.SetRandomPoint();
-            timer1.Interval = 50;
-            timer1.Start();
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            this.timer1.Stop();
-            this.gbSetPar.Enabled = false;
         }
     }
 }
