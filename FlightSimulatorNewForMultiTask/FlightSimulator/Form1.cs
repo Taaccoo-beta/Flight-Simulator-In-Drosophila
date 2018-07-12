@@ -977,7 +977,7 @@ namespace FlightSimulator
                     arr[temp] = 0;
                 }
             }
-
+            
             return newarr;
 
         }
@@ -1029,7 +1029,7 @@ namespace FlightSimulator
             this.btnStep3Start.Enabled = false;
 
             float settingDegree = 0;
-            oritation = 1;
+            oritation = -1;
             vf.SetRandomPoint();
             int TotalCircle = 0;
 
@@ -1107,7 +1107,18 @@ namespace FlightSimulator
                         torqueData[expID].Add(troque_trans);
                         positionData[expID].Add(settingDegree);
 
-                        
+                        if (lpf3.Count == 400)
+                        {
+                            lpf3.Remove(lpf3[0]);
+                        }
+
+                        if (lpf4.Count == 400)
+                        {
+                            lpf4.Remove(lpf4[0]);
+                        }
+
+                        this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+
                         if (count == time * 20)
                         {
                             count = 0;
@@ -1115,7 +1126,7 @@ namespace FlightSimulator
                             lpf3.Clear();
                             lpf4.Clear();
                             degree = 0;
-                            oritation = 1;
+                            oritation = -1;
 
                             
                             expIndex++;
@@ -1140,17 +1151,7 @@ namespace FlightSimulator
 
                         //this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
 
-                        if (lpf3.Count == 400)
-                        {
-                            lpf3.Remove(lpf3[0]);
-                        }
-
-                        if (lpf4.Count == 400)
-                        {
-                            lpf4.Remove(lpf4[0]);
-                        }
-
-                        this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+                        
                         //imageNow = dp2.drawCommunitivePoint(degree, false,sequenceIndexForExperiment);
                         //this.pbCommunitive.CreateGraphics().DrawImage(imageNow, 0, 0);
 
@@ -1192,6 +1193,20 @@ namespace FlightSimulator
 
                         degree += troque_trans * k * 0.01f;
 
+                        lpf3.Add(degree);
+                        lpf4.Add(troque_trans);
+
+                        if (lpf3.Count == 400)
+                        {
+                            lpf3.Remove(lpf3[0]);
+                        }
+
+                        if (lpf4.Count == 400)
+                        {
+                            lpf4.Remove(lpf4[0]);
+                        }
+
+
                         this.lblEXPStateP.Text = degree.ToString();
                         this.lblEXPStateTRaw.Text = troque.ToString();
                         this.lblEXPSTateT.Text = troque_trans.ToString();
@@ -1207,11 +1222,11 @@ namespace FlightSimulator
                         //debug mode
                         //degree += 1;
 
-
+                        this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
                         //v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
 
 
-                        
+
                         if (count == 5 * 20)
                         {
                             count = 0;
@@ -1219,7 +1234,7 @@ namespace FlightSimulator
                             lpf3.Clear();
                             lpf4.Clear();
                             settingDegree = 0;
-                            oritation = 1;
+                            oritation = -1;
                             if (expIndex == 6)
                             {
 
