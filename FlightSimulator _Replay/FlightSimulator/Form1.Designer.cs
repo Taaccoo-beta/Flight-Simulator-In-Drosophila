@@ -1184,7 +1184,7 @@
             // lblPunishmentStateValue
             // 
             this.lblPunishmentStateValue.AutoSize = true;
-            this.lblPunishmentStateValue.Location = new System.Drawing.Point(980, 24);
+            this.lblPunishmentStateValue.Location = new System.Drawing.Point(1029, 65);
             this.lblPunishmentStateValue.Name = "lblPunishmentStateValue";
             this.lblPunishmentStateValue.Size = new System.Drawing.Size(35, 13);
             this.lblPunishmentStateValue.TabIndex = 8;
@@ -1193,7 +1193,7 @@
             // lblPunishment
             // 
             this.lblPunishment.AutoSize = true;
-            this.lblPunishment.Location = new System.Drawing.Point(932, 24);
+            this.lblPunishment.Location = new System.Drawing.Point(981, 65);
             this.lblPunishment.Name = "lblPunishment";
             this.lblPunishment.Size = new System.Drawing.Size(42, 13);
             this.lblPunishment.TabIndex = 7;
@@ -1213,7 +1213,7 @@
             this.groupBox1.Controls.Add(this.flowLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(529, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(318, 641);
+            this.groupBox1.Size = new System.Drawing.Size(322, 641);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FinishedExp";
@@ -1251,7 +1251,7 @@
             // 
             // btnStep3Start
             // 
-            this.btnStep3Start.Location = new System.Drawing.Point(862, 17);
+            this.btnStep3Start.Location = new System.Drawing.Point(911, 58);
             this.btnStep3Start.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnStep3Start.Name = "btnStep3Start";
             this.btnStep3Start.Size = new System.Drawing.Size(56, 20);
