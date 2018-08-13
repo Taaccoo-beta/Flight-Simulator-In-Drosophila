@@ -766,8 +766,7 @@ namespace FlightSimulator
 
             this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
 
-            this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getBlackBarWhiteBackground(degreeForClosedLoop), 0, 0);
-            this.vf.simpleOpenGlControl1.Refresh();
+           
 
             sw.Stop();
             TimeSpan ts = sw.Elapsed;
@@ -976,8 +975,7 @@ namespace FlightSimulator
 
             this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
 
-            this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getBlackBarWhiteBackground(settingDegree), 0, 0);
-            this.vf.simpleOpenGlControl1.Refresh();
+           
             
             sw.Stop();
             TimeSpan ts = sw.Elapsed;
@@ -1300,27 +1298,27 @@ namespace FlightSimulator
 
 
                         
-                        switch (expID)
-                        {
-                            case 1:
-                            case 4:
-                                this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageSingleBar(settingDegree), 0, 0);
-                                break;
-                            case 2:
-                            case 5:
-                                this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageBackGround(settingDegree), 0, 0);
-                                break;
-                            case 3:
-                            case 6:
-                                this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageBarAndBackGround(settingDegree), 0, 0);
-                                break;
-                            default:
-                                break;
-                        }
+                        //switch (expID)
+                        //{
+                        //    case 1:
+                        //    case 4:
+                        //        this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageSingleBar(settingDegree), 0, 0);
+                        //        break;
+                        //    case 2:
+                        //    case 5:
+                        //        this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageBackGround(settingDegree), 0, 0);
+                        //        break;
+                        //    case 3:
+                        //    case 6:
+                        //        this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getImageBarAndBackGround(settingDegree), 0, 0);
+                        //        break;
+                        //    default:
+                        //        break;
+                        //}
 
 
                        
-                        this.vf.simpleOpenGlControl1.Refresh();
+                       
 
                         sw.Stop();
                         TimeSpan ts = sw.Elapsed;
@@ -1434,8 +1432,8 @@ namespace FlightSimulator
                         //imageNow = dp2.drawCommunitivePoint(degree, false,sequenceIndexForExperiment);
                         //this.pbCommunitive.CreateGraphics().DrawImage(imageNow, 0, 0);
 
-                        this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getBlackBarWhiteBackground(degree), 0, 0);
-                        this.vf.simpleOpenGlControl1.Refresh();
+                        //this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getBlackBarWhiteBackground(degree), 0, 0);
+                      
 
                         sw.Stop();
                         TimeSpan ts = sw.Elapsed;
@@ -1927,8 +1925,8 @@ namespace FlightSimulator
             this.pictureBox1.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf1, lpf2), 0, 0);
 
             //grey image test
-            this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getGreyImage(degree,switchState), 0, 0);
-            this.vf.simpleOpenGlControl1.Refresh();
+            //this.vf.pbCanvas.CreateGraphics().DrawImage(vf.getGreyImage(degree,switchState), 0, 0);
+           
 
             switchState = !switchState;
         }

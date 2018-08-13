@@ -21,70 +21,79 @@ namespace FlightSimulator
             InitializeComponent();
         }
 
-        private RandomPoint rp;
+        private int width;
+        private int height;
+
+       
         private void VisionFigure_Load(object sender, EventArgs e)
         {
-            simpleOpenGlControl1.InitializeContexts();
-            bool _fullscreen = false;
-            if (_fullscreen)
-            {
-                FormBorderStyle = FormBorderStyle.None;
-                WindowState = FormWindowState.Maximized;
-            }
-            Gl.glMatrixMode(Gl.GL_PROJECTION);
-            Gl.glLoadIdentity();
-            Gl.glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+            this.width = this.pbCanvas.Width;
+            this.height = this.pbCanvas.Height;
+            
         }
 
         public void SetRandomPoint()
         {
-            rp = new RandomPoint(this.pbCanvas.Width, this.pbCanvas.Height);
-            rp.setBarSize(8);
-            rp.setPointSize(12);
+            
         }
 
 
-        public Bitmap getImageBarAndBackGround(float degree)
-        {
-            //Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
-            Bitmap b = (Bitmap)rp.getBitmapForBackground(degree).Clone();
-
-            return b;
-        }
-
-        public Bitmap getImageSingleBar(float degree)
-        {
-            //Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
-            Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
-
-            return b;
-        }
-        public Bitmap getImageBackGround(float degree)
-        {
-            //Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
-            Bitmap b = (Bitmap)rp.getBitmapBackgroundMBarStop(degree).Clone();
-
-            return b;
-        }
-
-        public Bitmap getBlackBarWhiteBackground(float degree)
-        {
-            //Bitmap b = (Bitmap)rp.getBitmapForBar(degree).Clone();
-            Bitmap b = (Bitmap)rp.getBlackBar(degree).Clone();
-
-            return b;
-        }
-
-        public Bitmap getGreyImage(float degree,bool switchState)
-        {
-            Bitmap b = (Bitmap)rp.getGreyImage(degree,switchState).Clone();
-
-            return b;
-        }
+       
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            position+=4;
+            
+            this.pbCanvas.Invalidate();
+        }
 
+
+        private int VisionIndex = 10;
+        private void pbCanvas_Paint(object sender, PaintEventArgs e)
+        {
+            switch (VisionIndex)
+            {
+                case 0:
+                    DrawGrating(e.Graphics);
+                    break;
+                case 1:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+
+        private int barWidth = 64;
+        private int position = 0;
+        private void DrawGrating(Graphics g)
+        {
+            int barNum = width / barWidth;
+            int barIndex = 0;
+
+            for (int i = 0; i != width; i++)
+            {
+                if (i<(barIndex+1)*barNum & barIndex%2==0)
+                {
+                    g.DrawLine(Pens.Green, (i+position)%width, 0, (i+position)%width, height);
+                }
+                else if (i < (barIndex + 1) * barNum & barIndex % 2 != 0)
+                {
+                    g.DrawLine(Pens.Black, (i+position)%width, 0, (i+position)%width, height);
+                }
+                if (i == (barIndex + 1) * barNum-1)
+                {
+                    barIndex++;
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            VisionIndex = 0;
+            this.timer1.Interval = 100;
+            this.timer1.Start();
         }
     }
 }
