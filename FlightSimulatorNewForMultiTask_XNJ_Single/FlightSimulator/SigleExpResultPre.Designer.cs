@@ -41,10 +41,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(123, 83);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(164, 96);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 20);
+            this.label1.Size = new System.Drawing.Size(97, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "EepTime:";
             // 
@@ -52,10 +51,9 @@
             // 
             this.lblExpTime.AutoSize = true;
             this.lblExpTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblExpTime.Location = new System.Drawing.Point(225, 83);
-            this.lblExpTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExpTime.Location = new System.Drawing.Point(300, 96);
             this.lblExpTime.Name = "lblExpTime";
-            this.lblExpTime.Size = new System.Drawing.Size(50, 20);
+            this.lblExpTime.Size = new System.Drawing.Size(62, 25);
             this.lblExpTime.TabIndex = 1;
             this.lblExpTime.Text = "NULL";
             // 
@@ -63,10 +61,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(118, 124);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(157, 143);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 20);
+            this.label3.Size = new System.Drawing.Size(104, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "EexName:";
             // 
@@ -74,19 +71,17 @@
             // 
             this.lblExpName.AutoSize = true;
             this.lblExpName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblExpName.Location = new System.Drawing.Point(225, 124);
-            this.lblExpName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblExpName.Location = new System.Drawing.Point(300, 143);
             this.lblExpName.Name = "lblExpName";
-            this.lblExpName.Size = new System.Drawing.Size(50, 20);
+            this.lblExpName.Size = new System.Drawing.Size(62, 25);
             this.lblExpName.TabIndex = 3;
             this.lblExpName.Text = "NULL";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(127, 223);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.button1.Location = new System.Drawing.Point(169, 257);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 30);
+            this.button1.Size = new System.Drawing.Size(145, 35);
             this.button1.TabIndex = 7;
             this.button1.Text = "删除";
             this.button1.UseVisualStyleBackColor = true;
@@ -96,10 +91,9 @@
             // 
             this.lblPathValue.AutoSize = true;
             this.lblPathValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblPathValue.Location = new System.Drawing.Point(225, 160);
-            this.lblPathValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPathValue.Location = new System.Drawing.Point(300, 185);
             this.lblPathValue.Name = "lblPathValue";
-            this.lblPathValue.Size = new System.Drawing.Size(50, 20);
+            this.lblPathValue.Size = new System.Drawing.Size(62, 25);
             this.lblPathValue.TabIndex = 9;
             this.lblPathValue.Text = "NULL";
             // 
@@ -107,18 +101,17 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(118, 160);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(203, 185);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 20);
+            this.label4.Size = new System.Drawing.Size(58, 25);
             this.label4.TabIndex = 8;
             this.label4.Text = "Path:";
             // 
             // SigleExpResultPre
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 276);
+            this.ClientSize = new System.Drawing.Size(556, 318);
             this.Controls.Add(this.lblPathValue);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
@@ -126,7 +119,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblExpTime);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "SigleExpResultPre";
             this.Text = "SigleExpResultPre";
             this.Load += new System.EventHandler(this.SigleExpResultPre_Load);

@@ -132,6 +132,10 @@
             this.timerForBackToZero = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbExtTime = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -146,6 +150,7 @@
             this.tpSetp3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPosition)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1065,6 +1070,7 @@
             // 
             // tpSetp3
             // 
+            this.tpSetp3.Controls.Add(this.groupBox1);
             this.tpSetp3.Controls.Add(this.btnEXPStop);
             this.tpSetp3.Controls.Add(this.groupBox4);
             this.tpSetp3.Controls.Add(this.splitter1);
@@ -1098,7 +1104,7 @@
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.lblEXPStateTRaw);
-            this.groupBox4.Location = new System.Drawing.Point(1227, 104);
+            this.groupBox4.Location = new System.Drawing.Point(1227, 97);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(200, 209);
             this.groupBox4.TabIndex = 37;
@@ -1219,6 +1225,34 @@
             // 
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick_1);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.tbExtTime);
+            this.groupBox1.Location = new System.Drawing.Point(1227, 336);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 128);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Timer";
+            // 
+            // tbExtTime
+            // 
+            this.tbExtTime.Location = new System.Drawing.Point(19, 56);
+            this.tbExtTime.Name = "tbExtTime";
+            this.tbExtTime.Size = new System.Drawing.Size(100, 25);
+            this.tbExtTime.TabIndex = 39;
+            this.tbExtTime.Text = "180";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(125, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(15, 15);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "S";
+            // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1255,6 +1289,8 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPosition)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1365,6 +1401,10 @@
         private System.Windows.Forms.Button btnDegreeDown;
         private System.Windows.Forms.Button btnDegreeUp;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbExtTime;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }
 

@@ -26,19 +26,19 @@ namespace FlightSimulator
         private Dictionary<int,List<float>> troqueData;
         private int[] expOrder;
 
-        public SigleExpResultPre(string dateTime, string expName, List<int> ExpTime, List<bool> TrainOrTest,string path, Dictionary<int,List<float>> positionData, Dictionary<int,List<float>> troqueData,int[] expOrder)
-        {
-            this.dateTime = dateTime;
-            this.expName = expName;
-            this.Exptime = ExpTime;
-            this.TrainOrTest = TrainOrTest;
-            this.positionData = positionData;
-            this.troqueData = troqueData;
-            this.path = path;
-            this.expOrder = expOrder;
-            InitializeComponent();
+        //public SigleExpResultPre(string dateTime, string expName, ,  troqueData,int[] expOrder)
+        //{
+        //    this.dateTime = dateTime;
+        //    this.expName = expName;
+        //    this.Exptime = ExpTime;
+        //    this.TrainOrTest = TrainOrTest;
+        //    this.positionData = positionData;
+        //    this.troqueData = troqueData;
+        //    this.path = path;
+        //    this.expOrder = expOrder;
+        //    InitializeComponent();
             
-        }
+        //}
 
         //public SigleExpResultPre()
         //{
