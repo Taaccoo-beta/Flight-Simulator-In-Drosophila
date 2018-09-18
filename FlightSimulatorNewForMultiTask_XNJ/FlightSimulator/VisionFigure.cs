@@ -49,15 +49,51 @@ namespace FlightSimulator
                     drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
                     break;
                 case 3:
-                    position -= stepSize;
+                    position += stepSize;
                     drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
                     break;
                 case 4:
                     position += stepSize;
+                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    break;
+                case 5:
+                    position -= stepSize;
+                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    break;
+                case 6:
+                    position -= stepSize;
+                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    break;
+                case 7:
+                    position -= stepSize;
+                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    break;
+                case 8:
+                    position += stepSize;
                     changeState = !changeState;
                     drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState);
                     break;
-                case 5:
+                case 9:
+                    position += stepSize;
+                    changeState = !changeState;
+                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    break;
+                case 10:
+                    position += stepSize;
+                    changeState = !changeState;
+                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    break;
+                case 11:
+                    position -= stepSize;
+                    changeState = !changeState;
+                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    break;
+                case 12:
+                    position -= stepSize;
+                    changeState = !changeState;
+                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    break;
+                case 13:
                     position -= stepSize;
                     changeState = !changeState;
                     drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
