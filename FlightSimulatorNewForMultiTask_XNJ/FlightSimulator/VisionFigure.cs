@@ -20,12 +20,27 @@ namespace FlightSimulator
         {
             InitializeComponent();
         }
-
+        private Graphics g;
+        private Bitmap bm;
         private int windowWidth, windowHeight;
         private void VisionFigure_Load(object sender, EventArgs e)
         {
+
+            //simpleOpenGlControl1.InitializeContexts();
+            //bool _fullscreen = false;
+            //if (_fullscreen)
+            //{
+            //    FormBorderStyle = FormBorderStyle.None;
+            //    WindowState = FormWindowState.Maximized;
+            //}
+            //Gl.glMatrixMode(Gl.GL_PROJECTION);
+            //Gl.glLoadIdentity();
+            //Gl.glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+
             this.windowHeight = this.Height;
             this.windowWidth = this.Width;
+            bm = new Bitmap(windowWidth, windowHeight);
+            g = Graphics.FromImage(bm);
             barSize18 = this.Width * 18 / 360;
             barSize36 = this.Width * 36 / 360;
             stepSize = (int)(this.Width * 3.6 / 360);
@@ -36,67 +51,67 @@ namespace FlightSimulator
         private int barSize18,barSize36;
         public int position=0;
         private int stepSize;
-        protected override void OnPaint(PaintEventArgs e)
+        public void drawFigure()
         {
-            Graphics dc = e.Graphics;
+           
             switch (expId)
             {
                 case 1:
-                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize18, 0);
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize18, 0),0,0);
                     break;
                 case 2:
                     position += stepSize;
-                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
                     break;
                 case 3:
                     position += stepSize;
-                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
                     break;
                 case 4:
                     position += stepSize;
-                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 5:
                     position -= stepSize;
-                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 6:
                     position -= stepSize;
-                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 7:
                     position -= stepSize;
-                    drawGratting(dc, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position);
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 8:
                     position += stepSize;
                     changeState = !changeState;
-                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState);
+                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState), 0, 0);
                     break;
                 case 9:
                     position += stepSize;
                     changeState = !changeState;
-                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 10:
                     position += stepSize;
                     changeState = !changeState;
-                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 11:
                     position -= stepSize;
                     changeState = !changeState;
-                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 12:
                     position -= stepSize;
                     changeState = !changeState;
-                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 13:
                     position -= stepSize;
                     changeState = !changeState;
-                    drawRphi(dc, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState);
+                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
 
                 default:
@@ -104,7 +119,7 @@ namespace FlightSimulator
             }
 
             
-            base.OnPaint(e);
+          
         }
 
         private void clearWindow(Graphics g)
@@ -114,26 +129,30 @@ namespace FlightSimulator
 
 
 
-        private void drawGratting(Graphics g,Color whiteColor,Color blackColor, int barSize,int position)
+        private Bitmap drawGratting(Graphics g,Color whiteColor,Color blackColor, int barSize,int position)
         {
+            g.Clear(Color.White);
             for (int i = 0; i != windowWidth; i++)
             {
                 if ((i / barSize) % 2 == 0)
                 {
                     g.FillRectangle(new SolidBrush(whiteColor), (i+position)%windowWidth, 0, 1, windowHeight);
-
+                    //g.DrawLine(Pens.Wheat, (i + position) % windowWidth, 0, (i + position) % windowWidth, windowHeight);
                 }
                 else
                 {
-                    g.FillRectangle(new SolidBrush(blackColor), (i+position)%windowWidth, 0, 1, windowHeight);
+                   // g.FillRectangle(new SolidBrush(blackColor), (i+position)%windowWidth, 0, 1, windowHeight);
 
                 }
 
             }
+            return bm;
         }
 
-        private void drawRphi(Graphics g, Color whiteColor, Color blackColor, Color changeColor, int barSize, int position, bool changeState)
+        private Bitmap drawRphi(Graphics g, Color whiteColor, Color blackColor, Color changeColor, int barSize, int position, bool changeState)
         {
+
+            g.Clear(Color.White);
 
             for (int i = 0; i != windowWidth; i++)
             {
@@ -155,6 +174,7 @@ namespace FlightSimulator
                 }
 
             }
+            return bm;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

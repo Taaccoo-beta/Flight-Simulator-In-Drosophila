@@ -1721,156 +1721,156 @@ namespace FlightSimulator
 
         private void timer4_Tick(object sender, EventArgs e)
         {
-            //float torqueVoltageValue;
-            //float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
-            //float degreeNow = ValueToDegree(vf.position);
-            ////troque = troque / 100;
-            //troque_trans = (troque - 2048) / 2048 * 80;
-            //lpf3.Add(degreeNow);
-            //lpf4.Add(troque_trans);
-            //if (lpf4.Count == 400)
-            //{
-            //    lpf4.Remove(lpf4[0]);
-            //}
-            //if (lpf3.Count == 400)
-            //{
-            //    lpf3.Remove(lpf3[0]);
-            //}
+            float torqueVoltageValue;
+            float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+            float degreeNow = ValueToDegree(vf.position);
+            //troque = troque / 100;
+            troque_trans = (troque - 2048) / 2048 * 80;
+            lpf3.Add(degreeNow);
+            lpf4.Add(troque_trans);
+            if (lpf4.Count == 400)
+            {
+                lpf4.Remove(lpf4[0]);
+            }
+            if (lpf3.Count == 400)
+            {
+                lpf3.Remove(lpf3[0]);
+            }
 
-            ////debug mode
-            ////troque_trans = 10;
+            //debug mode
+            //troque_trans = 10;
 
-            //count++;
+            count++;
 
-            //this.lblEXPStateP.Text = degreeNow.ToString();
-            //this.lblEXPStateTRaw.Text = troque.ToString();
-            //this.lblEXPSTateT.Text = troque_trans.ToString();
-
-
-
-            //if (isExpModule)
-            //{
-
-
-            //    torqueData[expID].Add(troque_trans);
-            //    positionData[expID].Add(degreeNow);
-
-
-            //    this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-
-            //    if (count == time * 5)
-            //    {
-            //        count = 0;
-
-            //        lpf3.Clear();
-            //        lpf4.Clear();
-            //        vf.position = 0;
-
-
-            //        expIndex++;
-            //        if (expIndex < 6)
-            //        {
-            //            // expID = expOrder[expIndex];
-
-            //            torqueData.Add(expID, new List<float>());
-            //            positionData.Add(expID, new List<float>());
-            //        }
-            //        else
-            //        {
-            //            ;
-            //        }
-            //        isExpModule = false;
-            //        isInterModule = true;
+            this.lblEXPStateP.Text = degreeNow.ToString();
+            this.lblEXPStateTRaw.Text = troque.ToString();
+            this.lblEXPSTateT.Text = troque_trans.ToString();
 
 
 
-            //    }
+            if (isExpModule)
+            {
 
 
-            //    vf.expId = expID;
-            //    vf.Refresh();
+                torqueData[expID].Add(troque_trans);
+                positionData[expID].Add(degreeNow);
 
 
-            //}
+                this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
 
-            //if (isInterModule)
-            //{
+                if (count == time * 5)
+                {
+                    count = 0;
 
-            //    vf.expId = 1;
-            //    vf.position = 0;
-
-            //    lpf3.Add(0);
-            //    lpf4.Add(troque_trans);
-
-            //    if (lpf3.Count == 400)
-            //    {
-            //        lpf3.Remove(lpf3[0]);
-            //    }
-
-            //    if (lpf4.Count == 400)
-            //    {
-            //        lpf4.Remove(lpf4[0]);
-            //    }
+                    lpf3.Clear();
+                    lpf4.Clear();
+                    vf.position = 0;
 
 
-            //    this.lblEXPStateP.Text = degree.ToString();
-            //    this.lblEXPStateTRaw.Text = troque.ToString();
-            //    this.lblEXPSTateT.Text = troque_trans.ToString();
+                    expIndex++;
+                    if (expIndex < 6)
+                    {
+                        // expID = expOrder[expIndex];
 
-
-            //    //debug mode
-            //    //degree += 1;
-
-            //    this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
-            //    //v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+                        torqueData.Add(expID, new List<float>());
+                        positionData.Add(expID, new List<float>());
+                    }
+                    else
+                    {
+                        ;
+                    }
+                    isExpModule = false;
+                    isInterModule = true;
 
 
 
-            //    if (count == (int)(3.5 * time))
-            //    {
-            //        count = 0;
-
-            //        lpf3.Clear();
-            //        lpf4.Clear();
-
-            //        if (expIndex == 12)
-            //        {
-
-            //            DataSave(expOrder, TotalCircle);
-
-            //            TotalCircle++;
-            //            if (TotalCircle == 1)
-            //            {
-            //                timer4.Stop();
-            //                this.btnStep3Start.Enabled = true;
-            //                pc.ClearALLDigitalPort();
-            //                //OpenLoop();
+                }
 
 
-            //            }
+                vf.expId = expID;
+                vf.Refresh();
 
-            //            positionData.Clear();
-            //            torqueData.Clear();
-            //            expOrder = getShufferArr(6);
-            //            expIndex = 0;
 
-            //            expID = expOrder[expIndex];
-            //            torqueData.Add(expID, new List<float>());
-            //            positionData.Add(expID, new List<float>());
+            }
 
-            //        }
-            //        else
-            //        {
+            if (isInterModule)
+            {
 
-            //        }
-            //        isExpModule = true;
-            //        isInterModule = false;
+                vf.expId = 1;
+                vf.position = 0;
 
-            //    }
+                lpf3.Add(0);
+                lpf4.Add(troque_trans);
 
-            //}
-            vf.expId = 3;
-            this.vf.Refresh();
+                if (lpf3.Count == 400)
+                {
+                    lpf3.Remove(lpf3[0]);
+                }
+
+                if (lpf4.Count == 400)
+                {
+                    lpf4.Remove(lpf4[0]);
+                }
+
+
+                this.lblEXPStateP.Text = degree.ToString();
+                this.lblEXPStateTRaw.Text = troque.ToString();
+                this.lblEXPSTateT.Text = troque_trans.ToString();
+
+
+                //debug mode
+                //degree += 1;
+
+                this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
+                //v.pictureBox1.CreateGraphics().DrawImage(vSti.DrawV_Test(degree), 0, 0);
+
+
+
+                if (count == (int)(3.5 * time))
+                {
+                    count = 0;
+
+                    lpf3.Clear();
+                    lpf4.Clear();
+
+                    if (expIndex == 12)
+                    {
+
+                        DataSave(expOrder, TotalCircle);
+
+                        TotalCircle++;
+                        if (TotalCircle == 1)
+                        {
+                            timer4.Stop();
+                            this.btnStep3Start.Enabled = true;
+                            pc.ClearALLDigitalPort();
+                            //OpenLoop();
+
+
+                        }
+
+                        positionData.Clear();
+                        torqueData.Clear();
+                        expOrder = getShufferArr(6);
+                        expIndex = 0;
+
+                        expID = expOrder[expIndex];
+                        torqueData.Add(expID, new List<float>());
+                        positionData.Add(expID, new List<float>());
+
+                    }
+                    else
+                    {
+
+                    }
+                    isExpModule = true;
+                    isInterModule = false;
+
+                }
+
+            }
+            
+            vf.drawFigure();
             
         }
     }
