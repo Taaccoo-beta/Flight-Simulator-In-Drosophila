@@ -132,6 +132,7 @@
             this.timerForBackToZero = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -250,7 +251,7 @@
             this.tpStep1.Location = new System.Drawing.Point(4, 25);
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
-            this.tpStep1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpStep1.Padding = new System.Windows.Forms.Padding(3);
             this.tpStep1.Size = new System.Drawing.Size(1448, 771);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
@@ -774,8 +775,8 @@
             this.tpStep2.Controls.Add(this.pictureBox1);
             this.tpStep2.Location = new System.Drawing.Point(4, 25);
             this.tpStep2.Name = "tpStep2";
-            this.tpStep2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tpStep2.Size = new System.Drawing.Size(1448, 772);
+            this.tpStep2.Padding = new System.Windows.Forms.Padding(3);
+            this.tpStep2.Size = new System.Drawing.Size(1448, 771);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";
             this.tpStep2.UseVisualStyleBackColor = true;
@@ -1219,6 +1220,10 @@
             // 
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick_1);
             // 
+            // timer4
+            // 
+            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1365,6 +1370,7 @@
         private System.Windows.Forms.Button btnDegreeDown;
         private System.Windows.Forms.Button btnDegreeUp;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Timer timer4;
     }
 }
 
