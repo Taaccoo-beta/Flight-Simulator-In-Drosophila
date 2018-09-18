@@ -1869,8 +1869,8 @@ namespace FlightSimulator
             //    }
 
             //}
-            vf.expId = 1;
-                this.vf.Refresh();
+            vf.expId = 3;
+            this.vf.Refresh();
             
         }
     }

@@ -103,9 +103,7 @@ namespace FlightSimulator
                     break;
             }
 
-            changeState = !changeState;
-            drawRphi(dc, Color.Wheat, Color.Black, Color.Yellow, 30, 10, changeState);
-            //dc.DrawRectangle(Pens.Red, x, y, x + 10, y + 10);
+            
             base.OnPaint(e);
         }
 
