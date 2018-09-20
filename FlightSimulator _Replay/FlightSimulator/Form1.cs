@@ -624,8 +624,8 @@ namespace FlightSimulator
 
             if (ifStartDebugMode)
             {
-                position = 1733;
-                troque = 1744;
+                position = 2494;
+                troque = 2048;
             }
 
 
