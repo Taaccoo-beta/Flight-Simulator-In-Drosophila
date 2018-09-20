@@ -350,6 +350,7 @@ namespace rorationSimulation
             //width 630 间隔 18， 35一道杠，从0加到256
 
 
+            //左边坐标短线
             for (int i = 1; i < 10; i++)
             {
                 // g1.DrawLine(Pens.DarkBlue, 60, 60 + intervale * i, 80, 60 + intervale * i);

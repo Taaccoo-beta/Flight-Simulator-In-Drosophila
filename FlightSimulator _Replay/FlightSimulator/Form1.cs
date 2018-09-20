@@ -507,64 +507,7 @@ namespace FlightSimulator
             timer1.Interval = 100;
             timer1.Start();
 
-            //timeBeginPeriod(1);
-            //uint start = timeGetTime();
-            //uint newStart;
-            //int count = 0;
-            //int i = 0, j = 0;
-            //ifStop = false;
-
-
-            //while (!ifStop)
-            //{
-            //    Application.DoEvents();
-            //    newStart = timeGetTime();
-
-            //    if (newStart - start >= 100)
-            //    {
-
-                    
-
-
-            //        float position = cc.getPositionSignal();
-            //        float troque = cc.getTorqueSignal();
-
-            //        if (ifStartDebugMode)
-            //        {
-            //            position = 1744;
-            //            troque = 2862;
-            //        }
-
-
-            //        this.lblPositionValue.Text = position.ToString();
-            //        this.lblTorqueValue.Text = troque.ToString();
-
-
-            //        count++;
-            //        start = newStart;
-                    
-            //        lpf1.Add(position);
-            //        lpf2.Add(troque);
-
-                   
-            //        if (lpf1.Count == 400)
-            //        {
-            //            lpf1.Remove(lpf1[0]);
-            //        }
-
-            //        if (lpf2.Count == 400)
-            //        {
-            //            lpf2.Remove(lpf2[0]);
-            //        }
-
-            //        this.pictureBox1.CreateGraphics().DrawImage(dp.drawSignalCurve(lpf1, lpf2), 0, 0);
-
-
-            //    }
-
-               
-
-            //}
+          
         }
 
 
@@ -681,8 +624,8 @@ namespace FlightSimulator
 
             if (ifStartDebugMode)
             {
-                position = 1744;
-                troque = 2862;
+                position = 1733;
+                troque = 1744;
             }
 
 
