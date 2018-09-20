@@ -1209,9 +1209,7 @@ namespace FlightSimulator
         private void btnBiasUp_Click(object sender, EventArgs e)
         {
 
-            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
-            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
-            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+            OpenLoop();
 
             if (iniBiasValue > 0.4)
                 {
@@ -1226,9 +1224,7 @@ namespace FlightSimulator
         {
 
 
-            pc.DigitOutput(3, MccDaq.DigitalLogicState.Low);
-            pc.DigitOutput(4, MccDaq.DigitalLogicState.High);
-            pc.DigitOutput(2, MccDaq.DigitalLogicState.High);
+            OpenLoop();
 
 
             if (iniBiasValue < 4.6)
@@ -1301,7 +1297,6 @@ namespace FlightSimulator
         private void btnBack_Click(object sender, EventArgs e)
         {
 
-            
             OpenLoop();
             timeBeginPeriod(1);
             uint start = timeGetTime();
@@ -1318,37 +1313,52 @@ namespace FlightSimulator
 
                 if (newStart - start >= 5)
                 {
-                    
+
                     count++;
                     start = newStart;
 
-                    
+
                     float positionVoltageValue;
-                    float position = float.Parse(pc.AnalogInput(0, out positionVoltageValue));
+                    float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
                     if (position < 1744)
                     {
                         backToZeroControlSwitch = true;
                         if (Math.Abs(position - 1744) > 30)
                         {
-                            pc.VOutput(0, 2.6f);
+                            pc.VOutput(0, 3f);
                         }
                         else
                         {
+
                             pc.VOutput(0, 2.52f);
                         }
 
+                        if (Math.Abs(position - 1744) < 2)
+                        {
+                            pc.VOutput(0, 2.5f);
+                            ifBackToZeroStop = true;
+                        }
+                       
                     }
                     else
                     {
                         backToZeroControlSwitch = false;
                         if (Math.Abs(position - 1744) > 30)
                         {
-                            pc.VOutput(0, 2.4f);
+                            pc.VOutput(0, 2f);
                         }
                         else
                         {
                             pc.VOutput(0, 2.48f);
+
                         }
+
+                        if (Math.Abs(position - 1744) < 2)
+                        {
+                            pc.VOutput(0, 2.5f);
+                            ifBackToZeroStop = true;
+                        }
+                       
                     }
 
                 }
@@ -1356,9 +1366,9 @@ namespace FlightSimulator
 
 
             }
-            
-            
-           
+
+
+
         }
 
         private void timer3_Tick(object sender, EventArgs e)

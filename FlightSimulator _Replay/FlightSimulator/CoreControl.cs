@@ -45,7 +45,7 @@ namespace XControl
         public float getTorqueSignal()
         {
             float torqueVlotageValue;
-            float torque = float.Parse(pc.AnalogInput(1, out torqueVlotageValue));
+            float torque = float.Parse(pc.AnalogInput10(1, out torqueVlotageValue));
             return torque;
         }
 
