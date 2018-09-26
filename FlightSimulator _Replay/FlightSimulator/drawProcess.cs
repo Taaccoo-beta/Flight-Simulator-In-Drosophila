@@ -248,37 +248,10 @@ namespace rorationSimulation
 
             
 
-
-            if (debugMode)
-            {
-                Random ran = new Random();
-                for (int i = 0; i < positionNumberRecord.Length; i++)
-                {
-                    if (i < (int)(positionNumberRecord.Length / 4))
-                    {
-                        positionNumberRecord[i] = ran.Next(0, 100);
-                    }
-                    else if (i < (int)(positionNumberRecord.Length / 4 * 2))
-                    {
-                        positionNumberRecord[i] = ran.Next(100, 200);
-
-                    }
-                    else if (i < (int)(positionNumberRecord.Length / 4 * 3))
-                    {
-                        positionNumberRecord[i] = ran.Next(0, 100);
-                    }
-                    else
-                    {
-                        positionNumberRecord[i] = ran.Next(100, 200);
-                    }
-
-
-                }
-            }
-            else
-            {
-                positionTransform(position);
-            }
+        
+            
+            positionTransform(position);
+            
             
             ////draw commulative position points
             int positionDrawHeightLimit = (int)(heightHere - 30);

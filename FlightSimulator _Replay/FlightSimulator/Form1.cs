@@ -625,7 +625,7 @@ namespace FlightSimulator
             if (ifStartDebugMode)
             {
                 position = 2494;
-                troque = 2048;
+                troque = 0;
             }
 
 
@@ -810,18 +810,19 @@ namespace FlightSimulator
             float torqueVoltageValue;
 
             float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
-            float troque = float.Parse(pc.AnalogInput(1, out torqueVoltageValue));
+            float troque = float.Parse(pc.AnalogInput10(1, out torqueVoltageValue));
 
             positionForEverySequence[sequenceIndexForExperiment].Add(position);
             torqueForEverySequence[sequenceIndexForExperiment].Add(troque);
 
-
+            lblShowPosStep3.Text = position.ToString("00.00");
+            lblShowTorStep3.Text = troque.ToString("00.00");
             if (trainOrTestUsed[sequenceIndexForExperiment])
             {
 
                 if (rbUpT.Checked)
                 {
-                    if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+                    if ((position > 1470 & position < 1928) || (position > 2494 || position < 976))
                     {
                         punishmentByHeat();
                         lblPunishmentStateValue.Text = "True";
@@ -834,7 +835,7 @@ namespace FlightSimulator
                 }
                 else
                 {
-                    if ((position > 1488 & position < 2000) || (position > 2516 || position < 976))
+                    if ((position > 1470 & position < 1928) || (position > 2494 || position < 976))
                     {
                         unPunishmentByHeat();
                         lblPunishmentStateValue.Text = "False";
@@ -883,13 +884,18 @@ namespace FlightSimulator
                 }
 
 
+                
+                PICalc pic = new PICalc(positionForEverySequence[sequenceIndexForExperiment-1], torqueForEverySequence[sequenceIndexForExperiment-1], rbUpT.Checked);
+                float piValue = pic.getSiglePIValue();
+
 
                 Bitmap imageHere = new Bitmap(imageNow);
                 PictureBox pb = new PictureBox();
                 float width = this.flpBottomForImageList.Size.Width - 30;
                 float height = (int)(((float)this.pictureBox3.Size.Height / (float)this.pictureBox3.Size.Width) * width);
                 pb.Size = new Size((int)width, (int)height);
-
+                Graphics g = Graphics.FromImage(imageHere);
+                g.DrawString("PIValue: " + piValue.ToString(), new Font("Arial", 15), new SolidBrush(Color.LightGray), 130, 20);
                 pb.Image = imageHere;
                 pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
                 
@@ -1511,6 +1517,11 @@ namespace FlightSimulator
         }
 
         private void lblChooseDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gbStatelooking_Enter(object sender, EventArgs e)
         {
 
         }
