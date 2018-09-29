@@ -718,8 +718,8 @@ namespace FlightSimulator
             vf.Size = new System.Drawing.Size(1044, 330);
             vf.Show();
 
-            vf.Location = new Point(3043, 439);
-            //vf.Location = new Point(10, 10);
+            //vf.Location = new Point(3043, 439);
+            vf.Location = new Point(10, 10);
             vf.pbCanvas.Size = new System.Drawing.Size(1022, 330);
             //vf.Location = new Point(3043, 439);
 
@@ -1125,7 +1125,7 @@ namespace FlightSimulator
 
 
 
-        private float k;
+        private float k=-11;
         private const int expCircle = 3;
         private const int intervalTime = 5;
         private const int expTime_20_pps = 10;
@@ -1591,6 +1591,7 @@ namespace FlightSimulator
         {
             btnStep3Start.Enabled = true;
             ifStop = true;
+            timer4.Stop();
         }
 
         private void btnSaveSettingInStep2_Click(object sender, EventArgs e)
@@ -1719,6 +1720,11 @@ namespace FlightSimulator
 
         private int time;
 
+        private float degreeToPosition(float degree)
+        {
+            return vf.Width/ 2f + vf.Width / 360f * degree;
+        }
+            
         private void timer4_Tick(object sender, EventArgs e)
         {
             float torqueVoltageValue;
@@ -1758,13 +1764,13 @@ namespace FlightSimulator
 
                 this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
 
-                if (count == time * 5)
+                if (count == time * 1)
                 {
                     count = 0;
 
                     lpf3.Clear();
                     lpf4.Clear();
-                    vf.position = 0;
+                    vf.position = vf.pbCanvas.Width/2;
 
 
                     expIndex++;
@@ -1781,27 +1787,27 @@ namespace FlightSimulator
                     }
                     isExpModule = false;
                     isInterModule = true;
-
-
-
+                    
                 }
-
-
+                
                 vf.expId = expID;
                
-
-
             }
 
             if (isInterModule)
             {
 
-                vf.expId = 12;
-                vf.position = 0;
-
-                
-
-
+                vf.expId = 0;
+               
+                if (rbSingle.Checked)
+                {
+                    vf.position = vf.pbCanvas.Width/2;
+                }
+                else
+                {
+                    degree += troque_trans * k * 0.01f;
+                    vf.position = (int)degreeToPosition(degree);
+                }
                 //debug mode
                 //degree += 1;
 
@@ -1810,7 +1816,7 @@ namespace FlightSimulator
 
 
 
-                if (count == (int)(3.5 * time))
+                if (count == (int)(1 * time))
                 {
                     count = 0;
 
@@ -1850,6 +1856,7 @@ namespace FlightSimulator
                     isExpModule = true;
                     isInterModule = false;
                     this.vf.expId = expID;
+                    this.vf.position = 0;
 
                 }
 

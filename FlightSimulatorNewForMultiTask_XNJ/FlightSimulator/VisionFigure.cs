@@ -65,20 +65,14 @@ namespace FlightSimulator
            
             switch (expId)
             {
-                case 12:
-                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize18, 0),0,0);
-                    break;
                 case 0:
-                    position += stepSize;
-                    if (position >windowWidth)
-                    {
-                        position = 0;
-                    }
-                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
+                    g.Clear(Color.White);
+                    this.pbCanvas.CreateGraphics().DrawImage(singleBar(g,barSize18,this.position),0,0);
+
                     break;
                 case 1:
                     position += stepSize;
-                    if (position > windowWidth)
+                    if (position >windowWidth)
                     {
                         position = 0;
                     }
@@ -90,13 +84,13 @@ namespace FlightSimulator
                     {
                         position = 0;
                     }
-                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
                     break;
                 case 3:
-                    position -= stepSize;
-                    if (position < 0)
+                    position += stepSize;
+                    if (position > windowWidth)
                     {
-                        position = windowWidth;
+                        position = 0;
                     }
                     this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
@@ -117,13 +111,12 @@ namespace FlightSimulator
                     this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 6:
-                    position += stepSize;
-                    if (position > windowWidth)
+                    position -= stepSize;
+                    if (position < 0)
                     {
-                        position = 0;
+                        position = windowWidth;
                     }
-                    changeState = !changeState;
-                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState), 0, 0);
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 7:
                     position += stepSize;
@@ -132,7 +125,7 @@ namespace FlightSimulator
                         position = 0;
                     }
                     changeState = !changeState;
-                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
+                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState), 0, 0);
                     break;
                 case 8:
                     position += stepSize;
@@ -144,10 +137,10 @@ namespace FlightSimulator
                     this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 9:
-                    position -= stepSize;
-                    if (position < 0)
+                    position += stepSize;
+                    if (position > windowWidth)
                     {
-                        position = windowWidth;
+                        position = 0;
                     }
                     changeState = !changeState;
                     this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
@@ -162,6 +155,15 @@ namespace FlightSimulator
                     this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 11:
+                    position -= stepSize;
+                    if (position < 0)
+                    {
+                        position = windowWidth;
+                    }
+                    changeState = !changeState;
+                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
+                    break;
+                case 12:
                     position -= stepSize;
                     if (position < 0)
                     {
@@ -186,6 +188,14 @@ namespace FlightSimulator
         }
 
 
+        private Bitmap singleBar(Graphics g, int barSize, int position)
+        {
+          
+            g.FillRectangle(new SolidBrush(Color.Black), position-barSize/2, 0, barSize, windowHeight);
+            //g.DrawLine(Pens.Wheat, (i + position) % windowWidth, 0, (i + position) % windowWidth, windowHeight);
+           
+            return bm;
+        }
 
         private Bitmap drawGratting(Graphics g,Color whiteColor,Color blackColor, int barSize,int position)
         {

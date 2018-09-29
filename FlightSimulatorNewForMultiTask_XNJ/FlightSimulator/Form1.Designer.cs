@@ -133,6 +133,9 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.rbSingle = new System.Windows.Forms.RadioButton();
+            this.rbClosedLoop = new System.Windows.Forms.RadioButton();
+            this.gbChooseIntervalPattern = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -147,6 +150,7 @@
             this.tpSetp3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPosition)).BeginInit();
+            this.gbChooseIntervalPattern.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1129,6 +1133,7 @@
             // 
             // tpSetp3
             // 
+            this.tpSetp3.Controls.Add(this.gbChooseIntervalPattern);
             this.tpSetp3.Controls.Add(this.btnEXPStop);
             this.tpSetp3.Controls.Add(this.groupBox4);
             this.tpSetp3.Controls.Add(this.splitter1);
@@ -1302,6 +1307,39 @@
             // 
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
+            // rbSingle
+            // 
+            this.rbSingle.AutoSize = true;
+            this.rbSingle.Checked = true;
+            this.rbSingle.Location = new System.Drawing.Point(44, 31);
+            this.rbSingle.Name = "rbSingle";
+            this.rbSingle.Size = new System.Drawing.Size(70, 17);
+            this.rbSingle.TabIndex = 39;
+            this.rbSingle.TabStop = true;
+            this.rbSingle.Text = "SingleBar";
+            this.rbSingle.UseVisualStyleBackColor = true;
+            // 
+            // rbClosedLoop
+            // 
+            this.rbClosedLoop.AutoSize = true;
+            this.rbClosedLoop.Location = new System.Drawing.Point(44, 54);
+            this.rbClosedLoop.Name = "rbClosedLoop";
+            this.rbClosedLoop.Size = new System.Drawing.Size(75, 17);
+            this.rbClosedLoop.TabIndex = 40;
+            this.rbClosedLoop.Text = "CloseLoop";
+            this.rbClosedLoop.UseVisualStyleBackColor = true;
+            // 
+            // gbChooseIntervalPattern
+            // 
+            this.gbChooseIntervalPattern.Controls.Add(this.rbSingle);
+            this.gbChooseIntervalPattern.Controls.Add(this.rbClosedLoop);
+            this.gbChooseIntervalPattern.Location = new System.Drawing.Point(920, 301);
+            this.gbChooseIntervalPattern.Name = "gbChooseIntervalPattern";
+            this.gbChooseIntervalPattern.Size = new System.Drawing.Size(150, 100);
+            this.gbChooseIntervalPattern.TabIndex = 41;
+            this.gbChooseIntervalPattern.TabStop = false;
+            this.gbChooseIntervalPattern.Text = "IntervalPattern";
+            // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1339,6 +1377,8 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPosition)).EndInit();
+            this.gbChooseIntervalPattern.ResumeLayout(false);
+            this.gbChooseIntervalPattern.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1450,6 +1490,9 @@
         private System.Windows.Forms.Button btnDegreeUp;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Timer timer4;
+        private System.Windows.Forms.GroupBox gbChooseIntervalPattern;
+        private System.Windows.Forms.RadioButton rbSingle;
+        private System.Windows.Forms.RadioButton rbClosedLoop;
     }
 }
 
