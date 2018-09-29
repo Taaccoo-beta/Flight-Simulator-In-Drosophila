@@ -692,8 +692,8 @@ namespace FlightSimulator
             vf.Size = new System.Drawing.Size(1038, 400);
             vf.Show();
 
-            //vf.Location = new Point(3043, 439);
-            vf.Location = new Point(10, 10);
+            vf.Location = new Point(3043, 439);
+            //vf.Location = new Point(10, 10);
             vf.pbCanvas.Size = new System.Drawing.Size(1022, 330);
             //vf.Location = new Point(3043, 439);
             
@@ -1125,6 +1125,36 @@ namespace FlightSimulator
 
         }
 
+        public string getDescribeOfOrderIndex(int i)
+        {
+            switch (i) {
+                case 1:
+                    return "1 前景bar, 1.8degree";
+                    break;
+                case 2:
+                    return "2 背景bar, 1.8degree";
+                    break;
+                case 3:
+                    return "3 同时bar, 1.8degree";
+                    break;
+                case 4: 
+                    return "4 前景bar, 4.5degree";
+                    break;
+                case 5:
+                    return "5 背景bar, 4.5degree";
+                    break;
+                case 6:
+                    return "6 同时bar, 4.5degree";
+                    break;
+                default:
+                    return "";
+
+
+            }
+
+
+        }
+
         private float k;
         private const int expCircle = 3;
         private const int intervalTime = 5;
@@ -1140,7 +1170,7 @@ namespace FlightSimulator
             lblChooseDisplay.Visible = true;
             cbIsPosition.Visible = true;
             cbIsTorque.Visible = true;
-
+            lbShowRandomValue.Items.Clear();
             //vSti = new Stimulations(v.pictureBox1.Width, v.pictureBox1.Height, 1);
 
             timeBeginPeriod(1);
@@ -1164,11 +1194,20 @@ namespace FlightSimulator
 
             int[] expOrder = getShufferArr(6);
             int expIndex = 0;
-
+            
+            string strSequenc = "";
+            for (int jj = 0; jj != expOrder.Length; jj++)
+            {
+                strSequenc += expOrder[jj].ToString();
+                
+            }
+            lbShowRandomValue.Items.Add(strSequenc);
+            strSequenc = "";
             int expID = expOrder[expIndex];
+            lblShowDescribe.Text = getDescribeOfOrderIndex(expID);
             torqueData.Add(expID, new List<float>());
             positionData.Add(expID, new List<float>());
-
+            string lblshowDTemp="";
             this.btnStep3Start.Enabled = false;
 
             float settingDegree = 0;
@@ -1276,7 +1315,7 @@ namespace FlightSimulator
                             if (expIndex < 6)
                             {
                                 expID = expOrder[expIndex];
-
+                                lblshowDTemp = getDescribeOfOrderIndex(expID);
                                 torqueData.Add(expID, new List<float>());
                                 positionData.Add(expID, new List<float>());
                             }
@@ -1286,7 +1325,7 @@ namespace FlightSimulator
                             }
                             isExpModule = false;
                             isInterModule = true;
-
+                            lblShowDescribe.Text = "InterFigure";
 
 
                         }
@@ -1334,7 +1373,7 @@ namespace FlightSimulator
                     {
 
 
-                        degree += 6f * oritation;
+                        degree += 3.6f * oritation;
 
                         lpf3.Add(degree);
                         lpf4.Add(troque_trans);
@@ -1354,11 +1393,11 @@ namespace FlightSimulator
                         this.lblEXPStateTRaw.Text = troque.ToString();
                         this.lblEXPSTateT.Text = troque_trans.ToString();
 
-                        if (degree > 60)
+                        if (degree > 45)
                         {
                             oritation = -1;
                         }
-                        if (degree < -60)
+                        if (degree < -45)
                         {
                             oritation = 1;
                         }
@@ -1391,28 +1430,39 @@ namespace FlightSimulator
                                     this.btnStep3Start.Enabled = true;
                                     pc.ClearALLDigitalPort();
                                     //OpenLoop();
-                                    
+
 
                                 }
+                                else
+                                {
 
-                                positionData.Clear();
-                                torqueData.Clear();
-                                expOrder = getShufferArr(6);
-                                expIndex = 0;
+                                    positionData.Clear();
+                                    torqueData.Clear();
+                                    expOrder = getShufferArr(6);
+                                    expIndex = 0;
+                                    strSequenc = "";
+                                    for (int jj = 0; jj != expOrder.Length; jj++)
+                                    {
+                                        strSequenc += expOrder[jj].ToString();
 
-                                expID = expOrder[expIndex];
-                                torqueData.Add(expID, new List<float>());
-                                positionData.Add(expID, new List<float>());
+                                    }
+                                    lbShowRandomValue.Items.Add(strSequenc);
 
+                                    expID = expOrder[expIndex];
+                                    lblShowDescribe.Text = getDescribeOfOrderIndex(expID);
 
+                                    torqueData.Add(expID, new List<float>());
+                                    positionData.Add(expID, new List<float>());
+
+                                }
                             }
                             else
                             {
-                              
+                                this.lblShowDescribe.Text = lblshowDTemp;
                             }
                             isExpModule = true;
                             isInterModule = false;
-
+                            
 
 
                         }

@@ -715,12 +715,12 @@ namespace FlightSimulator
 
 
             vf = new VisionFigure();
-            vf.Size = new System.Drawing.Size(1038, 400);
+            vf.Size = new System.Drawing.Size(1044, 330);
             vf.Show();
 
-            //vf.Location = new Point(3043, 439);
-            vf.Location = new Point(10, 10);
-            vf.Size = new System.Drawing.Size(1022, 330);
+            vf.Location = new Point(3043, 439);
+            //vf.Location = new Point(10, 10);
+            vf.pbCanvas.Size = new System.Drawing.Size(1022, 330);
             //vf.Location = new Point(3043, 439);
 
 
@@ -1167,12 +1167,12 @@ namespace FlightSimulator
             expOrder = getShufferArr(12);
             int expIndex = 0;
 
-            int expID = expOrder[expIndex];
+            expID = expOrder[expIndex];
             torqueData.Add(expID, new List<float>());
             positionData.Add(expID, new List<float>());
 
             this.btnStep3Start.Enabled = false;
-            vf.expId = 1;
+            vf.expId = 12;
             isExpModule = false;
             isInterModule = true;
 
@@ -1746,12 +1746,12 @@ namespace FlightSimulator
             this.lblEXPStateTRaw.Text = troque.ToString();
             this.lblEXPSTateT.Text = troque_trans.ToString();
 
-
+            label1.Text = this.expID.ToString();
 
             if (isExpModule)
             {
 
-
+                
                 torqueData[expID].Add(troque_trans);
                 positionData[expID].Add(degreeNow);
 
@@ -1768,9 +1768,9 @@ namespace FlightSimulator
 
 
                     expIndex++;
-                    if (expIndex < 6)
+                    if (expIndex < 12)
                     {
-                        // expID = expOrder[expIndex];
+                        expID = expOrder[expIndex];
 
                         torqueData.Add(expID, new List<float>());
                         positionData.Add(expID, new List<float>());
@@ -1788,7 +1788,7 @@ namespace FlightSimulator
 
 
                 vf.expId = expID;
-                vf.Refresh();
+               
 
 
             }
@@ -1796,26 +1796,10 @@ namespace FlightSimulator
             if (isInterModule)
             {
 
-                vf.expId = 1;
+                vf.expId = 12;
                 vf.position = 0;
 
-                lpf3.Add(0);
-                lpf4.Add(troque_trans);
-
-                if (lpf3.Count == 400)
-                {
-                    lpf3.Remove(lpf3[0]);
-                }
-
-                if (lpf4.Count == 400)
-                {
-                    lpf4.Remove(lpf4[0]);
-                }
-
-
-                this.lblEXPStateP.Text = degree.ToString();
-                this.lblEXPStateTRaw.Text = troque.ToString();
-                this.lblEXPSTateT.Text = troque_trans.ToString();
+                
 
 
                 //debug mode
@@ -1851,7 +1835,7 @@ namespace FlightSimulator
 
                         positionData.Clear();
                         torqueData.Clear();
-                        expOrder = getShufferArr(6);
+                        expOrder = getShufferArr(12);
                         expIndex = 0;
 
                         expID = expOrder[expIndex];
@@ -1865,12 +1849,14 @@ namespace FlightSimulator
                     }
                     isExpModule = true;
                     isInterModule = false;
+                    this.vf.expId = expID;
 
                 }
 
             }
-            
+
             vf.drawFigure();
+          
             
         }
     }

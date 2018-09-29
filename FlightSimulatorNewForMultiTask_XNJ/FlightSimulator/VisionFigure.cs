@@ -25,7 +25,16 @@ namespace FlightSimulator
         private int windowWidth, windowHeight;
         private void VisionFigure_Load(object sender, EventArgs e)
         {
-
+            simpleOpenGlControl1.InitializeContexts();
+            bool _fullscreen = false;
+            if (_fullscreen)
+            {
+                FormBorderStyle = FormBorderStyle.None;
+                WindowState = FormWindowState.Maximized;
+            }
+            Gl.glMatrixMode(Gl.GL_PROJECTION);
+            Gl.glLoadIdentity();
+            Gl.glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
             //simpleOpenGlControl1.InitializeContexts();
             //bool _fullscreen = false;
             //if (_fullscreen)
@@ -44,85 +53,128 @@ namespace FlightSimulator
             barSize18 = this.Width * 18 / 360;
             barSize36 = this.Width * 36 / 360;
             stepSize = (int)(this.Width * 3.6 / 360);
-            degree45 = windowWidth / 2 - windowWidth / 8;
-            degreeN45 = windowWidth / 2 + windowWidth / 8;
         }
-        private float degree45;
-        private float degreeN45;
+
         private bool changeState = true;
         public int expId=0;
         private int barSize18,barSize36;
         public int position=0;
         private int stepSize;
-        private int orien = -1;
         public void drawFigure()
         {
            
             switch (expId)
             {
+                case 12:
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize18, 0),0,0);
+                    break;
                 case 0:
-                   
-
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize18, 0),0,0);
+                    position += stepSize;
+                    if (position >windowWidth)
+                    {
+                        position = 0;
+                    }
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
                     break;
                 case 1:
                     position += stepSize;
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
+                    if (position > windowWidth)
+                    {
+                        position = 0;
+                    }
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
                     break;
                 case 2:
                     position += stepSize;
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
+                    if (position > windowWidth)
+                    {
+                        position = 0;
+                    }
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 3:
-                    position += stepSize;
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
+                    position -= stepSize;
+                    if (position < 0)
+                    {
+                        position = windowWidth;
+                    }
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 4:
                     position -= stepSize;
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
+                    if (position < 0)
+                    {
+                        position = windowWidth;
+                    }
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 5:
                     position -= stepSize;
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
+                    if (position < 0)
+                    {
+                        position = windowWidth;
+                    }
+                    this.pbCanvas.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 6:
-                    position -= stepSize;
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
+                    position += stepSize;
+                    if (position > windowWidth)
+                    {
+                        position = 0;
+                    }
+                    changeState = !changeState;
+                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState), 0, 0);
                     break;
                 case 7:
                     position += stepSize;
+                    if (position > windowWidth)
+                    {
+                        position = 0;
+                    }
                     changeState = !changeState;
-                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState), 0, 0);
+                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 8:
                     position += stepSize;
+                    if (position > windowWidth)
+                    {
+                        position = 0;
+                    }
                     changeState = !changeState;
-                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
+                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 9:
-                    position += stepSize;
+                    position -= stepSize;
+                    if (position < 0)
+                    {
+                        position = windowWidth;
+                    }
                     changeState = !changeState;
-                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
+                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 10:
                     position -= stepSize;
+                    if (position < 0)
+                    {
+                        position = windowWidth;
+                    }
                     changeState = !changeState;
-                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
+                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 11:
                     position -= stepSize;
+                    if (position < 0)
+                    {
+                        position = windowWidth;
+                    }
                     changeState = !changeState;
-                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
-                    break;
-                case 12:
-                    position -= stepSize;
-                    changeState = !changeState;
-                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
+                    this.pbCanvas.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
 
                 default:
                     break;
             }
+            this.simpleOpenGlControl1.Refresh();
 
             
           
@@ -152,16 +204,6 @@ namespace FlightSimulator
                 }
 
             }
-            return bm;
-        }
-
-        private Bitmap drawSingleBar(Graphics g, Color whiteColor,int barSize, int position)
-        {
-            g.Clear(Color.White);
-            
-            g.FillRectangle(new SolidBrush(whiteColor),position-barSize/2,0,barSize, windowHeight);
-                    //g.DrawLine(Pens.Wheat, (i + position) % windowWidth, 0, (i + position) % windowWidth, windowHeight);
-             
             return bm;
         }
 
