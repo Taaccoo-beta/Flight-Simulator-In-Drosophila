@@ -1334,7 +1334,7 @@ namespace FlightSimulator
                     {
 
 
-                        degree += troque_trans * k * 0.01f;
+                        degree += 6f * oritation;
 
                         lpf3.Add(degree);
                         lpf4.Add(troque_trans);
@@ -1354,13 +1354,13 @@ namespace FlightSimulator
                         this.lblEXPStateTRaw.Text = troque.ToString();
                         this.lblEXPSTateT.Text = troque_trans.ToString();
 
-                        if (degree > 180)
+                        if (degree > 60)
                         {
-                            degree = degree - 180;
+                            oritation = -1;
                         }
-                        if (degree < -180)
+                        if (degree < -60)
                         {
-                            degree = degree + 180;
+                            oritation = 1;
                         }
                         //debug mode
                         //degree += 1;

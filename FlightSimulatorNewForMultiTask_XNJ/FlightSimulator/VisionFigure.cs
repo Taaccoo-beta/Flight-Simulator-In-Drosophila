@@ -44,20 +44,30 @@ namespace FlightSimulator
             barSize18 = this.Width * 18 / 360;
             barSize36 = this.Width * 36 / 360;
             stepSize = (int)(this.Width * 3.6 / 360);
+            degree45 = windowWidth / 2 - windowWidth / 8;
+            degreeN45 = windowWidth / 2 + windowWidth / 8;
         }
-
+        private float degree45;
+        private float degreeN45;
         private bool changeState = true;
         public int expId=0;
         private int barSize18,barSize36;
         public int position=0;
         private int stepSize;
+        private int orien = -1;
         public void drawFigure()
         {
            
             switch (expId)
             {
-                case 1:
+                case 0:
+                   
+
                     this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize18, 0),0,0);
+                    break;
+                case 1:
+                    position += stepSize;
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
                     break;
                 case 2:
                     position += stepSize;
@@ -65,10 +75,10 @@ namespace FlightSimulator
                     break;
                 case 3:
                     position += stepSize;
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position),0,0);
+                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 4:
-                    position += stepSize;
+                    position -= stepSize;
                     this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 5:
@@ -80,13 +90,14 @@ namespace FlightSimulator
                     this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
                     break;
                 case 7:
-                    position -= stepSize;
-                    this.CreateGraphics().DrawImage(drawGratting(g, Color.FromArgb(60, Color.Black), Color.FromArgb(160, Color.Black), barSize36, position), 0, 0);
+                    position += stepSize;
+                    changeState = !changeState;
+                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState), 0, 0);
                     break;
                 case 8:
                     position += stepSize;
                     changeState = !changeState;
-                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36,position ,changeState), 0, 0);
+                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 9:
                     position += stepSize;
@@ -94,7 +105,7 @@ namespace FlightSimulator
                     this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 10:
-                    position += stepSize;
+                    position -= stepSize;
                     changeState = !changeState;
                     this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
@@ -104,11 +115,6 @@ namespace FlightSimulator
                     this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
                     break;
                 case 12:
-                    position -= stepSize;
-                    changeState = !changeState;
-                    this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
-                    break;
-                case 13:
                     position -= stepSize;
                     changeState = !changeState;
                     this.CreateGraphics().DrawImage(drawRphi(g, Color.FromArgb(160, Color.Black), Color.FromArgb(60, Color.Black), Color.FromArgb(120, Color.Black), barSize36, position, changeState), 0, 0);
@@ -146,6 +152,16 @@ namespace FlightSimulator
                 }
 
             }
+            return bm;
+        }
+
+        private Bitmap drawSingleBar(Graphics g, Color whiteColor,int barSize, int position)
+        {
+            g.Clear(Color.White);
+            
+            g.FillRectangle(new SolidBrush(whiteColor),position-barSize/2,0,barSize, windowHeight);
+                    //g.DrawLine(Pens.Wheat, (i + position) % windowWidth, 0, (i + position) % windowWidth, windowHeight);
+             
             return bm;
         }
 
