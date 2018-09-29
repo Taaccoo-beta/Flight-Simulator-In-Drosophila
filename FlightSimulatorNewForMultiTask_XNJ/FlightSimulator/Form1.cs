@@ -1746,7 +1746,7 @@ namespace FlightSimulator
             this.lblEXPStateTRaw.Text = troque.ToString();
             this.lblEXPSTateT.Text = troque_trans.ToString();
 
-            label1.Text = this.expID.ToString();
+            //label1.Text = this.expID.ToString();
 
             if (isExpModule)
             {

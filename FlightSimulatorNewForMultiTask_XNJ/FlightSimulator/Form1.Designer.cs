@@ -133,7 +133,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -254,7 +253,7 @@
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
             this.tpStep1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep1.Size = new System.Drawing.Size(943, 668);
+            this.tpStep1.Size = new System.Drawing.Size(1105, 668);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
             this.tpStep1.UseVisualStyleBackColor = true;
@@ -826,7 +825,7 @@
             this.tpStep2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tpStep2.Name = "tpStep2";
             this.tpStep2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tpStep2.Size = new System.Drawing.Size(1083, 667);
+            this.tpStep2.Size = new System.Drawing.Size(1105, 668);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";
             this.tpStep2.UseVisualStyleBackColor = true;
@@ -1124,13 +1123,12 @@
             this.pictureBox1.Location = new System.Drawing.Point(2, 3);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1079, 565);
+            this.pictureBox1.Size = new System.Drawing.Size(1101, 565);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // tpSetp3
             // 
-            this.tpSetp3.Controls.Add(this.label1);
             this.tpSetp3.Controls.Add(this.btnEXPStop);
             this.tpSetp3.Controls.Add(this.groupBox4);
             this.tpSetp3.Controls.Add(this.splitter1);
@@ -1304,16 +1302,6 @@
             // 
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(953, 376);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "NULL";
-            // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1348,7 +1336,6 @@
             this.gbSetPar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tpSetp3.ResumeLayout(false);
-            this.tpSetp3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPosition)).EndInit();
@@ -1463,7 +1450,6 @@
         private System.Windows.Forms.Button btnDegreeUp;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Timer timer4;
-        private System.Windows.Forms.Label label1;
     }
 }
 
