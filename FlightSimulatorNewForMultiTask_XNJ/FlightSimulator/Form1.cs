@@ -1764,7 +1764,7 @@ namespace FlightSimulator
 
                 this.pbPosition.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
 
-                if (count == time * 1)
+                if (count == time * 5)
                 {
                     count = 0;
 
@@ -1816,7 +1816,7 @@ namespace FlightSimulator
 
 
 
-                if (count == (int)(1 * time))
+                if (count == (int)(3.5 * time))
                 {
                     count = 0;
 

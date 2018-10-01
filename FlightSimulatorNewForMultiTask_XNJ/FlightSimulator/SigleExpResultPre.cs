@@ -77,7 +77,7 @@ namespace FlightSimulator
             sW.Write("Position" + " " + "Torque");
             sW.WriteLine();
 
-            for (int i = 1; i != 7; i++)
+            for (int i = 1; i != 12; i++)
             {
                 sW.Write("exp"+i);
                 sW.WriteLine();
