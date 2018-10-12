@@ -1246,7 +1246,7 @@
             this.flpBottomForImageList.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpBottomForImageList.Location = new System.Drawing.Point(9, 3);
             this.flpBottomForImageList.Name = "flpBottomForImageList";
-            this.flpBottomForImageList.Size = new System.Drawing.Size(409, 792);
+            this.flpBottomForImageList.Size = new System.Drawing.Size(409, 775);
             this.flpBottomForImageList.TabIndex = 2;
             this.flpBottomForImageList.WrapContents = false;
             // 

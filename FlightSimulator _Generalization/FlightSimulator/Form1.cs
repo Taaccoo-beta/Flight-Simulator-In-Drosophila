@@ -930,12 +930,12 @@ namespace FlightSimulator
 
             lpf3.Add(position);
             lpf4.Add(troque);
-            if (lpf3.Count == 150)
+            if (lpf3.Count == 300)
             {
                 lpf3.Remove(lpf3[0]);
             }
 
-            if (lpf4.Count == 150)
+            if (lpf4.Count == 300)
             {
                 lpf4.Remove(lpf4[0]);
             }
@@ -945,7 +945,7 @@ namespace FlightSimulator
             this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
             imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
             this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
-            if (sequenceIndexForExperiment == 3 & ifBreakTime)
+            if (sequenceIndexForExperiment == 7 & ifBreakTime)
             {
                 timer2.Stop();
                 ifBreakTime = false;
