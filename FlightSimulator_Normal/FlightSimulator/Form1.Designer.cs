@@ -116,8 +116,13 @@
             this.btnTestDrawing = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tpSetp3 = new System.Windows.Forms.TabPage();
-            this.lblPunishmentStateValue = new System.Windows.Forms.Label();
+            this.gbStatelooking = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblShowTorStep3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblShowPosStep3 = new System.Windows.Forms.Label();
             this.lblPunishment = new System.Windows.Forms.Label();
+            this.lblPunishmentStateValue = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -129,11 +134,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timerForBackToZero = new System.Windows.Forms.Timer(this.components);
-            this.gbStatelooking = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblShowPosStep3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblShowTorStep3 = new System.Windows.Forms.Label();
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpStep1.SuspendLayout();
@@ -149,11 +150,11 @@
             this.gbBias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tpSetp3.SuspendLayout();
+            this.gbStatelooking.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.gbStatelooking.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -163,10 +164,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingToolStripMenuItem,
             this.杀死对方ToolStripMenuItem});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1455, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -185,8 +187,6 @@
             // 
             // debugModeToolStripMenuItem
             // 
-            this.debugModeToolStripMenuItem.Checked = true;
-            this.debugModeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.debugModeToolStripMenuItem.Name = "debugModeToolStripMenuItem";
             this.debugModeToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.debugModeToolStripMenuItem.Text = "DebugMode";
@@ -244,7 +244,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 28);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1455, 819);
+            this.tabControl.Size = new System.Drawing.Size(1582, 925);
             this.tabControl.TabIndex = 1;
             this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl_Selected);
             // 
@@ -260,8 +260,8 @@
             this.tpStep1.Location = new System.Drawing.Point(4, 25);
             this.tpStep1.Margin = new System.Windows.Forms.Padding(0);
             this.tpStep1.Name = "tpStep1";
-            this.tpStep1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tpStep1.Size = new System.Drawing.Size(1447, 790);
+            this.tpStep1.Padding = new System.Windows.Forms.Padding(3);
+            this.tpStep1.Size = new System.Drawing.Size(1574, 896);
             this.tpStep1.TabIndex = 0;
             this.tpStep1.Text = "Step-1";
             this.tpStep1.UseVisualStyleBackColor = true;
@@ -269,7 +269,7 @@
             // 
             // btnGoStep_2
             // 
-            this.btnGoStep_2.Location = new System.Drawing.Point(969, 541);
+            this.btnGoStep_2.Location = new System.Drawing.Point(980, 593);
             this.btnGoStep_2.Name = "btnGoStep_2";
             this.btnGoStep_2.Size = new System.Drawing.Size(111, 39);
             this.btnGoStep_2.TabIndex = 28;
@@ -290,7 +290,7 @@
             this.gbSetSequence_3.Controls.Add(this.lblTrainOrTest_3);
             this.gbSetSequence_3.Controls.Add(this.rbTrain_3);
             this.gbSetSequence_3.Controls.Add(this.lblLastTime_3);
-            this.gbSetSequence_3.Location = new System.Drawing.Point(772, 25);
+            this.gbSetSequence_3.Location = new System.Drawing.Point(783, 77);
             this.gbSetSequence_3.Name = "gbSetSequence_3";
             this.gbSetSequence_3.Size = new System.Drawing.Size(308, 312);
             this.gbSetSequence_3.TabIndex = 23;
@@ -422,7 +422,7 @@
             this.gbSetSequence_2.Controls.Add(this.lblTrainOrTest_2);
             this.gbSetSequence_2.Controls.Add(this.rbTrain_2);
             this.gbSetSequence_2.Controls.Add(this.lblLastTime_2);
-            this.gbSetSequence_2.Location = new System.Drawing.Point(423, 25);
+            this.gbSetSequence_2.Location = new System.Drawing.Point(434, 77);
             this.gbSetSequence_2.Name = "gbSetSequence_2";
             this.gbSetSequence_2.Size = new System.Drawing.Size(295, 312);
             this.gbSetSequence_2.TabIndex = 27;
@@ -548,7 +548,7 @@
             this.gbPunishmentChoose.Controls.Add(this.label6);
             this.gbPunishmentChoose.Controls.Add(this.rbPCShake);
             this.gbPunishmentChoose.Controls.Add(this.rbPCHeat);
-            this.gbPunishmentChoose.Location = new System.Drawing.Point(744, 376);
+            this.gbPunishmentChoose.Location = new System.Drawing.Point(755, 428);
             this.gbPunishmentChoose.Name = "gbPunishmentChoose";
             this.gbPunishmentChoose.Size = new System.Drawing.Size(336, 130);
             this.gbPunishmentChoose.TabIndex = 26;
@@ -637,7 +637,7 @@
             this.gbSetName.Controls.Add(this.lblRecordFileLabel);
             this.gbSetName.Controls.Add(this.tbExperimentName);
             this.gbSetName.Controls.Add(this.lblExName);
-            this.gbSetName.Location = new System.Drawing.Point(381, 376);
+            this.gbSetName.Location = new System.Drawing.Point(392, 428);
             this.gbSetName.Name = "gbSetName";
             this.gbSetName.Size = new System.Drawing.Size(280, 130);
             this.gbSetName.TabIndex = 24;
@@ -684,7 +684,7 @@
             // 
             this.gbSetDataPath.Controls.Add(this.btnChooseDataPath);
             this.gbSetDataPath.Controls.Add(this.lblDPValue);
-            this.gbSetDataPath.Location = new System.Drawing.Point(79, 376);
+            this.gbSetDataPath.Location = new System.Drawing.Point(90, 428);
             this.gbSetDataPath.Name = "gbSetDataPath";
             this.gbSetDataPath.Size = new System.Drawing.Size(220, 130);
             this.gbSetDataPath.TabIndex = 23;
@@ -725,7 +725,7 @@
             this.gbSetSequence_1.Controls.Add(this.lblTrainOrTest_1);
             this.gbSetSequence_1.Controls.Add(this.rbTrain_1);
             this.gbSetSequence_1.Controls.Add(this.lblLastTime_1);
-            this.gbSetSequence_1.Location = new System.Drawing.Point(79, 25);
+            this.gbSetSequence_1.Location = new System.Drawing.Point(90, 77);
             this.gbSetSequence_1.Name = "gbSetSequence_1";
             this.gbSetSequence_1.Size = new System.Drawing.Size(297, 312);
             this.gbSetSequence_1.TabIndex = 22;
@@ -864,8 +864,8 @@
             this.tpStep2.Controls.Add(this.pictureBox1);
             this.tpStep2.Location = new System.Drawing.Point(4, 25);
             this.tpStep2.Name = "tpStep2";
-            this.tpStep2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tpStep2.Size = new System.Drawing.Size(1447, 790);
+            this.tpStep2.Padding = new System.Windows.Forms.Padding(3);
+            this.tpStep2.Size = new System.Drawing.Size(1574, 896);
             this.tpStep2.TabIndex = 1;
             this.tpStep2.Text = "Step-2";
             this.tpStep2.UseVisualStyleBackColor = true;
@@ -989,7 +989,7 @@
             this.lblChooseDisplay.AutoSize = true;
             this.lblChooseDisplay.BackColor = System.Drawing.Color.DarkCyan;
             this.lblChooseDisplay.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblChooseDisplay.Location = new System.Drawing.Point(545, 660);
+            this.lblChooseDisplay.Location = new System.Drawing.Point(515, 659);
             this.lblChooseDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblChooseDisplay.Name = "lblChooseDisplay";
             this.lblChooseDisplay.Size = new System.Drawing.Size(127, 15);
@@ -1093,7 +1093,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1441, 678);
+            this.pictureBox1.Size = new System.Drawing.Size(1568, 678);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -1107,21 +1107,67 @@
             this.tpSetp3.Controls.Add(this.pictureBox2);
             this.tpSetp3.Location = new System.Drawing.Point(4, 25);
             this.tpSetp3.Name = "tpSetp3";
-            this.tpSetp3.Size = new System.Drawing.Size(1447, 790);
+            this.tpSetp3.Size = new System.Drawing.Size(1574, 896);
             this.tpSetp3.TabIndex = 2;
             this.tpSetp3.Text = "Step-3";
             this.tpSetp3.UseVisualStyleBackColor = true;
             this.tpSetp3.Click += new System.EventHandler(this.tpSetp3_Click);
             // 
-            // lblPunishmentStateValue
+            // gbStatelooking
             // 
-            this.lblPunishmentStateValue.AutoSize = true;
-            this.lblPunishmentStateValue.Location = new System.Drawing.Point(101, 38);
-            this.lblPunishmentStateValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPunishmentStateValue.Name = "lblPunishmentStateValue";
-            this.lblPunishmentStateValue.Size = new System.Drawing.Size(39, 15);
-            this.lblPunishmentStateValue.TabIndex = 8;
-            this.lblPunishmentStateValue.Text = "NULL";
+            this.gbStatelooking.Controls.Add(this.label7);
+            this.gbStatelooking.Controls.Add(this.lblShowTorStep3);
+            this.gbStatelooking.Controls.Add(this.label2);
+            this.gbStatelooking.Controls.Add(this.lblShowPosStep3);
+            this.gbStatelooking.Controls.Add(this.lblPunishment);
+            this.gbStatelooking.Controls.Add(this.lblPunishmentStateValue);
+            this.gbStatelooking.Location = new System.Drawing.Point(1187, 136);
+            this.gbStatelooking.Name = "gbStatelooking";
+            this.gbStatelooking.Size = new System.Drawing.Size(200, 219);
+            this.gbStatelooking.TabIndex = 9;
+            this.gbStatelooking.TabStop = false;
+            this.gbStatelooking.Text = "State";
+            this.gbStatelooking.Enter += new System.EventHandler(this.gbStatelooking_Enter);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(28, 111);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 15);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "torque:";
+            // 
+            // lblShowTorStep3
+            // 
+            this.lblShowTorStep3.AutoSize = true;
+            this.lblShowTorStep3.Location = new System.Drawing.Point(101, 111);
+            this.lblShowTorStep3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblShowTorStep3.Name = "lblShowTorStep3";
+            this.lblShowTorStep3.Size = new System.Drawing.Size(39, 15);
+            this.lblShowTorStep3.TabIndex = 12;
+            this.lblShowTorStep3.Text = "NULL";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 71);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 15);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Position:";
+            // 
+            // lblShowPosStep3
+            // 
+            this.lblShowPosStep3.AutoSize = true;
+            this.lblShowPosStep3.Location = new System.Drawing.Point(101, 71);
+            this.lblShowPosStep3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblShowPosStep3.Name = "lblShowPosStep3";
+            this.lblShowPosStep3.Size = new System.Drawing.Size(39, 15);
+            this.lblShowPosStep3.TabIndex = 10;
+            this.lblShowPosStep3.Text = "NULL";
             // 
             // lblPunishment
             // 
@@ -1133,11 +1179,21 @@
             this.lblPunishment.TabIndex = 7;
             this.lblPunishment.Text = "ifPun:";
             // 
+            // lblPunishmentStateValue
+            // 
+            this.lblPunishmentStateValue.AutoSize = true;
+            this.lblPunishmentStateValue.Location = new System.Drawing.Point(101, 38);
+            this.lblPunishmentStateValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPunishmentStateValue.Name = "lblPunishmentStateValue";
+            this.lblPunishmentStateValue.Size = new System.Drawing.Size(39, 15);
+            this.lblPunishmentStateValue.TabIndex = 8;
+            this.lblPunishmentStateValue.Text = "NULL";
+            // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 790);
+            this.splitter1.Size = new System.Drawing.Size(3, 896);
             this.splitter1.TabIndex = 6;
             this.splitter1.TabStop = false;
             // 
@@ -1148,7 +1204,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(429, 740);
+            this.groupBox1.Size = new System.Drawing.Size(429, 860);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FinishedExp";
@@ -1160,7 +1216,7 @@
             this.flowLayoutPanel1.Controls.Add(this.flpBottomForImageList);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(424, 692);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(424, 817);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // flpTopForLabel
@@ -1174,10 +1230,11 @@
             // flpBottomForImageList
             // 
             this.flpBottomForImageList.AutoScroll = true;
+            this.flpBottomForImageList.Dock = System.Windows.Forms.DockStyle.Top;
             this.flpBottomForImageList.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpBottomForImageList.Location = new System.Drawing.Point(9, 3);
             this.flpBottomForImageList.Name = "flpBottomForImageList";
-            this.flpBottomForImageList.Size = new System.Drawing.Size(409, 676);
+            this.flpBottomForImageList.Size = new System.Drawing.Size(409, 775);
             this.flpBottomForImageList.TabIndex = 2;
             this.flpBottomForImageList.WrapContents = false;
             // 
@@ -1203,7 +1260,7 @@
             // 
             this.pictureBox2.Location = new System.Drawing.Point(9, 402);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(653, 366);
+            this.pictureBox2.Size = new System.Drawing.Size(653, 461);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -1220,67 +1277,15 @@
             // 
             this.timerForBackToZero.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // gbStatelooking
+            // timer3
             // 
-            this.gbStatelooking.Controls.Add(this.label7);
-            this.gbStatelooking.Controls.Add(this.lblShowTorStep3);
-            this.gbStatelooking.Controls.Add(this.label2);
-            this.gbStatelooking.Controls.Add(this.lblShowPosStep3);
-            this.gbStatelooking.Controls.Add(this.lblPunishment);
-            this.gbStatelooking.Controls.Add(this.lblPunishmentStateValue);
-            this.gbStatelooking.Location = new System.Drawing.Point(1187, 136);
-            this.gbStatelooking.Name = "gbStatelooking";
-            this.gbStatelooking.Size = new System.Drawing.Size(200, 219);
-            this.gbStatelooking.TabIndex = 9;
-            this.gbStatelooking.TabStop = false;
-            this.gbStatelooking.Text = "State";
-            this.gbStatelooking.Enter += new System.EventHandler(this.gbStatelooking_Enter);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 71);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 15);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Position:";
-            // 
-            // lblShowPosStep3
-            // 
-            this.lblShowPosStep3.AutoSize = true;
-            this.lblShowPosStep3.Location = new System.Drawing.Point(101, 71);
-            this.lblShowPosStep3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblShowPosStep3.Name = "lblShowPosStep3";
-            this.lblShowPosStep3.Size = new System.Drawing.Size(39, 15);
-            this.lblShowPosStep3.TabIndex = 10;
-            this.lblShowPosStep3.Text = "NULL";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 111);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 15);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "torque:";
-            // 
-            // lblShowTorStep3
-            // 
-            this.lblShowTorStep3.AutoSize = true;
-            this.lblShowTorStep3.Location = new System.Drawing.Point(101, 111);
-            this.lblShowTorStep3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblShowTorStep3.Name = "lblShowTorStep3";
-            this.lblShowTorStep3.Size = new System.Drawing.Size(39, 15);
-            this.lblShowTorStep3.TabIndex = 12;
-            this.lblShowTorStep3.Text = "NULL";
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick_1);
             // 
             // FlightSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1455, 847);
+            this.ClientSize = new System.Drawing.Size(1582, 953);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -1313,13 +1318,13 @@
             this.gbBias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tpSetp3.ResumeLayout(false);
+            this.gbStatelooking.ResumeLayout(false);
+            this.gbStatelooking.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.gbStatelooking.ResumeLayout(false);
-            this.gbStatelooking.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1432,6 +1437,7 @@
         private System.Windows.Forms.Label lblShowTorStep3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblShowPosStep3;
+        private System.Windows.Forms.Timer timer3;
     }
 }
 

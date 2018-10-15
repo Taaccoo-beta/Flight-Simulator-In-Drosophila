@@ -114,7 +114,7 @@ namespace FlightSimulator
         private bool getPIPosition(float value)
         {
             
-                if ((value > 1470 & value < 1928) || (value > 2494 || value < 976))
+                if ((value > 1470 & value < 1982) || (value > 2494 || value < 976))
                 {
                     return true;
                 }

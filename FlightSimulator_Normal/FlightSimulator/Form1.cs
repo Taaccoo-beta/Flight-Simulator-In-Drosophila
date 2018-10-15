@@ -56,7 +56,7 @@ namespace FlightSimulator
         private Bitmap imageNow;
 
         //debug mode start
-        bool ifStartDebugMode = true;
+        bool ifStartDebugMode = false;
 
         //save position and torque point
         private List<float> lpf1 = new List<float>();
@@ -624,8 +624,8 @@ namespace FlightSimulator
 
             if (ifStartDebugMode)
             {
-                position = 2494;
-                troque = 0;
+                position = 1982;
+                troque = 1744;
             }
 
 
@@ -801,16 +801,25 @@ namespace FlightSimulator
             this.pc.DigitOutput(0, MccDaq.DigitalLogicState.Low);
         }
 
-        
 
+        
+        private bool ifBreakTime = true;
+        private bool ifEnterInterval = false;
         private void timer2_Tick(object sender, EventArgs e)
         {
-
+            
             float positionVoltageValue;
             float torqueVoltageValue;
 
+            
             float position = float.Parse(pc.AnalogInput10(0, out positionVoltageValue));
             float troque = float.Parse(pc.AnalogInput10(1, out torqueVoltageValue));
+
+            if (ifStartDebugMode)
+            {
+                position = 1982;
+                troque = 1111;
+            }
 
             positionForEverySequence[sequenceIndexForExperiment].Add(position);
             torqueForEverySequence[sequenceIndexForExperiment].Add(troque);
@@ -822,7 +831,7 @@ namespace FlightSimulator
 
                 if (rbUpT.Checked)
                 {
-                    if ((position > 1470 & position < 1928) || (position > 2494 || position < 976))
+                    if ((position > 1470 & position < 1982) || (position > 2494 || position < 976))
                     {
                         punishmentByHeat();
                         lblPunishmentStateValue.Text = "True";
@@ -835,7 +844,7 @@ namespace FlightSimulator
                 }
                 else
                 {
-                    if ((position > 1470 & position < 1928) || (position > 2494 || position < 976))
+                    if ((position > 1470 & position < 1982) || (position > 2494 || position < 976))
                     {
                         unPunishmentByHeat();
                         lblPunishmentStateValue.Text = "False";
@@ -857,6 +866,7 @@ namespace FlightSimulator
             timeIndex++;
             if (timeIndex == experimentTimeUsed[sequenceIndexForExperiment] * 10)
             {
+                ifEnterInterval = true;
                 timeIndex = 0;
                 sequenceIndexForExperiment++;
                 dp2.clearCommunitivePosition();
@@ -923,12 +933,12 @@ namespace FlightSimulator
 
             lpf3.Add(position);
             lpf4.Add(troque);
-            if (lpf3.Count == 150)
+            if (lpf3.Count == 300)
             {
                 lpf3.Remove(lpf3[0]);
             }
 
-            if (lpf4.Count == 150)
+            if (lpf4.Count == 300)
             {
                 lpf4.Remove(lpf4[0]);
             }
@@ -938,97 +948,132 @@ namespace FlightSimulator
             this.pictureBox2.CreateGraphics().DrawImage(dp1.drawSignalCurve(lpf3, lpf4), 0, 0);
             imageNow = dp2.drawCommunitivePoint(position, ifStartDebugMode,sequenceIndexForExperiment);
             this.pictureBox3.CreateGraphics().DrawImage(imageNow, 0, 0);
-            
 
-    }
+            if (ifEnterInterval)
+            {
+                timer2.Stop();
+                ifEnterInterval = false;
+                time3Count = 0;
+                OpenLoop();
+                Random rd = new Random();
+                int i = rd.Next(0, 50);
 
+                float biasValue = i * 0.04f + 2;  //0-50  --->  2-4
+                
+
+
+                pc.VOutput(0, biasValue);
+
+                time3Count = 0;
+                timer3.Interval = 50;
+                timer3.Start();
+            }
+        }
+
+        private bool ifstartBtn = true;
         private void btnStep3Start_Click(object sender, EventArgs e)
         {
-            dp1 = new drawProcess(this.pictureBox2.Width, this.pictureBox2.Height, Color.DarkCyan);
-            dp2 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height, Color.DarkCyan);
-            //for (int i = 0; i < 6; i++)
-            //{
-            //    if (i % 2 == 0)
-            //    {
-            //        trainOrTestForTest.Add(true);
-            //    }
-            //    else
-            //    {
-            //        trainOrTestForTest.Add(false);
-            //    }
-
-            //    experimentTimeForTest.Add(300);
 
 
-            //}
-
-            if (tbExperimentName.Text == "")
+            if (ifstartBtn)
             {
-                MessageBox.Show("ExpName is NULL");
-            }
-            else
-            {
-                lpf3.Clear();
-                lpf4.Clear();
-                positionForEverySequence.Clear();
-                torqueForEverySequence.Clear();
-                sequenceIndexForExperiment = 0;
-                this.flpTopForLabel.Controls.Clear();
-                this.flpBottomForImageList.Controls.Clear();
-                int controlsLength;
-                if (cbSetSeqChoosed_1.Checked)
+                this.btnStep3Start.Text = "Stop";
+                ifstartBtn = false;
+                dp1 = new drawProcess(this.pictureBox2.Width, this.pictureBox2.Height, Color.DarkCyan);
+                dp2 = new drawProcess(this.pictureBox3.Width, this.pictureBox3.Height, Color.DarkCyan);
+                //for (int i = 0; i < 6; i++)
+                //{
+                //    if (i % 2 == 0)
+                //    {
+                //        trainOrTestForTest.Add(true);
+                //    }
+                //    else
+                //    {
+                //        trainOrTestForTest.Add(false);
+                //    }
+
+                //    experimentTimeForTest.Add(300);
+
+
+                //}
+
+                if (tbExperimentName.Text == "")
                 {
-                    controlsLength = trainOrTest_1.Count;
-                    trainOrTestUsed = trainOrTest_1;
-                    experimentTimeUsed = experimentTime_1;
-                }
-                else if (cbSetSeqChoosed_2.Checked)
-                {
-                    controlsLength = trainOrTest_2.Count;
-                    trainOrTestUsed = trainOrTest_2;
-                    experimentTimeUsed = experimentTime_2;
+                    MessageBox.Show("ExpName is NULL");
                 }
                 else
                 {
-                    controlsLength = trainOrTest_3.Count;
-                    trainOrTestUsed = trainOrTest_3;
-                    experimentTimeUsed = experimentTime_3;
-                }
-
-
-                dp1.getTrainOrTestSequence(trainOrTestUsed);
-                dp2.getTrainOrTestSequence(trainOrTestUsed);
-
-                controls = new List<Control>();
-                for (int i = 0; i < controlsLength; i++)
-                {
-                    Label l = new Label();
-                    l.Name = "lblDForSequence" + i.ToString();
-                    l.AutoSize = true;
-                    l.BorderStyle = BorderStyle.FixedSingle;
-                    l.Margin = new System.Windows.Forms.Padding(3);
-                    l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                    if (trainOrTestUsed[i] == true)
+                    lpf3.Clear();
+                    lpf4.Clear();
+                    positionForEverySequence.Clear();
+                    torqueForEverySequence.Clear();
+                    sequenceIndexForExperiment = 0;
+                    this.flpTopForLabel.Controls.Clear();
+                    this.flpBottomForImageList.Controls.Clear();
+                    int controlsLength;
+                    if (cbSetSeqChoosed_1.Checked)
                     {
-                        l.Text = "Tr: " + experimentTimeUsed[i].ToString();
+                        controlsLength = trainOrTest_1.Count;
+                        trainOrTestUsed = trainOrTest_1;
+                        experimentTimeUsed = experimentTime_1;
+                    }
+                    else if (cbSetSeqChoosed_2.Checked)
+                    {
+                        controlsLength = trainOrTest_2.Count;
+                        trainOrTestUsed = trainOrTest_2;
+                        experimentTimeUsed = experimentTime_2;
                     }
                     else
                     {
-                        l.Text = "Te: " + experimentTimeUsed[i].ToString();
+                        controlsLength = trainOrTest_3.Count;
+                        trainOrTestUsed = trainOrTest_3;
+                        experimentTimeUsed = experimentTime_3;
                     }
-                    controls.Add(l);
 
-                    this.flpTopForLabel.Controls.Add(l);
+
+                    dp1.getTrainOrTestSequence(trainOrTestUsed);
+                    dp2.getTrainOrTestSequence(trainOrTestUsed);
+
+                    controls = new List<Control>();
+                    for (int i = 0; i < controlsLength; i++)
+                    {
+                        Label l = new Label();
+                        l.Name = "lblDForSequence" + i.ToString();
+                        l.AutoSize = true;
+                        l.BorderStyle = BorderStyle.FixedSingle;
+                        l.Margin = new System.Windows.Forms.Padding(3);
+                        l.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                        if (trainOrTestUsed[i] == true)
+                        {
+                            l.Text = "Tr: " + experimentTimeUsed[i].ToString();
+                        }
+                        else
+                        {
+                            l.Text = "Te: " + experimentTimeUsed[i].ToString();
+                        }
+                        controls.Add(l);
+
+                        this.flpTopForLabel.Controls.Add(l);
+                    }
+                    controls[0].BackColor = Color.DarkCyan;
+
+                    positionForEverySequence.Add(new List<float>());
+                    torqueForEverySequence.Add(new List<float>());
+                    ifBreakTime = true;
+                    ifEnterInterval = false;
+                    timer2.Start();
+                    timer1.Stop();
                 }
-                controls[0].BackColor = Color.DarkCyan;
 
-                positionForEverySequence.Add(new List<float>());
-                torqueForEverySequence.Add(new List<float>());
-
-                timer2.Start();
-                timer1.Stop();
-                this.btnStep3Start.Enabled = false;
             }
+            else
+            {
+                this.btnStep3Start.Text = "Start";
+                ifstartBtn = true;
+                timer2.Stop();
+            }
+                //this.btnStep3Start.Enabled = false;
+            
             
         }
 
@@ -1524,6 +1569,24 @@ namespace FlightSimulator
         private void gbStatelooking_Enter(object sender, EventArgs e)
         {
 
+        }
+
+       
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+           
+        }
+
+        int time3Count = 0;
+        private void timer3_Tick_1(object sender, EventArgs e)
+        {
+            time3Count++;
+            if (time3Count == 20)
+            {
+                timer3.Stop();
+                ClosedLoop();
+                timer2.Start();
+            }
         }
     }
 }

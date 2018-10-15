@@ -90,15 +90,15 @@ namespace rorationSimulation
 
             float interval = 2048f / (float)pnrLength;
 
-            if (number > 2721)
+            if (number > 2718)
             {
-                number = 2721;
+                number = 2718;
             }
-            if (number < 721)
+            if (number < 702)
             {
-                number = 721;
+                number = 702;
             }
-            int index = (int)((number-721) / interval);
+            int index = (int)((number-702) / interval);
 
             
             positionNumberRecord[index]++;
@@ -217,21 +217,7 @@ namespace rorationSimulation
             g2.FillRectangle(new SolidBrush(Color.Yellow), new RectangleF(-10+8*intervalForXAxis/2, 8, 12, 5));
             g2.FillRectangle(new SolidBrush(Color.Yellow), new RectangleF(-1+8*intervalForXAxis/2, 8, 5, 16));
 
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    if (i % 2 == 0)
-            //    {
-            //        g2.DrawString("P", new Font("Arial", 12), new SolidBrush(Color.Black), 40 + (widthHere- 20) / 4 * i, 20);
-
-
-            //    }
-            //    else
-            //    {
-            //        
-
-            //    }
-
-            //}
+            
 
             if (sequenceForExperiment!=trainOrTest.Count)
             { if (trainOrTest[sequenceForExperiment])
@@ -385,7 +371,7 @@ namespace rorationSimulation
             {
                 for (int i = 0; i < lpf2.Count - 1; i++)
                 {
-                    g1.DrawLine(Pens.Red, 65 + i, lpf2[i] * (height-80)/4096f + 60 , 65 + i + 1, lpf2[i+1] * (height - 80) / 4096f + 60);
+                    g1.DrawLine(Pens.Red, 65 + i, (lpf2[i] - 65) * (height - 110) / (2797) + 60, 65 + i + 1, (lpf2[i + 1] - 65) * (height - 110) / (2797) + 60);
                 }
 
             }
